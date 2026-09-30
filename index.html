@@ -6,7 +6,7 @@
         <title>Hanako AI ✨ | 次世代のDiscord読み上げ体験を、すべての人に。</title>
         <meta
             name="description"
-            content="Hanakoは、あなたのDiscord体験を次のレベルへと引き上げる、革新的でパワフルなチャット読み上げソリューションです。辞書・SE・キャラクター・ブラックリストまで、シームレスに。"
+            content="Hanakoは、あなたのDiscord体験を次のレベルへと引き上げる、革新的でパワフルなチャット読み上げソリューションです。辞書・SE・ブラックリストまで、シームレスに。"
         />
         <meta property="og:title" content="Hanako AI ✨ — The Future of Discord Voice" />
         <meta property="og:description" content="言葉に、声という翼を。次世代のDiscord読み上げBot「Hanako」。" />
@@ -151,9 +151,9 @@
                         <p>キーワードに反応して効果音を再生。会話に、かつてない臨場感と彩りを。</p>
                     </article>
                     <article class="glass span-2 reveal">
-                        <div class="icon-box">🎭</div>
-                        <h3>パーソナライズされた声</h3>
-                        <p>ユーザーごとにキャラクターを選択可能。あなたらしさを、声で表現しましょう。</p>
+                        <div class="icon-box">🎚️</div>
+                        <h3>文字数制限</h3>
+                        <p>長文は指定した文字数で打ち切り。読み上げ渋滞を、スマートに防ぎます。</p>
                     </article>
                     <article class="glass span-2 reveal">
                         <div class="icon-box">🛡️</div>
@@ -674,11 +674,11 @@
                             <div class="chapter-head">
                                 <div>
                                     <span class="chapter-kicker">STEP 06 — PERSONALIZATION</span>
-                                    <h2>声まで、<span class="gradient-text">あなた好みに。</span></h2>
+                                    <h2>声と、<span class="gradient-text">読む長さの設定。</span></h2>
                                 </div>
                                 <img class="chapter-mascot" src="assets/hanako-settings.webp" alt="" loading="lazy" />
                             </div>
-                            <p class="lead">「誰の声で」「どこまで」読むかを、きめ細かくカスタマイズ。ただし、効く範囲がそれぞれ異なる点には注意が必要です。</p>
+                            <p class="lead">「誰の声で」「どこまで」読むかの設定です。効く範囲がそれぞれ違うので注意してください。</p>
 
                             <div class="cards">
                                 <article class="glass">
@@ -686,8 +686,8 @@
                                     <span class="tag">👤 自分だけに効く</span>
                                     <h4>キャラクター変更</h4>
                                     <p><code>/speaker name:キャラクター名</code></p>
-                                    <p><strong>あなたの発言を読む声</strong>を変えます。ほかの人の声は変わりません。設定はサーバーごとに覚えます。</p>
-                                    <p><code>/speaker name:default</code> で元の声に戻ります。</p>
+                                    <p><strong>あなたの発言を読む声</strong>を変えるコマンドです。ほかの人の声は変わりません。設定はサーバーごとに覚えます。</p>
+                                    <p>現在使える声は <code>default</code> の1種類だけなので、実質的には変更できません。</p>
                                 </article>
                                 <article class="glass">
                                     <img class="card-mascot" src="assets/hanako-pointing.webp" alt="" loading="lazy" />
@@ -698,10 +698,9 @@
                                     <p><code>/limit number:0</code> で無制限（初期値）。変更には「サーバー管理」の権限が必要です。</p>
                                 </article>
                             </div>
-                            <!-- TODO: 使えるキャラクター名の一覧をここに書くと親切です（音声サーバの設定に依存するため未記載） -->
                             <div class="callout warn">
-                                <span class="callout-title">キャラクター名について</span>
-                                使える名前は、Hanakoにつながっている音声サーバーの設定で決まります。存在しない名前を指定すると読み上げに失敗することがあるので、その場合は
+                                <span class="callout-title">使えるキャラクター名（現在1種類）</span>
+                                いま使えるのは <code>default</code>（既定の声）だけです。ほかの名前を指定すると読み上げに失敗することがあるので、その場合は
                                 <code>/speaker name:default</code> で戻してください。
                             </div>
                         </section>
@@ -1232,11 +1231,6 @@
                                 <td class="yes">✓（10,000件）</td>
                             </tr>
                             <tr>
-                                <td>ユーザーごとの声</td>
-                                <td class="no">✕</td>
-                                <td class="yes">✓</td>
-                            </tr>
-                            <tr>
                                 <td>長文を途中で成敗</td>
                                 <td class="no">✕</td>
                                 <td class="yes">✓</td>
@@ -1426,7 +1420,7 @@
                     </div>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; 2026 Hanako. Made with 💜 and AI.</p>
+                    <p>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>. Made with 💜 and AI.</p>
                     <p>Discord は Discord Inc. の商標です。本Botは Discord Inc. とは関係ありません。</p>
                 </div>
             </div>
