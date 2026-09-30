@@ -1,0 +1,1615 @@
+<!doctype html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Hanako AI ✨ | 次世代のDiscord読み上げ体験を、すべての人に。</title>
+        <meta
+            name="description"
+            content="Hanakoは、あなたのDiscord体験を次のレベルへと引き上げる、革新的でパワフルなチャット読み上げソリューションです。辞書・SE・キャラクター・ブラックリストまで、シームレスに。"
+        />
+        <meta property="og:title" content="Hanako AI ✨ — The Future of Discord Voice" />
+        <meta property="og:description" content="言葉に、声という翼を。次世代のDiscord読み上げBot「Hanako」。" />
+        <meta property="og:type" content="website" />
+        <meta name="theme-color" content="#07060f" />
+        <link
+            rel="icon"
+            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✨%3C/text%3E%3C/svg%3E"
+        />
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <div class="orb orb-1" aria-hidden="true"></div>
+        <div class="orb orb-2" aria-hidden="true"></div>
+        <div class="orb orb-3" aria-hidden="true"></div>
+        <div class="cursor-glow" aria-hidden="true"></div>
+
+        <div class="announce">
+            ✨ <b>Introducing Hanako</b> — 読み上げの常識が、いま変わる。<a href="#features">詳しく見る →</a>
+        </div>
+
+        <header class="site-header">
+            <div class="inner">
+                <a class="brand" href="./">
+                    <img class="brand-avatar" src="assets/hanako-hero.webp" alt="" />
+                    Hanako <span class="ai-badge">AI</span>
+                </a>
+                <nav class="site-nav" aria-label="メインナビゲーション">
+                    <a href="#features">機能</a>
+                    <a href="#docs">ドキュメント</a>
+                    <a href="#commands">コマンド</a>
+                    <a href="#pricing">料金</a>
+                    <a href="#trouble">FAQ</a>
+                    <a class="btn btn-primary btn-sm" href="#start">今すぐ始める →</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- ===== HERO ===== -->
+        <section class="hero" aria-labelledby="hero-title">
+            <div class="container hero-layout">
+                <div class="hero-copy">
+                    <span class="pill"><b>NEW</b> 🚀 Next-Gen Text-to-Speech for Discord</span>
+                    <h1 id="hero-title">
+                        あなたの言葉に、<br /><span class="gradient-text">「声」という翼を。</span>
+                    </h1>
+                    <p class="lead">
+                        Hanakoは、Discordのチャットを<strong>リアルタイム</strong>で音声に変換する、次世代の読み上げソリューションです。<br />
+                        <span class="typing" id="typing" aria-live="polite">シームレスに。</span>
+                    </p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="#start">無料で始める ✨</a>
+                        <a class="btn btn-ghost" href="#commands">▶ コマンドを見る</a>
+                    </div>
+                    <div class="hero-trust">
+                        <div class="avatars" aria-hidden="true">
+                            <img src="assets/hanako-cheer.webp" alt="" />
+                            <img src="assets/hanako-wave.webp" alt="" />
+                            <img src="assets/hanako-music.webp" alt="" />
+                            <img src="assets/hanako-hello.webp" alt="" />
+                        </div>
+                        <div>
+                            <span class="stars" aria-hidden="true">★★★★★</span><br />
+                            クレジットカード不要・完全無料
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-art">
+                    <div class="hero-ring" aria-hidden="true"></div>
+                    <div class="hero-card">
+                        <div class="hero-card-inner">
+                            <img src="assets/hanako-hero.webp" alt="桜の花を手にした花子。桃色の髪と猫耳、白い制服が特徴のキャラクター" />
+                        </div>
+                    </div>
+                    <div class="float-chip chip-a" aria-hidden="true">
+                        <span class="ico">🗣️</span>
+                        <span><small>Voice Engine</small><strong>読み上げ中…</strong></span>
+                    </div>
+                    <div class="float-chip chip-b" aria-hidden="true">
+                        <span class="ico">📚</span>
+                        <span><small>Dictionary</small><strong>+1 単語を学習</strong></span>
+                    </div>
+                    <div class="float-chip chip-c" aria-hidden="true">
+                        <span class="ico">⚡</span>
+                        <span><small>Status</small><strong>All systems go</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="stats reveal">
+                    <div class="stat"><b class="gradient-text" data-count="3">3</b><span>通りの直感的な入力方法</span></div>
+                    <div class="stat"><b class="gradient-text" data-count="200">200</b><span>語の辞書をサーバーごとに</span></div>
+                    <div class="stat"><b class="gradient-text" data-count="10000">10,000</b><span>件のSEを登録可能</span></div>
+                    <div class="stat"><b class="gradient-text">¥0</b><span>永久に無料</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== LOGOS ===== -->
+        <section class="logos" aria-label="利用シーン">
+            <div class="container">
+                <p>あらゆるコミュニティで、選ばれています</p>
+                <div class="marquee" aria-hidden="true">
+                    <div class="marquee-track">
+                        <span>🎮 ゲーム実況</span><span>🌙 深夜の雑談</span><span>📖 勉強会</span><span>🎵 作業通話</span
+                        ><span>🎲 TRPG</span><span>🍜 飯テロ部</span><span>💼 リモート会議</span><span>🐈 猫を愛でる会</span>
+                        <span>🎮 ゲーム実況</span><span>🌙 深夜の雑談</span><span>📖 勉強会</span><span>🎵 作業通話</span
+                        ><span>🎲 TRPG</span><span>🍜 飯テロ部</span><span>💼 リモート会議</span><span>🐈 猫を愛でる会</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== FEATURES ===== -->
+        <section class="section" id="features">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ Features</span>
+                    <h2>読み上げに必要なすべてを、<br /><span class="gradient-text">ひとつのプラットフォームに。</span></h2>
+                    <p>
+                        Hanakoは、単なる読み上げBotではありません。コミュニティのコミュニケーションを根本から再定義する、オールインワンのボイスエクスペリエンスです。
+                    </p>
+                </div>
+                <div class="bento">
+                    <article class="glass span-4 has-art reveal">
+                        <div class="icon-box">🗣️</div>
+                        <h3>リアルタイム読み上げ</h3>
+                        <p>
+                            チャットの発言を、瞬時に自然な音声へ。URL・メンション・絵文字もインテリジェントに整形し、誰もが会話にシームレスに参加できる環境を実現します。
+                        </p>
+                        <img class="bento-art" src="assets/hanako-speaking.webp" alt="" loading="lazy" />
+                    </article>
+                    <article class="glass span-2 reveal">
+                        <div class="icon-box">📚</div>
+                        <h3>スマート辞書</h3>
+                        <p>読み間違いとはもう、さよなら。サーバー固有の語彙を学習させ、あなたのコミュニティだけの「言葉」を育てましょう。</p>
+                    </article>
+                    <article class="glass span-2 reveal">
+                        <div class="icon-box">🎺</div>
+                        <h3>SEエンジン</h3>
+                        <p>キーワードに反応して効果音を再生。会話に、かつてない臨場感と彩りを。</p>
+                    </article>
+                    <article class="glass span-2 reveal">
+                        <div class="icon-box">🎭</div>
+                        <h3>パーソナライズされた声</h3>
+                        <p>ユーザーごとにキャラクターを選択可能。あなたらしさを、声で表現しましょう。</p>
+                    </article>
+                    <article class="glass span-2 reveal">
+                        <div class="icon-box">🛡️</div>
+                        <h3>エンタープライズ級の管理機能</h3>
+                        <p>ブラックリストとDiscordネイティブの権限管理で、安心・安全な運用を。</p>
+                    </article>
+                    <article class="glass span-3 reveal">
+                        <div class="icon-box">🔄</div>
+                        <h3>自動リカバリー</h3>
+                        <p>メンテナンスで再起動しても、元のボイスチャンネルへ自動で再接続。ダウンタイムを意識させない、レジリエントな設計です。</p>
+                    </article>
+                    <article class="glass span-3 reveal">
+                        <div class="icon-box">🔒</div>
+                        <h3>プライバシー・ファースト</h3>
+                        <p>
+                            データはサーバーごとに完全に分離。メッセージ本文は保存しません。あなたのコミュニティの情報は、あなたのコミュニティだけのものです。
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== DOCS ===== -->
+        <section class="section" id="docs">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ Documentation</span>
+                    <h2>徹底解説！<br /><span class="gradient-text">Hanako完全ガイド【2026年最新版】</span></h2>
+                    <p>初心者の方からパワーユーザーまで。Hanakoのポテンシャルを最大限に引き出すための、すべてをここに。</p>
+                </div>
+
+                <div class="docs">
+                    <nav class="toc" aria-label="目次">
+                        <p>📑 TABLE OF CONTENTS</p>
+                        <ol>
+                            <li><a href="#start">01. はじめる</a></li>
+                            <li><a href="#input">02. コマンドの打ち方</a></li>
+                            <li><a href="#reading">03. 読み上げのしくみ</a></li>
+                            <li><a href="#dictionary">04. 辞書</a></li>
+                            <li><a href="#se">05. SE（効果音）</a></li>
+                            <li><a href="#voice">06. 声と読み方</a></li>
+                            <li><a href="#blacklist">07. ブラックリスト</a></li>
+                            <li><a href="#admin">08. 権限と管理</a></li>
+                            <li><a href="#commands">09. コマンド一覧</a></li>
+                            <li><a href="#trouble">10. FAQ</a></li>
+                        </ol>
+                    </nav>
+
+                    <main>
+                        <!-- 01 -->
+                        <section class="chapter" id="start">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 01 — GETTING STARTED</span>
+                                    <h2>たった4ステップで、<span class="gradient-text">はじめよう。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-hello.webp" alt="" loading="lazy" />
+                            </div>
+                            <div class="tldr">
+                                <b>TL;DR</b>
+                                <p>ボイスチャンネルに入って <code>/plz</code>。以上です。</p>
+                            </div>
+                            <p class="lead">
+                                結論から言うと、Hanakoは「あなたがいるボイスチャンネル」に参加し、「呼ばれたテキストチャンネル」を読み上げます。複雑な設定は一切不要。驚くほどシンプルです。
+                            </p>
+
+                            <div class="steps">
+                                <div class="step">
+                                    <img src="assets/hanako-listening.webp" alt="" loading="lazy" />
+                                    <span class="n">STEP 1</span>
+                                    <b>ボイスチャンネルに入る</b>
+                                    <small>先にあなたが参加しておく</small>
+                                </div>
+                                <div class="step">
+                                    <img src="assets/hanako-typing.webp" alt="" loading="lazy" />
+                                    <span class="n">STEP 2</span>
+                                    <b><code>/plz</code> と打つ</b>
+                                    <small>読んでほしいテキストチャンネルで</small>
+                                </div>
+                                <div class="step main">
+                                    <img src="assets/hanako-speaking.webp" alt="" loading="lazy" />
+                                    <span class="n">STEP 3 ✨</span>
+                                    <b>Hanakoが参加</b>
+                                    <small>そのチャンネルの発言を読み上げる</small>
+                                </div>
+                                <div class="step">
+                                    <img src="assets/hanako-hello.webp" alt="" loading="lazy" />
+                                    <span class="n">STEP 4</span>
+                                    <b><code>/bye</code> で退出</b>
+                                    <small>誰もいなくなれば自動で退出</small>
+                                </div>
+                            </div>
+                            <p class="figcap">図：読み上げ開始から終了までのユーザージャーニー</p>
+
+                            <h3>🚀 知っておきたい4つのパワー機能</h3>
+                            <ul>
+                                <li>
+                                    <strong>マルチチャンネル対応：</strong>Hanakoが参加中に、別のテキストチャンネルでもう一度 <code>/plz</code>
+                                    を打つと、そのチャンネルも読み上げ対象に加わります。
+                                </li>
+                                <li>
+                                    <strong>ボイスチャンネル内チャットにも対応：</strong>ボイスチャンネルに付いているテキストチャットで <code>/plz</code>
+                                    を打てば、そこが読み上げ対象になります。
+                                </li>
+                                <li>
+                                    <strong>スマート自動退出：</strong>ボイスチャンネルにHanakoだけが残ると、自動で退出します。リソースの無駄は一切ありません。
+                                </li>
+                                <li>
+                                    <strong>自動再接続：</strong>メンテナンスで再起動したときは、元のボイスチャンネルに自動で再接続し、読み上げを再開します。
+                                </li>
+                            </ul>
+                            <div class="callout warn">
+                                <span class="callout-title">対応していない場所</span>
+                                スレッド、フォーラム、アナウンスチャンネルは読み上げできません。ステージチャンネルにも参加できません。
+                            </div>
+                        </section>
+
+                        <!-- 02 -->
+                        <section class="chapter" id="input">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 02 — INPUT METHODS</span>
+                                    <h2>あなたに最適な、<span class="gradient-text">3つの入力体験。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-typing.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">
+                                同じコマンドを3通りの書き方で実行できます。ワークフローに合わせて、自由に選択しましょう。迷ったら、スラッシュコマンドがおすすめです。
+                            </p>
+
+                            <div class="cards">
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-commands.webp" alt="" loading="lazy" />
+                                    <span class="tag hot">🔥 おすすめ</span>
+                                    <h4>スラッシュコマンド</h4>
+                                    <p><code>/teach from:草 to:くさ</code></p>
+                                    <p>
+                                        入力欄に <code>/</code> を打つと候補と説明が出ます。引数の名前が表示されるので打ち間違えにくく、一覧系の結果は自分にだけ表示されます。
+                                    </p>
+                                </article>
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-hello.webp" alt="" loading="lazy" />
+                                    <span class="tag">テキスト</span>
+                                    <h4>メンション</h4>
+                                    <p><code>@はなこ teach 草 くさ</code></p>
+                                    <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。日本語の別名（<code>教育</code> など）も使えます。</p>
+                                </article>
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-typing.webp" alt="" loading="lazy" />
+                                    <span class="tag">テキスト</span>
+                                    <h4>プリフィックス <code>&gt;</code></h4>
+                                    <p><code>&gt;teach 草 くさ</code></p>
+                                    <p>発言の先頭に <code>&gt;</code> を付けます。最小のキーストロークで最大の成果を。</p>
+                                </article>
+                            </div>
+
+                            <div class="callout">
+                                <span class="callout-title">Pro Tip：読まれたくない発言は <code>&gt;</code> で始めよう</span>
+                                <code>&gt;</code>
+                                で始まる発言は、コマンドとして存在しない内容でも読み上げられません。独り言やメモに最適な、まさに「隠れた神機能」と言えるでしょう。
+                            </div>
+
+                            <h3>📊 スラッシュ vs テキスト：徹底比較</h3>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>スラッシュコマンド</th>
+                                            <th>テキストコマンド</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>一覧・検索・ヘルプの結果</td>
+                                            <td>自分にだけ見える</td>
+                                            <td>チャンネルの全員に見える</td>
+                                        </tr>
+                                        <tr>
+                                            <td>全削除の確認</td>
+                                            <td>「実行する」ボタンを押す</td>
+                                            <td>コマンドに <code>--force</code> を付ける</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEを複数まとめて追加・削除</td>
+                                            <td>1件ずつ</td>
+                                            <td>まとめてできる</td>
+                                        </tr>
+                                        <tr>
+                                            <td>使える人の決まり方</td>
+                                            <td>サーバー管理者が自由に変更できる</td>
+                                            <td>固定（<a href="#admin">08章</a>を参照）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>サーバーごとに無効化</td>
+                                            <td>できない</td>
+                                            <td><code>/text-commands</code> で無効にできる</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+
+                        <!-- 03 -->
+                        <section class="chapter" id="reading">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 03 — UNDER THE HOOD</span>
+                                    <h2>声が生まれる、<span class="gradient-text">5つのステージ。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-speaking.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">
+                                発言は、声になるまでに5段階の高度なパイプラインを通過します。「なぜこう読まれたのか」「なぜ読まれなかったのか」——その答えは、すべてこの順番の中にあります。
+                            </p>
+
+                            <ol class="pipeline">
+                                <li>
+                                    <div class="what">
+                                        <b>読むかどうかを決める</b>
+                                        <span>読み上げ対象チャンネルの、人間の発言だけを通します（下の表を参照）。</span>
+                                    </div>
+                                    <div class="sample">HIKAKINの動画見た https://youtu.be/abc （拍手）</div>
+                                </li>
+                                <li>
+                                    <div class="what">
+                                        <b>読める形に直す</b>
+                                        <span>URLは「URL」に、メンションは表示名に、絵文字は名前に置き換えます。</span>
+                                    </div>
+                                    <div class="sample">HIKAKINの動画見た <mark>URL</mark> （拍手）</div>
+                                </li>
+                                <li>
+                                    <div class="what">
+                                        <b>辞書で読み替える</b>
+                                        <span>教育した単語を置き換えます。SEのキーワード部分は書き換えません。</span>
+                                    </div>
+                                    <div class="sample"><mark>ヒカキン</mark>の動画見た URL （拍手）</div>
+                                </li>
+                                <li>
+                                    <div class="what">
+                                        <b>長すぎたら切る</b>
+                                        <span>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。</span>
+                                    </div>
+                                    <div class="sample">ヒカキンの動画見た URL （拍手）<br /><small>// 制限内なのでそのまま</small></div>
+                                </li>
+                                <li>
+                                    <div class="what">
+                                        <b>声とSEに分けて再生する</b>
+                                        <span>SEのキーワードは効果音に、それ以外は合成音声になり、順番に再生されます。</span>
+                                    </div>
+                                    <div class="sample">
+                                        <span class="chip voice">🗣 ヒカキンの動画見た URL</span>
+                                        <span class="chip se">🎺 （拍手）</span>
+                                    </div>
+                                </li>
+                            </ol>
+                            <p class="figcap">例：辞書に「HIKAKIN → ヒカキン」、SEに「（拍手）」を登録しているサーバーでの読み上げ</p>
+
+                            <h3>🚫 読み上げられない発言</h3>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>発言</th>
+                                            <th>理由・対処</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>読み上げ対象でないチャンネルの発言</td>
+                                            <td>そのチャンネルで <code>/plz</code> を打つと対象に加わります</td>
+                                        </tr>
+                                        <tr>
+                                            <td><code>&gt;</code> で始まる発言、Hanakoへのメンション</td>
+                                            <td>コマンドとして扱うため読みません</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ほかのBotの発言</td>
+                                            <td>常に読みません</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ブラックリストに入っている人の発言</td>
+                                            <td><a href="#blacklist">07章</a>を参照</td>
+                                        </tr>
+                                        <tr>
+                                            <td>画像やファイルだけの発言</td>
+                                            <td>本文がないので読みません</td>
+                                        </tr>
+                                        <tr>
+                                            <td>記号や空白だけの発言</td>
+                                            <td>声にできる文字がないので読みません</td>
+                                        </tr>
+                                        <tr>
+                                            <td>スレッド・フォーラム内の発言</td>
+                                            <td>対応していません</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>⚔️ 読み上げを止める：成敗</h3>
+                            <p>
+                                長文やSEが流れ続けて困ったときは <code>/seibai</code>。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
+                            </p>
+                        </section>
+
+                        <!-- 04 -->
+                        <section class="chapter" id="dictionary">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 04 — SMART DICTIONARY</span>
+                                    <h2>読み間違い、<span class="gradient-text">ゼロの世界へ。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-studying.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">
+                                読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>200件</strong>まで覚えます。あなたのコミュニティの「文化」を、Hanakoに学ばせましょう。
+                            </p>
+
+                            <div class="steps" style="grid-template-columns: repeat(3, 1fr)">
+                                <div class="step">
+                                    <span class="n">INPUT</span>
+                                    <b>発言</b>
+                                    <small>「電ちゃんかわいい」</small>
+                                </div>
+                                <div class="step main">
+                                    <span class="n">PROCESS ✨</span>
+                                    <b>辞書</b>
+                                    <small>電 ⇨ いなづま</small>
+                                </div>
+                                <div class="step">
+                                    <span class="n">OUTPUT</span>
+                                    <b>読み上げ</b>
+                                    <small>「いなづまちゃんかわいい」</small>
+                                </div>
+                            </div>
+                            <p class="figcap">発言の中に含まれる単語を、読み上げる直前に置き換えます（発言そのものは変わりません）</p>
+
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>やりたいこと</th>
+                                            <th>コマンド</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>単語を教える</td>
+                                            <td><code>/teach from:置換前 to:置換後</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>単語を忘れさせる</td>
+                                            <td><code>/forget from:置換前</code></td>
+                                        </tr>
+                                        <tr>
+                                            <td>覚えている単語を見る</td>
+                                            <td><code>/dictionary</code>（ボタンでページ送り）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>すべて忘れさせる</td>
+                                            <td><code>/dictionary-clear</code>（サーバー管理の権限が必要）</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>🎯 押さえておきたい重要なポイント</h3>
+                            <ul>
+                                <li>置換前・置換後とも2〜50文字。1文字の単語は登録できません。</li>
+                                <li>同じ「置換前」は1つだけ。読み方を変えたいときは、いちど <code>/forget</code> してから教え直します。</li>
+                                <li>単語の一部にも反応します。短い単語を登録すると、思わぬ言葉の中で置き換わることがあります。</li>
+                                <li>SEのキーワードになっている部分は、辞書では置き換えません（SEが優先されます）。</li>
+                            </ul>
+                        </section>
+
+                        <!-- 05 -->
+                        <section class="chapter" id="se">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 05 — SOUND EFFECTS</span>
+                                    <h2>会話に、<span class="gradient-text">没入感という魔法を。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-music.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">
+                                キーワードに音声ファイルを結びつけると、その言葉が発言に出てきたとき、読み上げの代わりに音を鳴らします。テキストチャットが、まるでライブ会場のように生まれ変わります。
+                            </p>
+
+                            <h3>➕ 追加する：3つの柔軟な方法</h3>
+                            <div class="cards">
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-music.webp" alt="" loading="lazy" />
+                                    <span class="tag">スラッシュ / テキスト</span>
+                                    <h4>URLで指定</h4>
+                                    <p><code>/se-add keyword:（拍手） url:https://…/clap.mp3</code></p>
+                                    <p>ネット上の音声ファイルのURLを指定します。URLは300文字まで。</p>
+                                </article>
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-cheer.webp" alt="" loading="lazy" />
+                                    <span class="tag">スラッシュ / テキスト</span>
+                                    <h4>ファイルを1つ添付</h4>
+                                    <p><code>/se-add keyword:（拍手）</code> ＋ <code>file</code> に添付</p>
+                                    <p>手元のファイルをそのまま登録できます。テキストなら <code>@はなこ se-add （拍手）</code> に添付。</p>
+                                </article>
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
+                                    <span class="tag hot">⚡ バッチ処理</span>
+                                    <h4>複数ファイルをまとめて</h4>
+                                    <p><code>@はなこ se-add</code> ＋ 複数ファイルを添付</p>
+                                    <p>キーワードを書かずに添付すると、ファイル名（拡張子を除く）がそのままキーワードになります。テキストコマンドのみ対応。</p>
+                                </article>
+                            </div>
+
+                            <h3>📋 技術仕様</h3>
+                            <div class="table-wrap">
+                                <table>
+                                    <tbody>
+                                        <tr>
+                                            <th>形式</th>
+                                            <td><code>.wav</code> / <code>.mp3</code></td>
+                                        </tr>
+                                        <tr>
+                                            <th>サイズ</th>
+                                            <td>1ファイル 2MB まで</td>
+                                        </tr>
+                                        <tr>
+                                            <th>長さ</th>
+                                            <td>60秒 まで</td>
+                                        </tr>
+                                        <tr>
+                                            <th>キーワード</th>
+                                            <td>2〜49文字（同じキーワードは1つだけ）</td>
+                                        </tr>
+                                        <tr>
+                                            <th>登録数</th>
+                                            <td>サーバーごとに 10,000件 まで</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="callout">
+                                <span class="callout-title">ベストプラクティス：キーワードは記号で囲もう</span>
+                                SEは発言の一部にも反応します。「草」のような短い言葉を登録すると、「草原」でも鳴ります。<code>（拍手）</code> や
+                                <code>:clap:</code> のように、ふだんの会話に出てこない形にしておくと誤爆しません。
+                            </div>
+
+                            <h3>🔍 探す・直す・消す</h3>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>やりたいこと</th>
+                                            <th>コマンド</th>
+                                            <th>補足</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>一覧を見る</td>
+                                            <td><code>/se-list</code></td>
+                                            <td>ボタンでページ送り</td>
+                                        </tr>
+                                        <tr>
+                                            <td>うろ覚えで探す</td>
+                                            <td><code>/se-search keyword:拍手</code></td>
+                                            <td>完全一致 → 前方一致 → 部分一致の順に、近いものを5件まで表示。見つからなければ打ち間違いも考慮して探します</td>
+                                        </tr>
+                                        <tr>
+                                            <td>キーワードを変える</td>
+                                            <td><code>/se-rename old_keyword:旧 new_keyword:新</code></td>
+                                            <td>音声はそのまま、名前だけ変更</td>
+                                        </tr>
+                                        <tr>
+                                            <td>消す</td>
+                                            <td><code>/se-del keyword:（拍手）</code></td>
+                                            <td>テキストなら <code>@はなこ se-del A B C</code> で複数まとめて削除</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>🎚️ 音量をそろえる：SE正規化</h3>
+                            <p>
+                                SEはファイルごとに音量がばらばらです。正規化をオンにすると、小さすぎるSEを指定したレベルまで持ち上げて、聞こえ方をそろえます。まさに、音量のイコライゼーションです。
+                            </p>
+                            <div class="bars">
+                                <div class="panel">
+                                    <b>Before：正規化なし（0）</b>
+                                    <div class="plot">
+                                        <div class="target"><span>目標 80</span></div>
+                                        <div class="bar" style="height: 22%"></div>
+                                        <div class="bar" style="height: 80%"></div>
+                                        <div class="bar" style="height: 45%"></div>
+                                    </div>
+                                    <div class="labels"><span>SE A</span><span>SE B</span><span>SE C</span></div>
+                                </div>
+                                <div class="panel">
+                                    <b>After：<code>/se-normalize level:80</code></b>
+                                    <div class="plot">
+                                        <div class="target"><span>目標 80</span></div>
+                                        <div class="bar" style="height: 80%"></div>
+                                        <div class="bar" style="height: 80%"></div>
+                                        <div class="bar" style="height: 80%"></div>
+                                    </div>
+                                    <div class="labels"><span>SE A</span><span>SE B</span><span>SE C</span></div>
+                                </div>
+                            </div>
+                            <p class="figcap">小さいSEが目標レベルまで持ち上がります（イメージ図）</p>
+                            <ul>
+                                <li><code>/se-normalize level:0〜100</code> で設定します。初期値は 50、<code>0</code> で無効です。</li>
+                                <li>サーバー全体の設定です。変更には「サーバー管理」の権限が必要です。</li>
+                            </ul>
+                        </section>
+
+                        <!-- 06 -->
+                        <section class="chapter" id="voice">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 06 — PERSONALIZATION</span>
+                                    <h2>声まで、<span class="gradient-text">あなた好みに。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-settings.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">「誰の声で」「どこまで」読むかを、きめ細かくカスタマイズ。ただし、効く範囲がそれぞれ異なる点には注意が必要です。</p>
+
+                            <div class="cards">
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
+                                    <span class="tag">👤 自分だけに効く</span>
+                                    <h4>キャラクター変更</h4>
+                                    <p><code>/speaker name:キャラクター名</code></p>
+                                    <p><strong>あなたの発言を読む声</strong>を変えます。ほかの人の声は変わりません。設定はサーバーごとに覚えます。</p>
+                                    <p><code>/speaker name:default</code> で元の声に戻ります。</p>
+                                </article>
+                                <article class="glass">
+                                    <img class="card-mascot" src="assets/hanako-pointing.webp" alt="" loading="lazy" />
+                                    <span class="tag">🌐 サーバー全体に効く</span>
+                                    <h4>文字数制限</h4>
+                                    <p><code>/limit number:30</code></p>
+                                    <p>1つの発言で読む文字数の上限です（0〜2000）。超えた分は読まず、最後に「イか略。」と付けます。</p>
+                                    <p><code>/limit number:0</code> で無制限（初期値）。変更には「サーバー管理」の権限が必要です。</p>
+                                </article>
+                            </div>
+                            <!-- TODO: 使えるキャラクター名の一覧をここに書くと親切です（音声サーバの設定に依存するため未記載） -->
+                            <div class="callout warn">
+                                <span class="callout-title">キャラクター名について</span>
+                                使える名前は、Hanakoにつながっている音声サーバーの設定で決まります。存在しない名前を指定すると読み上げに失敗することがあるので、その場合は
+                                <code>/speaker name:default</code> で戻してください。
+                            </div>
+                        </section>
+
+                        <!-- 07 -->
+                        <section class="chapter" id="blacklist">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 07 — TRUST &amp; SAFETY</span>
+                                    <h2>安心・安全を、<span class="gradient-text">デフォルトに。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-shield.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">
+                                特定のユーザーの発言を読み上げないようにする機能です。Discord上のミュートやタイムアウトとは別で、Hanakoが「その人の発言を読まない」だけです。
+                            </p>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>やりたいこと</th>
+                                            <th>コマンド</th>
+                                            <th>必要な権限</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>読まないようにする</td>
+                                            <td><code>/blacklist-add user:@ユーザー</code></td>
+                                            <td>メンバーをタイムアウト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>解除する</td>
+                                            <td><code>/blacklist-remove user:@ユーザー</code></td>
+                                            <td>メンバーをタイムアウト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>一覧を見る</td>
+                                            <td><code>/blacklist-show</code></td>
+                                            <td>メンバーをタイムアウト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>全員を解除する</td>
+                                            <td><code>/blacklist-clear</code></td>
+                                            <td>サーバー管理</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <ul>
+                                <li>その人がコマンドを使うことは妨げません。止まるのは読み上げだけです。</li>
+                                <li>ほかのBotの発言はもともと読まないので、登録は不要です。</li>
+                            </ul>
+                        </section>
+
+                        <!-- 08 -->
+                        <section class="chapter" id="admin">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 08 — ACCESS CONTROL</span>
+                                    <h2>柔軟で堅牢な、<span class="gradient-text">権限マネジメント。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-admin.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">ほとんどのコマンドは誰でも使えます。影響の大きいものだけ、Discordの権限でしっかりと守られています。</p>
+
+                            <div class="tiers">
+                                <div class="tier">
+                                    <div class="who">
+                                        <b>👥 だれでも</b>
+                                        <small>権限は不要</small>
+                                    </div>
+                                    <div>
+                                        <code>/plz</code> <code>/bye</code> <code>/seibai</code> <code>/teach</code> <code>/forget</code>
+                                        <code>/dictionary</code> <code>/se-add</code> <code>/se-del</code> <code>/se-list</code> <code>/se-search</code>
+                                        <code>/se-rename</code> <code>/speaker</code> <code>/help</code> <code>/ask</code>
+                                    </div>
+                                </div>
+                                <div class="tier">
+                                    <div class="who">
+                                        <b>🛡️ モデレーター</b>
+                                        <small>「メンバーをタイムアウト」</small>
+                                    </div>
+                                    <div><code>/blacklist-add</code> <code>/blacklist-remove</code> <code>/blacklist-show</code></div>
+                                </div>
+                                <div class="tier">
+                                    <div class="who">
+                                        <b>👑 サーバー管理者</b>
+                                        <small>「サーバー管理」</small>
+                                    </div>
+                                    <div>
+                                        <code>/limit</code> <code>/se-normalize</code> <code>/dictionary-clear</code> <code>/blacklist-clear</code>
+                                        <code>/text-commands</code>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="figcap">コマンドを使える人の初期設定。「管理者」権限を持つ人はすべて使えます</p>
+
+                            <h3>⚙️ 使える人を変える</h3>
+                            <p>
+                                上の図は初期設定です。サーバー管理者は、Discordの<strong>「サーバー設定 → 連携サービス → はなこ」</strong>から、コマンドごとに使えるロール・メンバー・チャンネルを変更できます（例：ブラックリストを全員が使えるようにする、<code>/se-add</code>
+                                を特定のロールだけにする）。
+                            </p>
+                            <div class="callout warn">
+                                <span class="callout-title">注意：この変更はスラッシュコマンドにしか効きません</span>
+                                <code>@はなこ</code> や <code>&gt;</code>
+                                で打つテキストコマンドは、つねに上の図の初期設定で判定されます。連携サービスで細かく制限したいサーバーは、次のコマンドでテキストコマンドを止めてください。
+                            </div>
+
+                            <h3>🔌 テキストコマンドを止める</h3>
+                            <p>
+                                <code>/text-commands enabled:False</code> を実行すると、そのサーバーでは <code>@はなこ</code> や <code>&gt;</code>
+                                で始まるコマンドに反応しなくなります（<code>enabled:True</code> で元に戻ります）。
+                            </p>
+                            <ul>
+                                <li>止めている間、テキストコマンドには案内も返さず、黙って無視します。</li>
+                                <li><code>&gt;</code> で始まる発言を読み上げない動作は、そのまま変わりません。</li>
+                                <li><code>&gt;</code> をほかのBotのコマンドに使いたいサーバーにも向いています。</li>
+                            </ul>
+
+                            <h3>🔑 Hanako自身に必要な権限</h3>
+                            <p>Hanakoが動くには、対象のチャンネルで次の権限が必要です。足りないときは、Hanakoがどの権限が足りないかを教えてくれます。</p>
+                            <div class="table-wrap">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>場所</th>
+                                            <th>権限</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>ボイスチャンネル</td>
+                                            <td>チャンネルを見る／接続／発言</td>
+                                        </tr>
+                                        <tr>
+                                            <td>テキストチャンネル</td>
+                                            <td>チャンネルを見る／メッセージを送信／埋め込みリンク／メッセージ履歴を読む／リアクションの追加</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <h3>🔒 データはサーバーごとに完全分離</h3>
+                            <p>
+                                辞書・SE・ブラックリスト・各種設定は、Discordサーバーごとに別々に保存されます。ほかのサーバーの設定が混ざったり、見えたりすることはありません。保存する情報の詳細は<a
+                                    href="privacy.html"
+                                    >プライバシーポリシー</a
+                                >をご覧ください。
+                            </p>
+                        </section>
+
+                        <!-- 09 -->
+                        <section class="chapter" id="commands">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 09 — COMMAND REFERENCE</span>
+                                    <h2>すべてのコマンドを、<span class="gradient-text">ひと目で。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-commands.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">インテリジェントな検索で、目的のコマンドに瞬時にアクセスできます。</p>
+                            <input
+                                class="filter"
+                                id="command-filter"
+                                type="search"
+                                placeholder="AIに聞くように検索…（例：se、辞書、blacklist）"
+                                aria-label="コマンドを絞り込む"
+                            />
+                            <div class="table-wrap">
+                                <table id="command-table">
+                                    <thead>
+                                        <tr>
+                                            <th>機能</th>
+                                            <th>スラッシュコマンド</th>
+                                            <th>テキストコマンド（別名）</th>
+                                            <th>必要な権限</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="table-group">
+                                            <td colspan="4">🗣️ 読み上げ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ボイスチャンネルに参加</td>
+                                            <td><code>/plz</code></td>
+                                            <td>お願い / plz / summon / s</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ボイスチャンネルから退出</td>
+                                            <td><code>/bye</code></td>
+                                            <td>さようなら / bye / b</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>読み上げを中止</td>
+                                            <td><code>/seibai</code></td>
+                                            <td>成敗 / seibai / stop</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>文字数制限（0で解除）</td>
+                                            <td><code>/limit 30</code></td>
+                                            <td>制限 / limit / readlimit</td>
+                                            <td>サーバー管理</td>
+                                        </tr>
+                                        <tr>
+                                            <td>読み上げキャラクター変更</td>
+                                            <td><code>/speaker 名前</code></td>
+                                            <td>キャラクター変更 / speaker</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr class="table-group">
+                                            <td colspan="4">📚 辞書</td>
+                                        </tr>
+                                        <tr>
+                                            <td>単語を教育</td>
+                                            <td><code>/teach 置換前 置換後</code></td>
+                                            <td>教育 / teach / mk / wbook-add</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>単語を忘却</td>
+                                            <td><code>/forget 単語</code></td>
+                                            <td>忘却 / forget / rm / wbook-delete</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>辞書の一覧</td>
+                                            <td><code>/dictionary</code></td>
+                                            <td>辞書 / dictionary / dic / wbook-list</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>辞書を全削除</td>
+                                            <td><code>/dictionary-clear</code></td>
+                                            <td>白紙 / alldelete / wbook-alldel</td>
+                                            <td>サーバー管理</td>
+                                        </tr>
+                                        <tr class="table-group">
+                                            <td colspan="4">🎺 SE（効果音）</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEを追加（URLまたはファイル添付）</td>
+                                            <td><code>/se-add キーワード</code></td>
+                                            <td>音声教育 / se-add</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEを削除</td>
+                                            <td><code>/se-del キーワード</code></td>
+                                            <td>音声忘却 / se-delete / se-del</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEの一覧</td>
+                                            <td><code>/se-list</code></td>
+                                            <td>音声辞書 / 音声一覧 / se-dic / se-list</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEを検索</td>
+                                            <td><code>/se-search キーワード</code></td>
+                                            <td>se?</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SEの名前変更</td>
+                                            <td><code>/se-rename 旧 新</code></td>
+                                            <td>音声名置換 / se-rename</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>SE音量の正規化（0〜100）</td>
+                                            <td><code>/se-normalize 80</code></td>
+                                            <td>SE正規化 / se-normalize / senorm</td>
+                                            <td>サーバー管理</td>
+                                        </tr>
+                                        <tr class="table-group">
+                                            <td colspan="4">🛡️ ブラックリスト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ユーザーを追加</td>
+                                            <td><code>/blacklist-add @user</code></td>
+                                            <td>沈黙 / blacklist-add</td>
+                                            <td>メンバーをタイムアウト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ユーザーを除外</td>
+                                            <td><code>/blacklist-remove @user</code></td>
+                                            <td>恩赦 / blacklist-remove</td>
+                                            <td>メンバーをタイムアウト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>一覧を表示</td>
+                                            <td><code>/blacklist-show</code></td>
+                                            <td>名簿 / blacklist-show</td>
+                                            <td>メンバーをタイムアウト</td>
+                                        </tr>
+                                        <tr>
+                                            <td>全員を解除</td>
+                                            <td><code>/blacklist-clear</code></td>
+                                            <td>大赦 / blacklist-clear</td>
+                                            <td>サーバー管理</td>
+                                        </tr>
+                                        <tr class="table-group">
+                                            <td colspan="4">✨ その他</td>
+                                        </tr>
+                                        <tr>
+                                            <td>ヘルプ</td>
+                                            <td><code>/help</code></td>
+                                            <td>使い方 / help</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>質問（はい／いいえで答えます）</td>
+                                            <td><code>/ask</code></td>
+                                            <td>質問 / ask</td>
+                                            <td>—</td>
+                                        </tr>
+                                        <tr>
+                                            <td>テキストコマンドの有効・無効</td>
+                                            <td><code>/text-commands</code></td>
+                                            <td>（スラッシュコマンドのみ）</td>
+                                            <td>サーバー管理</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p class="empty" id="command-empty">🤔 一致するコマンドが見つかりませんでした。別のキーワードで試してみてください！</p>
+                            <p class="note">
+                                テキストコマンドは、表の別名のどれかを <code>@はなこ</code> または <code>&gt;</code> に続けて打ちます（例：<code>&gt;s</code>、<code>@はなこ お願い</code>）。
+                            </p>
+                        </section>
+
+                        <!-- 10 -->
+                        <section class="chapter faq" id="trouble">
+                            <div class="chapter-head">
+                                <div>
+                                    <span class="chapter-kicker">STEP 10 — FAQ</span>
+                                    <h2>よくある質問と、<span class="gradient-text">その解決策。</span></h2>
+                                </div>
+                                <img class="chapter-mascot" src="assets/hanako-search.webp" alt="" loading="lazy" />
+                            </div>
+                            <p class="lead">お困りですか？ご安心ください。Hanakoの返事や症状から、原因と対処をすばやく特定できます。</p>
+
+                            <h3>🙋 Hanakoが来ない</h3>
+                            <details>
+                                <summary>「通話チャンネルに参加してから呼んでね！」と言われる</summary>
+                                <div class="answer">
+                                    <p>あなたがボイスチャンネルに入っていません。先にボイスチャンネルに参加してから <code>/plz</code> を打ってください。</p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>「〜の権限がないみたい…」と言われる</summary>
+                                <div class="answer">
+                                    <p>
+                                        そのボイスチャンネルで、Hanakoに「チャンネルを見る」「接続」「発言」のいずれかが許可されていません。返事に足りない権限の名前が出るので、サーバーの管理者にチャンネルの権限設定を確認してもらってください。
+                                    </p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>「満員で入れないよ」「タイムアウト中だから入れないよ」と言われる</summary>
+                                <div class="answer">
+                                    <p>ボイスチャンネルの人数制限に達しているか、Hanako自身がタイムアウトされています。人数制限を広げるか、Hanakoのタイムアウトを解除してください。</p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>「ステージチャンネルには参加できないの」「このチャンネルは読み上げに対応していないの」と言われる</summary>
+                                <div class="answer">
+                                    <p>
+                                        ステージチャンネルへの参加と、スレッド・フォーラムなどの読み上げには対応していません。通常のボイスチャンネルに入り、通常のテキストチャンネル（またはボイスチャンネル内のチャット）で呼んでください。
+                                    </p>
+                                </div>
+                            </details>
+
+                            <h3>🔇 読んでくれない・読み方がおかしい</h3>
+                            <details>
+                                <summary>自分の発言だけ読まれない</summary>
+                                <div class="answer">
+                                    <ul>
+                                        <li>ブラックリストに入っていないか、モデレーターに <code>/blacklist-show</code> で確認してもらってください。</li>
+                                        <li>発言が <code>&gt;</code> で始まっていないか確認してください。</li>
+                                        <li>
+                                            <code>/speaker</code> で存在しないキャラクター名を設定していると読めません。<code>/speaker name:default</code> で戻してください。
+                                        </li>
+                                    </ul>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>このチャンネルの発言が読まれない</summary>
+                                <div class="answer">
+                                    <p>
+                                        Hanakoは <code>/plz</code> を打ったチャンネルだけを読みます。読んでほしいチャンネルで、もう一度 <code>/plz</code>
+                                        を打ってください。スレッドの中は読めません。
+                                    </p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>途中で切れて「イか略。」と言う</summary>
+                                <div class="answer">
+                                    <p>文字数制限にかかっています。サーバー管理者が <code>/limit number:0</code>（無制限）か、より大きい数字に設定し直せます。</p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>変なところで言葉が置き換わる・SEが鳴る</summary>
+                                <div class="answer">
+                                    <p>
+                                        辞書もSEも、単語の一部に反応します。<code>/dictionary</code> や <code>/se-search</code> で原因の登録を探し、<code>/forget</code>・<code>/se-del</code>
+                                        で消すか、<code>/se-rename</code> で記号つきのキーワードに変えてください。
+                                    </p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>読み上げが止まらない・たまりすぎた</summary>
+                                <div class="answer">
+                                    <p>
+                                        <code>/seibai</code> で、再生中と順番待ちの音声をすべて中断できます。何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。
+                                    </p>
+                                </div>
+                            </details>
+
+                            <h3>⛔ コマンドが使えない</h3>
+                            <details>
+                                <summary>「このコマンドは『〜』の権限を持っている人だけが使えるよ」と言われる</summary>
+                                <div class="answer">
+                                    <p>
+                                        そのコマンドには権限が必要です（<a href="#admin">08章</a>の図を参照）。権限を持っている人に頼むか、サーバー管理者に使える人の設定を変えてもらってください。
+                                    </p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary><code>@はなこ</code> や <code>&gt;</code> のコマンドに何も反応しない</summary>
+                                <div class="answer">
+                                    <ul>
+                                        <li>
+                                            サーバーでテキストコマンドが無効になっている可能性があります。スラッシュコマンドを使うか、サーバー管理者に
+                                            <code>/text-commands enabled:True</code> を実行してもらってください。
+                                        </li>
+                                        <li>コマンド名を打ち間違えると、Hanakoは何も返しません（<code>&gt;</code> で始まる独り言と区別できないためです）。</li>
+                                    </ul>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>スラッシュコマンドの候補に出てこない</summary>
+                                <div class="answer">
+                                    <p>権限がないコマンドは、Discordが候補から隠します。また、スラッシュコマンドはサーバー内でのみ使えます（HanakoとのDMでは使えません）。</p>
+                                </div>
+                            </details>
+
+                            <h3>🎵 SEを登録できない</h3>
+                            <details>
+                                <summary>「これサウンドファイルじゃなさそう」「変換できなかったにゃ」と言われる</summary>
+                                <div class="answer">
+                                    <p>
+                                        対応しているのは <code>.wav</code> と <code>.mp3</code> です。動画ファイルや別形式の音声は、mp3 か wav に変換してから登録してください。URLで指定する場合は、再生ページではなく音声ファイルそのもののURLが必要です。
+                                    </p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>「〜秒より長い音声は登録できないにゃ」と言われる／大きいファイルが登録できない</summary>
+                                <div class="answer">
+                                    <p>SEは60秒・2MBまでです。短く切るか、ビットレートを下げてから登録してください。</p>
+                                </div>
+                            </details>
+                            <details>
+                                <summary>「すでに登録済みのキーワードです」「一文字登録はできません」と言われる</summary>
+                                <div class="answer">
+                                    <p>キーワードは2〜49文字で、サーバー内で重複できません。音を差し替えたいときは、先に <code>/se-del</code> で消してから登録し直します。</p>
+                                </div>
+                            </details>
+
+                            <h3>🤝 それでも解決しないとき</h3>
+                            <!-- TODO: 身内向けの連絡先（サポート用チャンネルなど）があれば差し替えてください -->
+                            <p>
+                                Hanakoを招待してくれた人に聞いてみてください。Bot本体の不具合と思われる場合は、<a
+                                    href="https://github.com/Ebycow/hanako/issues"
+                                    target="_blank"
+                                    rel="noopener"
+                                    >GitHub の Issue</a
+                                >に投稿すると、ほかの利用者の助けにもなります。
+                            </p>
+
+                            <div class="summary">
+                                <h4>📝 まとめ</h4>
+                                <p>
+                                    いかがでしたか？今回は、Hanakoの使い方を徹底的に解説しました。Hanakoを活用すれば、あなたのDiscordサーバーはもっと楽しく、もっとインクルーシブな場所になるはずです。ぜひ、今日から試してみてください！✨
+                                </p>
+                            </div>
+                        </section>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== COMPARISON ===== -->
+        <section class="section" id="compare">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ Why Hanako</span>
+                    <h2>なぜ、<span class="gradient-text">Hanakoなのか。</span></h2>
+                    <p>その違いは、一目瞭然です。</p>
+                </div>
+                <div class="table-wrap compare reveal">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>読み上げなし</th>
+                                <th>✨ Hanako</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>聞き専でもチャットがわかる</td>
+                                <td class="no">✕</td>
+                                <td class="yes">✓</td>
+                            </tr>
+                            <tr>
+                                <td>内輪ネタを正しく読める辞書</td>
+                                <td class="no">✕</td>
+                                <td class="yes">✓（200件）</td>
+                            </tr>
+                            <tr>
+                                <td>キーワードで効果音</td>
+                                <td class="no">✕</td>
+                                <td class="yes">✓（10,000件）</td>
+                            </tr>
+                            <tr>
+                                <td>ユーザーごとの声</td>
+                                <td class="no">✕</td>
+                                <td class="yes">✓</td>
+                            </tr>
+                            <tr>
+                                <td>長文を途中で成敗</td>
+                                <td class="no">✕</td>
+                                <td class="yes">✓</td>
+                            </tr>
+                            <tr>
+                                <td>料金</td>
+                                <td>¥0</td>
+                                <td class="yes">¥0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIALS ===== -->
+        <section class="section" id="voices">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ Testimonials</span>
+                    <h2>Hanako（本人たち）<span class="gradient-text">からの声。</span></h2>
+                    <p>世界中の（主にHanako自身の）さまざまな表情から、喜びの声が届いています。</p>
+                </div>
+                <div class="testimonials">
+                    <figure class="glass testimonial reveal">
+                        <blockquote>「正直、これまでの読み上げ体験とは次元が違います。辞書機能のおかげで、もう『電』を『でん』と読むことはありません。ゲームチェンジャーです。」</blockquote>
+                        <figcaption class="who">
+                            <img src="assets/hanako-cheer.webp" alt="" loading="lazy" />
+                            <span><b>うれしいHanako</b><small>Chief Happiness Officer</small></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="glass testimonial reveal">
+                        <blockquote>「SEの正規化を初めて使ったとき、思わず声が出ました。いや、出したのは私ですが。」</blockquote>
+                        <figcaption class="who">
+                            <img src="assets/hanako-surprised.webp" alt="" loading="lazy" />
+                            <span><b>びっくりHanako</b><small>Head of Audio Experience</small></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="glass testimonial reveal">
+                        <blockquote>「<code>/seibai</code> の導入以降、長文による読み上げ渋滞がゼロに。チームの生産性が向上したと言えるでしょう。」</blockquote>
+                        <figcaption class="who">
+                            <img src="assets/hanako-thinking.webp" alt="" loading="lazy" />
+                            <span><b>考え中のHanako</b><small>VP of Strategic Thinking</small></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="glass testimonial reveal">
+                        <blockquote>「みんなが帰ったら自動で退出してくれるので、安心して眠れます。」</blockquote>
+                        <figcaption class="who">
+                            <img src="assets/hanako-sleepy.webp" alt="" loading="lazy" />
+                            <span><b>ねむいHanako</b><small>Director of Work-Life Balance</small></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="glass testimonial reveal">
+                        <blockquote>「ブラックリストとDiscordネイティブな権限設定。この組み合わせこそ、まさに『信頼』の再定義です。」</blockquote>
+                        <figcaption class="who">
+                            <img src="assets/hanako-shield.webp" alt="" loading="lazy" />
+                            <span><b>守りのHanako</b><small>Chief Trust Officer</small></span>
+                        </figcaption>
+                    </figure>
+                    <figure class="glass testimonial reveal">
+                        <blockquote>「こっちです。」</blockquote>
+                        <figcaption class="who">
+                            <img src="assets/hanako-pointing.webp" alt="" loading="lazy" />
+                            <span><b>指さしHanako</b><small>Lead Navigation Engineer</small></span>
+                        </figcaption>
+                    </figure>
+                </div>
+                <p class="fineprint">※ 掲載している声はすべてHanako本人（の表情差分）によるものです。個人の感想です。</p>
+            </div>
+        </section>
+
+        <!-- ===== PRICING ===== -->
+        <section class="section" id="pricing">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ Pricing</span>
+                    <h2>シンプルで透明な、<span class="gradient-text">料金プラン。</span></h2>
+                    <p>隠れたコストは一切ありません。どのプランを選んでも、すべて無料です。</p>
+                </div>
+                <div class="pricing">
+                    <article class="glass price-card reveal">
+                        <h3>Starter</h3>
+                        <p>まずは気軽に試したい方に。</p>
+                        <div class="price">¥0<small> /月</small></div>
+                        <ul>
+                            <li>リアルタイム読み上げ</li>
+                            <li>辞書 200件</li>
+                            <li>SE 10,000件</li>
+                            <li>コミュニティサポート</li>
+                        </ul>
+                        <a class="btn btn-ghost" href="#start">はじめる</a>
+                    </article>
+                    <article class="glass price-card featured reveal">
+                        <span class="badge">🔥 一番人気</span>
+                        <h3>Pro</h3>
+                        <p>本気でコミュニティを盛り上げたい方に。</p>
+                        <div class="price"><span class="gradient-text">¥0</span><small> /月</small></div>
+                        <ul>
+                            <li>Starterのすべての機能</li>
+                            <li>辞書 200件</li>
+                            <li>SE 10,000件</li>
+                            <li>SE正規化</li>
+                        </ul>
+                        <a class="btn btn-primary" href="#start">Proで始める ✨</a>
+                    </article>
+                    <article class="glass price-card reveal">
+                        <h3>Enterprise</h3>
+                        <p>大規模サーバーを運営する方に。</p>
+                        <div class="price">¥0<small> /月</small></div>
+                        <ul>
+                            <li>Proのすべての機能</li>
+                            <li>辞書 200件</li>
+                            <li>SE 10,000件</li>
+                            <li>Discordネイティブの権限管理</li>
+                        </ul>
+                        <a class="btn btn-ghost" href="#start">はじめる</a>
+                    </article>
+                </div>
+                <p class="fineprint">※ 全プランの内容は完全に同一です。Hanakoは無償で提供されています。</p>
+            </div>
+        </section>
+
+        <!-- ===== EXPRESSIONS ===== -->
+        <section class="section" aria-labelledby="expression-title">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ Meet Hanako</span>
+                    <h2 id="expression-title">感情豊かな、<span class="gradient-text">あなたのAIパートナー。</span></h2>
+                </div>
+                <div class="expression-grid">
+                    <figure class="glass reveal"><img src="assets/hanako-cheer.webp" alt="うれしそうに喜ぶ花子" loading="lazy" /><figcaption>うれしい！</figcaption></figure>
+                    <figure class="glass reveal"><img src="assets/hanako-thinking.webp" alt="考え込む花子" loading="lazy" /><figcaption>考え中…</figcaption></figure>
+                    <figure class="glass reveal"><img src="assets/hanako-surprised.webp" alt="驚いた花子" loading="lazy" /><figcaption>びっくり</figcaption></figure>
+                    <figure class="glass reveal"><img src="assets/hanako-sleepy.webp" alt="眠そうな花子" loading="lazy" /><figcaption>ひとやすみ</figcaption></figure>
+                    <figure class="glass reveal"><img src="assets/hanako-pointing.webp" alt="下を指さす花子" loading="lazy" /><figcaption>こっちだよ</figcaption></figure>
+                    <figure class="glass reveal"><img src="assets/hanako-blossom.webp" alt="桜を差し出す花子" loading="lazy" /><figcaption>ありがとう ♡</figcaption></figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== CTA ===== -->
+        <div class="container">
+            <section class="cta reveal">
+                <img class="cta-mascot" src="assets/hanako-wave.webp" alt="" loading="lazy" />
+                <h2>さあ、<span class="gradient-text">声のある未来へ。</span></h2>
+                <p>あなたのサーバーに、Hanakoという新しい可能性を。今すぐ、その第一歩を踏み出しましょう。</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#start">今すぐ無料で始める 🚀</a>
+                    <a class="btn btn-ghost" href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHubで見る ↗</a>
+                </div>
+            </section>
+        </div>
+
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-grid">
+                    <div>
+                        <a class="brand" href="./">
+                            <img class="brand-avatar" src="assets/hanako-hero.webp" alt="" />
+                            Hanako <span class="ai-badge">AI</span>
+                        </a>
+                        <p>言葉に、声という翼を。<br />Empowering every voice on Discord.</p>
+                        <span class="status">All systems operational</span>
+                    </div>
+                    <div>
+                        <h5>PRODUCT</h5>
+                        <ul>
+                            <li><a href="#features">機能</a></li>
+                            <li><a href="#pricing">料金</a></li>
+                            <li><a href="#compare">比較</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>RESOURCES</h5>
+                        <ul>
+                            <li><a href="#docs">ドキュメント</a></li>
+                            <li><a href="#commands">コマンド一覧</a></li>
+                            <li><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHub</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h5>LEGAL</h5>
+                        <ul>
+                            <li><a href="terms.html">利用規約</a></li>
+                            <li><a href="privacy.html">プライバシーポリシー</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2026 Hanako. Made with 💜 and AI.</p>
+                    <p>Discord は Discord Inc. の商標です。本Botは Discord Inc. とは関係ありません。</p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- AI Assistant -->
+        <button class="ai-fab" id="ai-fab" aria-label="Hanako AIアシスタントを開く" aria-expanded="false" aria-controls="ai-panel">✨</button>
+        <div class="ai-panel" id="ai-panel" hidden>
+            <header>
+                <img src="assets/hanako-hero.webp" alt="" />
+                <span><b>Hanako AI アシスタント</b><small>● オンライン</small></span>
+            </header>
+            <div class="ai-body">
+                <div class="bubble">こんにちは！👋 Hanako AIアシスタントです。</div>
+                <div class="bubble">何かお手伝いできることはありますか？😊 よくある質問から選んでみてください。</div>
+                <div class="quick-replies">
+                    <a href="#start">🚀 始め方を知りたい</a>
+                    <a href="#dictionary">📚 読み間違いを直したい</a>
+                    <a href="#se">🎺 SEを追加したい</a>
+                    <a href="#commands">⌨️ コマンド一覧</a>
+                    <a href="#trouble">😵 うまく動かない</a>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // コマンド早見表の絞り込み
+            (function () {
+                var input = document.getElementById('command-filter');
+                var rows = Array.prototype.slice.call(document.querySelectorAll('#command-table tbody tr'));
+                var empty = document.getElementById('command-empty');
+                input.addEventListener('input', function () {
+                    var q = input.value.trim().toLowerCase();
+                    var group = null;
+                    var groupHits = 0;
+                    var total = 0;
+                    var flush = function () {
+                        if (group) group.hidden = groupHits === 0;
+                    };
+                    rows.forEach(function (row) {
+                        if (row.classList.contains('table-group')) {
+                            flush();
+                            group = row;
+                            groupHits = 0;
+                            // グループ名に一致したら、そのグループは丸ごと表示する
+                            group.dataset.match = q && row.textContent.toLowerCase().indexOf(q) !== -1 ? '1' : '';
+                            return;
+                        }
+                        var hit = !q || group.dataset.match === '1' || row.textContent.toLowerCase().indexOf(q) !== -1;
+                        row.hidden = !hit;
+                        if (hit) {
+                            groupHits++;
+                            total++;
+                        }
+                    });
+                    flush();
+                    empty.style.display = total === 0 ? 'block' : 'none';
+                });
+            })();
+
+            // 目次の現在位置ハイライト
+            (function () {
+                if (!('IntersectionObserver' in window)) return;
+                var links = {};
+                document.querySelectorAll('.toc a').forEach(function (a) {
+                    links[a.getAttribute('href').slice(1)] = a;
+                });
+                var observer = new IntersectionObserver(
+                    function (entries) {
+                        entries.forEach(function (entry) {
+                            if (!entry.isIntersecting) return;
+                            Object.keys(links).forEach(function (id) {
+                                links[id].classList.toggle('active', id === entry.target.id);
+                            });
+                        });
+                    },
+                    { rootMargin: '-20% 0px -70% 0px' }
+                );
+                document.querySelectorAll('.chapter').forEach(function (section) {
+                    observer.observe(section);
+                });
+            })();
+
+            // スクロールリビール
+            (function () {
+                var items = document.querySelectorAll('.reveal');
+                if (!('IntersectionObserver' in window)) {
+                    items.forEach(function (el) {
+                        el.classList.add('in');
+                    });
+                    return;
+                }
+                var io = new IntersectionObserver(
+                    function (entries) {
+                        entries.forEach(function (entry) {
+                            if (!entry.isIntersecting) return;
+                            entry.target.classList.add('in');
+                            io.unobserve(entry.target);
+                        });
+                    },
+                    { rootMargin: '0px 0px -8% 0px' }
+                );
+                items.forEach(function (el) {
+                    io.observe(el);
+                });
+            })();
+
+            // 数字のカウントアップ
+            (function () {
+                var nums = document.querySelectorAll('[data-count]');
+                if (!('IntersectionObserver' in window)) return;
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        var el = entry.target;
+                        var end = +el.dataset.count;
+                        var start = performance.now();
+                        io.unobserve(el);
+                        (function tick(now) {
+                            var t = Math.min((now - start) / 1600, 1);
+                            var eased = 1 - Math.pow(1 - t, 3);
+                            el.textContent = Math.round(end * eased).toLocaleString();
+                            if (t < 1) requestAnimationFrame(tick);
+                        })(start);
+                    });
+                });
+                nums.forEach(function (el) {
+                    io.observe(el);
+                });
+            })();
+
+            // ヒーローのタイピング演出
+            (function () {
+                var el = document.getElementById('typing');
+                var words = ['シームレスに。', '直感的に。', 'パワフルに。', 'インクルーシブに。', '次のレベルへ。'];
+                if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+                var i = 0;
+                var pos = words[0].length;
+                var deleting = true;
+                function step() {
+                    var word = words[i];
+                    pos += deleting ? -1 : 1;
+                    el.textContent = word.slice(0, pos);
+                    var delay = deleting ? 45 : 110;
+                    if (!deleting && pos === word.length) {
+                        deleting = true;
+                        delay = 1800;
+                    } else if (deleting && pos === 0) {
+                        deleting = false;
+                        i = (i + 1) % words.length;
+                        delay = 300;
+                    }
+                    setTimeout(step, delay);
+                }
+                setTimeout(step, 1800);
+            })();
+
+            // カーソル追従グロウ
+            (function () {
+                var glow = document.querySelector('.cursor-glow');
+                window.addEventListener('pointermove', function (e) {
+                    glow.style.left = e.clientX + 'px';
+                    glow.style.top = e.clientY + 'px';
+                });
+            })();
+
+            // AIアシスタント
+            (function () {
+                var fab = document.getElementById('ai-fab');
+                var panel = document.getElementById('ai-panel');
+                function toggle(open) {
+                    panel.hidden = !open;
+                    fab.setAttribute('aria-expanded', String(open));
+                    fab.textContent = open ? '✕' : '✨';
+                }
+                fab.addEventListener('click', function () {
+                    toggle(panel.hidden);
+                });
+                panel.addEventListener('click', function (e) {
+                    if (e.target.closest('a')) toggle(false);
+                });
+            })();
+        </script>
+    </body>
+</html>
