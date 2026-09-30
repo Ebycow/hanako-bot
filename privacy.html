@@ -3,13 +3,11 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>プライバシーポリシー | Hanako AI ✨</title>
+        <title>プライバシーポリシー | Hanako 読み上げBot ✨</title>
         <meta name="description" content="Discord チャット読み上げBot「Hanako」のプライバシーポリシーです。" />
         <meta name="theme-color" content="#07060f" />
-        <link
-            rel="icon"
-            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✨%3C/text%3E%3C/svg%3E"
-        />
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
@@ -20,15 +18,15 @@
         <header class="site-header">
             <div class="inner">
                 <a class="brand" href="./">
-                    <img class="brand-avatar" src="assets/hanako-hero.webp" alt="" />
-                    Hanako <span class="ai-badge">AI</span>
+                    <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+                    Hanako <span class="ai-badge">TTS</span>
                 </a>
                 <nav class="site-nav" aria-label="メインナビゲーション">
                     <a href="./">ホーム</a>
                     <a href="./#docs">ドキュメント</a>
                     <a href="terms.html">利用規約</a>
                     <a href="privacy.html" aria-current="page">プライバシー</a>
-                    <a class="btn btn-primary btn-sm" href="./#start">今すぐ始める →</a>
+                    <a class="btn btn-primary btn-sm" href="./#invite">今すぐ始める →</a>
                 </nav>
             </div>
         </header>
@@ -52,8 +50,11 @@
         <main class="container doc">
 
             <p>
-                このプライバシーポリシー（以下「本ポリシー」）は、Discord
-                Bot「Hanako」（以下「本Bot」）が取り扱う情報と、その利用目的・保存・削除について説明するものです。本Botの運営者は <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>（以下「運営者」）です。
+                このプライバシーポリシー（以下「本ポリシー」）は、<a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>（以下「運営者」）が運営・提供する Discord
+                Bot「Hanako」（以下「本Bot」）が取り扱う情報と、その利用目的・保存・削除について説明するものです。
+            </p>
+            <p>
+                Hanako のソースコードは公開されており、運営者以外の第三者が独自に運営している Bot（以下「第三者Bot」）が存在する場合があります。本Botの範囲は<a href="terms.html">利用規約</a>第1条に定めるとおりです。本ポリシーは第三者Botには適用されません。運営者は第三者Botが取り扱う情報を保有・管理しておらず、その開示・削除などの請求にも対応できません。第三者Botについては、当該Botの運営者にお問い合わせください。
             </p>
 
             <h2>1. 取り扱う情報</h2>
@@ -168,7 +169,7 @@
                 </li>
                 <li>ボイスチャンネル・読み上げチャンネルの復帰用情報は、本Botの停止時に保存され、再起動後の復帰処理が完了した時点で削除されます。</li>
                 <li>
-                    本Botをサーバーから退出させた後に、そのサーバーのデータをすべて削除したい場合、または自身に関する情報の開示・削除を希望する場合は、下記のお問い合わせ先までご連絡ください。
+                    本Botをサーバーから退出させた後に、そのサーバーのデータをすべて削除したい場合、または開示を希望する場合は、<a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener">データに関する請求フォーム</a>から請求してください（下記9を参照）。
                 </li>
             </ul>
 
@@ -186,17 +187,14 @@
             </p>
 
             <h2>9. お問い合わせ</h2>
-            <!-- TODO: 運営者の連絡先（サポートサーバー、メールアドレスなど）があれば差し替えてください。
-                 Issue は公開の場なので、個人情報を含む問い合わせには非公開の窓口を用意することを推奨します -->
-            <p>
-                本ポリシーに関するお問い合わせは、<a
-                    href="https://github.com/Ebycow/hanako/issues"
-                    target="_blank"
-                    rel="noopener"
-                    >GitHub の Issue</a
-                >までお願いします。Issue
-                は公開の場ですので、個人情報を書き込まないようご注意ください。
-            </p>
+            <ul>
+                <li>
+                    <strong>サーバーデータの削除・開示の請求：</strong><a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener">データに関する請求フォーム</a>（Googleフォーム）から受け付けます。対象のサーバーIDを入力してください。個人データに関するご質問も同じフォームで受け付けます。開示の請求やご質問への回答には連絡先（DiscordのIDやメールアドレスなど）が必要です。削除の請求だけであれば、連絡先の入力は不要です。いただいた連絡先は、その請求への回答にのみ使用します。送信内容は Google のサービス上で運営者が管理します。
+                </li>
+                <li>
+                    <strong>その他のお問い合わせ：</strong><a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">GitHub の Issue</a>までお願いします。Issue は公開の場ですので、個人情報を書き込まないようご注意ください。
+                </li>
+            </ul>
         </main>
 
         <footer class="site-footer">
@@ -204,8 +202,8 @@
                 <div class="footer-grid">
                     <div>
                         <a class="brand" href="./">
-                            <img class="brand-avatar" src="assets/hanako-hero.webp" alt="" />
-                            Hanako <span class="ai-badge">AI</span>
+                            <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+                            Hanako <span class="ai-badge">TTS</span>
                         </a>
                         <p>言葉に、声という翼を。<br />Empowering every voice on Discord.</p>
                         <span class="status">All systems operational</span>
