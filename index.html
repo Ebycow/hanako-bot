@@ -38,6 +38,7 @@
                     <a href="#commands">コマンド</a>
                     <a href="#pricing">料金</a>
                     <a href="#trouble">FAQ</a>
+                    <a href="#developers">開発者</a>
                     <a class="btn btn-primary btn-sm" href="#invite">今すぐ始める →</a>
                 </nav>
             </div>
@@ -1480,6 +1481,101 @@
             </div>
         </section>
 
+        <!-- ===== DEVELOPERS ===== -->
+        <section class="section" id="developers">
+            <div class="container">
+                <div class="section-head reveal">
+                    <span class="eyebrow">✦ For Developers</span>
+                    <h2>はなこを、<span class="gradient-text">あなたの手で。</span></h2>
+                    <p>Hanako のソースコードは GitHub で公開されています。自分のサーバーで動かしたい方、機能を足したい方はこちらへ。</p>
+                </div>
+
+                <div class="glass partner reveal">
+                    <div class="partner-art">
+                        <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかる Ebyroid を、はなこが揺すって起こそうとしている" loading="lazy" />
+                    </div>
+                    <div class="partner-copy">
+                        <span class="tag hot">💞 Partner</span>
+                        <h3>はなこの声の相棒、<span class="gradient-text">Ebyroid。</span></h3>
+                        <p>
+                            はなこの声を生み出しているのは、音声サーバーの
+                            <a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>。VOICEROID を Node.js や HTTP から使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。README の最後にいる銀色の猫耳の子が、その Ebyroid。はなこの相棒です。
+                        </p>
+                        <div class="duo">
+                            <p class="duo-line hanako"><b>はなこ</b>えびろいどがいないと、わたし喋れないの。</p>
+                            <p class="duo-line eby"><b>Ebyroid</b>……知ってる。だから、ずっといる。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="dev-subhead reveal">🚀 自分でホストするまでの4ステップ</h3>
+                <div class="steps dev-steps">
+                    <div class="step reveal">
+                        <img src="assets/ebyroid-commands.webp" alt="" loading="lazy" />
+                        <span class="n">STEP 1</span>
+                        <b>Botを作る</b>
+                        <small>Discord Developer Portal でアプリを作り、トークンとクライアントIDを取得。Message Content Intent も有効に</small>
+                    </div>
+                    <div class="step reveal">
+                        <img src="assets/ebyroid-listening.webp" alt="" loading="lazy" />
+                        <span class="n">STEP 2</span>
+                        <b>声を用意する</b>
+                        <small>VOICEROID を入れた Windows で Ebyroid を起動（標準ポート 4090）。有効なライセンスが必要です</small>
+                    </div>
+                    <div class="step reveal">
+                        <img src="assets/ebyroid-typing.webp" alt="" loading="lazy" />
+                        <span class="n">STEP 3</span>
+                        <b>はなこを設定する</b>
+                        <small>clone して <code>npm i</code>、<code>app-config.yml</code> にトークンなどを書く</small>
+                    </div>
+                    <div class="step main reveal">
+                        <img src="assets/ebyroid-happy.webp" alt="" loading="lazy" />
+                        <span class="n">STEP 4 ✨</span>
+                        <b>起動する</b>
+                        <small><code>node deploy-commands.js</code> でコマンドを登録し、<code>node index</code> で起動</small>
+                    </div>
+                </div>
+                <p class="figcap">正確な手順とバージョンは、必ず README を確認してください</p>
+
+                <div class="cards dev-cards">
+                    <article class="glass reveal">
+                        <img class="card-mascot" src="assets/ebyroid-admin.webp" alt="" loading="lazy" />
+                        <span class="tag">🧰 必要なもの</span>
+                        <h4>動かすための環境</h4>
+                        <p>
+                            Node.js（バージョンは <code>package.json</code> で指定）、Discord Bot のトークン、音声サーバー。音声サーバーは Ebyroid がおすすめですが、README に書かれた API を返す HTTP サーバーなら差し替えられます。
+                        </p>
+                    </article>
+                    <article class="glass reveal">
+                        <img class="card-mascot" src="assets/ebyroid-terms.webp" alt="" loading="lazy" />
+                        <span class="tag">⚖️ 運営について</span>
+                        <h4>あなたが運営者になります</h4>
+                        <p>
+                            自分でホストした Bot は、あなたが運営する別の Bot です。このサイトの<a href="terms.html">利用規約</a>・<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROID など音声合成エンジンの利用条件も確認しましょう。
+                        </p>
+                    </article>
+                    <article class="glass reveal">
+                        <img class="card-mascot" src="assets/ebyroid-pointing.webp" alt="" loading="lazy" />
+                        <span class="tag">🤝 コントリビュート</span>
+                        <h4>一緒に育てる</h4>
+                        <p>
+                            不具合報告や要望は <a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">Issue</a> へ、改善はプルリクエストで歓迎しています。コマンドを足したいときは<a
+                                href="https://github.com/Ebycow/hanako/blob/master/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E8%BF%BD%E5%8A%A0%E6%89%8B%E9%A0%86%E6%9B%B8.md"
+                                target="_blank"
+                                rel="noopener"
+                                >コマンド追加手順書</a
+                            >が参考になります。
+                        </p>
+                    </article>
+                </div>
+
+                <div class="hero-actions" style="justify-content: center; margin-top: 10px">
+                    <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener">README のセットアップ手順 ↗</a>
+                    <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid を見る ↗</a>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== CTA ===== -->
         <div class="container">
             <section class="cta reveal">
@@ -1517,6 +1613,7 @@
                         <ul>
                             <li><a href="#docs">ドキュメント</a></li>
                             <li><a href="#commands">コマンド一覧</a></li>
+                            <li><a href="#developers">開発者向け</a></li>
                             <li><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHub</a></li>
                         </ul>
                     </div>
@@ -1560,6 +1657,7 @@
             </div>
             <div class="hero-actions">
                 <a class="btn btn-primary" href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHubでソースを見る ↗</a>
+                <a class="btn btn-ghost" href="#developers" data-close>自分でホストする方法</a>
                 <a class="btn btn-ghost" href="#start" data-close>使い方を読む</a>
             </div>
         </dialog>
