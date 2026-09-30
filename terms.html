@@ -3,13 +3,11 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>利用規約 | Hanako AI ✨</title>
+        <title>利用規約 | Hanako 読み上げBot ✨</title>
         <meta name="description" content="Discord チャット読み上げBot「Hanako」の利用規約です。" />
         <meta name="theme-color" content="#07060f" />
-        <link
-            rel="icon"
-            href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✨%3C/text%3E%3C/svg%3E"
-        />
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
         <link rel="stylesheet" href="style.css" />
     </head>
     <body>
@@ -20,15 +18,15 @@
         <header class="site-header">
             <div class="inner">
                 <a class="brand" href="./">
-                    <img class="brand-avatar" src="assets/hanako-hero.webp" alt="" />
-                    Hanako <span class="ai-badge">AI</span>
+                    <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+                    Hanako <span class="ai-badge">TTS</span>
                 </a>
                 <nav class="site-nav" aria-label="メインナビゲーション">
                     <a href="./">ホーム</a>
                     <a href="./#docs">ドキュメント</a>
                     <a href="terms.html" aria-current="page">利用規約</a>
                     <a href="privacy.html">プライバシー</a>
-                    <a class="btn btn-primary btn-sm" href="./#start">今すぐ始める →</a>
+                    <a class="btn btn-primary btn-sm" href="./#invite">今すぐ始める →</a>
                 </nav>
             </div>
         </header>
@@ -52,13 +50,13 @@
         <main class="container doc">
 
             <p>
-                この利用規約（以下「本規約」）は、Discord
+                この利用規約（以下「本規約」）は、<a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>（以下「運営者」）が運営・提供する Discord
                 Bot「Hanako」（以下「本Bot」）の利用条件を定めるものです。本Botをサーバーに導入する方、および本Botが導入されたサーバーで本Botを利用する方（以下あわせて「利用者」）は、本規約に同意したうえで本Botを利用するものとします。
             </p>
 
             <h2>第1条（適用）</h2>
             <ol>
-                <li>本規約は、本Botの運営者である <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>（以下「運営者」）と利用者との間の、本Botの利用に関わる一切の関係に適用されます。</li>
+                <li>本規約は、運営者と利用者との間の、本Botの利用に関わる一切の関係に適用されます。</li>
                 <li>
                     利用者は、本規約のほか、Discord
                     Inc. が定める<a href="https://discord.com/terms" target="_blank" rel="noopener">利用規約</a>および<a
@@ -67,6 +65,15 @@
                         rel="noopener"
                         >コミュニティガイドライン</a
                     >を遵守するものとします。
+                </li>
+                <li>
+                    本Botは、運営者が自ら運営・提供する Bot に限ります。運営者は、GitHub では <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>、Discord ではユーザー名 <code>ebycow</code> として活動しています。
+                </li>
+                <li>
+                    Hanako のソースコードは公開されており、運営者以外の第三者が、同じソースコードまたはそれを改変したものを用いて独自に Bot を運営している場合があります。運営者以外の者が運営する Bot（以下「第三者Bot」）は、名称や外見が本Botと同じであっても本Botには含まれず、本規約は適用されません。
+                </li>
+                <li>
+                    第三者Botの利用条件、取り扱う情報、およびその利用により生じた損害やトラブルについては、当該第三者Botの運営者にお問い合わせください。運営者はこれらについて責任を負いません。
                 </li>
             </ol>
 
@@ -147,14 +154,8 @@
             <p>本規約の解釈にあたっては、日本法を準拠法とします。</p>
 
             <h2>第12条（お問い合わせ）</h2>
-            <!-- TODO: 運営者の連絡先（サポートサーバー、メールアドレスなど）があれば差し替えてください -->
             <p>
-                本規約に関するお問い合わせは、<a
-                    href="https://github.com/Ebycow/hanako/issues"
-                    target="_blank"
-                    rel="noopener"
-                    >GitHub の Issue</a
-                >までお願いします。
+                本規約に関するお問い合わせは、<a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">GitHub の Issue</a>までお願いします。サーバーデータの削除・開示の請求は、<a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener">データに関する請求フォーム</a>から受け付けます。
             </p>
         </main>
 
@@ -163,8 +164,8 @@
                 <div class="footer-grid">
                     <div>
                         <a class="brand" href="./">
-                            <img class="brand-avatar" src="assets/hanako-hero.webp" alt="" />
-                            Hanako <span class="ai-badge">AI</span>
+                            <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+                            Hanako <span class="ai-badge">TTS</span>
                         </a>
                         <p>言葉に、声という翼を。<br />Empowering every voice on Discord.</p>
                         <span class="status">All systems operational</span>
