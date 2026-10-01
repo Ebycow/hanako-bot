@@ -50,3 +50,87 @@ const home = Astro.props.page === 'home' ? '' : './';
         </div>
     </div>
 </footer>
+
+<style>
+    .site-footer {
+        margin-top: 120px;
+        padding: 60px 0 40px;
+        border-top: 1px solid var(--border);
+        background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.06));
+        font-size: 14px;
+        color: var(--text-muted);
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .footer-grid h5 {
+        margin: 0 0 12px;
+        color: var(--text);
+        font-size: 13px;
+        letter-spacing: 0.1em;
+    }
+
+    .footer-grid ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-grid li {
+        margin: 6px 0;
+    }
+
+    .footer-grid a {
+        color: var(--text-muted);
+    }
+
+    .footer-grid a:hover {
+        color: #fff;
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--text-dim);
+    }
+
+    .footer-bottom p {
+        margin: 0;
+    }
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+    }
+
+    .status::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4ade80;
+        box-shadow: 0 0 10px #4ade80;
+    }
+
+    @media (max-width: 960px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>

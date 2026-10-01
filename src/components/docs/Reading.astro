@@ -100,3 +100,109 @@ const { id, n } = Astro.props;
         長文やSEが流れ続けて困ったときは <code>/seibai</code>。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
     </p>
 </Chapter>
+
+<style>
+    /* パイプライン */
+    .pipeline {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0;
+        counter-reset: pipe;
+        position: relative;
+    }
+
+    .pipeline::before {
+        content: '';
+        position: absolute;
+        left: 21px;
+        top: 20px;
+        bottom: 20px;
+        width: 2px;
+        background: linear-gradient(var(--violet), var(--cyan));
+    }
+
+    .pipeline li {
+        counter-increment: pipe;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 0 0 18px 64px;
+        margin: 0;
+    }
+
+    .pipeline li::before {
+        content: counter(pipe, decimal-leading-zero);
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 14px;
+        background: var(--bg-2);
+        border: 1px solid rgba(139, 92, 246, 0.6);
+        color: #c4b5fd;
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+    }
+
+    .pipeline code {
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+    }
+
+    .pipeline .what b {
+        display: block;
+        color: #fff;
+    }
+
+    .pipeline .what span {
+        color: var(--text-muted);
+        font-size: 14.5px;
+    }
+
+    .pipeline .sample {
+        font-family: var(--mono);
+        font-size: 13px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: #0a0918;
+        border: 1px solid var(--border);
+        color: #c9c7e6;
+        align-self: start;
+    }
+
+    .pipeline .sample small {
+        color: var(--text-dim);
+    }
+
+    .chip {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        margin: 2px 4px 2px 0;
+    }
+
+    .chip.voice {
+        background: rgba(99, 102, 241, 0.2);
+        border: 1px solid rgba(99, 102, 241, 0.5);
+    }
+
+    .chip.se {
+        background: rgba(236, 72, 153, 0.18);
+        border: 1px solid rgba(236, 72, 153, 0.5);
+    }
+
+    @media (max-width: 640px) {
+        .pipeline li {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+    }
+</style>

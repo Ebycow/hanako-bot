@@ -23,3 +23,110 @@ const nn = String(n).padStart(2, '0');
     </div>
     <slot />
 </section>
+
+<style>
+    .chapter {
+        padding: 0 0 90px;
+    }
+
+    .chapter-head {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 20px;
+        margin-bottom: 24px;
+    }
+
+    .chapter-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        font-family: var(--mono);
+        font-size: 12.5px;
+        color: var(--cyan);
+        letter-spacing: 0.08em;
+        margin-bottom: 12px;
+    }
+
+    .chapter-kicker::before {
+        content: '';
+        width: 24px;
+        height: 1px;
+        background: var(--cyan);
+    }
+
+    h2 {
+        font-size: clamp(28px, 3.6vw, 40px);
+        line-height: 1.25;
+        letter-spacing: -0.025em;
+        margin: 0;
+        font-weight: 800;
+    }
+
+    .chapter-mascot {
+        width: 96px;
+        height: 96px;
+        object-fit: contain;
+        flex-shrink: 0;
+        filter: drop-shadow(0 10px 24px rgba(124, 58, 237, 0.55));
+    }
+
+    /* ここから下は各章（docs/*.astro）からスロットで渡される本文に効かせる */
+    .chapter :global(.lead) {
+        font-size: 18px;
+        color: var(--text-muted);
+        margin: 0 0 28px;
+    }
+
+    .chapter :global(h3) {
+        font-size: 22px;
+        margin: 48px 0 16px;
+        letter-spacing: -0.01em;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .chapter :global(p),
+    .chapter :global(li) {
+        color: #cfcde8;
+    }
+
+    .chapter :global(ul) {
+        padding-left: 0;
+        list-style: none;
+    }
+
+    .chapter :global(ul li) {
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 10px;
+    }
+
+    .chapter :global(ul li::before) {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        top: 0.25em;
+        width: 20px;
+        height: 20px;
+        border-radius: 6px;
+        display: grid;
+        place-items: center;
+        font-size: 12px;
+        font-weight: 800;
+        color: #0b0820;
+        background: var(--grad);
+    }
+
+    .chapter :global(strong) {
+        color: #fff;
+    }
+
+    @media (max-width: 640px) {
+        .chapter-mascot {
+            width: 64px;
+            height: 64px;
+        }
+    }
+</style>

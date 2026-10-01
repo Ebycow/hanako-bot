@@ -1,0 +1,74 @@
+/* ===== ステップ図（→ でつないだカード） ===== */
+.steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+    counter-reset: step;
+}
+
+.step {
+    position: relative;
+    padding: 24px 20px;
+    border-radius: var(--radius);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    text-align: center;
+}
+
+.step::after {
+    content: '→';
+    position: absolute;
+    right: -14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--violet);
+    font-weight: 800;
+    z-index: 2;
+}
+
+.step:last-child::after {
+    display: none;
+}
+
+.step.main {
+    background: linear-gradient(160deg, rgba(139, 92, 246, 0.28), rgba(37, 99, 235, 0.14));
+    border-color: rgba(139, 92, 246, 0.5);
+    box-shadow: var(--glow);
+}
+
+.step img {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.step .n {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--cyan);
+    letter-spacing: 0.1em;
+    margin-bottom: 4px;
+}
+
+.step b {
+    display: block;
+    color: #fff;
+    font-size: 15px;
+}
+
+.step small {
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+@media (max-width: 960px) {
+    .steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .step::after {
+        display: none;
+    }
+}

@@ -28,7 +28,8 @@ npm run build    # dist/ に出力
 | ヘッダー・フッター | `src/components/SiteHeader.astro`、`src/components/SiteFooter.astro` |
 | 利用規約・プライバシーポリシーの本文 | `src/content/terms.md`、`src/content/privacy.md` |
 | 規約ページの見出し・制定日 | `src/pages/terms.astro`、`src/pages/privacy.astro` |
-| スタイル | `src/styles/global.css` |
+| スタイル（1か所でしか使わないもの） | 各コンポーネントの `<style>` |
+| スタイル（色などの変数、ボタン・カードなど共通の部品） | `src/styles/`（読み込み順は `global.css`） |
 | 画像 | `public/assets/` |
 
 Bot 本体（[Ebycow/hanako](https://github.com/Ebycow/hanako)）でコマンドや上限値を変えたときは、`src/data/` の2ファイルも合わせて更新してください。

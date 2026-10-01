@@ -154,3 +154,81 @@ const { id, n } = Astro.props;
         </p>
     </div>
 </Chapter>
+
+<style>
+    details {
+        margin: 10px 0;
+        border-radius: 16px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        transition: border-color 0.2s;
+    }
+
+    details[open] {
+        border-color: rgba(139, 92, 246, 0.45);
+        background: rgba(139, 92, 246, 0.06);
+    }
+
+    summary {
+        cursor: pointer;
+        list-style: none;
+        padding: 16px 52px 16px 20px;
+        font-weight: 600;
+        color: #fff;
+        position: relative;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    summary::after {
+        content: '+';
+        position: absolute;
+        right: 18px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 26px;
+        height: 26px;
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        background: var(--surface-strong);
+        color: #c4b5fd;
+        font-weight: 400;
+        font-size: 18px;
+        transition: transform 0.2s;
+    }
+
+    details[open] summary::after {
+        transform: translateY(-50%) rotate(45deg);
+    }
+
+    .answer {
+        padding: 0 20px 16px;
+    }
+
+    .answer p {
+        margin: 0;
+    }
+
+    /* 章末のまとめ */
+    .summary {
+        margin-top: 36px;
+        padding: 24px 26px;
+        border-radius: var(--radius);
+        background:
+            linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
+            var(--grad) border-box;
+        border: 1px solid transparent;
+    }
+
+    .summary h4 {
+        margin: 0 0 10px;
+        font-size: 17px;
+    }
+
+    .summary p {
+        margin: 0;
+    }
+</style>

@@ -51,3 +51,84 @@ import { limits, fmt } from '../../data/limits';
         <p class="fineprint">※ 全プランの内容は完全に同一です。Hanakoは無償で提供されています。</p>
     </div>
 </section>
+
+<style>
+    .pricing {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .price-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-card.featured {
+        background:
+            linear-gradient(180deg, rgba(40, 28, 90, 0.95), rgba(18, 14, 40, 0.95)) padding-box,
+            var(--grad) border-box;
+        border: 1.5px solid transparent;
+        box-shadow: 0 30px 80px -20px rgba(124, 58, 237, 0.7);
+    }
+
+    .price-card .badge {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--grad-warm);
+        color: #fff;
+    }
+
+    .price {
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin: 8px 0 4px;
+        line-height: 1.1;
+    }
+
+    .price small {
+        font-size: 15px;
+        color: var(--text-muted);
+        font-weight: 500;
+        letter-spacing: 0;
+    }
+
+    .price-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 24px;
+        flex: 1;
+    }
+
+    .price-card li {
+        padding: 6px 0 6px 28px;
+        position: relative;
+        color: #d4d2ee;
+        font-size: 14.5px;
+    }
+
+    .price-card li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #4ade80;
+        font-weight: 800;
+    }
+
+    .price-card .btn {
+        justify-content: center;
+    }
+
+    @media (max-width: 960px) {
+        .pricing {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

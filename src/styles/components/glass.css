@@ -1,0 +1,117 @@
+/* ===== ガラス風カード ===== */
+.glass {
+    position: relative;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    backdrop-filter: blur(12px);
+    transition:
+        transform 0.3s,
+        border-color 0.3s,
+        box-shadow 0.3s;
+    overflow: hidden;
+}
+
+.glass::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(135deg, rgba(167, 139, 250, 0.6), transparent 40%, transparent 60%, rgba(34, 211, 238, 0.5));
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.glass:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--glow);
+}
+
+.glass:hover::before {
+    opacity: 1;
+}
+
+.icon-box {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    font-size: 22px;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(34, 211, 238, 0.2));
+    border: 1px solid rgba(167, 139, 250, 0.4);
+    box-shadow: 0 8px 24px -6px rgba(139, 92, 246, 0.6);
+    margin-bottom: 20px;
+}
+
+.glass h3,
+.glass h4 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    letter-spacing: -0.01em;
+}
+
+.glass p {
+    color: var(--text-muted);
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+.glass p:last-child {
+    margin-bottom: 0;
+}
+
+/* カードを並べるグリッド */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.cards .glass {
+    padding: 26px;
+}
+
+.cards code {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+
+/* カード右上のはなこ */
+.card-mascot {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    opacity: 0.9;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    background: rgba(34, 211, 238, 0.12);
+    color: #67e8f9;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    margin-bottom: 14px;
+}
+
+.tag.hot {
+    background: var(--grad-warm);
+    color: #fff;
+    border: 0;
+}

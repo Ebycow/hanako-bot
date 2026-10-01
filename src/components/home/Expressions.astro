@@ -99,3 +99,106 @@ const expressions = [
         fig.addEventListener('click', talk);
     });
 </script>
+
+<style>
+    .expression-grid {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 14px;
+    }
+
+    .expression-grid figure {
+        margin: 0;
+        padding: 14px 10px 12px;
+        text-align: center;
+    }
+
+    .expression-grid img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: contain;
+    }
+
+    .expression-grid figcaption {
+        font-size: 13px;
+        color: var(--text-muted);
+    }
+
+    /* 吹き出し */
+    .says {
+        cursor: pointer;
+        overflow: visible;
+        outline: none;
+    }
+
+    .says:focus-visible {
+        box-shadow: 0 0 0 3px var(--violet);
+    }
+
+    .speech {
+        position: absolute;
+        left: 50%;
+        bottom: calc(100% + 12px);
+        z-index: 5;
+        width: max-content;
+        max-width: 220px;
+        padding: 10px 14px;
+        border-radius: 14px;
+        background: #fff;
+        color: #1a1033;
+        font-size: 13px;
+        font-weight: 600;
+        line-height: 1.6;
+        text-align: left;
+        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+        opacity: 0;
+        transform: translate(-50%, 8px) scale(0.92);
+        transition:
+            opacity 0.2s,
+            transform 0.2s;
+        pointer-events: none;
+    }
+
+    .speech::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 100%;
+        margin-left: -8px;
+        border: 8px solid transparent;
+        border-top-color: #fff;
+    }
+
+    .says:hover .speech,
+    .says:focus .speech {
+        opacity: 1;
+        transform: translate(-50%, 0) scale(1);
+    }
+
+    .says:hover img,
+    .says:focus img {
+        animation: wiggle 0.5s ease-in-out;
+    }
+
+    @keyframes wiggle {
+        25% {
+            transform: rotate(-4deg);
+        }
+        75% {
+            transform: rotate(4deg);
+        }
+    }
+
+    @media (max-width: 960px) {
+        .expression-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .speech {
+            max-width: 160px;
+            font-size: 12px;
+        }
+    }
+</style>

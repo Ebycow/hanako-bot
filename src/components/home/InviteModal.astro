@@ -49,3 +49,125 @@
         open();
     }
 </script>
+
+<style>
+    .invite-modal {
+        width: min(760px, calc(100vw - 32px));
+        max-height: calc(100vh - 40px);
+        padding: 36px 40px 40px;
+        border-radius: 32px;
+        border: 1px solid var(--border-strong);
+        background:
+            radial-gradient(ellipse at top, rgba(236, 72, 153, 0.28), transparent 60%),
+            radial-gradient(ellipse at bottom right, rgba(34, 211, 238, 0.18), transparent 60%),
+            var(--bg-2);
+        color: var(--text);
+        text-align: center;
+        box-shadow: 0 40px 120px -20px rgba(124, 58, 237, 0.8);
+    }
+
+    .invite-modal[open] {
+        animation: modal-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.2);
+    }
+
+    @keyframes modal-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+        }
+    }
+
+    .invite-modal::backdrop {
+        background: rgba(5, 4, 12, 0.7);
+        backdrop-filter: blur(6px);
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--border-strong);
+        background: var(--surface-strong);
+        color: var(--text);
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .invite-art {
+        width: min(420px, 90%);
+        display: block;
+        margin: -6px auto 4px;
+        border-radius: 24px;
+        animation: flap 3.2s ease-in-out infinite;
+        mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%);
+    }
+
+    @keyframes flap {
+        50% {
+            transform: translate(12px, -12px) rotate(-2deg);
+        }
+    }
+
+    .invite-modal h2 {
+        font-size: clamp(26px, 4vw, 40px);
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin: 0 0 14px;
+    }
+
+    .invite-lead {
+        color: var(--text-muted);
+        font-size: 16px;
+        max-width: 580px;
+        margin: 0 auto 24px;
+    }
+
+    .invite-lead strong {
+        color: #fff;
+    }
+
+    .invite-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        text-align: left;
+        margin-bottom: 26px;
+    }
+
+    .invite-options .glass {
+        padding: 22px;
+    }
+
+    .invite-options .glass:hover {
+        transform: none;
+    }
+
+    .invite-options b {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .invite-options span {
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+
+    .invite-modal .hero-actions {
+        justify-content: center;
+    }
+
+    @media (max-width: 960px) {
+        .invite-options {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .invite-modal {
+            padding: 28px 20px 24px;
+        }
+    }
+</style>

@@ -65,3 +65,27 @@ const { id, n } = Astro.props;
         スレッド、フォーラム、アナウンスチャンネルは読み上げできません。ステージチャンネルにも参加できません。
     </div>
 </Chapter>
+
+<style>
+    .tldr {
+        margin: 0 0 28px;
+        padding: 18px 22px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 1px dashed rgba(34, 211, 238, 0.45);
+        font-size: 15px;
+    }
+
+    .tldr b {
+        font-family: var(--mono);
+        color: var(--cyan);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .tldr p {
+        margin: 0;
+    }
+</style>

@@ -8,3 +8,18 @@
         glow.style.top = e.clientY + 'px';
     });
 </script>
+
+<style>
+    .cursor-glow {
+        position: fixed;
+        z-index: -1;
+        width: 500px;
+        height: 500px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.14), transparent 60%);
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        left: -999px;
+        top: -999px;
+    }
+</style>

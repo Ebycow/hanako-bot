@@ -90,3 +90,51 @@ const { id, n } = Astro.props;
         empty.style.display = total === 0 ? 'block' : 'none';
     });
 </script>
+
+<style>
+    /* 絞り込み */
+    .filter {
+        width: 100%;
+        padding: 16px 20px 16px 50px;
+        border-radius: 16px;
+        border: 1px solid var(--border-strong);
+        background: rgba(13, 11, 29, 0.8) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23a78bfa' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")
+            no-repeat 18px center;
+        color: var(--text);
+        font: inherit;
+        font-size: 15.5px;
+        outline: none;
+        transition:
+            border-color 0.2s,
+            box-shadow 0.2s;
+    }
+
+    .filter:focus {
+        border-color: var(--violet);
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
+    }
+
+    .filter::placeholder {
+        color: var(--text-dim);
+    }
+
+    /* 表の中の見出し行（グループ名） */
+    .table-group td {
+        background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), transparent) !important;
+        color: #fff;
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: 0.06em;
+    }
+
+    .empty {
+        display: none;
+        text-align: center;
+        color: var(--text-muted);
+    }
+
+    .note {
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+</style>

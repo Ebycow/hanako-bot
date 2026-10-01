@@ -1,0 +1,85 @@
+/* ===== リセット・要素の既定スタイル ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 110px;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.85;
+    letter-spacing: 0.01em;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+/* 背景のグリッド（グロウオーブは BaseLayout.astro） */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+a {
+    color: #a5b4fc;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #e0e7ff;
+}
+
+code {
+    background: rgba(139, 92, 246, 0.14);
+    border: 1px solid rgba(139, 92, 246, 0.28);
+    color: #d8ccff;
+    border-radius: 8px;
+    padding: 0.08em 0.45em;
+    font-family: var(--mono);
+    font-size: 0.86em;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    code {
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+    }
+}
+
+mark {
+    background: var(--grad);
+    color: #0b0820;
+    border-radius: 6px;
+    padding: 0 0.3em;
+    font-weight: 700;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* ふわふわ上下する（ヒーローのチップ、開発者向けのハートで共有） */
+@keyframes bob {
+    50% {
+        transform: translateY(-10px);
+    }
+}

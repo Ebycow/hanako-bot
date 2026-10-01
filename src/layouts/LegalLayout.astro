@@ -42,3 +42,116 @@ const { page, title, description, image, eyebrow, heading, lead, date, highlight
         <slot />
     </main>
 </BaseLayout>
+
+<style>
+    .doc-hero {
+        padding: 80px 0 30px;
+        text-align: center;
+    }
+
+    .doc-hero img {
+        width: 150px;
+        filter: drop-shadow(0 10px 30px rgba(124, 58, 237, 0.6));
+    }
+
+    .doc-hero h1 {
+        font-size: clamp(34px, 5vw, 58px);
+        letter-spacing: -0.03em;
+        line-height: 1.15;
+        margin: 10px 0 14px;
+    }
+
+    .doc-hero p {
+        color: var(--text-muted);
+        font-size: 17px;
+        margin: 0 auto;
+        max-width: 620px;
+    }
+
+    .doc-meta {
+        display: inline-block;
+        margin-top: 18px !important;
+        font-family: var(--mono);
+        font-size: 13px !important;
+        padding: 5px 14px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+    }
+
+    .highlights {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        max-width: 900px;
+        margin: 30px auto 50px;
+    }
+
+    .highlights .glass {
+        padding: 22px;
+    }
+
+    .highlights .glass b {
+        display: block;
+        margin-bottom: 4px;
+    }
+
+    .highlights .glass span {
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+
+    /* 本文。Markdown から作られる要素には :global() で効かせる */
+    .doc {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 44px;
+        border-radius: var(--radius-lg);
+        background: var(--surface);
+        border: 1px solid var(--border);
+        backdrop-filter: blur(12px);
+    }
+
+    .doc :global(h2) {
+        font-size: 21px;
+        margin: 44px 0 14px;
+        padding-top: 28px;
+        border-top: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .doc :global(h2::before) {
+        content: '';
+        width: 8px;
+        height: 22px;
+        border-radius: 4px;
+        background: var(--grad);
+        flex-shrink: 0;
+    }
+
+    .doc :global(h2:first-of-type) {
+        margin-top: 30px;
+    }
+
+    .doc :global(p),
+    .doc :global(li) {
+        color: #cfcde8;
+    }
+
+    .doc :global(li) {
+        margin-bottom: 8px;
+    }
+
+    @media (max-width: 960px) {
+        .highlights {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .doc {
+            padding: 26px 20px;
+        }
+    }
+</style>

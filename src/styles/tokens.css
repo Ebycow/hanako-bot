@@ -1,0 +1,31 @@
+/* ==========================================================================
+   Hanako — Next-Gen Design System ✨
+   Crafted for seamless, intuitive, and delightful experiences.
+   ========================================================================== */
+
+:root {
+    color-scheme: dark;
+    --bg: #07060f;
+    --bg-2: #0d0b1d;
+    --surface: rgba(255, 255, 255, 0.04);
+    --surface-strong: rgba(255, 255, 255, 0.07);
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --text: #ecebff;
+    --text-muted: #9d9bbd;
+    --text-dim: #6e6c8e;
+    --violet: #8b5cf6;
+    --indigo: #6366f1;
+    --blue: #3b82f6;
+    --cyan: #22d3ee;
+    --pink: #ec4899;
+    --grad: linear-gradient(135deg, #a78bfa 0%, #818cf8 30%, #60a5fa 60%, #22d3ee 100%);
+    --grad-warm: linear-gradient(135deg, #f472b6 0%, #a78bfa 50%, #60a5fa 100%);
+    --glow: 0 0 0 1px rgba(139, 92, 246, 0.25), 0 10px 40px -10px rgba(139, 92, 246, 0.55);
+    --radius: 20px;
+    --radius-lg: 28px;
+    --max-width: 1180px;
+    --font: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
+        'Noto Sans JP', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+}

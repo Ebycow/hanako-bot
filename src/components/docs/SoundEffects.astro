@@ -137,3 +137,74 @@ const { id, n } = Astro.props;
         <li>サーバー全体の設定です。変更には「サーバー管理」の権限が必要です。</li>
     </ul>
 </Chapter>
+
+<style>
+    /* 正規化の Before / After 棒グラフ */
+    .bars {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 24px 0 6px;
+    }
+
+    .panel {
+        padding: 22px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 1px solid var(--border);
+    }
+
+    .panel > b {
+        display: block;
+        margin-bottom: 14px;
+        font-size: 14px;
+    }
+
+    .plot {
+        position: relative;
+        height: 150px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-around;
+        gap: 16px;
+        border-bottom: 1px solid var(--border-strong);
+    }
+
+    .plot .target {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 80%;
+        border-top: 1px dashed var(--cyan);
+    }
+
+    .plot .target span {
+        position: absolute;
+        right: 0;
+        top: -22px;
+        font-size: 11px;
+        color: var(--cyan);
+        font-family: var(--mono);
+    }
+
+    .plot .bar {
+        width: 30%;
+        border-radius: 10px 10px 0 0;
+        background: linear-gradient(180deg, #a78bfa, #4f46e5);
+        box-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
+    }
+
+    .labels {
+        display: flex;
+        justify-content: space-around;
+        font-size: 12px;
+        color: var(--text-dim);
+        margin-top: 8px;
+    }
+
+    @media (max-width: 640px) {
+        .bars {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

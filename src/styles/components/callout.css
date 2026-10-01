@@ -1,0 +1,38 @@
+/* ===== コールアウト ===== */
+.callout {
+    position: relative;
+    margin: 24px 0;
+    padding: 20px 22px 20px 64px;
+    border-radius: var(--radius);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(37, 99, 235, 0.08));
+    border: 1px solid rgba(139, 92, 246, 0.35);
+    color: #d9d6f5;
+}
+
+.callout::before {
+    content: '💡';
+    position: absolute;
+    left: 20px;
+    top: 18px;
+    font-size: 24px;
+}
+
+.callout.warn {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.13), rgba(236, 72, 153, 0.08));
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+.callout.warn::before {
+    content: '⚠️';
+}
+
+.callout.key::before {
+    content: '🎯';
+}
+
+.callout .callout-title {
+    display: block;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 4px;
+}

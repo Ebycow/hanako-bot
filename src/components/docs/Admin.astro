@@ -93,3 +93,52 @@ const tiers = (['everyone', 'moderator', 'admin'] as Permission[]).map((key) => 
         >をご覧ください。
     </p>
 </Chapter>
+
+<style>
+    /* 権限ごとのコマンド */
+    .tiers {
+        display: grid;
+        gap: 12px;
+        margin: 24px 0 6px;
+    }
+
+    .tier {
+        display: grid;
+        grid-template-columns: 190px 1fr;
+        gap: 20px;
+        align-items: center;
+        padding: 18px 22px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 1px solid var(--border);
+    }
+
+    .tier:nth-child(2) {
+        border-color: rgba(96, 165, 250, 0.35);
+    }
+
+    .tier:nth-child(3) {
+        border-color: rgba(236, 72, 153, 0.4);
+    }
+
+    .tier .who b {
+        display: block;
+        color: #fff;
+    }
+
+    .tier .who small {
+        color: var(--text-muted);
+    }
+
+    .tier code {
+        display: inline-block;
+        margin: 3px 2px;
+    }
+
+    @media (max-width: 640px) {
+        .tier {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+    }
+</style>
