@@ -1,9 +1,11 @@
 ---
 import { limits, fmt } from '../../data/limits';
 import { allCommands } from '../../data/commands';
+import HeroPetals from './HeroPetals.astro';
 ---
 
 <section class="hero" aria-labelledby="hero-title">
+    <HeroPetals />
     <div class="container hero-layout">
         <div class="hero-copy">
             <span class="pill"><b>NEW</b> 🚀 Next-Gen Text-to-Speech for Discord</span>
@@ -117,6 +119,11 @@ import { allCommands } from '../../data/commands';
     .hero {
         position: relative;
         padding: 90px 0 60px;
+    }
+
+    .hero > .container {
+        position: relative;
+        z-index: 1;
     }
 
     .hero-layout {
