@@ -1,0 +1,771 @@
+---
+// 通話画面のデモ。/plz ではなこを呼び、チャットの発言を読み上げ、/bye で退出するまでを再現する
+const channel = 'ゲーム部屋';
+
+const members = [
+    { id: 'hanako', name: 'hanako', bot: true, avatar: 'assets/hanako-icon.webp', state: 'deaf' },
+    { id: 'ebi', name: 'えび', initial: 'え', state: 'mute' },
+    { id: 'mikan', name: 'みかん', initial: 'み', state: 'none' },
+];
+
+// はなこを呼ぶ前の会話。最初からこれだけ表示しておく
+const initial = [
+    { user: 'mikan', text: 'そろそろ始めよっか' },
+    { user: 'ebi', text: 'はなこ呼ぶね！' },
+];
+const people = Object.fromEntries(members.map((m) => [m.id, m]));
+---
+
+<section class="section voice-demo" aria-labelledby="voice-demo-title">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">How it works</span>
+            <h2 id="voice-demo-title">チャットが、<span class="gradient-text">そのまま声になる。</span></h2>
+            <p>
+                <code>/plz</code> ではなこを呼べば、チャットの発言をボイスチャンネルで読み上げます。マイクを使えない人も、テキストで通話に参加できます。
+            </p>
+        </div>
+
+        <div class="dc-window reveal" aria-label="Discordの通話画面のイメージ">
+            <div class="dc-titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="dc-body">
+                <aside class="dc-sidebar">
+                    <div class="dc-server">Hanako Lounge</div>
+                    <div class="dc-category">ボイスチャンネル</div>
+                    <div class="dc-voice">
+                        <div class="dc-channel">
+                            <svg class="dc-speaker" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor"></path>
+                                <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                            <span>{channel}</span>
+                            <span class="dc-timer" id="dc-timer">0:45</span>
+                        </div>
+                        <ul class="dc-members">
+                            {
+                                members.map((m) => (
+                                    <li class:list={['dc-member', { 'is-away': m.id === 'hanako' }]} data-member={m.id}>
+                                        <span class="dc-avatar">
+                                            {m.avatar ? <img src={m.avatar} alt="" /> : <span class={`dc-initial is-${m.id}`}>{m.initial}</span>}
+                                        </span>
+                                        <span class="dc-name">{m.name}</span>
+                                        {m.bot && <span class="dc-bot">アプリ</span>}
+                                        {m.state === 'deaf' && (
+                                            <svg class="dc-state" viewBox="0 0 24 24" aria-label="スピーカーミュート">
+                                                <path d="M4 15v-3a8 8 0 0 1 16 0v3" fill="none" stroke="currentColor" stroke-width="2"></path>
+                                                <rect x="3" y="14" width="4" height="6" rx="1.5" fill="currentColor"></rect>
+                                                <rect x="17" y="14" width="4" height="6" rx="1.5" fill="currentColor"></rect>
+                                                <path d="M3 3l18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                            </svg>
+                                        )}
+                                        {m.state === 'mute' && (
+                                            <svg class="dc-state" viewBox="0 0 24 24" aria-label="マイクミュート">
+                                                <rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"></rect>
+                                                <path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                                <path d="M3 3l18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                                            </svg>
+                                        )}
+                                    </li>
+                                ))
+                            }
+                        </ul>
+                    </div>
+                </aside>
+
+                <div class="dc-chat">
+                    <div class="dc-chat-head">
+                        <span class="dc-hash" aria-hidden="true">#</span> {channel}
+                        <span class="dc-chat-sub">ボイスチャンネルのテキストチャット</span>
+                    </div>
+                    <ol class="dc-messages" id="dc-messages">
+                        {
+                            initial.map((msg) => {
+                                const m = people[msg.user];
+                                return (
+                                    <li class="dc-msg">
+                                        <div class="dc-msg-row">
+                                            <span class="dc-avatar">
+                                                <span class={`dc-initial is-${m.id}`}>{m.initial}</span>
+                                            </span>
+                                            <div>
+                                                <div class="dc-msg-head">
+                                                    <b class={`is-${m.id}`}>{m.name}</b>
+                                                    <time>21:04</time>
+                                                </div>
+                                                <p>{msg.text}</p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                );
+                            })
+                        }
+                    </ol>
+                    <template id="dc-msg-template">
+                        <li class="dc-msg is-new">
+                            <div class="dc-cmd" hidden>
+                                <span class="dc-initial is-ebi">え</span>
+                                <span><b>えび</b> さんが<span class="dc-cmd-name"></span>を使用しました</span>
+                            </div>
+                            <div class="dc-msg-row">
+                                <span class="dc-avatar">
+                                    <img src="assets/hanako-icon.webp" alt="" hidden />
+                                    <span class="dc-initial"></span>
+                                </span>
+                                <div>
+                                    <div class="dc-msg-head"><b></b><span class="dc-bot" hidden>アプリ</span><time>21:05</time></div>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                    <div class="dc-typing" id="dc-typing" aria-hidden="true">
+                        <span class="dc-dots"><i></i><i></i><i></i></span>
+                        <span id="dc-typing-name"></span> が入力中…
+                    </div>
+                    <div class="dc-input" aria-hidden="true">
+                        <span class="dc-input-text" id="dc-input" data-placeholder={`#${channel} へメッセージを送信`}></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const list = document.getElementById('dc-messages')!;
+    const template = document.getElementById('dc-msg-template') as HTMLTemplateElement;
+    const typing = document.getElementById('dc-typing')!;
+    const typingName = document.getElementById('dc-typing-name')!;
+    const input = document.getElementById('dc-input')!;
+    const hanako = document.querySelector<HTMLElement>('[data-member="hanako"]')!;
+    const timer = document.getElementById('dc-timer')!;
+    const channel = document.querySelector('.dc-channel span:not(.dc-timer)')!.textContent!;
+
+    const users: Record<string, { name: string; initial: string }> = {
+        ebi: { name: 'えび', initial: 'え' },
+        mikan: { name: 'みかん', initial: 'み' },
+    };
+
+    // 画面を見ている人は「えび」。えびの発言は入力欄に打ち込まれてから送信される
+    type Step = { user: 'ebi' | 'mikan'; text: string } | { command: 'plz' | 'bye'; reply: string };
+    const script: Step[] = [
+        { command: 'plz', reply: `#${channel} に参加したよ、よろしくね` },
+        { user: 'mikan', text: 'ボス戦いくよー' },
+        { user: 'ebi', text: 'ミュートだけど聞いてるよ〜' },
+        { user: 'ebi', text: '回復まかせて！' },
+        { user: 'mikan', text: 'ナイス〜！おつかれさま' },
+        { command: 'bye', reply: 'コマンドを実行しました！😸' },
+    ];
+
+    let fast = false;
+    const wait = (ms: number) => (fast ? Promise.resolve() : new Promise((r) => setTimeout(r, ms)));
+
+    const addMessage = (step: Step) => {
+        const li = template.content.firstElementChild!.cloneNode(true) as HTMLLIElement;
+        const img = li.querySelector('img')!;
+        const initial = li.querySelector<HTMLElement>('.dc-avatar .dc-initial')!;
+        const name = li.querySelector('.dc-msg-head b')!;
+        const text = li.querySelector('p')!;
+        if ('command' in step) {
+            li.querySelector<HTMLElement>('.dc-cmd')!.hidden = false;
+            li.querySelector('.dc-cmd-name')!.textContent = step.command;
+            img.hidden = false;
+            initial.remove();
+            name.textContent = 'hanako';
+            name.classList.add('is-hanako');
+            li.querySelector<HTMLElement>('.dc-msg-head .dc-bot')!.hidden = false;
+            // 「#チャンネル名」はメンションの見た目にする
+            const [, mention, rest] = step.reply.match(/^(#\S+)?(.*)$/)!;
+            if (mention) {
+                const chip = document.createElement('span');
+                chip.className = 'dc-mention';
+                chip.textContent = mention.replace('#', '# ');
+                text.append(chip);
+            }
+            text.append(rest.trim());
+        } else {
+            const u = users[step.user];
+            img.remove();
+            initial.classList.add(`is-${step.user}`);
+            initial.textContent = u.initial;
+            name.textContent = u.name;
+            name.classList.add(`is-${step.user}`);
+            text.textContent = step.text;
+        }
+        if (fast) li.classList.remove('is-new');
+        list.append(li);
+        while (list.children.length > 8) list.firstElementChild!.remove();
+        return li;
+    };
+
+    // 入力欄に1文字ずつ打ち込む
+    const typeIntoInput = async (value: string) => {
+        if (fast) return;
+        for (let i = 1; i <= value.length; i++) {
+            input.textContent = value.slice(0, i);
+            await wait(value.startsWith('/') ? 140 : 90);
+        }
+        await wait(450);
+        input.textContent = '';
+    };
+
+    const play = async (step: Step) => {
+        if ('command' in step) {
+            await typeIntoInput(`/${step.command}`);
+            await wait(700);
+            addMessage(step);
+            await wait(600);
+            hanako.classList.toggle('is-away', step.command === 'bye');
+            if (step.command === 'plz') hanako.classList.add('is-joined');
+            return;
+        }
+        if (step.user === 'ebi') {
+            await typeIntoInput(step.text);
+        } else if (!fast) {
+            typingName.textContent = users[step.user].name;
+            typing.classList.add('is-on');
+            await wait(1200 + step.text.length * 60);
+            typing.classList.remove('is-on');
+        }
+        const li = addMessage(step);
+        if (fast) return;
+        await wait(350);
+        // はなこが読み上げている間、アイコンと発言を緑で示す
+        li.classList.add('is-reading');
+        hanako.classList.add('is-speaking');
+        await wait(900 + step.text.length * 140);
+        hanako.classList.remove('is-speaking');
+        li.classList.remove('is-reading');
+    };
+
+    const run = async () => {
+        for (;;) {
+            await wait(1200);
+            for (const step of script) {
+                await play(step);
+                await wait(900);
+            }
+            await wait(2000);
+        }
+    };
+
+    if (reduceMotion) {
+        // 動かさず、はなこが参加して読み上げている途中の場面を見せる
+        fast = true;
+        (async () => {
+            for (const step of script.slice(0, -1)) await play(step);
+        })();
+    } else {
+        // 画面に入ってから動かし始める
+        const io = new IntersectionObserver(([entry]) => {
+            if (!entry.isIntersecting) return;
+            io.disconnect();
+            run();
+        });
+        io.observe(list);
+
+        let seconds = 45;
+        setInterval(() => {
+            seconds++;
+            timer.textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
+        }, 1000);
+    }
+</script>
+
+<style>
+    .voice-demo {
+        padding-top: 70px;
+    }
+
+    /* Discord風のウィンドウ */
+    .dc-window {
+        --dc-bg: #26272d;
+        --dc-side: #1f2025;
+        --dc-text: #dbdee1;
+        --dc-muted: #949ba4;
+        --dc-green: #23a55a;
+        max-width: 920px;
+        margin: 0 auto;
+        border-radius: 18px;
+        border: 1px solid var(--border-strong);
+        background: var(--dc-bg);
+        overflow: hidden;
+        box-shadow:
+            0 30px 80px -20px rgba(0, 0, 0, 0.7),
+            var(--glow);
+        font-size: 15px;
+        color: var(--dc-text);
+    }
+
+    .dc-titlebar {
+        display: flex;
+        gap: 7px;
+        padding: 11px 14px;
+        background: #1a1b1f;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dc-titlebar i {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        background: #3a3b42;
+    }
+
+    .dc-body {
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        height: 440px;
+    }
+
+    .dc-sidebar {
+        background: var(--dc-side);
+        padding: 0 10px 16px;
+    }
+
+    .dc-server {
+        font-weight: 700;
+        padding: 14px 18px;
+        margin: 0 -10px 12px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+    }
+
+    .dc-category {
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        color: var(--dc-muted);
+        padding: 6px 8px;
+    }
+
+    .dc-channel {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 8px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, 0.06);
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .dc-speaker {
+        width: 20px;
+        height: 20px;
+        color: var(--dc-green);
+        flex: none;
+    }
+
+    .dc-timer {
+        margin-left: auto;
+        color: var(--dc-green);
+        font-weight: 500;
+        font-size: 13px;
+        font-variant-numeric: tabular-nums;
+    }
+
+    .dc-members {
+        list-style: none;
+        margin: 4px 0 0;
+        padding: 0 0 0 26px;
+    }
+
+    .dc-member {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        padding: 5px 6px;
+        border-radius: 6px;
+        color: var(--dc-muted);
+    }
+
+    .dc-member.is-away {
+        display: none;
+    }
+
+    .dc-member.is-joined {
+        animation: dc-join 0.35s ease-out;
+    }
+
+    @keyframes dc-join {
+        from {
+            opacity: 0;
+            transform: translateX(-8px);
+        }
+    }
+
+    .dc-member[data-member='hanako'] .dc-name {
+        color: #fff;
+        font-weight: 600;
+    }
+
+    .dc-avatar {
+        position: relative;
+        flex: none;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        overflow: hidden;
+        background: #3a3b42;
+    }
+
+    .dc-avatar img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    /* 話している人の緑のリング */
+    .dc-avatar::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 2px var(--dc-green);
+        opacity: 0;
+        transition: opacity 0.15s;
+    }
+
+    .dc-member.is-speaking .dc-avatar {
+        overflow: visible;
+    }
+
+    .dc-member.is-speaking .dc-avatar::after {
+        opacity: 1;
+        inset: -3px;
+        box-shadow:
+            0 0 0 2.5px var(--dc-green),
+            0 0 14px rgba(35, 165, 90, 0.55);
+    }
+
+    .dc-member.is-speaking .dc-avatar img {
+        border-radius: 50%;
+    }
+
+    .dc-initial {
+        width: 100%;
+        height: 100%;
+        display: grid;
+        place-items: center;
+        font-size: 13px;
+        font-weight: 700;
+        color: #fff;
+        border-radius: 50%;
+    }
+
+    .dc-initial.is-ebi {
+        background: linear-gradient(135deg, #60a5fa, #22d3ee);
+    }
+
+    .dc-initial.is-mikan {
+        background: linear-gradient(135deg, #a78bfa, #818cf8);
+    }
+
+    .dc-bot {
+        font-size: 10px;
+        font-weight: 700;
+        padding: 1px 5px;
+        border-radius: 4px;
+        background: #5865f2;
+        color: #fff;
+    }
+
+    .dc-state {
+        width: 17px;
+        height: 17px;
+        margin-left: auto;
+        color: var(--dc-muted);
+        flex: none;
+    }
+
+    /* チャット側 */
+    .dc-chat {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .dc-chat-head {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 13px 18px;
+        font-weight: 700;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.35);
+        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+        white-space: nowrap;
+    }
+
+    .dc-hash {
+        color: var(--dc-muted);
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 1;
+    }
+
+    .dc-chat-sub {
+        color: var(--dc-muted);
+        font-weight: 400;
+        font-size: 13px;
+        margin-left: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dc-messages {
+        flex: 1;
+        min-height: 0;
+        list-style: none;
+        margin: 0;
+        padding: 12px 0 4px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(to bottom, transparent, #000 48px);
+        mask-image: linear-gradient(to bottom, transparent, #000 48px);
+    }
+
+    .dc-msg {
+        padding: 7px 18px;
+        border-left: 2px solid transparent;
+        transition:
+            background 0.25s,
+            border-color 0.25s;
+    }
+
+    .dc-msg-row {
+        display: flex;
+        gap: 14px;
+    }
+
+    /* 「〇〇さんが /plz を使用しました」 */
+    .dc-cmd {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 0 0 4px 52px;
+        font-size: 13px;
+        color: var(--dc-muted);
+    }
+
+    .dc-cmd[hidden] {
+        display: none;
+    }
+
+    .dc-cmd::before {
+        content: '';
+        position: absolute;
+        left: -33px;
+        top: 50%;
+        width: 26px;
+        height: 12px;
+        border: 2px solid #4e5058;
+        border-right: 0;
+        border-bottom: 0;
+        border-top-left-radius: 6px;
+    }
+
+    .dc-cmd .dc-initial {
+        width: 16px;
+        height: 16px;
+        font-size: 9px;
+        flex: none;
+    }
+
+    .dc-cmd b {
+        font-weight: 600;
+        color: var(--dc-text);
+    }
+
+    .dc-cmd-name {
+        margin: 0 2px;
+        padding: 0 4px;
+        border-radius: 4px;
+        background: rgba(88, 101, 242, 0.3);
+        color: #c9cdfb;
+    }
+
+    .dc-cmd-name::before {
+        content: '/';
+    }
+
+    /* スクリプトで差し込む要素なので :global で当てる */
+    .dc-msg p :global(.dc-mention) {
+        margin-right: 2px;
+        padding: 0 3px;
+        border-radius: 4px;
+        background: rgba(88, 101, 242, 0.3);
+        color: #c9cdfb;
+        font-weight: 500;
+    }
+
+    .dc-msg .dc-avatar {
+        width: 38px;
+        height: 38px;
+        margin-top: 2px;
+    }
+
+    .dc-msg.is-new {
+        animation: dc-in 0.3s ease-out;
+    }
+
+    @keyframes dc-in {
+        from {
+            opacity: 0;
+            transform: translateY(8px);
+        }
+    }
+
+    .dc-msg.is-reading {
+        background: rgba(35, 165, 90, 0.08);
+        border-left-color: var(--dc-green);
+    }
+
+    .dc-msg-head {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+    }
+
+    .dc-msg-head b.is-hanako {
+        color: #f47b84;
+    }
+
+    .dc-msg-head .dc-bot {
+        align-self: center;
+    }
+
+    .dc-msg-head b.is-ebi {
+        color: #67e8f9;
+    }
+
+    .dc-msg-head b.is-mikan {
+        color: #c4b5fd;
+    }
+
+    .dc-msg-head time {
+        font-size: 12px;
+        color: var(--dc-muted);
+    }
+
+    .dc-msg p {
+        margin: 2px 0 0;
+    }
+
+    .dc-typing {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        height: 22px;
+        padding: 0 18px;
+        font-size: 12.5px;
+        color: var(--dc-muted);
+        opacity: 0;
+        transition: opacity 0.2s;
+    }
+
+    .dc-typing.is-on {
+        opacity: 1;
+    }
+
+    .dc-typing span:not(.dc-dots) {
+        font-weight: 700;
+        color: var(--dc-text);
+    }
+
+    .dc-dots {
+        display: inline-flex;
+        gap: 3px;
+    }
+
+    .dc-dots i {
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: var(--dc-text);
+        animation: dc-dot 1.2s infinite;
+    }
+
+    .dc-dots i:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .dc-dots i:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes dc-dot {
+        0%,
+        60%,
+        100% {
+            opacity: 0.3;
+        }
+        30% {
+            opacity: 1;
+        }
+    }
+
+    .dc-input {
+        margin: 2px 16px 16px;
+        padding: 11px 16px;
+        border-radius: 8px;
+        background: #33343b;
+        color: #6d7178;
+        font-size: 14.5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dc-input-text {
+        color: var(--dc-text);
+    }
+
+    .dc-input-text::after {
+        content: '';
+        display: inline-block;
+        width: 1.5px;
+        height: 1.1em;
+        margin-left: 1px;
+        vertical-align: text-bottom;
+        background: var(--dc-text);
+        animation: dc-caret 1s steps(1) infinite;
+    }
+
+    .dc-input-text:empty::after {
+        display: none;
+    }
+
+    .dc-input-text:empty::before {
+        content: attr(data-placeholder);
+        color: #6d7178;
+    }
+
+    @keyframes dc-caret {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    @media (max-width: 760px) {
+        .dc-body {
+            grid-template-columns: 1fr;
+            height: auto;
+        }
+        .dc-chat {
+            height: 400px;
+        }
+        .dc-sidebar {
+            padding-bottom: 12px;
+        }
+        .dc-chat-sub {
+            display: none;
+        }
+    }
+</style>
