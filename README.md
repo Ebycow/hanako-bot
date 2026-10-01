@@ -23,6 +23,7 @@ npm run build    # dist/ に出力
 | --- | --- |
 | コマンドの追加・変更（09章の表、08章の権限の図、コマンド数） | `src/data/commands.ts` |
 | 辞書やSEの上限などの数字 | `src/data/limits.ts` |
+| 開発者向けの「AIに相談」でコピーされるプロンプト | `src/data/ai-setup-prompt.txt` |
 | ドキュメントの各章 | `src/components/docs/*.astro`（章の順番と目次は `src/components/home/Docs.astro`） |
 | トップページの各セクション | `src/components/home/*.astro`（並び順は `src/pages/index.astro`） |
 | ヘッダー・フッター | `src/components/SiteHeader.astro`、`src/components/SiteFooter.astro` |
@@ -32,4 +33,4 @@ npm run build    # dist/ に出力
 | スタイル（色などの変数、ボタン・カードなど共通の部品） | `src/styles/`（読み込み順は `global.css`） |
 | 画像 | `public/assets/` |
 
-Bot 本体（[Ebycow/hanako](https://github.com/Ebycow/hanako)）でコマンドや上限値を変えたときは、`src/data/` の2ファイルも合わせて更新してください。
+Bot 本体（[Ebycow/hanako](https://github.com/Ebycow/hanako)）でコマンドや上限値を変えたときは、`src/data/` の2ファイルも合わせて更新してください。セットアップ手順（Node.js のバージョン、設定項目など）を変えたときは、`src/data/ai-setup-prompt.txt` も更新してください。
