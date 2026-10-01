@@ -1,0 +1,10 @@
+<div class="cursor-glow" aria-hidden="true"></div>
+
+<script>
+    // カーソル追従グロウ
+    const glow = document.querySelector<HTMLElement>('.cursor-glow')!;
+    window.addEventListener('pointermove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+    });
+</script>

@@ -1,0 +1,52 @@
+---
+import type { Page } from './SiteHeader.astro';
+
+interface Props {
+    page: Page;
+}
+
+const home = Astro.props.page === 'home' ? '' : './';
+---
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a class="brand" href="./">
+                    <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+                    Hanako <span class="ai-badge">TTS</span>
+                </a>
+                <p>言葉に、声という花を。<br />Empowering every voice on Discord.</p>
+                <span class="status">All systems operational</span>
+            </div>
+            <div>
+                <h5>PRODUCT</h5>
+                <ul>
+                    <li><a href={`${home}#features`}>機能</a></li>
+                    <li><a href={`${home}#pricing`}>料金</a></li>
+                    <li><a href={`${home}#compare`}>比較</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>RESOURCES</h5>
+                <ul>
+                    <li><a href={`${home}#docs`}>ドキュメント</a></li>
+                    <li><a href={`${home}#commands`}>コマンド一覧</a></li>
+                    <li><a href={`${home}#developers`}>開発者向け</a></li>
+                    <li><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>LEGAL</h5>
+                <ul>
+                    <li><a href="terms.html">利用規約</a></li>
+                    <li><a href="privacy.html">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>. Made with 💜 and AI.</p>
+            <p>Discord は Discord Inc. の商標です。本Botは Discord Inc. とは関係ありません。</p>
+        </div>
+    </div>
+</footer>

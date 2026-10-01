@@ -1,0 +1,25 @@
+---
+interface Props {
+    id: string;
+    /** 章番号（Docs.astro の並び順から自動で振られる） */
+    n: number;
+    kicker: string;
+    mascot: string;
+    mascotAlt?: string;
+    class?: string;
+}
+
+const { id, n, kicker, mascot, mascotAlt = '', class: className } = Astro.props;
+const nn = String(n).padStart(2, '0');
+---
+
+<section class:list={['chapter', className]} id={id}>
+    <div class="chapter-head">
+        <div>
+            <span class="chapter-kicker">STEP {nn} — {kicker}</span>
+            <h2><slot name="title" /></h2>
+        </div>
+        <img class="chapter-mascot" src={mascot} alt={mascotAlt} loading="lazy" />
+    </div>
+    <slot />
+</section>

@@ -1,0 +1,51 @@
+<dialog class="invite-modal" id="invite-modal" aria-labelledby="invite-title">
+    <button class="modal-close" type="button" aria-label="閉じる" data-close>✕</button>
+    <img class="invite-art" src="assets/hanako-flappy.webp" alt="招待URLを抱えて飛んでいく花子" />
+    <span class="eyebrow">✦ Invitation</span>
+    <h2 id="invite-title">はなこは、<span class="gradient-text">恥ずかしがり屋です。</span></h2>
+    <p class="invite-lead">
+        はなこは誰でも招待できる公開Botですが、とってもシャイなので、<strong>招待URLを抱えてどこかへ飛んでいってしまいました。</strong>このページには招待リンクがありません。はなことは、Discordの中で出会ってください。
+    </p>
+    <div class="invite-options">
+        <div class="glass">
+            <div class="icon-box">🤝</div>
+            <b>Discordで出会ったら、連れて帰ってOK</b>
+            <span>はなこがいるサーバーなら、ボイスチャンネルで <code>/plz</code> と呼ぶだけで使えます。気に入ったら、Discord上のはなこのプロフィールから、あなたのサーバーにも招待してあげてください。</span>
+        </div>
+        <div class="glass">
+            <div class="icon-box">🛠️</div>
+            <b>自分でホストする（おすすめ）</b>
+            <span>
+                ソースコードは GitHub で公開されています。自分でホストできる方は、ぜひご自身の環境で動かしてください。そのほうが確実です。ただし、読み上げ用の音声サーバーは別途用意が必要です（手順は README を参照）。自分でホストしたBotは、あなた自身が運営者になります（このサイトの利用規約・プライバシーポリシーは適用されません）。
+            </span>
+        </div>
+    </div>
+    <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHubでソースを見る ↗</a>
+        <a class="btn btn-ghost" href="#developers" data-close>自分でホストする方法</a>
+        <a class="btn btn-ghost" href="#start" data-close>使い方を読む</a>
+    </div>
+</dialog>
+
+<script>
+    // 招待URLポップアップ（URLは恥ずかしがって隠れている）
+    const modal = document.getElementById('invite-modal') as HTMLDialogElement;
+    const open = () => {
+        if (!modal.open) modal.showModal();
+    };
+    document.addEventListener('click', (e) => {
+        const a = (e.target as Element).closest('a[href="#invite"]');
+        if (!a) return;
+        e.preventDefault();
+        open();
+    });
+    modal.addEventListener('click', (e) => {
+        // 背景クリック、または閉じるボタン・リンクで閉じる
+        if (e.target === modal || (e.target as Element).closest('[data-close]')) modal.close();
+    });
+    // 他ページから ./#invite で来たとき
+    if (location.hash === '#invite') {
+        history.replaceState(null, '', location.pathname);
+        open();
+    }
+</script>

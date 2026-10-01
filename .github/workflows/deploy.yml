@@ -1,0 +1,40 @@
+# master に push されたらサイトをビルドし、gh-pages ブランチに push する。
+# Pages は gh-pages ブランチを配信する設定なので、push 後は GitHub 側の
+# 「pages build and deployment」が自動で動いて公開される。
+# プルリクエストではビルドとチェックだけを行う。
+name: Deploy site
+
+on:
+    push:
+        branches: [master]
+    pull_request:
+    workflow_dispatch:
+
+permissions:
+    contents: write
+
+concurrency:
+    group: deploy-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v7
+            - uses: actions/setup-node@v7
+              with:
+                  node-version-file: .nvmrc
+                  cache: npm
+            - run: npm ci
+            - run: npm run check
+            - run: npm run build
+            - name: Push to gh-pages
+              if: github.event_name != 'pull_request' && github.ref == 'refs/heads/master'
+              uses: peaceiris/actions-gh-pages@v4
+              with:
+                  github_token: ${{ secrets.GITHUB_TOKEN }}
+                  publish_dir: ./dist
+                  publish_branch: gh-pages
+                  user_name: github-actions[bot]
+                  user_email: 41898282+github-actions[bot]@users.noreply.github.com

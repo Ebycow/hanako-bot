@@ -1,0 +1,92 @@
+---
+import Chapter from './Chapter.astro';
+import { commandGroups, permissions } from '../../data/commands';
+
+const { id, n } = Astro.props;
+---
+
+<Chapter id={id} n={n} kicker="COMMAND REFERENCE" mascot="assets/hanako-commands.webp">
+    <Fragment slot="title">すべてのコマンドを、<span class="gradient-text">ひと目で。</span></Fragment>
+
+    <p class="lead">インテリジェントな検索で、目的のコマンドに瞬時にアクセスできます。</p>
+    <input
+        class="filter"
+        id="command-filter"
+        type="search"
+        placeholder="なんでも検索…（例：se、辞書、blacklist）"
+        aria-label="コマンドを絞り込む"
+    />
+    <div class="table-wrap">
+        <table id="command-table">
+            <thead>
+                <tr>
+                    <th>機能</th>
+                    <th>スラッシュコマンド</th>
+                    <th>テキストコマンド（別名）</th>
+                    <th>必要な権限</th>
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    commandGroups.map((group) => (
+                        <>
+                            <tr class="table-group">
+                                <td colspan="4">{group.label}</td>
+                            </tr>
+                            {group.commands.map((c) => (
+                                <tr>
+                                    <td>{c.description}</td>
+                                    <td>
+                                        <code>{c.usage ? `/${c.name} ${c.usage}` : `/${c.name}`}</code>
+                                    </td>
+                                    <td>{c.aliases.length ? c.aliases.join(' / ') : '（スラッシュコマンドのみ）'}</td>
+                                    <td>{permissions[c.permission].label}</td>
+                                </tr>
+                            ))}
+                        </>
+                    ))
+                }
+            </tbody>
+        </table>
+    </div>
+    <p class="empty" id="command-empty">🤔 一致するコマンドが見つかりませんでした。別のキーワードで試してみてください！</p>
+    <p class="note">
+        テキストコマンドは、表の別名のどれかを <code>@はなこ</code> または <code>&gt;</code> に続けて打ちます（例：<code>&gt;s</code>、<code>@はなこ お願い</code>）。
+    </p>
+</Chapter>
+
+<script>
+    // コマンド早見表の絞り込み
+    const input = document.getElementById('command-filter') as HTMLInputElement;
+    const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('#command-table tbody tr'));
+    const empty = document.getElementById('command-empty')!;
+    input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        const matches = (row: HTMLElement) => row.textContent!.toLowerCase().includes(q);
+        let group: HTMLTableRowElement | null = null;
+        let groupMatched = false;
+        let groupHits = 0;
+        let total = 0;
+        const flush = () => {
+            if (group) group.hidden = groupHits === 0;
+        };
+        rows.forEach((row) => {
+            if (row.classList.contains('table-group')) {
+                flush();
+                group = row;
+                groupHits = 0;
+                // グループ名に一致したら、そのグループは丸ごと表示する
+                groupMatched = q !== '' && matches(row);
+                return;
+            }
+            const hit = !q || groupMatched || matches(row);
+            row.hidden = !hit;
+            if (hit) {
+                groupHits++;
+                total++;
+            }
+        });
+        flush();
+        empty.style.display = total === 0 ? 'block' : 'none';
+    });
+</script>

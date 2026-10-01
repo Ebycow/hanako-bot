@@ -1,0 +1,41 @@
+---
+export type Page = 'home' | 'terms' | 'privacy';
+
+interface Props {
+    page: Page;
+}
+
+const { page } = Astro.props;
+const isHome = page === 'home';
+// トップページ内ではページ内リンク、ほかのページからはトップページへのリンクにする
+const home = isHome ? '' : './';
+
+const links = isHome
+    ? [
+          { href: '#features', label: '機能' },
+          { href: '#docs', label: 'ドキュメント' },
+          { href: '#commands', label: 'コマンド' },
+          { href: '#pricing', label: '料金' },
+          { href: '#trouble', label: 'FAQ' },
+          { href: '#developers', label: '開発者' },
+      ]
+    : [
+          { href: './', label: 'ホーム' },
+          { href: './#docs', label: 'ドキュメント' },
+          { href: 'terms.html', label: '利用規約', current: page === 'terms' },
+          { href: 'privacy.html', label: 'プライバシー', current: page === 'privacy' },
+      ];
+---
+
+<header class="site-header">
+    <div class="inner">
+        <a class="brand" href="./">
+            <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+            Hanako <span class="ai-badge">TTS</span>
+        </a>
+        <nav class="site-nav" aria-label="メインナビゲーション">
+            {links.map((l) => <a href={l.href} aria-current={'current' in l && l.current ? 'page' : undefined}>{l.label}</a>)}
+            <a class="btn btn-primary btn-sm" href={`${home}#invite`}>今すぐ始める →</a>
+        </nav>
+    </div>
+</header>

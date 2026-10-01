@@ -1,0 +1,22 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { Content } from '../content/terms.md';
+---
+
+<LegalLayout
+    page="terms"
+    title="利用規約 | Hanako 読み上げBot ✨"
+    description="Discord チャット読み上げBot「Hanako」の利用規約です。"
+    image="assets/hanako-terms.webp"
+    eyebrow="Terms of Service"
+    heading="利用規約"
+    lead="透明性と信頼を大切に。Hanakoをご利用いただくうえでのルールを、わかりやすくまとめました。"
+    date="制定日：2026年10月1日"
+    highlights={[
+        { icon: '🆓', title: '完全無料', text: '本Botは無償で提供されます。' },
+        { icon: '🤝', title: 'みんなで守る', text: '禁止事項を守って、楽しく安全に。' },
+        { icon: '⚖️', title: '日本法に準拠', text: '詳細は下記の各条項をご確認ください。' },
+    ]}
+>
+    <Content />
+</LegalLayout>

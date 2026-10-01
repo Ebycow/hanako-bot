@@ -1,0 +1,114 @@
+---
+import { limits, fmt } from '../../data/limits';
+import { allCommands } from '../../data/commands';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+    <div class="container hero-layout">
+        <div class="hero-copy">
+            <span class="pill"><b>NEW</b> 🚀 Next-Gen Text-to-Speech for Discord</span>
+            <h1 id="hero-title">
+                あなたの言葉に、<br /><span class="gradient-text">「声」という花を。</span>
+            </h1>
+            <p class="lead">
+                Hanakoは、Discordのチャットを<strong>リアルタイム</strong>で音声に変換する、次世代の読み上げソリューションです。<br />
+                <span class="typing" id="typing" aria-live="polite">シームレスに。</span>
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-primary" href="#invite">無料で始める ✨</a>
+                <a class="btn btn-ghost" href="#commands">▶ コマンドを見る</a>
+            </div>
+            <div class="hero-trust">
+                <div class="avatars" aria-hidden="true">
+                    <img src="assets/hanako-cheer.webp" alt="" />
+                    <img src="assets/hanako-wave.webp" alt="" />
+                    <img src="assets/hanako-icon.webp" alt="" />
+                    <img src="assets/hanako-hello.webp" alt="" />
+                </div>
+                <div>
+                    <span class="stars" aria-hidden="true">★★★★★</span><br />
+                    クレジットカード不要・完全無料
+                </div>
+            </div>
+        </div>
+        <div class="hero-art">
+            <div class="hero-ring" aria-hidden="true"></div>
+            <div class="hero-card">
+                <div class="hero-card-inner">
+                    <img src="assets/hanako-hero.webp" alt="Discordのマスコットを抱きしめてヘッドセットで話す花子。桃色の髪と猫耳、白い制服が特徴のキャラクター" />
+                </div>
+            </div>
+            <div class="float-chip chip-a" aria-hidden="true">
+                <span class="ico">🗣️</span>
+                <span><small>Voice Engine</small><strong>読み上げ中…</strong></span>
+            </div>
+            <div class="float-chip chip-b" aria-hidden="true">
+                <span class="ico">📚</span>
+                <span><small>Dictionary</small><strong>+1 単語を学習</strong></span>
+            </div>
+            <div class="float-chip chip-c" aria-hidden="true">
+                <span class="ico">⚡</span>
+                <span><small>Status</small><strong>All systems go</strong></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="stats reveal">
+            <div class="stat"><b class="gradient-text" data-count={allCommands.length}>{allCommands.length}</b><span>のコマンドを搭載</span></div>
+            <div class="stat"><b class="gradient-text" data-count={limits.dictionaryEntries}>{fmt(limits.dictionaryEntries)}</b><span>語の辞書をサーバーごとに</span></div>
+            <div class="stat"><b class="gradient-text" data-count={limits.seEntries}>{fmt(limits.seEntries)}</b><span>件のSEを登録可能</span></div>
+            <div class="stat"><b class="gradient-text">¥0</b><span>どこまでも無料</span></div>
+        </div>
+    </div>
+</section>
+
+<script>
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // 数字のカウントアップ
+    if ('IntersectionObserver' in window && !reduceMotion) {
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target as HTMLElement;
+                const end = Number(el.dataset.count);
+                const start = performance.now();
+                io.unobserve(el);
+                const tick = (now: number) => {
+                    const t = Math.min((now - start) / 1600, 1);
+                    const eased = 1 - Math.pow(1 - t, 3);
+                    el.textContent = Math.round(end * eased).toLocaleString();
+                    if (t < 1) requestAnimationFrame(tick);
+                };
+                tick(start);
+            });
+        });
+        document.querySelectorAll('[data-count]').forEach((el) => io.observe(el));
+    }
+
+    // ヒーローのタイピング演出
+    if (!reduceMotion) {
+        const el = document.getElementById('typing')!;
+        const words = ['シームレスに。', '直感的に。', 'パワフルに。', 'インクルーシブに。', '次のレベルへ。'];
+        let i = 0;
+        let pos = words[0].length;
+        let deleting = true;
+        const step = () => {
+            const word = words[i];
+            pos += deleting ? -1 : 1;
+            el.textContent = word.slice(0, pos);
+            let delay = deleting ? 45 : 110;
+            if (!deleting && pos === word.length) {
+                deleting = true;
+                delay = 1800;
+            } else if (deleting && pos === 0) {
+                deleting = false;
+                i = (i + 1) % words.length;
+                delay = 300;
+            }
+            setTimeout(step, delay);
+        };
+        setTimeout(step, 1800);
+    }
+</script>

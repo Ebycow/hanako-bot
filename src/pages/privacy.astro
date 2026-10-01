@@ -1,0 +1,22 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { Content } from '../content/privacy.md';
+---
+
+<LegalLayout
+    page="privacy"
+    title="プライバシーポリシー | Hanako 読み上げBot ✨"
+    description="Discord チャット読み上げBot「Hanako」のプライバシーポリシーです。"
+    image="assets/hanako-privacy.webp"
+    eyebrow="Privacy Policy"
+    heading="プライバシーポリシー"
+    lead="あなたのプライバシーは、私たちの最優先事項です。Hanakoが取り扱う情報について、誠実にご説明します。"
+    date="制定日：2026年10月1日"
+    highlights={[
+        { icon: '🔒', title: '本文は保存しない', text: 'メッセージの本文は保存しません。' },
+        { icon: '🏠', title: 'サーバーごとに分離', text: '辞書・SE・設定はサーバー単位で保存。' },
+        { icon: '🍪', title: 'Cookieなし', text: '本サイトはCookieも解析ツールも不使用。' },
+    ]}
+>
+    <Content />
+</LegalLayout>

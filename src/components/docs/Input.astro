@@ -1,0 +1,85 @@
+---
+import Chapter from './Chapter.astro';
+
+const { id, n } = Astro.props;
+---
+
+<Chapter id={id} n={n} kicker="INPUT METHODS" mascot="assets/hanako-typing.webp">
+    <Fragment slot="title">あなたに最適な、<span class="gradient-text">3つの入力体験。</span></Fragment>
+
+    <p class="lead">
+        同じコマンドを3通りの書き方で実行できます。ワークフローに合わせて、自由に選択しましょう。迷ったら、スラッシュコマンドがおすすめです。
+    </p>
+
+    <div class="cards">
+        <article class="glass">
+            <img class="card-mascot" src="assets/hanako-commands.webp" alt="" loading="lazy" />
+            <span class="tag hot">🔥 おすすめ</span>
+            <h4>スラッシュコマンド</h4>
+            <p><code>/teach from:草 to:くさ</code></p>
+            <p>
+                入力欄に <code>/</code> を打つと候補と説明が出ます。引数の名前が表示されるので打ち間違えにくく、一覧系の結果は自分にだけ表示されます。
+            </p>
+        </article>
+        <article class="glass">
+            <img class="card-mascot" src="assets/hanako-hello.webp" alt="" loading="lazy" />
+            <span class="tag">テキスト</span>
+            <h4>メンション</h4>
+            <p><code>@はなこ teach 草 くさ</code></p>
+            <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。日本語の別名（<code>教育</code> など）も使えます。</p>
+        </article>
+        <article class="glass">
+            <img class="card-mascot" src="assets/hanako-typing.webp" alt="" loading="lazy" />
+            <span class="tag">テキスト</span>
+            <h4>プリフィックス <code>&gt;</code></h4>
+            <p><code>&gt;teach 草 くさ</code></p>
+            <p>発言の先頭に <code>&gt;</code> を付けます。最小のキーストロークで最大の成果を。</p>
+        </article>
+    </div>
+
+    <div class="callout">
+        <span class="callout-title">Pro Tip：読まれたくない発言は <code>&gt;</code> で始めよう</span>
+        <code>&gt;</code>
+        で始まる発言は、コマンドとして存在しない内容でも読み上げられません。独り言やメモに最適な、まさに「隠れた神機能」と言えるでしょう。
+    </div>
+
+    <h3>📊 スラッシュ vs テキスト：徹底比較</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>スラッシュコマンド</th>
+                    <th>テキストコマンド</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>一覧・検索・ヘルプの結果</td>
+                    <td>自分にだけ見える</td>
+                    <td>チャンネルの全員に見える</td>
+                </tr>
+                <tr>
+                    <td>全削除の確認</td>
+                    <td>「実行する」ボタンを押す</td>
+                    <td>コマンドに <code>--force</code> を付ける</td>
+                </tr>
+                <tr>
+                    <td>SEを複数まとめて追加・削除</td>
+                    <td>1件ずつ</td>
+                    <td>まとめてできる</td>
+                </tr>
+                <tr>
+                    <td>使える人の決まり方</td>
+                    <td>サーバー管理者が自由に変更できる</td>
+                    <td>固定（<a href="#admin">08章</a>を参照）</td>
+                </tr>
+                <tr>
+                    <td>サーバーごとに無効化</td>
+                    <td>できない</td>
+                    <td><code>/text-commands</code> で無効にできる</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</Chapter>

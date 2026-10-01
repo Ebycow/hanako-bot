@@ -1,0 +1,15 @@
+---
+const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会', '🎵 作業通話', '🎲 TRPG', '🍜 飯テロ部', '💼 リモート会議', '🐈 猫を愛でる会'];
+---
+
+<section class="logos" aria-label="利用シーン">
+    <div class="container">
+        <p>あらゆるコミュニティで、選ばれています</p>
+        <div class="marquee" aria-hidden="true">
+            <!-- 途切れずに流れるよう、同じ並びを2回くり返す -->
+            <div class="marquee-track">
+                {[...scenes, ...scenes].map((s) => <span>{s}</span>)}
+            </div>
+        </div>
+    </div>
+</section>

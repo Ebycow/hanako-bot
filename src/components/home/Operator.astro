@@ -1,0 +1,85 @@
+<button class="op-fab" id="op-fab" aria-label="オペレーターのはなこを呼ぶ" aria-expanded="false" aria-controls="op-panel">
+    <img src="assets/hanako-operator-bust.webp" alt="" />
+    <span class="op-fab-tag">お困りですか？</span>
+</button>
+<div class="op-panel" id="op-panel" hidden>
+    <div class="op-cover">
+        <img src="assets/hanako-operator.webp" alt="ヘッドセットで電話に応対する花子" />
+        <div class="op-cover-text">
+            <b>はなこ オペレーター窓口</b>
+            <small>● ただいま応対可能です（24時間365日・たぶん）</small>
+        </div>
+    </div>
+    <div class="op-log" id="op-log" aria-live="polite">
+        <div class="bubble">お電話ありがとうございます！👋 はなこオペレーターです。</div>
+        <div class="bubble">
+            <code>&gt;ask 質問</code> と送ってくれたら、<strong>「はい」か「いいえ」</strong>でお答えします。答えの根拠は特にありません 😊
+        </div>
+    </div>
+    <div class="quick-replies">
+        <a href="#start">🚀 始め方</a>
+        <a href="#commands">⌨️ コマンド一覧</a>
+        <a href="#trouble">😵 困ったとき</a>
+    </div>
+    <form class="op-form" id="op-form" autocomplete="off">
+        <input id="op-input" type="text" placeholder="&gt;ask 明日は晴れる？" aria-label="オペレーターへのメッセージ" maxlength="200" />
+        <button type="submit" aria-label="送信">➤</button>
+    </form>
+</div>
+
+<script>
+    // オペレーター（>ask 対応）
+    const fab = document.getElementById('op-fab')!;
+    const panel = document.getElementById('op-panel')!;
+    const log = document.getElementById('op-log')!;
+    const form = document.getElementById('op-form')!;
+    const input = document.getElementById('op-input') as HTMLInputElement;
+
+    const toggle = (open: boolean) => {
+        panel.hidden = !open;
+        fab.setAttribute('aria-expanded', String(open));
+        fab.classList.toggle('open', open);
+        if (open) setTimeout(() => input.focus(), 50);
+    };
+    fab.addEventListener('click', () => toggle(panel.hidden === true));
+    panel.addEventListener('click', (e) => {
+        if ((e.target as Element).closest('.quick-replies a')) toggle(false);
+    });
+
+    const say = (text: string, who?: 'me') => {
+        const div = document.createElement('div');
+        div.className = who === 'me' ? 'bubble me' : 'bubble';
+        div.textContent = text;
+        log.appendChild(div);
+        log.scrollTop = log.scrollHeight;
+    };
+
+    // Bot本体と同じ別名（質問 / ask）とプリフィックス（> / @はなこ / /）を受け付ける
+    const cmd = /^\s*(?:>|＞|\/|@はなこ\s*)\s*(\S+)/i;
+    const reply = (text: string) => {
+        const m = text.match(cmd);
+        const name = m ? m[1].toLowerCase() : '';
+        if (name === 'ask' || name === '質問') {
+            return Math.random() >= 0.5 ? 'はい' : 'いいえ';
+        }
+        if (name === 'seibai' || name === '成敗' || name === 'stop') {
+            return '安心せい、みねうちにゃ…';
+        }
+        if (['plz', 'お願い', 'summon', 's'].includes(name)) {
+            return 'ここはWebサイトだから、ボイスチャンネルには行けないにゃ…';
+        }
+        if (m) {
+            return 'ごめんなさい、この窓口で使えるのは >ask だけなの。ほかのコマンドはDiscordで試してね！';
+        }
+        return 'ごめんなさい、オペレーターは >ask しか分からないの。「>ask 質問」の形で聞いてみて！';
+    };
+
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+        say(text, 'me');
+        input.value = '';
+        setTimeout(() => say(reply(text)), 450);
+    });
+</script>

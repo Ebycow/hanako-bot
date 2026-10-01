@@ -1,0 +1,44 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+    page: 'terms' | 'privacy';
+    title: string;
+    description: string;
+    image: string;
+    eyebrow: string;
+    heading: string;
+    lead: string;
+    /** 制定日・改定日 */
+    date: string;
+    highlights: { icon: string; title: string; text: string }[];
+}
+
+const { page, title, description, image, eyebrow, heading, lead, date, highlights } = Astro.props;
+---
+
+<BaseLayout page={page} title={title} description={description}>
+    <section class="doc-hero container">
+        <img src={image} alt="花子" />
+        <br /><span class="eyebrow">✦ {eyebrow}</span>
+        <h1><span class="gradient-text">{heading}</span></h1>
+        <p>{lead}</p>
+        <p class="doc-meta">📅 {date}</p>
+    </section>
+
+    <div class="container">
+        <div class="highlights">
+            {highlights.map((h) => (
+                <div class="glass">
+                    <div class="icon-box">{h.icon}</div>
+                    <b>{h.title}</b>
+                    <span>{h.text}</span>
+                </div>
+            ))}
+        </div>
+    </div>
+
+    <main class="container doc">
+        <slot />
+    </main>
+</BaseLayout>

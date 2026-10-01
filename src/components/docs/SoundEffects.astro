@@ -1,0 +1,139 @@
+---
+import { limits, fmt } from '../../data/limits';
+import Chapter from './Chapter.astro';
+
+const { id, n } = Astro.props;
+---
+
+<Chapter id={id} n={n} kicker="SOUND EFFECTS" mascot="assets/hanako-music.webp">
+    <Fragment slot="title">会話に、<span class="gradient-text">没入感という魔法を。</span></Fragment>
+
+    <p class="lead">
+        キーワードに音声ファイルを結びつけると、その言葉が発言に出てきたとき、読み上げの代わりに音を鳴らします。テキストチャットが、まるでライブ会場のように生まれ変わります。
+    </p>
+
+    <h3>➕ 追加する：3つの柔軟な方法</h3>
+    <div class="cards">
+        <article class="glass">
+            <img class="card-mascot" src="assets/hanako-music.webp" alt="" loading="lazy" />
+            <span class="tag">スラッシュ / テキスト</span>
+            <h4>URLで指定</h4>
+            <p><code>/se-add keyword:（拍手） url:https://…/clap.mp3</code></p>
+            <p>ネット上の音声ファイルのURLを指定します。URLは{limits.seUrlLength}文字まで。</p>
+        </article>
+        <article class="glass">
+            <img class="card-mascot" src="assets/hanako-cheer.webp" alt="" loading="lazy" />
+            <span class="tag">スラッシュ / テキスト</span>
+            <h4>ファイルを1つ添付</h4>
+            <p><code>/se-add keyword:（拍手）</code> ＋ <code>file</code> に添付</p>
+            <p>手元のファイルをそのまま登録できます。テキストなら <code>@はなこ se-add （拍手）</code> に添付。</p>
+        </article>
+        <article class="glass">
+            <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
+            <span class="tag hot">⚡ バッチ処理</span>
+            <h4>複数ファイルをまとめて</h4>
+            <p><code>@はなこ se-add</code> ＋ 複数ファイルを添付</p>
+            <p>キーワードを書かずに添付すると、ファイル名（拡張子を除く）がそのままキーワードになります。テキストコマンドのみ対応。</p>
+        </article>
+    </div>
+
+    <h3>📋 技術仕様</h3>
+    <div class="table-wrap">
+        <table>
+            <tbody>
+                <tr>
+                    <th>形式</th>
+                    <td><code>.wav</code> / <code>.mp3</code></td>
+                </tr>
+                <tr>
+                    <th>サイズ</th>
+                    <td>1ファイル {limits.seFileMB}MB まで</td>
+                </tr>
+                <tr>
+                    <th>長さ</th>
+                    <td>{limits.seSeconds}秒 まで</td>
+                </tr>
+                <tr>
+                    <th>キーワード</th>
+                    <td>2〜49文字（同じキーワードは1つだけ）</td>
+                </tr>
+                <tr>
+                    <th>登録数</th>
+                    <td>サーバーごとに {fmt(limits.seEntries)}件 まで</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="callout">
+        <span class="callout-title">ベストプラクティス：キーワードは記号で囲もう</span>
+        SEは発言の一部にも反応します。「草」のような短い言葉を登録すると、「草原」でも鳴ります。<code>（拍手）</code> や
+        <code>:clap:</code> のように、ふだんの会話に出てこない形にしておくと誤爆しません。
+    </div>
+
+    <h3>🔍 探す・直す・消す</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>やりたいこと</th>
+                    <th>コマンド</th>
+                    <th>補足</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>一覧を見る</td>
+                    <td><code>/se-list</code></td>
+                    <td>ボタンでページ送り</td>
+                </tr>
+                <tr>
+                    <td>うろ覚えで探す</td>
+                    <td><code>/se-search keyword:拍手</code></td>
+                    <td>完全一致 → 前方一致 → 部分一致の順に、近いものを5件まで表示。見つからなければ打ち間違いも考慮して探します</td>
+                </tr>
+                <tr>
+                    <td>キーワードを変える</td>
+                    <td><code>/se-rename old_keyword:旧 new_keyword:新</code></td>
+                    <td>音声はそのまま、名前だけ変更</td>
+                </tr>
+                <tr>
+                    <td>消す</td>
+                    <td><code>/se-del keyword:（拍手）</code></td>
+                    <td>テキストなら <code>@はなこ se-del A B C</code> で複数まとめて削除</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>🎚️ 音量をそろえる：SE正規化</h3>
+    <p>
+        SEはファイルごとに音量がばらばらです。正規化をオンにすると、小さすぎるSEを指定したレベルまで持ち上げて、聞こえ方をそろえます。まさに、音量のイコライゼーションです。
+    </p>
+    <div class="bars">
+        <div class="panel">
+            <b>Before：正規化なし（0）</b>
+            <div class="plot">
+                <div class="target"><span>目標 80</span></div>
+                <div class="bar" style="height: 22%"></div>
+                <div class="bar" style="height: 80%"></div>
+                <div class="bar" style="height: 45%"></div>
+            </div>
+            <div class="labels"><span>SE A</span><span>SE B</span><span>SE C</span></div>
+        </div>
+        <div class="panel">
+            <b>After：<code>/se-normalize level:80</code></b>
+            <div class="plot">
+                <div class="target"><span>目標 80</span></div>
+                <div class="bar" style="height: 80%"></div>
+                <div class="bar" style="height: 80%"></div>
+                <div class="bar" style="height: 80%"></div>
+            </div>
+            <div class="labels"><span>SE A</span><span>SE B</span><span>SE C</span></div>
+        </div>
+    </div>
+    <p class="figcap">小さいSEが目標レベルまで持ち上がります（イメージ図）</p>
+    <ul>
+        <li><code>/se-normalize level:0〜100</code> で設定します。初期値は {limits.seNormalizeDefault}、<code>0</code> で無効です。</li>
+        <li>サーバー全体の設定です。変更には「サーバー管理」の権限が必要です。</li>
+    </ul>
+</Chapter>

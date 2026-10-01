@@ -1,0 +1,70 @@
+---
+import Start from '../docs/Start.astro';
+import Input from '../docs/Input.astro';
+import Reading from '../docs/Reading.astro';
+import Dictionary from '../docs/Dictionary.astro';
+import SoundEffects from '../docs/SoundEffects.astro';
+import Voice from '../docs/Voice.astro';
+import Blacklist from '../docs/Blacklist.astro';
+import Admin from '../docs/Admin.astro';
+import Commands from '../docs/Commands.astro';
+import Faq from '../docs/Faq.astro';
+
+// 章の並び順。目次と章番号（STEP 01 など）はここから作る
+const chapters = [
+    { id: 'start', label: 'はじめる', Chapter: Start },
+    { id: 'input', label: 'コマンドの打ち方', Chapter: Input },
+    { id: 'reading', label: '読み上げのしくみ', Chapter: Reading },
+    { id: 'dictionary', label: '辞書', Chapter: Dictionary },
+    { id: 'se', label: 'SE（効果音）', Chapter: SoundEffects },
+    { id: 'voice', label: '声と読み方', Chapter: Voice },
+    { id: 'blacklist', label: 'ブラックリスト', Chapter: Blacklist },
+    { id: 'admin', label: '権限と管理', Chapter: Admin },
+    { id: 'commands', label: 'コマンド一覧', Chapter: Commands },
+    { id: 'trouble', label: 'FAQ', Chapter: Faq },
+];
+const nn = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+<section class="section" id="docs">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">✦ Documentation</span>
+            <h2>徹底解説！<br /><span class="gradient-text">Hanako完全ガイド【2026年最新版】</span></h2>
+            <p>初心者の方からパワーユーザーまで。Hanakoのポテンシャルを最大限に引き出すための、すべてをここに。</p>
+        </div>
+
+        <div class="docs">
+            <nav class="toc" aria-label="目次">
+                <p>📑 TABLE OF CONTENTS</p>
+                <ol>
+                    {chapters.map((c, i) => <li><a href={`#${c.id}`}>{nn(i)}. {c.label}</a></li>)}
+                </ol>
+            </nav>
+
+            <main>
+                {chapters.map(({ id, Chapter }, i) => <Chapter id={id} n={i + 1} />)}
+            </main>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 目次の現在位置ハイライト
+    if ('IntersectionObserver' in window) {
+        const links = new Map<string, HTMLAnchorElement>();
+        document.querySelectorAll<HTMLAnchorElement>('.toc a').forEach((a) => {
+            links.set(a.getAttribute('href')!.slice(1), a);
+        });
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) return;
+                    links.forEach((a, id) => a.classList.toggle('active', id === entry.target.id));
+                });
+            },
+            { rootMargin: '-20% 0px -70% 0px' },
+        );
+        document.querySelectorAll('.chapter').forEach((section) => observer.observe(section));
+    }
+</script>

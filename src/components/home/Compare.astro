@@ -1,0 +1,51 @@
+---
+import { limits, fmt } from '../../data/limits';
+---
+
+<section class="section" id="compare">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">✦ Why Hanako</span>
+            <h2>なぜ、<span class="gradient-text">Hanakoなのか。</span></h2>
+            <p>その違いは、一目瞭然です。</p>
+        </div>
+        <div class="table-wrap compare reveal">
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>読み上げなし</th>
+                        <th>✨ Hanako</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>聞き専でもチャットがわかる</td>
+                        <td class="no">✕</td>
+                        <td class="yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td>内輪ネタを正しく読める辞書</td>
+                        <td class="no">✕</td>
+                        <td class="yes">✓（{fmt(limits.dictionaryEntries)}件）</td>
+                    </tr>
+                    <tr>
+                        <td>キーワードで効果音</td>
+                        <td class="no">✕</td>
+                        <td class="yes">✓（{fmt(limits.seEntries)}件）</td>
+                    </tr>
+                    <tr>
+                        <td>長文を途中で成敗</td>
+                        <td class="no">✕</td>
+                        <td class="yes">✓</td>
+                    </tr>
+                    <tr>
+                        <td>料金</td>
+                        <td>¥0</td>
+                        <td class="yes">¥0</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
