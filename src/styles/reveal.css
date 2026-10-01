@@ -1,17 +1,20 @@
 /* ===== スクロールリビール・動きを減らす設定 =====
-   .reveal.in の transform: none は .glass:hover などより後に書いて勝たせている。
-   global.css では必ず最後に読み込むこと */
-.reveal {
+   表示されるまで隠し、.in が付いたらふわっと出す。
+   transform・transition は使わず translate のアニメーションにしているのは、
+   .glass:hover の浮き上がり（transform）やカードの transition を打ち消さないため */
+.reveal:not(.in) {
     opacity: 0;
-    transform: translateY(28px);
-    transition:
-        opacity 0.8s cubic-bezier(0.2, 0.7, 0.2, 1),
-        transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
 
 .reveal.in {
-    opacity: 1;
-    transform: none;
+    animation: reveal-in 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+@keyframes reveal-in {
+    from {
+        opacity: 0;
+        translate: 0 28px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -21,8 +24,7 @@
         animation: none !important;
         transition: none !important;
     }
-    .reveal {
+    .reveal:not(.in) {
         opacity: 1;
-        transform: none;
     }
 }

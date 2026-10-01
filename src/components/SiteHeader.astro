@@ -73,13 +73,17 @@ const links = isHome
     .site-nav a {
         white-space: nowrap;
         flex-shrink: 0;
+    }
+
+    /* 「今すぐ始める」ボタン（.btn）の色や大きさは変えない */
+    .site-nav a:not(.btn) {
         color: var(--text-muted);
         font-size: 14px;
         padding: 8px 14px;
         border-radius: 999px;
     }
 
-    .site-nav a:hover,
+    .site-nav a:not(.btn):hover,
     .site-nav a[aria-current='page'] {
         color: var(--text);
         background: var(--surface-strong);
