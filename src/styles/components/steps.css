@@ -38,10 +38,11 @@
 }
 
 .step img {
+    display: block;
     width: 72px;
     height: 72px;
     object-fit: contain;
-    margin-bottom: 8px;
+    margin: 0 auto 8px;
 }
 
 .step .n {
