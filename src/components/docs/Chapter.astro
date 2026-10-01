@@ -38,37 +38,33 @@ const nn = String(n).padStart(2, '0');
     }
 
     .chapter-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        font-family: var(--mono);
-        font-size: 12.5px;
-        color: var(--cyan);
+        display: inline-block;
+        font-size: 12px;
+        font-weight: 900;
+        color: var(--mint-ink);
+        background: var(--mint-soft);
+        border-radius: 999px;
+        padding: 1px 14px;
         letter-spacing: 0.08em;
         margin-bottom: 12px;
     }
 
-    .chapter-kicker::before {
-        content: '';
-        width: 24px;
-        height: 1px;
-        background: var(--cyan);
-    }
-
     h2 {
-        font-size: clamp(28px, 3.6vw, 40px);
-        line-height: 1.25;
-        letter-spacing: -0.025em;
+        font-size: clamp(26px, 3.4vw, 38px);
+        line-height: 1.4;
         margin: 0;
-        font-weight: 800;
     }
 
+    /* はなこを丸いふちどりの中に置く */
     .chapter-mascot {
-        width: 96px;
-        height: 96px;
+        width: 104px;
+        height: 104px;
         object-fit: contain;
         flex-shrink: 0;
-        filter: drop-shadow(0 10px 24px rgba(124, 58, 237, 0.55));
+        border-radius: 50%;
+        background: radial-gradient(circle at 50% 40%, #fff, var(--pink-pale) 70%);
+        border: 3px solid var(--pink-soft);
+        padding: 6px;
     }
 
     /* ここから下は各章（docs/*.astro）からスロットで渡される本文に効かせる */
@@ -79,17 +75,18 @@ const nn = String(n).padStart(2, '0');
     }
 
     .chapter :global(h3) {
-        font-size: 22px;
+        font-size: 21px;
         margin: 48px 0 16px;
-        letter-spacing: -0.01em;
         display: flex;
         align-items: center;
         gap: 10px;
+        padding-bottom: 8px;
+        border-bottom: 2px dashed var(--border);
     }
 
     .chapter :global(p),
     .chapter :global(li) {
-        color: #cfcde8;
+        color: var(--text);
     }
 
     .chapter :global(ul) {
@@ -107,26 +104,28 @@ const nn = String(n).padStart(2, '0');
         content: '✓';
         position: absolute;
         left: 0;
-        top: 0.25em;
+        top: 0.3em;
         width: 20px;
         height: 20px;
-        border-radius: 6px;
+        border-radius: 50%;
         display: grid;
         place-items: center;
-        font-size: 12px;
-        font-weight: 800;
-        color: #0b0820;
-        background: var(--grad);
+        font-size: 11px;
+        font-weight: 900;
+        line-height: 1;
+        color: #fff;
+        background: var(--pink);
     }
 
     .chapter :global(strong) {
-        color: #fff;
+        color: var(--pink-deep);
     }
 
     @media (max-width: 640px) {
         .chapter-mascot {
-            width: 64px;
-            height: 64px;
+            width: 68px;
+            height: 68px;
+            padding: 4px;
         }
     }
 </style>

@@ -1,18 +1,18 @@
 <dialog class="invite-modal" id="invite-modal" aria-labelledby="invite-title">
     <button class="modal-close" type="button" aria-label="閉じる" data-close>✕</button>
     <img class="invite-art" src="assets/hanako-flappy.webp" alt="招待URLを抱えて飛んでいく花子" />
-    <span class="eyebrow">✦ Invitation</span>
-    <h2 id="invite-title">はなこは、<span class="gradient-text">恥ずかしがり屋です。</span></h2>
+    <span class="eyebrow">Invitation</span>
+    <h2 id="invite-title">はなこは、<span class="hl">恥ずかしがり屋です。</span></h2>
     <p class="invite-lead">
         はなこは誰でも招待できる公開Botですが、とってもシャイなので、<strong>招待URLを抱えてどこかへ飛んでいってしまいました。</strong>このページには招待リンクがありません。はなことは、Discordの中で出会ってください。
     </p>
     <div class="invite-options">
-        <div class="glass">
+        <div class="card">
             <div class="icon-box">🤝</div>
             <b>Discordで出会ったら、連れて帰ってOK</b>
             <span>はなこがいるサーバーなら、ボイスチャンネルで <code>/plz</code> と呼ぶだけで使えます。気に入ったら、Discord上のはなこのプロフィールから、あなたのサーバーにも招待してあげてください。</span>
         </div>
-        <div class="glass">
+        <div class="card">
             <div class="icon-box">🛠️</div>
             <b>自分でホストする（おすすめ）</b>
             <span>
@@ -55,15 +55,17 @@
         width: min(760px, calc(100vw - 32px));
         max-height: calc(100vh - 40px);
         padding: 36px 40px 40px;
-        border-radius: 32px;
-        border: 1px solid var(--border-strong);
+        border-radius: 36px;
+        border: 3px solid var(--pink-soft);
         background:
-            radial-gradient(ellipse at top, rgba(236, 72, 153, 0.28), transparent 60%),
-            radial-gradient(ellipse at bottom right, rgba(34, 211, 238, 0.18), transparent 60%),
+            radial-gradient(ellipse at top, rgba(255, 179, 207, 0.45), transparent 60%),
+            radial-gradient(ellipse at bottom right, rgba(201, 241, 236, 0.6), transparent 60%),
             var(--bg-2);
         color: var(--text);
         text-align: center;
-        box-shadow: 0 40px 120px -20px rgba(124, 58, 237, 0.8);
+        box-shadow:
+            0 8px 0 var(--pink-soft),
+            0 40px 80px -20px rgba(214, 51, 111, 0.4);
     }
 
     .invite-modal[open] {
@@ -78,7 +80,7 @@
     }
 
     .invite-modal::backdrop {
-        background: rgba(5, 4, 12, 0.7);
+        background: rgba(255, 228, 238, 0.7);
         backdrop-filter: blur(6px);
     }
 
@@ -89,9 +91,10 @@
         width: 38px;
         height: 38px;
         border-radius: 50%;
-        border: 1px solid var(--border-strong);
-        background: var(--surface-strong);
-        color: var(--text);
+        border: 2px solid var(--pink-soft);
+        background: var(--surface);
+        color: var(--pink-ink);
+        font-weight: 900;
         cursor: pointer;
         font-size: 15px;
     }
@@ -112,9 +115,8 @@
     }
 
     .invite-modal h2 {
-        font-size: clamp(26px, 4vw, 40px);
-        letter-spacing: -0.02em;
-        line-height: 1.25;
+        font-size: clamp(24px, 3.8vw, 38px);
+        line-height: 1.4;
         margin: 0 0 14px;
     }
 
@@ -126,7 +128,7 @@
     }
 
     .invite-lead strong {
-        color: #fff;
+        color: var(--pink-ink);
     }
 
     .invite-options {
@@ -137,11 +139,11 @@
         margin-bottom: 26px;
     }
 
-    .invite-options .glass {
+    .invite-options .card {
         padding: 22px;
     }
 
-    .invite-options .glass:hover {
+    .invite-options .card:hover {
         transform: none;
     }
 

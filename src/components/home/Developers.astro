@@ -1,18 +1,18 @@
 <section class="section" id="developers">
     <div class="container">
         <div class="section-head reveal">
-            <span class="eyebrow">✦ For Developers</span>
-            <h2>はなこを、<span class="gradient-text">あなたの手で。</span></h2>
+            <span class="eyebrow">For Developers</span>
+            <h2>はなこを、<span class="hl">あなたの手で。</span></h2>
             <p>Hanako のソースコードは GitHub で公開されています。自分のサーバーで動かしたい方、機能を足したい方はこちらへ。</p>
         </div>
 
-        <div class="glass partner reveal">
+        <div class="card partner reveal">
             <div class="partner-art">
                 <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかる Ebyroid を、はなこが揺すって起こそうとしている" loading="lazy" />
             </div>
             <div class="partner-copy">
                 <span class="tag hot">💞 Partner</span>
-                <h3>はなこの声の相棒、<span class="gradient-text">Ebyroid。</span></h3>
+                <h3>はなこの声の相棒、<span class="hl">Ebyroid。</span></h3>
                 <p>
                     はなこの声を生み出しているのは、音声サーバーの
                     <a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>。VOICEROID を Node.js や HTTP から使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。README の最後にいる銀色の猫耳の子が、その Ebyroid。はなこの相棒です。
@@ -54,7 +54,7 @@
         <p class="figcap">正確な手順とバージョンは、必ず README を確認してください</p>
 
         <div class="cards dev-cards">
-            <article class="glass reveal">
+            <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-admin.webp" alt="" loading="lazy" />
                 <span class="tag">🧰 必要なもの</span>
                 <h4>動かすための環境</h4>
@@ -62,7 +62,7 @@
                     Node.js（バージョンは <code>package.json</code> で指定）、Discord Bot のトークン、音声サーバー。音声サーバーは Ebyroid がおすすめですが、README に書かれた API を返す HTTP サーバーなら差し替えられます。
                 </p>
             </article>
-            <article class="glass reveal">
+            <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-terms.webp" alt="" loading="lazy" />
                 <span class="tag">⚖️ 運営について</span>
                 <h4>あなたが運営者になります</h4>
@@ -70,7 +70,7 @@
                     自分でホストした Bot は、あなたが運営する別の Bot です。このサイトの<a href="terms.html">利用規約</a>・<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROID など音声合成エンジンの利用条件も確認しましょう。
                 </p>
             </article>
-            <article class="glass reveal">
+            <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-pointing.webp" alt="" loading="lazy" />
                 <span class="tag">🤝 コントリビュート</span>
                 <h4>一緒に育てる</h4>
@@ -90,13 +90,13 @@
             <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid を見る ↗</a>
         </div>
 
-        <div class="glass ask-ai reveal">
+        <div class="card ask-ai reveal">
             <div class="ask-ai-art">
                 <img src="assets/ebyroid-minihanako.webp" alt="Ebyroid が、手のひらに乗せた小さなはなこを指でつついている" loading="lazy" />
             </div>
             <div class="ask-ai-copy">
                 <span class="tag hot">🤖 あなたのAIに相談</span>
-                <h3>迷ったら、まずは<span class="gradient-text">いつもの AI に。</span></h3>
+                <h3>迷ったら、まずは<span class="hl">いつもの AI に。</span></h3>
                 <p>
                     「自分でホストするのは難しそう」と感じた方も、「こんな機能があったらいいな」と思いついた方も、まずは普段使っている AI（ChatGPT・Claude・Gemini など）に聞いてみましょう。下のプロンプトをコピーして貼り付けると、なんとAI が<b>はなこ</b>になりきって、準備から機能の追加まで一歩ずつ付き合ってくれます。
                 </p>
@@ -177,9 +177,9 @@
         padding: 34px;
         margin-bottom: 70px;
         background:
-            radial-gradient(ellipse at 20% 30%, rgba(244, 114, 182, 0.18), transparent 60%),
-            radial-gradient(ellipse at 80% 70%, rgba(147, 197, 253, 0.18), transparent 60%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+            radial-gradient(ellipse at 20% 30%, rgba(255, 179, 207, 0.35), transparent 60%),
+            radial-gradient(ellipse at 80% 70%, rgba(201, 214, 255, 0.4), transparent 60%),
+            var(--surface);
     }
 
     .partner:hover {
@@ -201,8 +201,8 @@
         top: 14%;
         font-size: clamp(22px, 2.6vw, 32px);
         line-height: 1;
-        color: #f9a8d4;
-        text-shadow: 0 0 18px rgba(244, 114, 182, 0.85);
+        color: var(--pink);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
         animation: bob 3s ease-in-out infinite;
         pointer-events: none;
     }
@@ -213,14 +213,13 @@
         max-width: 360px;
         margin: 0 auto;
         border-radius: 24px;
-        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+        filter: drop-shadow(0 12px 20px rgba(74, 54, 64, 0.18));
         mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, #000 70%, transparent 100%);
     }
 
     .partner-copy h3 {
         font-size: clamp(22px, 2.6vw, 30px);
-        letter-spacing: -0.02em;
-        line-height: 1.3;
+        line-height: 1.4;
     }
 
     .duo {
@@ -234,28 +233,35 @@
         max-width: 100%;
         margin: 0 !important;
         padding: 10px 16px;
-        border-radius: 16px;
-        color: #f4f3ff !important;
+        border-radius: 18px;
+        color: var(--text) !important;
     }
 
     .duo-line b {
         display: block;
         font-size: 11.5px;
         letter-spacing: 0.08em;
-        opacity: 0.75;
     }
 
     .duo-line.hanako {
-        background: rgba(244, 114, 182, 0.16);
-        border: 1px solid rgba(244, 114, 182, 0.4);
+        background: var(--pink-pale);
+        border: 2px solid var(--pink-soft);
         border-bottom-left-radius: 4px;
+    }
+
+    .duo-line.hanako b {
+        color: var(--pink-ink);
     }
 
     .duo-line.eby {
         margin-left: auto !important;
-        background: rgba(147, 197, 253, 0.14);
-        border: 1px solid rgba(147, 197, 253, 0.4);
+        background: var(--lavender-soft);
+        border: 2px solid #cdd3ff;
         border-bottom-right-radius: 4px;
+    }
+
+    .duo-line.eby b {
+        color: #5562c9;
     }
 
     /* セルフホストの手順 */
@@ -278,7 +284,7 @@
         margin: 40px 0 30px;
     }
 
-    .dev-cards .glass p {
+    .dev-cards .card p {
         padding-right: 0;
     }
 
@@ -295,9 +301,9 @@
         padding: 34px;
         margin-top: 70px;
         background:
-            radial-gradient(ellipse at 25% 40%, rgba(147, 197, 253, 0.16), transparent 60%),
-            radial-gradient(ellipse at 80% 70%, rgba(244, 114, 182, 0.16), transparent 60%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+            radial-gradient(ellipse at 25% 40%, rgba(201, 214, 255, 0.4), transparent 60%),
+            radial-gradient(ellipse at 80% 70%, rgba(255, 179, 207, 0.35), transparent 60%),
+            var(--surface);
     }
 
     .ask-ai:hover {
@@ -315,8 +321,7 @@
 
     .ask-ai-copy h3 {
         font-size: clamp(22px, 2.6vw, 30px);
-        letter-spacing: -0.02em;
-        line-height: 1.3;
+        line-height: 1.4;
     }
 
     .ask-ai-actions {
@@ -334,7 +339,7 @@
     }
 
     .ask-ai-status {
-        color: #f9a8d4;
+        color: var(--pink-ink);
         font-size: 13.5px;
         font-weight: 700;
     }
@@ -342,21 +347,21 @@
     .ask-ai-caution {
         margin-top: 22px;
         padding: 14px 18px;
-        border-radius: 14px;
-        background: linear-gradient(135deg, rgba(245, 158, 11, 0.12), rgba(236, 72, 153, 0.07));
-        border: 1px solid rgba(245, 158, 11, 0.35);
+        border-radius: 18px;
+        background: var(--yellow-soft);
+        border: 2px dashed #f5d98c;
         font-size: 13.5px;
         line-height: 1.7;
     }
 
     .ask-ai-caution b {
-        color: #fff;
+        color: var(--text);
     }
 
     .ask-ai-caution ul {
         margin: 4px 0 0;
         padding-left: 1.2em;
-        color: #d9d6f5;
+        color: var(--text);
     }
 
     .ask-ai-copy .ask-ai-note {

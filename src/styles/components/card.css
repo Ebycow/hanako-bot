@@ -1,0 +1,94 @@
+/* ===== カード =====
+   白い紙に桃色のふちと、下にずらした影をつけたステッカー風。乗せるとぽよんと浮く */
+.card {
+    position: relative;
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 30px;
+    box-shadow: var(--pop);
+    transition:
+        transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1),
+        border-color 0.25s,
+        box-shadow 0.25s;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-strong);
+    box-shadow: var(--pop-hover);
+}
+
+.icon-box {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font-size: 24px;
+    background: var(--pink-pale);
+    border: 2px solid var(--pink-soft);
+    margin-bottom: 18px;
+}
+
+.card h3,
+.card h4 {
+    font-size: 20px;
+    margin: 0 0 10px;
+    letter-spacing: 0.02em;
+}
+
+.card p {
+    color: var(--text-muted);
+    margin: 0 0 10px;
+    font-size: 15px;
+}
+
+.card p:last-child {
+    margin-bottom: 0;
+}
+
+/* カードを並べるグリッド */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 18px;
+    margin: 24px 0;
+}
+
+.cards .card {
+    padding: 26px;
+}
+
+.cards code {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: anywhere;
+}
+
+/* カード右上のはなこ */
+.card-mascot {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+.tag {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 12px;
+    border-radius: 999px;
+    background: var(--mint-soft);
+    color: var(--mint-ink);
+    margin-bottom: 14px;
+}
+
+.tag.hot {
+    background: var(--pink-soft);
+    color: var(--pink-deep);
+}

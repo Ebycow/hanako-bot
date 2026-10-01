@@ -61,14 +61,14 @@ const expressions = [
 <section class="section" aria-labelledby="expression-title">
     <div class="container">
         <div class="section-head reveal">
-            <span class="eyebrow">✦ Meet Hanako</span>
-            <h2 id="expression-title">感情豊かな、<br /><span class="gradient-text">あなたの読み上げパートナー。</span></h2>
+            <span class="eyebrow">Meet Hanako</span>
+            <h2 id="expression-title">感情豊かな、<br /><span class="hl">あなたの読み上げパートナー。</span></h2>
         </div>
         <p class="fineprint" style="margin: -30px 0 90px">🖱️ マウスを乗せる（スマホはタップ）と、はなこが何か言います</p>
         <div class="expression-grid">
             {
                 expressions.map((e) => (
-                    <figure class="glass reveal says" tabindex="0" data-quotes={JSON.stringify(e.quotes)}>
+                    <figure class="card reveal says" tabindex="0" data-quotes={JSON.stringify(e.quotes)}>
                         <span class="speech" aria-live="polite" />
                         <img src={`assets/${e.image}`} alt={e.alt} loading="lazy" />
                         <figcaption>{e.caption}</figcaption>
@@ -119,9 +119,18 @@ const expressions = [
         object-fit: contain;
     }
 
+    .expression-grid figure:nth-child(odd) {
+        rotate: -1.5deg;
+    }
+
+    .expression-grid figure:nth-child(even) {
+        rotate: 1.5deg;
+    }
+
     .expression-grid figcaption {
         font-size: 13px;
-        color: var(--text-muted);
+        font-weight: 900;
+        color: var(--pink-ink);
     }
 
     /* 吹き出し */
@@ -132,7 +141,8 @@ const expressions = [
     }
 
     .says:focus-visible {
-        box-shadow: 0 0 0 3px var(--violet);
+        outline: 3px solid var(--pink);
+        outline-offset: 3px;
     }
 
     .speech {
@@ -143,14 +153,15 @@ const expressions = [
         width: max-content;
         max-width: 220px;
         padding: 10px 14px;
-        border-radius: 14px;
+        border-radius: 18px;
         background: #fff;
-        color: #1a1033;
+        border: 2px solid var(--pink-soft);
+        color: var(--text);
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         line-height: 1.6;
         text-align: left;
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 4px 0 var(--pink-soft);
         opacity: 0;
         transform: translate(-50%, 8px) scale(0.92);
         transition:
@@ -164,9 +175,13 @@ const expressions = [
         position: absolute;
         left: 50%;
         top: 100%;
-        margin-left: -8px;
-        border: 8px solid transparent;
-        border-top-color: #fff;
+        width: 14px;
+        height: 14px;
+        margin: -7px 0 0 -7px;
+        background: #fff;
+        border: solid var(--pink-soft);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
     }
 
     .says:hover .speech,

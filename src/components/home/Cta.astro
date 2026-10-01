@@ -1,7 +1,7 @@
 <div class="container">
     <section class="cta reveal">
         <img class="cta-mascot" src="assets/hanako-wave.webp" alt="" loading="lazy" />
-        <h2>さあ、<span class="gradient-text">声のある未来へ。</span></h2>
+        <h2>さあ、<span class="hl">声のある未来へ。</span></h2>
         <p>あなたのサーバーに、Hanakoという新しい可能性を。今すぐ、その第一歩を踏み出しましょう。</p>
         <div class="hero-actions">
             <a class="btn btn-primary" href="#invite">今すぐ無料で始める 🚀</a>
@@ -16,25 +16,26 @@
         margin: 120px auto 0;
         padding: 70px 30px;
         text-align: center;
-        border-radius: 36px;
+        border-radius: 40px;
         overflow: hidden;
         background:
-            radial-gradient(ellipse at top, rgba(139, 92, 246, 0.45), transparent 60%),
-            radial-gradient(ellipse at bottom right, rgba(34, 211, 238, 0.25), transparent 60%),
-            var(--bg-2);
-        border: 1px solid var(--border-strong);
+            radial-gradient(circle, rgba(255, 255, 255, 0.7) 2px, transparent 2.5px) 0 0 / 26px 26px,
+            linear-gradient(160deg, #ffe3ee, #ffd0e2 60%, #ffe8d9);
+        border: 3px solid #fff;
+        box-shadow:
+            0 0 0 2px var(--pink-soft),
+            0 10px 0 2px var(--pink-soft);
     }
 
     .cta h2 {
-        font-size: clamp(30px, 4.6vw, 54px);
-        letter-spacing: -0.03em;
-        line-height: 1.2;
+        font-size: clamp(28px, 4.4vw, 50px);
+        line-height: 1.35;
         margin: 0 0 16px;
     }
 
     .cta p {
-        color: var(--text-muted);
-        font-size: 17.5px;
+        color: var(--text);
+        font-size: 17px;
         margin: 0 auto 30px;
         max-width: 560px;
     }
@@ -47,6 +48,7 @@
         width: 140px;
         display: block;
         margin: 0 auto 10px;
-        filter: drop-shadow(0 10px 30px rgba(124, 58, 237, 0.6));
+        filter: drop-shadow(0 8px 14px rgba(214, 51, 111, 0.25));
+        animation: bob 4s ease-in-out infinite;
     }
 </style>

@@ -5,7 +5,7 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="GETTING STARTED" mascot="assets/hanako-hello.webp">
-    <Fragment slot="title">たった4ステップで、<span class="gradient-text">はじめよう。</span></Fragment>
+    <Fragment slot="title">たった4ステップで、<span class="hl">はじめよう。</span></Fragment>
 
     <div class="tldr">
         <b>TL;DR</b>
@@ -72,14 +72,14 @@ const { id, n } = Astro.props;
         padding: 18px 22px;
         border-radius: var(--radius);
         background: var(--surface);
-        border: 1px dashed rgba(34, 211, 238, 0.45);
+        border: 2px dashed var(--pink-soft);
         font-size: 15px;
     }
 
     .tldr b {
-        font-family: var(--mono);
-        color: var(--cyan);
+        color: var(--pink-ink);
         font-size: 12px;
+        font-weight: 900;
         letter-spacing: 0.12em;
         display: block;
         margin-bottom: 4px;

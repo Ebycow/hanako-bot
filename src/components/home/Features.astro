@@ -1,14 +1,14 @@
 <section class="section" id="features">
     <div class="container">
         <div class="section-head reveal">
-            <span class="eyebrow">✦ Features</span>
-            <h2>読み上げに必要なすべてを、<br /><span class="gradient-text">ひとつのプラットフォームに。</span></h2>
+            <span class="eyebrow">Features</span>
+            <h2>読み上げに必要なすべてを、<br /><span class="hl">ひとつのプラットフォームに。</span></h2>
             <p>
                 Hanakoは、単なる読み上げBotではありません。コミュニティのコミュニケーションを根本から再定義する、オールインワンのボイスエクスペリエンスです。
             </p>
         </div>
         <div class="bento">
-            <article class="glass span-4 has-art reveal">
+            <article class="card span-4 has-art reveal">
                 <div class="icon-box">🗣️</div>
                 <h3>リアルタイム読み上げ</h3>
                 <p>
@@ -16,32 +16,32 @@
                 </p>
                 <img class="bento-art" src="assets/hanako-rokuro.webp" alt="" loading="lazy" />
             </article>
-            <article class="glass span-2 reveal">
+            <article class="card span-2 reveal">
                 <div class="icon-box">📚</div>
                 <h3>スマート辞書</h3>
                 <p>読み間違いとはもう、さよなら。サーバー固有の語彙を学習させ、あなたのコミュニティだけの「言葉」を育てましょう。</p>
             </article>
-            <article class="glass span-2 reveal">
+            <article class="card span-2 reveal">
                 <div class="icon-box">🎺</div>
                 <h3>SEエンジン</h3>
                 <p>キーワードに反応して効果音を再生。会話に、かつてない臨場感と彩りを。</p>
             </article>
-            <article class="glass span-2 reveal">
+            <article class="card span-2 reveal">
                 <div class="icon-box">🎚️</div>
                 <h3>文字数制限</h3>
                 <p>長文は指定した文字数で打ち切り。読み上げ渋滞を、スマートに防ぎます。</p>
             </article>
-            <article class="glass span-2 reveal">
+            <article class="card span-2 reveal">
                 <div class="icon-box">🛡️</div>
                 <h3>エンタープライズ級の管理機能</h3>
                 <p>ブラックリストとDiscordネイティブの権限管理で、安心・安全な運用を。</p>
             </article>
-            <article class="glass span-3 reveal">
+            <article class="card span-3 reveal">
                 <div class="icon-box">🔄</div>
                 <h3>自動リカバリー</h3>
                 <p>メンテナンスで再起動しても、元のボイスチャンネルへ自動で再接続。ダウンタイムを意識させない、レジリエントな設計です。</p>
             </article>
-            <article class="glass span-3 reveal">
+            <article class="card span-3 reveal">
                 <div class="icon-box">🔒</div>
                 <h3>プライバシー・ファースト</h3>
                 <p>
@@ -60,7 +60,7 @@
         gap: 18px;
     }
 
-    .bento .glass {
+    .bento .card {
         grid-column: span 2;
     }
 
@@ -78,18 +78,29 @@
         bottom: -20px;
         width: 42%;
         max-width: 220px;
-        opacity: 0.95;
-        filter: drop-shadow(0 10px 30px rgba(124, 58, 237, 0.5));
+        filter: drop-shadow(0 10px 18px rgba(214, 51, 111, 0.2));
         pointer-events: none;
     }
 
     .bento .has-art {
         padding-right: 40%;
         min-height: 240px;
+        background: radial-gradient(circle at 85% 80%, var(--pink-pale) 0, var(--pink-pale) 30%, transparent 30.5%), var(--surface);
+    }
+
+    /* アイコンの丸を、カードごとに桃色・ミント・ラベンダーで塗り分ける */
+    .bento .card:nth-child(3n + 2) .icon-box {
+        background: var(--mint-soft);
+        border-color: #b6e9e2;
+    }
+
+    .bento .card:nth-child(3n) .icon-box {
+        background: var(--lavender-soft);
+        border-color: #cdd3ff;
     }
 
     @media (max-width: 960px) {
-        .bento .glass,
+        .bento .card,
         .bento .span-3,
         .bento .span-4 {
             grid-column: span 6;

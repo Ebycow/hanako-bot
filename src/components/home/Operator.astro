@@ -95,10 +95,10 @@
         height: 76px;
         padding: 0;
         border-radius: 50%;
-        border: 2px solid rgba(255, 255, 255, 0.25);
+        border: 3px solid #fff;
         cursor: pointer;
-        background: linear-gradient(135deg, #f9a8d4, #a78bfa 55%, #60a5fa);
-        box-shadow: 0 12px 36px -6px rgba(124, 58, 237, 0.9);
+        background: var(--pink-soft);
+        box-shadow: 0 5px 0 var(--pink-soft);
         animation: pulse 2.6s ease-in-out infinite;
     }
 
@@ -117,12 +117,13 @@
         transform: translateY(-50%);
         white-space: nowrap;
         font-size: 13px;
-        font-weight: 700;
-        color: #1a1033;
+        font-weight: 900;
+        color: var(--pink-ink);
         background: #fff;
-        padding: 7px 12px;
-        border-radius: 12px 12px 4px 12px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+        border: 2px solid var(--pink-soft);
+        padding: 5px 14px;
+        border-radius: 16px 16px 4px 16px;
+        box-shadow: 0 4px 0 var(--pink-soft);
         transition: opacity 0.2s;
     }
 
@@ -135,13 +136,13 @@
         0%,
         100% {
             box-shadow:
-                0 12px 36px -6px rgba(124, 58, 237, 0.9),
-                0 0 0 0 rgba(236, 72, 153, 0.5);
+                0 5px 0 var(--pink-soft),
+                0 0 0 0 rgba(244, 122, 169, 0.5);
         }
         50% {
             box-shadow:
-                0 12px 36px -6px rgba(124, 58, 237, 0.9),
-                0 0 0 14px rgba(236, 72, 153, 0);
+                0 5px 0 var(--pink-soft),
+                0 0 0 14px rgba(244, 122, 169, 0);
         }
     }
 
@@ -155,11 +156,12 @@
         max-height: calc(100vh - 140px);
         display: flex;
         flex-direction: column;
-        border-radius: 22px;
-        background: rgba(16, 13, 34, 0.95);
-        backdrop-filter: blur(20px);
-        border: 1px solid var(--border-strong);
-        box-shadow: 0 30px 80px -10px rgba(0, 0, 0, 0.7);
+        border-radius: 26px;
+        background: var(--surface);
+        border: 2px solid var(--border-strong);
+        box-shadow:
+            0 6px 0 var(--pink-soft),
+            0 30px 60px -20px rgba(214, 51, 111, 0.35);
         overflow: hidden;
         transform-origin: bottom right;
         transition:
@@ -194,7 +196,7 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(180deg, transparent 40%, rgba(16, 13, 34, 0.95));
+        background: linear-gradient(180deg, transparent 40%, rgba(255, 255, 255, 0.96));
     }
 
     .op-cover-text {
@@ -208,11 +210,13 @@
     .op-cover-text b {
         display: block;
         font-size: 16px;
+        font-weight: 900;
     }
 
     .op-cover-text small {
-        color: #86efac;
+        color: var(--mint-ink);
         font-size: 11.5px;
+        font-weight: 700;
     }
 
     .op-log {
@@ -228,17 +232,17 @@
         width: fit-content;
         max-width: 90%;
         padding: 10px 14px;
-        border-radius: 16px 16px 16px 4px;
-        background: var(--surface-strong);
+        border-radius: 18px 18px 18px 4px;
+        background: var(--pink-pale);
         margin-bottom: 10px;
-        color: #e4e2fb;
+        color: var(--text);
         overflow-wrap: anywhere;
     }
 
     .op-log :global(.bubble.me) {
         margin-left: auto;
-        border-radius: 16px 16px 4px 16px;
-        background: linear-gradient(135deg, #7c3aed, #2563eb);
+        border-radius: 18px 18px 4px 18px;
+        background: var(--pink-ink);
         color: #fff;
     }
 
@@ -252,20 +256,21 @@
     .quick-replies a {
         font-size: 12.5px;
         padding: 6px 12px;
+        font-weight: 700;
         border-radius: 999px;
-        border: 1px solid rgba(139, 92, 246, 0.5);
-        color: #d6ccff;
+        border: 2px solid var(--pink-soft);
+        color: var(--pink-ink);
     }
 
     .quick-replies a:hover {
-        background: rgba(139, 92, 246, 0.2);
+        background: var(--pink-pale);
     }
 
     .op-form {
         display: flex;
         gap: 8px;
         padding: 12px 16px 16px;
-        border-top: 1px solid var(--border);
+        border-top: 2px dashed var(--border);
     }
 
     .op-form input {
@@ -273,8 +278,8 @@
         min-width: 0;
         padding: 10px 14px;
         border-radius: 999px;
-        border: 1px solid var(--border-strong);
-        background: rgba(255, 255, 255, 0.05);
+        border: 2px solid var(--border);
+        background: var(--bg);
         color: var(--text);
         font: inherit;
         font-size: 14px;
@@ -282,14 +287,14 @@
     }
 
     .op-form input:focus {
-        border-color: var(--violet);
+        border-color: var(--pink);
     }
 
     .op-form button {
         width: 42px;
         border: 0;
         border-radius: 50%;
-        background: linear-gradient(135deg, #7c3aed, #2563eb);
+        background: var(--pink-ink);
         color: #fff;
         cursor: pointer;
         font-size: 15px;

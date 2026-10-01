@@ -5,14 +5,14 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="INPUT METHODS" mascot="assets/hanako-typing.webp">
-    <Fragment slot="title">あなたに最適な、<span class="gradient-text">3つの入力体験。</span></Fragment>
+    <Fragment slot="title">あなたに最適な、<span class="hl">3つの入力体験。</span></Fragment>
 
     <p class="lead">
         同じコマンドを3通りの書き方で実行できます。ワークフローに合わせて、自由に選択しましょう。迷ったら、スラッシュコマンドがおすすめです。
     </p>
 
     <div class="cards">
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-commands.webp" alt="" loading="lazy" />
             <span class="tag hot">🔥 おすすめ</span>
             <h4>スラッシュコマンド</h4>
@@ -21,14 +21,14 @@ const { id, n } = Astro.props;
                 入力欄に <code>/</code> を打つと候補と説明が出ます。引数の名前が表示されるので打ち間違えにくく、一覧系の結果は自分にだけ表示されます。
             </p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-hello.webp" alt="" loading="lazy" />
             <span class="tag">テキスト</span>
             <h4>メンション</h4>
             <p><code>@はなこ teach 草 くさ</code></p>
             <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。日本語の別名（<code>教育</code> など）も使えます。</p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-typing.webp" alt="" loading="lazy" />
             <span class="tag">テキスト</span>
             <h4>プリフィックス <code>&gt;</code></h4>

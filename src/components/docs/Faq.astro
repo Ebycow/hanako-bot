@@ -6,7 +6,7 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="FAQ" mascot="assets/hanako-search.webp" class="faq">
-    <Fragment slot="title">よくある質問と、<span class="gradient-text">その解決策。</span></Fragment>
+    <Fragment slot="title">よくある質問と、<span class="hl">その解決策。</span></Fragment>
 
     <p class="lead">お困りですか？ご安心ください。Hanakoの返事や症状から、原因と対処をすばやく特定できます。</p>
 
@@ -158,23 +158,23 @@ const { id, n } = Astro.props;
 <style>
     details {
         margin: 10px 0;
-        border-radius: 16px;
+        border-radius: 20px;
         background: var(--surface);
-        border: 1px solid var(--border);
+        border: 2px solid var(--border);
         transition: border-color 0.2s;
     }
 
     details[open] {
-        border-color: rgba(139, 92, 246, 0.45);
-        background: rgba(139, 92, 246, 0.06);
+        border-color: var(--border-strong);
+        background: var(--pink-pale);
     }
 
     summary {
         cursor: pointer;
         list-style: none;
         padding: 16px 52px 16px 20px;
-        font-weight: 600;
-        color: #fff;
+        font-weight: 700;
+        color: var(--text);
         position: relative;
     }
 
@@ -190,12 +190,12 @@ const { id, n } = Astro.props;
         transform: translateY(-50%);
         width: 26px;
         height: 26px;
-        border-radius: 8px;
+        border-radius: 50%;
         display: grid;
         place-items: center;
-        background: var(--surface-strong);
-        color: #c4b5fd;
-        font-weight: 400;
+        background: var(--pink-soft);
+        color: var(--pink-deep);
+        font-weight: 900;
         font-size: 18px;
         transition: transform 0.2s;
     }
@@ -217,10 +217,8 @@ const { id, n } = Astro.props;
         margin-top: 36px;
         padding: 24px 26px;
         border-radius: var(--radius);
-        background:
-            linear-gradient(var(--bg-2), var(--bg-2)) padding-box,
-            var(--grad) border-box;
-        border: 1px solid transparent;
+        background: var(--surface);
+        border: 2px dashed var(--pink);
     }
 
     .summary h4 {

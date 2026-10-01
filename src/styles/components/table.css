@@ -3,7 +3,7 @@
     overflow-x: auto;
     margin: 20px 0;
     border-radius: var(--radius);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     background: var(--surface);
 }
 
@@ -16,23 +16,23 @@ table {
 th,
 td {
     text-align: left;
-    padding: 14px 18px;
-    border-bottom: 1px solid var(--border);
+    padding: 13px 18px;
+    border-bottom: 1px dashed var(--border);
     vertical-align: top;
 }
 
 thead th {
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    background: rgba(255, 255, 255, 0.03);
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: 0.04em;
+    color: var(--pink-deep);
+    background: var(--pink-pale);
+    border-bottom: 2px solid var(--border);
 }
 
 tbody th {
     color: var(--text-muted);
-    font-weight: 600;
+    font-weight: 700;
     width: 30%;
 }
 
@@ -42,9 +42,9 @@ tbody tr:last-child th {
 }
 
 tbody tr:hover td {
-    background: rgba(139, 92, 246, 0.06);
+    background: #fffafc;
 }
 
 td {
-    color: #d4d2ee;
+    color: var(--text);
 }

@@ -13,7 +13,7 @@ const tiers = (['everyone', 'moderator', 'admin'] as Permission[]).map((key) => 
 ---
 
 <Chapter id={id} n={n} kicker="ACCESS CONTROL" mascot="assets/hanako-admin.webp">
-    <Fragment slot="title">柔軟で堅牢な、<span class="gradient-text">権限マネジメント。</span></Fragment>
+    <Fragment slot="title">柔軟で堅牢な、<span class="hl">権限マネジメント。</span></Fragment>
 
     <p class="lead">ほとんどのコマンドは誰でも使えます。影響の大きいものだけ、Discordの権限でしっかりと守られています。</p>
 
@@ -110,20 +110,24 @@ const tiers = (['everyone', 'moderator', 'admin'] as Permission[]).map((key) => 
         padding: 18px 22px;
         border-radius: var(--radius);
         background: var(--surface);
-        border: 1px solid var(--border);
+        border: 2px solid var(--mint-soft);
+        box-shadow: 0 4px 0 var(--mint-soft);
     }
 
     .tier:nth-child(2) {
-        border-color: rgba(96, 165, 250, 0.35);
+        border-color: var(--lavender-soft);
+        box-shadow: 0 4px 0 var(--lavender-soft);
     }
 
     .tier:nth-child(3) {
-        border-color: rgba(236, 72, 153, 0.4);
+        border-color: var(--pink-soft);
+        box-shadow: 0 4px 0 var(--pink-soft);
     }
 
     .tier .who b {
         display: block;
-        color: #fff;
+        color: var(--text);
+        font-weight: 900;
     }
 
     .tier .who small {

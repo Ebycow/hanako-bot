@@ -6,7 +6,7 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="SMART DICTIONARY" mascot="assets/hanako-studying.webp">
-    <Fragment slot="title">読み間違い、<span class="gradient-text">ゼロの世界へ。</span></Fragment>
+    <Fragment slot="title">読み間違い、<span class="hl">ゼロの世界へ。</span></Fragment>
 
     <p class="lead">
         読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>{fmt(limits.dictionaryEntries)}件</strong>まで覚えます。あなたのコミュニティの「文化」を、Hanakoに学ばせましょう。

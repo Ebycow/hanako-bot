@@ -20,26 +20,55 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     <div class="container">
         <div class="section-head reveal">
             <span class="eyebrow">How it works</span>
-            <h2 id="voice-demo-title">チャットが、<span class="gradient-text">そのまま声になる。</span></h2>
+            <h2 id="voice-demo-title">チャットが、<span class="hl">そのまま声になる。</span></h2>
             <p>
                 <code>/plz</code> ではなこを呼べば、チャットの発言をボイスチャンネルで読み上げます。マイクを使えない人も、テキストで通話に参加できます。
             </p>
         </div>
 
         <div class="dc-window reveal" aria-label="Discordの通話画面のイメージ">
-            <div class="dc-titlebar" aria-hidden="true"><i></i><i></i><i></i></div>
+            <div class="dc-titlebar" aria-hidden="true">
+                <span class="dc-lights"><i></i><i></i><i></i></span>
+                <span class="dc-title">Hanako Lounge</span>
+            </div>
             <div class="dc-body">
+                <nav class="dc-guilds" aria-hidden="true">
+                    <span class="dc-guild is-home">
+                        <svg viewBox="0 0 24 24"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3h9A2.5 2.5 0 0 1 19 5.5v7a2.5 2.5 0 0 1-2.5 2.5H11l-4 3.5V15h0a2 2 0 0 1-2-2z" fill="currentColor"></path></svg>
+                    </span>
+                    <span class="dc-guild-sep"></span>
+                    <span class="dc-guild is-current"><img src="assets/hanako-icon.webp" alt="" /></span>
+                    <span class="dc-guild">ゲ</span>
+                    <span class="dc-guild">作</span>
+                    <span class="dc-guild is-add">
+                        <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+                    </span>
+                </nav>
+
                 <aside class="dc-sidebar">
-                    <div class="dc-server">Hanako Lounge</div>
-                    <div class="dc-category">ボイスチャンネル</div>
-                    <div class="dc-voice">
-                        <div class="dc-channel">
-                            <svg class="dc-speaker" viewBox="0 0 24 24" aria-hidden="true">
+                    <div class="dc-server">
+                        Hanako Lounge
+                        <svg class="dc-chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+                    </div>
+                    <div class="dc-channels">
+                        <div class="dc-category is-text">
+                            <span>テキストチャンネル</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                        </div>
+                        <div class="dc-channel is-text">
+                            <svg class="dc-ch-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 4 8 20M16 4l-2 16M5 9h15M4 15h15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                            <span>雑談</span>
+                        </div>
+                        <div class="dc-category">
+                            <span>ボイスチャンネル</span>
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6v12M6 12h12" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                        </div>
+                        <div class="dc-channel is-current">
+                            <svg class="dc-ch-icon" viewBox="0 0 24 24" aria-hidden="true">
                                 <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor"></path>
                                 <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                             </svg>
-                            <span>{channel}</span>
-                            <span class="dc-timer" id="dc-timer">0:45</span>
+                            <span class="dc-channel-name">{channel}</span>
                         </div>
                         <ul class="dc-members">
                             {
@@ -49,7 +78,6 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                                             {m.avatar ? <img src={m.avatar} alt="" /> : <span class={`dc-initial is-${m.id}`}>{m.initial}</span>}
                                         </span>
                                         <span class="dc-name">{m.name}</span>
-                                        {m.bot && <span class="dc-bot">アプリ</span>}
                                         {m.state === 'deaf' && (
                                             <svg class="dc-state" viewBox="0 0 24 24" aria-label="スピーカーミュート">
                                                 <path d="M4 15v-3a8 8 0 0 1 16 0v3" fill="none" stroke="currentColor" stroke-width="2"></path>
@@ -69,20 +97,52 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                                 ))
                             }
                         </ul>
+                        <div class="dc-channel">
+                            <svg class="dc-ch-icon" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor"></path>
+                                <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                            </svg>
+                            <span>作業部屋</span>
+                        </div>
+                    </div>
+
+                    <!-- 画面を見ている「えび」の通話パネルとユーザーパネル -->
+                    <div class="dc-panel" aria-hidden="true">
+                        <div class="dc-rtc">
+                            <svg class="dc-rtc-icon" viewBox="0 0 24 24"><path d="M5 19h.01M5 15a4 4 0 0 1 4 4M5 11a8 8 0 0 1 8 8M5 7a12 12 0 0 1 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+                            <span class="dc-rtc-text"><b>通話中</b><small>{channel} / Hanako Lounge</small></span>
+                            <svg class="dc-rtc-leave" viewBox="0 0 24 24"><path d="M3 14.5c5-5 13-5 18 0l-2.4 2.3-3.3-1.4v-2.6a10.5 10.5 0 0 0-6.6 0v2.6l-3.3 1.4z" fill="currentColor"></path></svg>
+                        </div>
+                        <div class="dc-user">
+                            <span class="dc-avatar dc-user-avatar"><span class="dc-initial is-ebi">え</span></span>
+                            <span class="dc-user-text"><b>えび</b><small>通話中</small></span>
+                            <span class="dc-user-btn is-muted">
+                                <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"></rect><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M3 3l18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                            </span>
+                            <span class="dc-user-btn">
+                                <svg viewBox="0 0 24 24"><path d="M4 15v-3a8 8 0 0 1 16 0v3" fill="none" stroke="currentColor" stroke-width="2"></path><rect x="3" y="14" width="4" height="6" rx="1.5" fill="currentColor"></rect><rect x="17" y="14" width="4" height="6" rx="1.5" fill="currentColor"></rect></svg>
+                            </span>
+                            <span class="dc-user-btn">
+                                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"></circle><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"></path></svg>
+                            </span>
+                        </div>
                     </div>
                 </aside>
 
                 <div class="dc-chat">
                     <div class="dc-chat-head">
-                        <span class="dc-hash" aria-hidden="true">#</span> {channel}
-                        <span class="dc-chat-sub">ボイスチャンネルのテキストチャット</span>
+                        <svg class="dc-ch-icon" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor"></path>
+                            <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                        </svg>
+                        {channel}
                     </div>
                     <ol class="dc-messages" id="dc-messages">
                         {
                             initial.map((msg) => {
                                 const m = people[msg.user];
                                 return (
-                                    <li class="dc-msg">
+                                    <li class="dc-msg" data-user={m.id}>
                                         <div class="dc-msg-row">
                                             <span class="dc-avatar">
                                                 <span class={`dc-initial is-${m.id}`}>{m.initial}</span>
@@ -104,7 +164,13 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                         <li class="dc-msg is-new">
                             <div class="dc-cmd" hidden>
                                 <span class="dc-initial is-ebi">え</span>
-                                <span><b>えび</b> さんが<span class="dc-cmd-name"></span>を使用しました</span>
+                                <span>
+                                    <b>えび</b> さんが<span class="dc-chip"
+                                        ><svg viewBox="0 0 24 24" aria-hidden="true"
+                                            ><rect x="3" y="3" width="8" height="8" rx="2.5" fill="currentColor"></rect><rect x="13" y="3" width="8" height="8" rx="2.5" fill="currentColor"></rect><rect x="3" y="13" width="8" height="8" rx="2.5" fill="currentColor"></rect><rect x="13" y="13" width="8" height="8" rx="2.5" fill="currentColor"></rect></svg
+                                        ><span class="dc-cmd-name"></span></span
+                                    >を使用しました
+                                </span>
                             </div>
                             <div class="dc-msg-row">
                                 <span class="dc-avatar">
@@ -118,12 +184,26 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                             </div>
                         </li>
                     </template>
+                    <!-- ボイスチャンネルへのメンションに付けるスピーカーのアイコン -->
+                    <template id="dc-voice-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor"></path>
+                            <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
+                        </svg>
+                    </template>
+                    <div class="dc-input" aria-hidden="true">
+                        <svg class="dc-input-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
+                        <span class="dc-input-text" id="dc-input" data-placeholder={`#${channel}へメッセージを送信`}></span>
+                        <span class="dc-input-icons">
+                            <svg viewBox="0 0 24 24"><path d="M4 11h16v9H4zM3 7.5h18V11H3zM12 7.5V20M12 7.5c-1.5-3.5-5.5-3-4.5-.5M12 7.5c1.5-3.5 5.5-3 4.5-.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+                            <span class="dc-gif">GIF</span>
+                            <svg viewBox="0 0 24 24"><path d="M5 4h14v9.5L13.5 19H5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path><path d="M13 19v-6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"></path></svg>
+                            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"></circle><circle cx="9" cy="10" r="1.3" fill="currentColor"></circle><circle cx="15" cy="10" r="1.3" fill="currentColor"></circle><path d="M8.3 14a4.3 4.3 0 0 0 7.4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg>
+                        </span>
+                    </div>
                     <div class="dc-typing" id="dc-typing" aria-hidden="true">
                         <span class="dc-dots"><i></i><i></i><i></i></span>
-                        <span id="dc-typing-name"></span> が入力中…
-                    </div>
-                    <div class="dc-input" aria-hidden="true">
-                        <span class="dc-input-text" id="dc-input" data-placeholder={`#${channel} へメッセージを送信`}></span>
+                        <span><b id="dc-typing-name"></b> が入力中…</span>
                     </div>
                 </div>
             </div>
@@ -139,8 +219,8 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     const typingName = document.getElementById('dc-typing-name')!;
     const input = document.getElementById('dc-input')!;
     const hanako = document.querySelector<HTMLElement>('[data-member="hanako"]')!;
-    const timer = document.getElementById('dc-timer')!;
-    const channel = document.querySelector('.dc-channel span:not(.dc-timer)')!.textContent!;
+    const voiceIcon = document.getElementById('dc-voice-icon') as HTMLTemplateElement;
+    const channel = document.querySelector('.dc-channel-name')!.textContent!;
 
     const users: Record<string, { name: string; initial: string }> = {
         ebi: { name: 'えび', initial: 'え' },
@@ -175,12 +255,12 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
             name.textContent = 'hanako';
             name.classList.add('is-hanako');
             li.querySelector<HTMLElement>('.dc-msg-head .dc-bot')!.hidden = false;
-            // 「#チャンネル名」はメンションの見た目にする
-            const [, mention, rest] = step.reply.match(/^(#\S+)?(.*)$/)!;
+            // 「#チャンネル名」はメンションの見た目にする。ボイスチャンネルなのでスピーカーのアイコンを付ける
+            const [, mention, rest] = step.reply.match(/^(?:#(\S+))?(.*)$/)!;
             if (mention) {
                 const chip = document.createElement('span');
-                chip.className = 'dc-mention';
-                chip.textContent = mention.replace('#', '# ');
+                chip.className = 'dc-chip';
+                chip.append(voiceIcon.content.cloneNode(true), mention);
                 text.append(chip);
             }
             text.append(rest.trim());
@@ -193,6 +273,10 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
             name.classList.add(`is-${step.user}`);
             text.textContent = step.text;
         }
+        // 同じ人が続けて発言したときは、Discordと同じくアイコンと名前を省いてまとめる
+        li.dataset.user = 'command' in step ? 'hanako' : step.user;
+        const prev = list.lastElementChild as HTMLElement | null;
+        if (!('command' in step) && prev?.dataset.user === step.user) li.classList.add('is-cont');
         if (fast) li.classList.remove('is-new');
         list.append(li);
         while (list.children.length > 8) list.firstElementChild!.remove();
@@ -264,12 +348,6 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
             run();
         });
         io.observe(list);
-
-        let seconds = 45;
-        setInterval(() => {
-            seconds++;
-            timer.textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
-        }, 1000);
     }
 </script>
 
@@ -278,107 +356,273 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         padding-top: 70px;
     }
 
-    /* Discord風のウィンドウ */
+    /* Discordのデスクトップアプリ（ライトテーマ）を再現したウィンドウ。
+       ここだけはサイトの桃色や丸ゴシックを使わず、Discordの色と文字に合わせる */
     .dc-window {
-        --dc-bg: #26272d;
-        --dc-side: #1f2025;
-        --dc-text: #dbdee1;
-        --dc-muted: #949ba4;
+        --dc-bg: #fbfbfb;
+        --dc-side: #f3f3f4;
+        --dc-rail: #e9e9eb;
+        --dc-line: #e1e1e4;
+        --dc-hover: #e8e8ea;
+        --dc-selected: #e0e0e3;
+        --dc-text: #2e2f34;
+        --dc-header: #060607;
+        --dc-muted: #5c5e66;
+        --dc-faint: #80848e;
         --dc-green: #23a55a;
-        max-width: 920px;
+        --dc-green-text: #1b7d45;
+        --dc-blurple: #5865f2;
+        --dc-red: #d83a42;
+        max-width: 980px;
         margin: 0 auto;
-        border-radius: 18px;
-        border: 1px solid var(--border-strong);
+        border-radius: 12px;
+        border: 1px solid #d3d4d8;
         background: var(--dc-bg);
         overflow: hidden;
         box-shadow:
-            0 30px 80px -20px rgba(0, 0, 0, 0.7),
-            var(--glow);
+            0 2px 4px rgba(0, 0, 0, 0.04),
+            0 30px 60px -24px rgba(74, 54, 64, 0.35);
+        font-family: 'gg sans', 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Meiryo', sans-serif;
         font-size: 15px;
+        font-weight: 400;
+        line-height: 1.375;
+        letter-spacing: 0;
+        font-feature-settings: normal;
         color: var(--dc-text);
     }
 
-    .dc-titlebar {
-        display: flex;
-        gap: 7px;
-        padding: 11px 14px;
-        background: #1a1b1f;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    .dc-window svg {
+        display: block;
+        flex: none;
     }
 
-    .dc-titlebar i {
-        width: 11px;
-        height: 11px;
+    /* タイトルバー */
+    .dc-titlebar {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 32px;
+        background: var(--dc-rail);
+    }
+
+    .dc-lights {
+        position: absolute;
+        left: 12px;
+        display: flex;
+        gap: 8px;
+    }
+
+    .dc-lights i {
+        width: 12px;
+        height: 12px;
         border-radius: 50%;
-        background: #3a3b42;
+        background: #ff5f57;
+    }
+
+    .dc-lights i:nth-child(2) {
+        background: #febc2e;
+    }
+
+    .dc-lights i:nth-child(3) {
+        background: #28c840;
+    }
+
+    .dc-title {
+        font-size: 13px;
+        font-weight: 600;
+        color: var(--dc-muted);
     }
 
     .dc-body {
         display: grid;
-        grid-template-columns: 260px 1fr;
-        height: 440px;
+        grid-template-columns: 72px 240px minmax(0, 1fr);
+        height: 520px;
     }
 
+    /* 左端のサーバー一覧 */
+    .dc-guilds {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 0 12px;
+        background: var(--dc-rail);
+    }
+
+    .dc-guild {
+        position: relative;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #fff;
+        color: var(--dc-text);
+        font-size: 16px;
+        font-weight: 600;
+    }
+
+    .dc-guild img {
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        object-fit: cover;
+        object-position: top;
+    }
+
+    .dc-guild.is-home {
+        color: var(--dc-blurple);
+    }
+
+    .dc-guild.is-home svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .dc-guild.is-current {
+        border-radius: 14px;
+        background: #ffe1ec;
+    }
+
+    /* 選んでいるサーバーの左に出る縦棒 */
+    .dc-guild.is-current::before {
+        content: '';
+        position: absolute;
+        left: -14px;
+        top: 50%;
+        width: 4px;
+        height: 40px;
+        margin-top: -20px;
+        border-radius: 0 4px 4px 0;
+        background: var(--dc-header);
+    }
+
+    .dc-guild.is-add {
+        color: var(--dc-green);
+    }
+
+    .dc-guild.is-add svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .dc-guild-sep {
+        width: 32px;
+        height: 2px;
+        border-radius: 1px;
+        background: #d5d6da;
+    }
+
+    /* チャンネル一覧 */
     .dc-sidebar {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
         background: var(--dc-side);
-        padding: 0 10px 16px;
+        border-top-left-radius: 8px;
+        border-left: 1px solid var(--dc-line);
+        border-top: 1px solid var(--dc-line);
     }
 
     .dc-server {
-        font-weight: 700;
-        padding: 14px 18px;
-        margin: 0 -10px 12px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 48px;
+        flex: none;
+        padding: 0 14px 0 16px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dc-header);
+        border-bottom: 1px solid var(--dc-line);
+    }
+
+    .dc-chevron {
+        width: 18px;
+        height: 18px;
+        color: var(--dc-muted);
+    }
+
+    .dc-channels {
+        flex: 1;
+        min-height: 0;
+        overflow: hidden;
+        padding: 8px 8px 0;
     }
 
     .dc-category {
-        font-size: 11.5px;
-        font-weight: 700;
-        letter-spacing: 0.04em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 4px 4px 6px;
+        font-size: 13px;
+        font-weight: 500;
         color: var(--dc-muted);
-        padding: 6px 8px;
+    }
+
+    .dc-category.is-text {
+        padding-top: 6px;
+    }
+
+    .dc-category span::after {
+        content: '⌄';
+        margin-left: 4px;
+        font-size: 12px;
+        position: relative;
+        top: -3px;
+    }
+
+    .dc-category svg {
+        width: 16px;
+        height: 16px;
     }
 
     .dc-channel {
         display: flex;
         align-items: center;
-        gap: 8px;
-        padding: 6px 8px;
+        gap: 6px;
+        padding: 5px 8px;
         border-radius: 6px;
-        background: rgba(255, 255, 255, 0.06);
-        font-weight: 700;
-        color: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--dc-muted);
     }
 
-    .dc-speaker {
+    .dc-channel.is-current {
+        background: var(--dc-selected);
+        color: var(--dc-header);
+    }
+
+    .dc-ch-icon {
         width: 20px;
         height: 20px;
-        color: var(--dc-green);
-        flex: none;
-    }
-
-    .dc-timer {
-        margin-left: auto;
-        color: var(--dc-green);
-        font-weight: 500;
-        font-size: 13px;
-        font-variant-numeric: tabular-nums;
+        color: var(--dc-faint);
     }
 
     .dc-members {
         list-style: none;
-        margin: 4px 0 0;
-        padding: 0 0 0 26px;
+        margin: 2px 0 2px;
+        padding: 0 0 0 28px;
     }
 
     .dc-member {
         display: flex;
         align-items: center;
-        gap: 9px;
-        padding: 5px 6px;
+        gap: 8px;
+        padding: 3px 8px;
         border-radius: 6px;
+        font-size: 14px;
         color: var(--dc-muted);
+    }
+
+    .dc-member .dc-avatar {
+        width: 24px;
+        height: 24px;
+    }
+
+    .dc-member .dc-initial {
+        font-size: 11px;
     }
 
     .dc-member.is-away {
@@ -396,26 +640,140 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         }
     }
 
-    .dc-member[data-member='hanako'] .dc-name {
-        color: #fff;
-        font-weight: 600;
+    .dc-member.is-speaking .dc-name {
+        color: var(--dc-header);
     }
 
+    .dc-state {
+        width: 16px;
+        height: 16px;
+        margin-left: auto;
+        color: var(--dc-faint);
+    }
+
+    /* 下の通話パネル・ユーザーパネル */
+    .dc-panel {
+        flex: none;
+        margin: 0 8px 8px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid var(--dc-line);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .dc-rtc {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-bottom: 1px solid var(--dc-line);
+    }
+
+    .dc-rtc-icon {
+        width: 22px;
+        height: 22px;
+        color: var(--dc-green);
+    }
+
+    .dc-rtc-text,
+    .dc-user-text {
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+        flex: 1;
+        line-height: 1.25;
+    }
+
+    .dc-rtc-text b {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--dc-green-text);
+    }
+
+    .dc-rtc-text small,
+    .dc-user-text small {
+        font-size: 12px;
+        color: var(--dc-muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dc-rtc-leave {
+        width: 20px;
+        height: 20px;
+        color: var(--dc-text);
+    }
+
+    .dc-user {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 6px 7px 8px;
+    }
+
+    .dc-user .dc-user-avatar {
+        width: 32px;
+        height: 32px;
+        overflow: visible;
+    }
+
+    /* オンラインの緑の点 */
+    .dc-user-avatar::before {
+        content: '';
+        position: absolute;
+        right: -2px;
+        bottom: -2px;
+        z-index: 1;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--dc-green);
+        border: 3px solid #fff;
+    }
+
+    .dc-user-text b {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--dc-header);
+    }
+
+    .dc-user-btn {
+        display: grid;
+        place-items: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 6px;
+        color: var(--dc-muted);
+    }
+
+    .dc-user-btn svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .dc-user-btn.is-muted {
+        background: rgba(216, 58, 66, 0.12);
+        color: var(--dc-red);
+    }
+
+    /* アバター（共通） */
     .dc-avatar {
         position: relative;
         flex: none;
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
         border-radius: 50%;
-        overflow: hidden;
-        background: #3a3b42;
+        background: #e3e5e8;
     }
 
     .dc-avatar img {
         width: 100%;
         height: 100%;
+        border-radius: 50%;
         object-fit: cover;
         object-position: top;
+        display: block;
     }
 
     /* 話している人の緑のリング */
@@ -424,25 +782,14 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         position: absolute;
         inset: 0;
         border-radius: 50%;
-        box-shadow: inset 0 0 0 2px var(--dc-green);
         opacity: 0;
         transition: opacity 0.15s;
-    }
-
-    .dc-member.is-speaking .dc-avatar {
-        overflow: visible;
     }
 
     .dc-member.is-speaking .dc-avatar::after {
         opacity: 1;
         inset: -3px;
-        box-shadow:
-            0 0 0 2.5px var(--dc-green),
-            0 0 14px rgba(35, 165, 90, 0.55);
-    }
-
-    .dc-member.is-speaking .dc-avatar img {
-        border-radius: 50%;
+        box-shadow: 0 0 0 2px var(--dc-green);
     }
 
     .dc-initial {
@@ -450,35 +797,34 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         height: 100%;
         display: grid;
         place-items: center;
-        font-size: 13px;
-        font-weight: 700;
+        font-size: 15px;
+        font-weight: 600;
         color: #fff;
         border-radius: 50%;
     }
 
     .dc-initial.is-ebi {
-        background: linear-gradient(135deg, #60a5fa, #22d3ee);
+        background: #4a9fd8;
     }
 
     .dc-initial.is-mikan {
-        background: linear-gradient(135deg, #a78bfa, #818cf8);
+        background: #f08a24;
     }
 
     .dc-bot {
-        font-size: 10px;
-        font-weight: 700;
-        padding: 1px 5px;
+        display: inline-block;
+        height: 15px;
+        padding: 0 4px;
         border-radius: 4px;
-        background: #5865f2;
+        background: var(--dc-blurple);
         color: #fff;
+        font-size: 10px;
+        font-weight: 600;
+        line-height: 15px;
     }
 
-    .dc-state {
-        width: 17px;
-        height: 17px;
-        margin-left: auto;
-        color: var(--dc-muted);
-        flex: none;
+    .dc-bot[hidden] {
+        display: none;
     }
 
     /* チャット側 */
@@ -487,33 +833,26 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         flex-direction: column;
         min-width: 0;
         min-height: 0;
+        border-top: 1px solid var(--dc-line);
     }
 
     .dc-chat-head {
         display: flex;
         align-items: center;
-        gap: 6px;
-        padding: 13px 18px;
-        font-weight: 700;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.35);
-        box-shadow: 0 1px 0 rgba(255, 255, 255, 0.03);
+        gap: 8px;
+        flex: none;
+        height: 48px;
+        padding: 0 16px;
+        font-size: 16px;
+        font-weight: 600;
+        color: var(--dc-header);
+        border-bottom: 1px solid var(--dc-line);
         white-space: nowrap;
     }
 
-    .dc-hash {
-        color: var(--dc-muted);
-        font-size: 20px;
-        font-weight: 500;
-        line-height: 1;
-    }
-
-    .dc-chat-sub {
-        color: var(--dc-muted);
-        font-weight: 400;
-        font-size: 13px;
-        margin-left: 8px;
-        overflow: hidden;
-        text-overflow: ellipsis;
+    .dc-chat-head .dc-ch-icon {
+        width: 22px;
+        height: 22px;
     }
 
     .dc-messages {
@@ -521,7 +860,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         min-height: 0;
         list-style: none;
         margin: 0;
-        padding: 12px 0 4px;
+        padding: 12px 0 8px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -531,7 +870,8 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     }
 
     .dc-msg {
-        padding: 7px 18px;
+        margin-top: 10px;
+        padding: 3px 16px 3px 16px;
         border-left: 2px solid transparent;
         transition:
             background 0.25s,
@@ -540,17 +880,30 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
 
     .dc-msg-row {
         display: flex;
-        gap: 14px;
+        gap: 16px;
     }
 
-    /* 「〇〇さんが /plz を使用しました」 */
+    .dc-msg.is-cont {
+        margin-top: 0;
+    }
+
+    .dc-msg.is-cont .dc-avatar {
+        visibility: hidden;
+        height: 0;
+    }
+
+    .dc-msg.is-cont .dc-msg-head {
+        display: none;
+    }
+
+    /* 「〇〇 さんが ⁘plz を使用しました」 */
     .dc-cmd {
         position: relative;
         display: flex;
         align-items: center;
-        gap: 5px;
-        margin: 0 0 4px 52px;
-        font-size: 13px;
+        gap: 4px;
+        margin: 0 0 2px 56px;
+        font-size: 14px;
         color: var(--dc-muted);
     }
 
@@ -561,11 +914,11 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     .dc-cmd::before {
         content: '';
         position: absolute;
-        left: -33px;
+        left: -36px;
         top: 50%;
-        width: 26px;
+        width: 30px;
         height: 12px;
-        border: 2px solid #4e5058;
+        border: 2px solid #c4c6cc;
         border-right: 0;
         border-bottom: 0;
         border-top-left-radius: 6px;
@@ -579,36 +932,31 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     }
 
     .dc-cmd b {
-        font-weight: 600;
-        color: var(--dc-text);
+        font-weight: 500;
+        color: var(--dc-muted);
     }
 
-    .dc-cmd-name {
+    /* コマンド名・チャンネルのメンションの青いチップ。スクリプトで差し込むので :global で当てる */
+    .dc-chat :global(.dc-chip) {
+        display: inline-flex;
+        align-items: center;
+        gap: 2px;
         margin: 0 2px;
-        padding: 0 4px;
-        border-radius: 4px;
-        background: rgba(88, 101, 242, 0.3);
-        color: #c9cdfb;
-    }
-
-    .dc-cmd-name::before {
-        content: '/';
-    }
-
-    /* スクリプトで差し込む要素なので :global で当てる */
-    .dc-msg p :global(.dc-mention) {
-        margin-right: 2px;
         padding: 0 3px;
         border-radius: 4px;
-        background: rgba(88, 101, 242, 0.3);
-        color: #c9cdfb;
+        background: rgba(88, 101, 242, 0.15);
+        color: #4752c4;
         font-weight: 500;
+        vertical-align: baseline;
     }
 
-    .dc-msg .dc-avatar {
-        width: 38px;
-        height: 38px;
-        margin-top: 2px;
+    .dc-chat :global(.dc-chip svg) {
+        width: 14px;
+        height: 14px;
+    }
+
+    .dc-msg p :global(.dc-chip) {
+        margin-left: 0;
     }
 
     .dc-msg.is-new {
@@ -622,6 +970,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         }
     }
 
+    /* 説明用：はなこが読み上げている発言を緑でしるす */
     .dc-msg.is-reading {
         background: rgba(35, 165, 90, 0.08);
         border-left-color: var(--dc-green);
@@ -629,40 +978,118 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
 
     .dc-msg-head {
         display: flex;
-        align-items: baseline;
-        gap: 8px;
+        align-items: center;
+        gap: 6px;
     }
 
+    .dc-msg-head b {
+        font-size: 15.5px;
+        font-weight: 500;
+        color: var(--dc-header);
+    }
+
+    /* はなこのロールの色 */
     .dc-msg-head b.is-hanako {
-        color: #f47b84;
-    }
-
-    .dc-msg-head .dc-bot {
-        align-self: center;
-    }
-
-    .dc-msg-head b.is-ebi {
-        color: #67e8f9;
-    }
-
-    .dc-msg-head b.is-mikan {
-        color: #c4b5fd;
+        color: #e0475c;
     }
 
     .dc-msg-head time {
+        margin-left: 2px;
         font-size: 12px;
-        color: var(--dc-muted);
+        color: var(--dc-faint);
     }
 
     .dc-msg p {
-        margin: 2px 0 0;
+        margin: 1px 0 0;
+        color: var(--dc-text);
     }
 
+    /* 入力欄 */
+    .dc-input {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex: none;
+        margin: 0 16px;
+        padding: 0 14px;
+        height: 50px;
+        border-radius: 8px;
+        background: #fff;
+        border: 1px solid var(--dc-line);
+        color: var(--dc-faint);
+    }
+
+    .dc-input-plus {
+        width: 22px;
+        height: 22px;
+        color: var(--dc-muted);
+    }
+
+    .dc-input-text {
+        flex: 1;
+        min-width: 0;
+        font-size: 15px;
+        color: var(--dc-text);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .dc-input-text::after {
+        content: '';
+        display: inline-block;
+        width: 1.5px;
+        height: 1.1em;
+        margin-left: 1px;
+        vertical-align: text-bottom;
+        background: var(--dc-text);
+        animation: dc-caret 1s steps(1) infinite;
+    }
+
+    .dc-input-text:empty::after {
+        display: none;
+    }
+
+    .dc-input-text:empty::before {
+        content: attr(data-placeholder);
+        color: var(--dc-faint);
+    }
+
+    @keyframes dc-caret {
+        50% {
+            opacity: 0;
+        }
+    }
+
+    .dc-input-icons {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        color: var(--dc-muted);
+    }
+
+    .dc-input-icons svg {
+        width: 22px;
+        height: 22px;
+    }
+
+    .dc-gif {
+        padding: 0 3px;
+        border-radius: 4px;
+        background: var(--dc-muted);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        line-height: 16px;
+    }
+
+    /* 「〇〇 が入力中…」は入力欄の下に出る */
     .dc-typing {
         display: flex;
         align-items: center;
         gap: 6px;
-        height: 22px;
+        flex: none;
+        height: 24px;
         padding: 0 18px;
         font-size: 12.5px;
         color: var(--dc-muted);
@@ -674,7 +1101,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         opacity: 1;
     }
 
-    .dc-typing span:not(.dc-dots) {
+    .dc-typing b {
         font-weight: 700;
         color: var(--dc-text);
     }
@@ -711,60 +1138,44 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         }
     }
 
-    .dc-input {
-        margin: 2px 16px 16px;
-        padding: 11px 16px;
-        border-radius: 8px;
-        background: #33343b;
-        color: #6d7178;
-        font-size: 14.5px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .dc-input-text {
-        color: var(--dc-text);
-    }
-
-    .dc-input-text::after {
-        content: '';
-        display: inline-block;
-        width: 1.5px;
-        height: 1.1em;
-        margin-left: 1px;
-        vertical-align: text-bottom;
-        background: var(--dc-text);
-        animation: dc-caret 1s steps(1) infinite;
-    }
-
-    .dc-input-text:empty::after {
-        display: none;
-    }
-
-    .dc-input-text:empty::before {
-        content: attr(data-placeholder);
-        color: #6d7178;
-    }
-
-    @keyframes dc-caret {
-        50% {
-            opacity: 0;
+    @media (max-width: 860px) {
+        .dc-body {
+            grid-template-columns: 220px minmax(0, 1fr);
+        }
+        .dc-guilds {
+            display: none;
+        }
+        .dc-sidebar {
+            border-left: 0;
+            border-top-left-radius: 0;
+        }
+        .dc-input-icons svg:first-child,
+        .dc-gif {
+            display: none;
         }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 640px) {
         .dc-body {
             grid-template-columns: 1fr;
             height: auto;
         }
+        .dc-category.is-text,
+        .dc-channel.is-text,
+        .dc-channel:last-child,
+        .dc-panel {
+            display: none;
+        }
+        .dc-channels {
+            padding-bottom: 8px;
+        }
+        .dc-category {
+            padding-top: 4px;
+        }
         .dc-chat {
-            height: 400px;
+            height: 420px;
         }
-        .dc-sidebar {
-            padding-bottom: 12px;
-        }
-        .dc-chat-sub {
+        .dc-input-icons {
             display: none;
         }
     }

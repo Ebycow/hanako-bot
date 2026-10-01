@@ -5,7 +5,7 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="UNDER THE HOOD" mascot="assets/hanako-hanakin.webp" mascotAlt="サングラスをかけてこちらを指さす花子（ハナキン）">
-    <Fragment slot="title">声が生まれる、<span class="gradient-text">5つのステージ。</span></Fragment>
+    <Fragment slot="title">声が生まれる、<span class="hl">5つのステージ。</span></Fragment>
 
     <p class="lead">
         発言は、声になるまでに5段階の高度なパイプラインを通過します。「なぜこう読まれたのか」「なぜ読まれなかったのか」——その答えは、すべてこの順番の中にあります。
@@ -142,8 +142,8 @@ const { id, n } = Astro.props;
         left: 21px;
         top: 20px;
         bottom: 20px;
-        width: 2px;
-        background: linear-gradient(var(--violet), var(--cyan));
+        width: 0;
+        border-left: 3px dotted var(--pink-soft);
     }
 
     .pipeline li {
@@ -163,16 +163,15 @@ const { id, n } = Astro.props;
         top: 6px;
         width: 44px;
         height: 44px;
-        border-radius: 14px;
+        border-radius: 50%;
         display: grid;
         place-items: center;
-        font-family: var(--mono);
-        font-weight: 700;
+        font-weight: 900;
         font-size: 14px;
-        background: var(--bg-2);
-        border: 1px solid rgba(139, 92, 246, 0.6);
-        color: #c4b5fd;
-        box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+        background: var(--pink-ink);
+        border: 3px solid #fff;
+        color: #fff;
+        box-shadow: 0 0 0 2px var(--pink-soft);
     }
 
     .pipeline code {
@@ -183,7 +182,8 @@ const { id, n } = Astro.props;
 
     .pipeline .what b {
         display: block;
-        color: #fff;
+        color: var(--text);
+        font-weight: 900;
     }
 
     .pipeline .what span {
@@ -195,10 +195,10 @@ const { id, n } = Astro.props;
         font-family: var(--mono);
         font-size: 13px;
         padding: 12px 14px;
-        border-radius: 12px;
-        background: #0a0918;
-        border: 1px solid var(--border);
-        color: #c9c7e6;
+        border-radius: 16px;
+        background: var(--surface);
+        border: 2px solid var(--border);
+        color: var(--text);
         align-self: start;
     }
 
@@ -215,13 +215,13 @@ const { id, n } = Astro.props;
     }
 
     .chip.voice {
-        background: rgba(99, 102, 241, 0.2);
-        border: 1px solid rgba(99, 102, 241, 0.5);
+        background: var(--lavender-soft);
+        border: 1px solid #cdd3ff;
     }
 
     .chip.se {
-        background: rgba(236, 72, 153, 0.18);
-        border: 1px solid rgba(236, 72, 153, 0.5);
+        background: var(--pink-pale);
+        border: 1px solid var(--pink-soft);
     }
 
     /* 成敗 */
@@ -233,11 +233,12 @@ const { id, n } = Astro.props;
         align-items: center;
         margin: 16px 0 24px;
         padding: 26px 28px;
-        border-radius: var(--radius);
+        border-radius: var(--radius-lg);
         background:
-            radial-gradient(120% 140% at 100% 50%, rgba(244, 63, 94, 0.16), transparent 55%),
-            linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.08));
-        border: 1px solid rgba(236, 72, 153, 0.4);
+            radial-gradient(120% 140% at 100% 50%, rgba(255, 179, 207, 0.4), transparent 55%),
+            var(--surface);
+        border: 2px solid var(--pink-soft);
+        box-shadow: var(--pop);
     }
 
     .seibai-body > p:first-child {
@@ -249,13 +250,13 @@ const { id, n } = Astro.props;
     }
 
     .seibai li b {
-        color: #fff;
+        color: var(--pink-deep);
     }
 
     .seibai-tip {
         margin: 0;
         padding-top: 14px;
-        border-top: 1px dashed rgba(236, 72, 153, 0.3);
+        border-top: 2px dashed var(--pink-soft);
         color: var(--text-muted);
         font-size: 14px;
     }
@@ -265,18 +266,17 @@ const { id, n } = Astro.props;
         position: relative;
         margin: 0;
         aspect-ratio: 1;
-        border-radius: 18px;
+        border-radius: 50%;
         background:
-            radial-gradient(circle at 50% 55%, rgba(244, 63, 94, 0.38), rgba(236, 72, 153, 0.12) 45%, transparent 70%),
-            #0c0a1a;
-        border: 1px solid rgba(236, 72, 153, 0.28);
-        box-shadow: inset 0 0 60px rgba(236, 72, 153, 0.12);
+            radial-gradient(circle at 50% 55%, #fff 0%, var(--pink-pale) 45%, var(--pink-soft) 100%);
+        border: 3px solid #fff;
+        box-shadow: 0 0 0 2px var(--pink-soft);
         cursor: help;
         outline: none;
     }
 
     .seibai-stage:focus-visible {
-        box-shadow: 0 0 0 2px var(--pink), inset 0 0 60px rgba(236, 72, 153, 0.12);
+        box-shadow: 0 0 0 4px var(--pink);
     }
 
     .seibai-fx {
@@ -328,7 +328,7 @@ const { id, n } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 12px 28px rgba(236, 72, 153, 0.4));
+        filter: drop-shadow(0 10px 16px rgba(214, 51, 111, 0.25));
         transition:
             transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.2),
             filter 0.35s;
@@ -347,8 +347,8 @@ const { id, n } = Astro.props;
         place-items: center;
         font-size: 15px;
         border-radius: 50%;
-        background: rgba(12, 10, 26, 0.75);
-        border: 1px solid rgba(236, 72, 153, 0.5);
+        background: #fff;
+        border: 2px solid var(--pink-soft);
         animation: seibai-ping 2.4s ease-out infinite;
         transition: opacity 0.2s;
     }
@@ -356,7 +356,7 @@ const { id, n } = Astro.props;
     .seibai-stage:hover img,
     .seibai-stage:focus-visible img {
         transform: translate(-4px, -4px) scale(1.05) rotate(-1.5deg);
-        filter: drop-shadow(0 16px 36px rgba(244, 63, 94, 0.65)) brightness(1.06);
+        filter: drop-shadow(0 14px 22px rgba(214, 51, 111, 0.4)) brightness(1.04);
     }
 
     .seibai-stage:hover .slash,
@@ -377,12 +377,13 @@ const { id, n } = Astro.props;
         bottom: calc(100% - 28px);
         width: 270px;
         padding: 12px 14px;
-        border-radius: 16px;
+        border-radius: 18px;
         background: #fff;
-        color: #2a2546;
+        border: 2px solid var(--pink-soft);
+        color: var(--text);
         font-size: 13.5px;
         line-height: 1.65;
-        box-shadow: 0 14px 40px -8px rgba(236, 72, 153, 0.6);
+        box-shadow: 0 4px 0 var(--pink-soft);
         opacity: 0;
         visibility: hidden;
         transform: translateY(8px) scale(0.96);
@@ -399,8 +400,9 @@ const { id, n } = Astro.props;
         position: absolute;
         right: 60px;
         top: 100%;
+        margin-top: 2px;
         border: 9px solid transparent;
-        border-top-color: #fff;
+        border-top-color: var(--pink-soft);
     }
 
     .seibai-stage:hover .seibai-bubble,
@@ -415,18 +417,12 @@ const { id, n } = Astro.props;
         font-size: 11.5px;
         font-weight: 800;
         letter-spacing: 0.06em;
-        color: #db2777;
+        color: var(--pink-ink);
         margin-bottom: 2px;
     }
 
-    .seibai-bubble code {
-        background: #fce7f3;
-        border-color: #f9a8d4;
-        color: #9d174d;
-    }
-
     .seibai .seibai-bubble strong {
-        color: #e11d48;
+        color: var(--red);
     }
 
     @keyframes seibai-slash {
