@@ -96,9 +96,34 @@ const { id, n } = Astro.props;
     </div>
 
     <h3>⚔️ 読み上げを止める：成敗</h3>
-    <p>
-        長文やSEが流れ続けて困ったときは <code>/seibai</code>。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
-    </p>
+    <div class="seibai">
+        <div class="seibai-body">
+            <p>
+                長文やSEが流れ続けて困ったときは <code>/seibai</code>。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
+            </p>
+            <ul>
+                <li><b>だれでも使えます。</b>権限は要りません。荒らしや貼り付け事故を見かけたら、気づいた人がすぐ止められます。</li>
+                <li><b>止まるのは「いま溜まっている分」だけ。</b>辞書やSE、読み上げ対象チャンネルの設定はそのまま残ります。</li>
+                <li><b>テキストでも呼べます。</b><code>&gt;成敗</code>、<code>&gt;stop</code> のように打っても同じです。</li>
+                <li>何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。</li>
+            </ul>
+            <p class="seibai-tip">
+                知らないと、長文が終わるまで全員で待つことになります。サーバーのメンバーにも教えてあげてください。
+            </p>
+        </div>
+        <figure class="seibai-stage" tabindex="0" aria-describedby="seibai-tips">
+            <span class="seibai-fx" aria-hidden="true">
+                <i class="slash"></i>
+                <i class="petal"></i><i class="petal"></i><i class="petal"></i>
+                <i class="petal"></i><i class="petal"></i><i class="petal"></i>
+            </span>
+            <img src="assets/hanako-seibai.webp" alt="刀を振り抜く、和装の花子" loading="lazy" />
+            <figcaption class="seibai-bubble" id="seibai-tips" role="tooltip">
+                <span class="seibai-bubble-label">💡 Tips</span>
+                サーバーのスタンプに <code>&gt;seibai</code> と書いて設定しておけば、スタンプを送るだけで<strong>成敗！</strong>できるよ
+            </figcaption>
+        </figure>
+    </div>
 </Chapter>
 
 <style>
@@ -197,6 +222,273 @@ const { id, n } = Astro.props;
     .chip.se {
         background: rgba(236, 72, 153, 0.18);
         border: 1px solid rgba(236, 72, 153, 0.5);
+    }
+
+    /* 成敗 */
+    .seibai {
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 28px;
+        align-items: center;
+        margin: 16px 0 24px;
+        padding: 26px 28px;
+        border-radius: var(--radius);
+        background:
+            radial-gradient(120% 140% at 100% 50%, rgba(244, 63, 94, 0.16), transparent 55%),
+            linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.08));
+        border: 1px solid rgba(236, 72, 153, 0.4);
+    }
+
+    .seibai-body > p:first-child {
+        margin-top: 0;
+    }
+
+    .seibai ul {
+        margin: 16px 0;
+    }
+
+    .seibai li b {
+        color: #fff;
+    }
+
+    .seibai-tip {
+        margin: 0;
+        padding-top: 14px;
+        border-top: 1px dashed rgba(236, 72, 153, 0.3);
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+
+    /* 画像の舞台：光・斬撃・花びらを重ねる */
+    .seibai-stage {
+        position: relative;
+        margin: 0;
+        aspect-ratio: 1;
+        border-radius: 18px;
+        background:
+            radial-gradient(circle at 50% 55%, rgba(244, 63, 94, 0.38), rgba(236, 72, 153, 0.12) 45%, transparent 70%),
+            #0c0a1a;
+        border: 1px solid rgba(236, 72, 153, 0.28);
+        box-shadow: inset 0 0 60px rgba(236, 72, 153, 0.12);
+        cursor: help;
+        outline: none;
+    }
+
+    .seibai-stage:focus-visible {
+        box-shadow: 0 0 0 2px var(--pink), inset 0 0 60px rgba(236, 72, 153, 0.12);
+    }
+
+    .seibai-fx {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+        border-radius: inherit;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .seibai-fx .slash {
+        position: absolute;
+        top: 46%;
+        left: -10%;
+        width: 120%;
+        height: 3px;
+        border-radius: 3px;
+        background: linear-gradient(90deg, transparent, #fff 45%, #f9a8d4 60%, transparent);
+        box-shadow: 0 0 12px 2px rgba(244, 114, 182, 0.8);
+        transform: rotate(-24deg) scaleX(0);
+        transform-origin: left center;
+        opacity: 0;
+        animation: seibai-slash 4.8s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+    }
+
+    .seibai-fx .petal {
+        position: absolute;
+        top: -12px;
+        width: 10px;
+        height: 7px;
+        border-radius: 70% 0 70% 0;
+        background: linear-gradient(135deg, #fecdd3, #f472b6);
+        opacity: 0;
+        animation: seibai-petal 7s linear infinite;
+    }
+
+    .seibai-fx .petal:nth-child(2) { left: 12%; animation-delay: 0s; }
+    .seibai-fx .petal:nth-child(3) { left: 34%; animation-delay: 2.4s; animation-duration: 8s; }
+    .seibai-fx .petal:nth-child(4) { left: 58%; animation-delay: 4.6s; }
+    .seibai-fx .petal:nth-child(5) { left: 78%; animation-delay: 1.2s; animation-duration: 9s; }
+    .seibai-fx .petal:nth-child(6) { left: 90%; animation-delay: 5.8s; animation-duration: 7.5s; }
+    .seibai-fx .petal:nth-child(7) { left: 46%; animation-delay: 3.4s; animation-duration: 10s; }
+
+    .seibai-stage img {
+        position: relative;
+        z-index: 1;
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: drop-shadow(0 12px 28px rgba(236, 72, 153, 0.4));
+        transition:
+            transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.2),
+            filter 0.35s;
+    }
+
+    /* 画像にTipsがあることを知らせる目印 */
+    .seibai-stage::after {
+        content: '💡';
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        z-index: 3;
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-items: center;
+        font-size: 15px;
+        border-radius: 50%;
+        background: rgba(12, 10, 26, 0.75);
+        border: 1px solid rgba(236, 72, 153, 0.5);
+        animation: seibai-ping 2.4s ease-out infinite;
+        transition: opacity 0.2s;
+    }
+
+    .seibai-stage:hover img,
+    .seibai-stage:focus-visible img {
+        transform: translate(-4px, -4px) scale(1.05) rotate(-1.5deg);
+        filter: drop-shadow(0 16px 36px rgba(244, 63, 94, 0.65)) brightness(1.06);
+    }
+
+    .seibai-stage:hover .slash,
+    .seibai-stage:focus-visible .slash {
+        animation-duration: 1.6s;
+    }
+
+    .seibai-stage:hover::after,
+    .seibai-stage:focus-visible::after {
+        opacity: 0;
+    }
+
+    /* Tipsの吹き出し */
+    .seibai-bubble {
+        position: absolute;
+        z-index: 4;
+        right: 8px;
+        bottom: calc(100% - 28px);
+        width: 270px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        background: #fff;
+        color: #2a2546;
+        font-size: 13.5px;
+        line-height: 1.65;
+        box-shadow: 0 14px 40px -8px rgba(236, 72, 153, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(8px) scale(0.96);
+        transform-origin: 70% 100%;
+        transition:
+            opacity 0.2s,
+            transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1.3),
+            visibility 0.2s;
+        pointer-events: none;
+    }
+
+    .seibai-bubble::after {
+        content: '';
+        position: absolute;
+        right: 60px;
+        top: 100%;
+        border: 9px solid transparent;
+        border-top-color: #fff;
+    }
+
+    .seibai-stage:hover .seibai-bubble,
+    .seibai-stage:focus .seibai-bubble {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .seibai-bubble-label {
+        display: block;
+        font-size: 11.5px;
+        font-weight: 800;
+        letter-spacing: 0.06em;
+        color: #db2777;
+        margin-bottom: 2px;
+    }
+
+    .seibai-bubble code {
+        background: #fce7f3;
+        border-color: #f9a8d4;
+        color: #9d174d;
+    }
+
+    .seibai .seibai-bubble strong {
+        color: #e11d48;
+    }
+
+    @keyframes seibai-slash {
+        0%, 62% { transform: rotate(-24deg) scaleX(0); opacity: 0; }
+        66% { opacity: 1; }
+        74% { transform: rotate(-24deg) scaleX(1); opacity: 1; }
+        86%, 100% { transform: rotate(-24deg) scaleX(1); opacity: 0; }
+    }
+
+    @keyframes seibai-petal {
+        0% { transform: translate(0, 0) rotate(0); opacity: 0; }
+        10% { opacity: 0.9; }
+        90% { opacity: 0.7; }
+        100% { transform: translate(-60px, 330px) rotate(540deg); opacity: 0; }
+    }
+
+    @keyframes seibai-ping {
+        0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.55); }
+        70%, 100% { box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .seibai-fx,
+        .seibai-stage::after {
+            animation: none;
+        }
+        .seibai-fx {
+            display: none;
+        }
+        .seibai-stage img {
+            transition: none;
+        }
+    }
+
+    @media (max-width: 860px) {
+        .seibai {
+            grid-template-columns: minmax(0, 1fr) 240px;
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .seibai {
+            grid-template-columns: 1fr;
+            padding: 20px;
+        }
+        .seibai-stage {
+            width: min(280px, 100%);
+            margin: 4px auto 0;
+        }
+        .seibai-bubble {
+            right: 50%;
+            transform: translate(50%, 8px) scale(0.96);
+            transform-origin: 50% 100%;
+        }
+        .seibai-stage:hover .seibai-bubble,
+        .seibai-stage:focus .seibai-bubble {
+            transform: translate(50%, 0);
+        }
+        .seibai-bubble::after {
+            right: calc(50% - 9px);
+        }
     }
 
     @media (max-width: 640px) {
