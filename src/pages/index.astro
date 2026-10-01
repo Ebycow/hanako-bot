@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import CursorGlow from '../components/home/CursorGlow.astro';
+import Hero from '../components/home/Hero.astro';
+import UseCases from '../components/home/UseCases.astro';
+import Features from '../components/home/Features.astro';
+import SeInsight from '../components/home/SeInsight.astro';
+import Docs from '../components/home/Docs.astro';
+import Compare from '../components/home/Compare.astro';
+import Testimonials from '../components/home/Testimonials.astro';
+import Pricing from '../components/home/Pricing.astro';
+import Expressions from '../components/home/Expressions.astro';
+import Developers from '../components/home/Developers.astro';
+import Cta from '../components/home/Cta.astro';
+import InviteModal from '../components/home/InviteModal.astro';
+import Operator from '../components/home/Operator.astro';
+---
+
+<BaseLayout
+    page="home"
+    title="Hanako TTS Bot ✨ | 次世代のDiscord読み上げ体験を、すべての人に。"
+    description="Hanakoは、あなたのDiscord体験を次のレベルへと引き上げる、革新的でパワフルなチャット読み上げソリューションです。辞書・SE・ブラックリストまで、シームレスに。"
+    ogTitle="Hanako TTS Bot ✨ — The Future of Discord Voice"
+    ogDescription="言葉に、声という花を。次世代のDiscord読み上げBot「Hanako」。"
+>
+    <Fragment slot="before-header">
+        <CursorGlow />
+        <div class="announce">
+            ✨ <b>Introducing Hanako</b> — 読み上げの常識が、いま変わる。<a href="#features">詳しく見る →</a>
+        </div>
+    </Fragment>
+
+    <Hero />
+    <UseCases />
+    <Features />
+    <SeInsight />
+    <Docs />
+    <Compare />
+    <Testimonials />
+    <Pricing />
+    <Expressions />
+    <Developers />
+    <Cta />
+
+    <Fragment slot="after-footer">
+        <InviteModal />
+        <Operator />
+    </Fragment>
+</BaseLayout>
+
+<style>
+    .announce {
+        position: relative;
+        z-index: 30;
+        text-align: center;
+        font-size: 13.5px;
+        padding: 9px 16px;
+        background: linear-gradient(90deg, rgba(124, 58, 237, 0.35), rgba(37, 99, 235, 0.35), rgba(219, 39, 119, 0.35));
+        border-bottom: 1px solid var(--border);
+        color: #e9e5ff;
+    }
+
+    .announce a {
+        color: #fff;
+        font-weight: 600;
+        margin-left: 6px;
+    }
+</style>

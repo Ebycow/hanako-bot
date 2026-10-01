@@ -1,0 +1,173 @@
+<dialog class="invite-modal" id="invite-modal" aria-labelledby="invite-title">
+    <button class="modal-close" type="button" aria-label="閉じる" data-close>✕</button>
+    <img class="invite-art" src="assets/hanako-flappy.webp" alt="招待URLを抱えて飛んでいく花子" />
+    <span class="eyebrow">✦ Invitation</span>
+    <h2 id="invite-title">はなこは、<span class="gradient-text">恥ずかしがり屋です。</span></h2>
+    <p class="invite-lead">
+        はなこは誰でも招待できる公開Botですが、とってもシャイなので、<strong>招待URLを抱えてどこかへ飛んでいってしまいました。</strong>このページには招待リンクがありません。はなことは、Discordの中で出会ってください。
+    </p>
+    <div class="invite-options">
+        <div class="glass">
+            <div class="icon-box">🤝</div>
+            <b>Discordで出会ったら、連れて帰ってOK</b>
+            <span>はなこがいるサーバーなら、ボイスチャンネルで <code>/plz</code> と呼ぶだけで使えます。気に入ったら、Discord上のはなこのプロフィールから、あなたのサーバーにも招待してあげてください。</span>
+        </div>
+        <div class="glass">
+            <div class="icon-box">🛠️</div>
+            <b>自分でホストする（おすすめ）</b>
+            <span>
+                ソースコードは GitHub で公開されています。自分でホストできる方は、ぜひご自身の環境で動かしてください。そのほうが確実です。ただし、読み上げ用の音声サーバーは別途用意が必要です（手順は README を参照）。自分でホストしたBotは、あなた自身が運営者になります（このサイトの利用規約・プライバシーポリシーは適用されません）。
+            </span>
+        </div>
+    </div>
+    <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHubでソースを見る ↗</a>
+        <a class="btn btn-ghost" href="#developers" data-close>自分でホストする方法</a>
+        <a class="btn btn-ghost" href="#start" data-close>使い方を読む</a>
+    </div>
+</dialog>
+
+<script>
+    // 招待URLポップアップ（URLは恥ずかしがって隠れている）
+    const modal = document.getElementById('invite-modal') as HTMLDialogElement;
+    const open = () => {
+        if (!modal.open) modal.showModal();
+    };
+    document.addEventListener('click', (e) => {
+        const a = (e.target as Element).closest('a[href="#invite"]');
+        if (!a) return;
+        e.preventDefault();
+        open();
+    });
+    modal.addEventListener('click', (e) => {
+        // 背景クリック、または閉じるボタン・リンクで閉じる
+        if (e.target === modal || (e.target as Element).closest('[data-close]')) modal.close();
+    });
+    // 他ページから ./#invite で来たとき
+    if (location.hash === '#invite') {
+        history.replaceState(null, '', location.pathname);
+        open();
+    }
+</script>
+
+<style>
+    .invite-modal {
+        width: min(760px, calc(100vw - 32px));
+        max-height: calc(100vh - 40px);
+        padding: 36px 40px 40px;
+        border-radius: 32px;
+        border: 1px solid var(--border-strong);
+        background:
+            radial-gradient(ellipse at top, rgba(236, 72, 153, 0.28), transparent 60%),
+            radial-gradient(ellipse at bottom right, rgba(34, 211, 238, 0.18), transparent 60%),
+            var(--bg-2);
+        color: var(--text);
+        text-align: center;
+        box-shadow: 0 40px 120px -20px rgba(124, 58, 237, 0.8);
+    }
+
+    .invite-modal[open] {
+        animation: modal-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.2);
+    }
+
+    @keyframes modal-in {
+        from {
+            opacity: 0;
+            transform: scale(0.9) translateY(20px);
+        }
+    }
+
+    .invite-modal::backdrop {
+        background: rgba(5, 4, 12, 0.7);
+        backdrop-filter: blur(6px);
+    }
+
+    .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--border-strong);
+        background: var(--surface-strong);
+        color: var(--text);
+        cursor: pointer;
+        font-size: 15px;
+    }
+
+    .invite-art {
+        width: min(420px, 90%);
+        display: block;
+        margin: -6px auto 4px;
+        border-radius: 24px;
+        animation: flap 3.2s ease-in-out infinite;
+        mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%);
+    }
+
+    @keyframes flap {
+        50% {
+            transform: translate(12px, -12px) rotate(-2deg);
+        }
+    }
+
+    .invite-modal h2 {
+        font-size: clamp(26px, 4vw, 40px);
+        letter-spacing: -0.02em;
+        line-height: 1.25;
+        margin: 0 0 14px;
+    }
+
+    .invite-lead {
+        color: var(--text-muted);
+        font-size: 16px;
+        max-width: 580px;
+        margin: 0 auto 24px;
+    }
+
+    .invite-lead strong {
+        color: #fff;
+    }
+
+    .invite-options {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        text-align: left;
+        margin-bottom: 26px;
+    }
+
+    .invite-options .glass {
+        padding: 22px;
+    }
+
+    .invite-options .glass:hover {
+        transform: none;
+    }
+
+    .invite-options b {
+        display: block;
+        margin-bottom: 6px;
+    }
+
+    .invite-options span {
+        color: var(--text-muted);
+        font-size: 14px;
+    }
+
+    .invite-modal .hero-actions {
+        justify-content: center;
+    }
+
+    @media (max-width: 960px) {
+        .invite-options {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 640px) {
+        .invite-modal {
+            padding: 28px 20px 24px;
+        }
+    }
+</style>

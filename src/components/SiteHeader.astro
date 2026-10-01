@@ -1,0 +1,108 @@
+---
+export type Page = 'home' | 'terms' | 'privacy';
+
+interface Props {
+    page: Page;
+}
+
+const { page } = Astro.props;
+const isHome = page === 'home';
+// トップページ内ではページ内リンク、ほかのページからはトップページへのリンクにする
+const home = isHome ? '' : './';
+
+const links = isHome
+    ? [
+          { href: '#features', label: '機能' },
+          { href: '#docs', label: 'ドキュメント' },
+          { href: '#commands', label: 'コマンド' },
+          { href: '#pricing', label: '料金' },
+          { href: '#trouble', label: 'FAQ' },
+          { href: '#developers', label: '開発者' },
+      ]
+    : [
+          { href: './', label: 'ホーム' },
+          { href: './#docs', label: 'ドキュメント' },
+          { href: 'terms.html', label: '利用規約', current: page === 'terms' },
+          { href: 'privacy.html', label: 'プライバシー', current: page === 'privacy' },
+      ];
+---
+
+<header class="site-header">
+    <div class="inner">
+        <a class="brand" href="./">
+            <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+            Hanako <span class="ai-badge">TTS</span>
+        </a>
+        <nav class="site-nav" aria-label="メインナビゲーション">
+            {links.map((l) => <a href={l.href} aria-current={'current' in l && l.current ? 'page' : undefined}>{l.label}</a>)}
+            <a class="btn btn-primary btn-sm" href={`${home}#invite`}>今すぐ始める →</a>
+        </nav>
+    </div>
+</header>
+
+<style>
+    .site-header {
+        position: sticky;
+        top: 12px;
+        z-index: 20;
+        margin: 12px auto 0;
+        max-width: calc(var(--max-width) - 40px);
+        width: calc(100% - 32px);
+        background: rgba(13, 11, 29, 0.6);
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    }
+
+    .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 8px 8px 8px 16px;
+    }
+
+    .site-nav {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    .site-nav a {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    /* 「今すぐ始める」ボタン（.btn）の色や大きさは変えない */
+    .site-nav a:not(.btn) {
+        color: var(--text-muted);
+        font-size: 14px;
+        padding: 8px 14px;
+        border-radius: 999px;
+    }
+
+    .site-nav a:not(.btn):hover,
+    .site-nav a[aria-current='page'] {
+        color: var(--text);
+        background: var(--surface-strong);
+    }
+
+    @media (max-width: 640px) {
+        .site-header {
+            border-radius: 22px;
+        }
+        .inner {
+            flex-wrap: wrap;
+            padding: 10px 14px;
+        }
+        .site-nav {
+            width: 100%;
+            overflow-x: auto;
+        }
+        .site-nav .btn {
+            display: none;
+        }
+    }
+</style>

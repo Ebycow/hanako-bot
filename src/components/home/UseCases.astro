@@ -1,0 +1,56 @@
+---
+const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会', '🎵 作業通話', '🎲 TRPG', '🍜 飯テロ部', '💼 リモート会議', '🐈 猫を愛でる会'];
+---
+
+<section class="logos" aria-label="利用シーン">
+    <div class="container">
+        <p>あらゆるコミュニティで、選ばれています</p>
+        <div class="marquee" aria-hidden="true">
+            <!-- 途切れずに流れるよう、同じ並びを2回くり返す -->
+            <div class="marquee-track">
+                {[...scenes, ...scenes].map((s) => <span>{s}</span>)}
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .logos {
+        padding: 30px 0 10px;
+        text-align: center;
+    }
+
+    .logos p {
+        color: var(--text-dim);
+        font-size: 13px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin: 0 0 18px;
+    }
+
+    .marquee {
+        overflow: hidden;
+        mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+    }
+
+    .marquee-track {
+        display: flex;
+        gap: 56px;
+        width: max-content;
+        animation: marquee 30s linear infinite;
+    }
+
+    .marquee-track span {
+        color: var(--text-muted);
+        font-weight: 700;
+        font-size: 18px;
+        opacity: 0.7;
+        white-space: nowrap;
+    }
+
+    @keyframes marquee {
+        to {
+            transform: translateX(-50%);
+        }
+    }
+</style>

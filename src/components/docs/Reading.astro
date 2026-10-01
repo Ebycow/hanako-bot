@@ -1,0 +1,208 @@
+---
+import Chapter from './Chapter.astro';
+
+const { id, n } = Astro.props;
+---
+
+<Chapter id={id} n={n} kicker="UNDER THE HOOD" mascot="assets/hanako-hanakin.webp" mascotAlt="サングラスをかけてこちらを指さす花子（ハナキン）">
+    <Fragment slot="title">声が生まれる、<span class="gradient-text">5つのステージ。</span></Fragment>
+
+    <p class="lead">
+        発言は、声になるまでに5段階の高度なパイプラインを通過します。「なぜこう読まれたのか」「なぜ読まれなかったのか」——その答えは、すべてこの順番の中にあります。
+    </p>
+
+    <ol class="pipeline">
+        <li>
+            <div class="what">
+                <b>読むかどうかを決める</b>
+                <span>読み上げ対象チャンネルの、人間の発言だけを通します（下の表を参照）。</span>
+            </div>
+            <div class="sample">HANAKINの動画見た https://youtu.be/abc （拍手）</div>
+        </li>
+        <li>
+            <div class="what">
+                <b>読める形に直す</b>
+                <span>URLは「URL」に、メンションは表示名に、絵文字は名前に置き換えます。</span>
+            </div>
+            <div class="sample">HANAKINの動画見た <mark>URL</mark> （拍手）</div>
+        </li>
+        <li>
+            <div class="what">
+                <b>辞書で読み替える</b>
+                <span>教育した単語を置き換えます。SEのキーワード部分は書き換えません。</span>
+            </div>
+            <div class="sample"><mark>ハナキン</mark>の動画見た URL （拍手）</div>
+        </li>
+        <li>
+            <div class="what">
+                <b>長すぎたら切る</b>
+                <span>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。</span>
+            </div>
+            <div class="sample">ハナキンの動画見た URL （拍手）<br /><small>// 制限内なのでそのまま</small></div>
+        </li>
+        <li>
+            <div class="what">
+                <b>声とSEに分けて再生する</b>
+                <span>SEのキーワードは効果音に、それ以外は合成音声になり、順番に再生されます。</span>
+            </div>
+            <div class="sample">
+                <span class="chip voice">🗣 ハナキンの動画見た URL</span>
+                <span class="chip se">🎺 （拍手）</span>
+            </div>
+        </li>
+    </ol>
+    <p class="figcap">例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録しているサーバーでの読み上げ</p>
+
+    <h3>🚫 読み上げられない発言</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>発言</th>
+                    <th>理由・対処</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>読み上げ対象でないチャンネルの発言</td>
+                    <td>そのチャンネルで <code>/plz</code> を打つと対象に加わります</td>
+                </tr>
+                <tr>
+                    <td><code>&gt;</code> で始まる発言、Hanakoへのメンション</td>
+                    <td>コマンドとして扱うため読みません</td>
+                </tr>
+                <tr>
+                    <td>ほかのBotの発言</td>
+                    <td>常に読みません</td>
+                </tr>
+                <tr>
+                    <td>ブラックリストに入っている人の発言</td>
+                    <td><a href="#blacklist">07章</a>を参照</td>
+                </tr>
+                <tr>
+                    <td>画像やファイルだけの発言</td>
+                    <td>本文がないので読みません</td>
+                </tr>
+                <tr>
+                    <td>記号や空白だけの発言</td>
+                    <td>声にできる文字がないので読みません</td>
+                </tr>
+                <tr>
+                    <td>スレッド・フォーラム内の発言</td>
+                    <td>対応していません</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>⚔️ 読み上げを止める：成敗</h3>
+    <p>
+        長文やSEが流れ続けて困ったときは <code>/seibai</code>。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
+    </p>
+</Chapter>
+
+<style>
+    /* パイプライン */
+    .pipeline {
+        list-style: none;
+        padding: 0;
+        margin: 24px 0;
+        counter-reset: pipe;
+        position: relative;
+    }
+
+    .pipeline::before {
+        content: '';
+        position: absolute;
+        left: 21px;
+        top: 20px;
+        bottom: 20px;
+        width: 2px;
+        background: linear-gradient(var(--violet), var(--cyan));
+    }
+
+    .pipeline li {
+        counter-increment: pipe;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 0 0 18px 64px;
+        margin: 0;
+    }
+
+    .pipeline li::before {
+        content: counter(pipe, decimal-leading-zero);
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        display: grid;
+        place-items: center;
+        font-family: var(--mono);
+        font-weight: 700;
+        font-size: 14px;
+        background: var(--bg-2);
+        border: 1px solid rgba(139, 92, 246, 0.6);
+        color: #c4b5fd;
+        box-shadow: 0 0 20px rgba(139, 92, 246, 0.35);
+    }
+
+    .pipeline code {
+        white-space: normal;
+        word-break: keep-all;
+        overflow-wrap: anywhere;
+    }
+
+    .pipeline .what b {
+        display: block;
+        color: #fff;
+    }
+
+    .pipeline .what span {
+        color: var(--text-muted);
+        font-size: 14.5px;
+    }
+
+    .pipeline .sample {
+        font-family: var(--mono);
+        font-size: 13px;
+        padding: 12px 14px;
+        border-radius: 12px;
+        background: #0a0918;
+        border: 1px solid var(--border);
+        color: #c9c7e6;
+        align-self: start;
+    }
+
+    .pipeline .sample small {
+        color: var(--text-dim);
+    }
+
+    .chip {
+        display: inline-block;
+        padding: 3px 10px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        margin: 2px 4px 2px 0;
+    }
+
+    .chip.voice {
+        background: rgba(99, 102, 241, 0.2);
+        border: 1px solid rgba(99, 102, 241, 0.5);
+    }
+
+    .chip.se {
+        background: rgba(236, 72, 153, 0.18);
+        border: 1px solid rgba(236, 72, 153, 0.5);
+    }
+
+    @media (max-width: 640px) {
+        .pipeline li {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+    }
+</style>

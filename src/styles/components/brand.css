@@ -1,0 +1,30 @@
+/* ===== ロゴ（ヘッダーとフッターで共有） ===== */
+.brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.02em;
+}
+
+.brand-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    object-fit: cover;
+    object-position: top;
+    background: var(--grad);
+    padding: 1.5px;
+}
+
+.brand .ai-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 999px;
+    background: var(--grad);
+    color: #0b0820;
+    letter-spacing: 0.06em;
+}

@@ -1,0 +1,134 @@
+---
+import { limits, fmt } from '../../data/limits';
+---
+
+<section class="section" id="pricing">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">✦ Pricing</span>
+            <h2>シンプルで透明な、<span class="gradient-text">料金プラン。</span></h2>
+            <p>隠れたコストは一切ありません。どのプランを選んでも、すべて無料です。</p>
+        </div>
+        <div class="pricing">
+            <article class="glass price-card reveal">
+                <h3>Starter</h3>
+                <p>まずは気軽に試したい方に。</p>
+                <div class="price">¥0<small> /月</small></div>
+                <ul>
+                    <li>リアルタイム読み上げ</li>
+                    <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
+                    <li>SE {fmt(limits.seEntries)}件</li>
+                    <li>コミュニティサポート</li>
+                </ul>
+                <a class="btn btn-ghost" href="#invite">はじめる</a>
+            </article>
+            <article class="glass price-card featured reveal">
+                <span class="badge">🔥 一番人気</span>
+                <h3>Pro</h3>
+                <p>本気でコミュニティを盛り上げたい方に。</p>
+                <div class="price"><span class="gradient-text">¥0</span><small> /月</small></div>
+                <ul>
+                    <li>Starterのすべての機能</li>
+                    <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
+                    <li>SE {fmt(limits.seEntries)}件</li>
+                    <li>SE正規化</li>
+                </ul>
+                <a class="btn btn-primary" href="#invite">Proで始める ✨</a>
+            </article>
+            <article class="glass price-card reveal">
+                <h3>Enterprise</h3>
+                <p>大規模サーバーを運営する方に。</p>
+                <div class="price">¥0<small> /月</small></div>
+                <ul>
+                    <li>Proのすべての機能</li>
+                    <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
+                    <li>SE {fmt(limits.seEntries)}件</li>
+                    <li>Discordネイティブの権限管理</li>
+                </ul>
+                <a class="btn btn-ghost" href="#invite">はじめる</a>
+            </article>
+        </div>
+        <p class="fineprint">※ 全プランの内容は完全に同一です。Hanakoは無償で提供されています。</p>
+    </div>
+</section>
+
+<style>
+    .pricing {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        align-items: stretch;
+    }
+
+    .price-card {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .price-card.featured {
+        background:
+            linear-gradient(180deg, rgba(40, 28, 90, 0.95), rgba(18, 14, 40, 0.95)) padding-box,
+            var(--grad) border-box;
+        border: 1.5px solid transparent;
+        box-shadow: 0 30px 80px -20px rgba(124, 58, 237, 0.7);
+    }
+
+    .price-card .badge {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        font-size: 11px;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: var(--grad-warm);
+        color: #fff;
+    }
+
+    .price {
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        margin: 8px 0 4px;
+        line-height: 1.1;
+    }
+
+    .price small {
+        font-size: 15px;
+        color: var(--text-muted);
+        font-weight: 500;
+        letter-spacing: 0;
+    }
+
+    .price-card ul {
+        list-style: none;
+        padding: 0;
+        margin: 18px 0 24px;
+        flex: 1;
+    }
+
+    .price-card li {
+        padding: 6px 0 6px 28px;
+        position: relative;
+        color: #d4d2ee;
+        font-size: 14.5px;
+    }
+
+    .price-card li::before {
+        content: '✓';
+        position: absolute;
+        left: 0;
+        color: #4ade80;
+        font-weight: 800;
+    }
+
+    .price-card .btn {
+        justify-content: center;
+    }
+
+    @media (max-width: 960px) {
+        .pricing {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

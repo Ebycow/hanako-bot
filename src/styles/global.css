@@ -1,0 +1,14 @@
+/* 全ページ共通のスタイル（BaseLayout.astro で読み込む）
+   複数のコンポーネントで使うものだけをここに置き、
+   1つのコンポーネントでしか使わないものは、そのコンポーネントの <style> に書く。
+   後ろのファイルほど優先されるので、順番を入れ替えないこと */
+@import './tokens.css';
+@import './base.css';
+@import './layout.css';
+@import './components/button.css';
+@import './components/brand.css';
+@import './components/glass.css';
+@import './components/callout.css';
+@import './components/steps.css';
+@import './components/table.css';
+@import './reveal.css'; /* 動きを減らす設定で上書きするので最後 */

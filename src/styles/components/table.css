@@ -1,0 +1,50 @@
+/* ===== テーブル（privacy.md の表にも効く） ===== */
+.table-wrap {
+    overflow-x: auto;
+    margin: 20px 0;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--surface);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14.5px;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+}
+
+thead th {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+tbody th {
+    color: var(--text-muted);
+    font-weight: 600;
+    width: 30%;
+}
+
+tbody tr:last-child td,
+tbody tr:last-child th {
+    border-bottom: 0;
+}
+
+tbody tr:hover td {
+    background: rgba(139, 92, 246, 0.06);
+}
+
+td {
+    color: #d4d2ee;
+}

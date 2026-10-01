@@ -1,0 +1,136 @@
+---
+import type { Page } from './SiteHeader.astro';
+
+interface Props {
+    page: Page;
+}
+
+const home = Astro.props.page === 'home' ? '' : './';
+---
+
+<footer class="site-footer">
+    <div class="container">
+        <div class="footer-grid">
+            <div>
+                <a class="brand" href="./">
+                    <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+                    Hanako <span class="ai-badge">TTS</span>
+                </a>
+                <p>言葉に、声という花を。<br />Empowering every voice on Discord.</p>
+                <span class="status">All systems operational</span>
+            </div>
+            <div>
+                <h5>PRODUCT</h5>
+                <ul>
+                    <li><a href={`${home}#features`}>機能</a></li>
+                    <li><a href={`${home}#pricing`}>料金</a></li>
+                    <li><a href={`${home}#compare`}>比較</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>RESOURCES</h5>
+                <ul>
+                    <li><a href={`${home}#docs`}>ドキュメント</a></li>
+                    <li><a href={`${home}#commands`}>コマンド一覧</a></li>
+                    <li><a href={`${home}#developers`}>開発者向け</a></li>
+                    <li><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener">GitHub</a></li>
+                </ul>
+            </div>
+            <div>
+                <h5>LEGAL</h5>
+                <ul>
+                    <li><a href="terms.html">利用規約</a></li>
+                    <li><a href="privacy.html">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>. Made with 💜 and AI.</p>
+            <p>Discord は Discord Inc. の商標です。本Botは Discord Inc. とは関係ありません。</p>
+        </div>
+    </div>
+</footer>
+
+<style>
+    .site-footer {
+        margin-top: 120px;
+        padding: 60px 0 40px;
+        border-top: 1px solid var(--border);
+        background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.06));
+        font-size: 14px;
+        color: var(--text-muted);
+    }
+
+    .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .footer-grid h5 {
+        margin: 0 0 12px;
+        color: var(--text);
+        font-size: 13px;
+        letter-spacing: 0.1em;
+    }
+
+    .footer-grid ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .footer-grid li {
+        margin: 6px 0;
+    }
+
+    .footer-grid a {
+        color: var(--text-muted);
+    }
+
+    .footer-grid a:hover {
+        color: #fff;
+    }
+
+    .footer-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 10px;
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-size: 13px;
+        color: var(--text-dim);
+    }
+
+    .footer-bottom p {
+        margin: 0;
+    }
+
+    .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 14px;
+        font-size: 13px;
+        padding: 6px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+    }
+
+    .status::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #4ade80;
+        box-shadow: 0 0 10px #4ade80;
+    }
+
+    @media (max-width: 960px) {
+        .footer-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+</style>
