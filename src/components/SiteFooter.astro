@@ -21,7 +21,7 @@ const home = Astro.props.page === 'home' ? '' : './';
                 <span class="status">All systems operational</span>
             </div>
             <div>
-                <h5>PRODUCT</h5>
+                <h2>PRODUCT</h2>
                 <ul>
                     <li><a href={`${home}#features`}>機能</a></li>
                     <li><a href={`${home}#pricing`}>料金</a></li>
@@ -29,7 +29,7 @@ const home = Astro.props.page === 'home' ? '' : './';
                 </ul>
             </div>
             <div>
-                <h5>RESOURCES</h5>
+                <h2>RESOURCES</h2>
                 <ul>
                     <li><a href="docs.html">ドキュメント</a></li>
                     <li><a href="docs.html#commands">コマンド一覧</a></li>
@@ -38,7 +38,7 @@ const home = Astro.props.page === 'home' ? '' : './';
                 </ul>
             </div>
             <div>
-                <h5>LEGAL</h5>
+                <h2>LEGAL</h2>
                 <ul>
                     <li><a href="terms.html">利用規約</a></li>
                     <li><a href="privacy.html">プライバシーポリシー</a></li>
@@ -81,7 +81,7 @@ const home = Astro.props.page === 'home' ? '' : './';
         margin-bottom: 40px;
     }
 
-    .footer-grid h5 {
+    .footer-grid h2 {
         margin: 0 0 12px;
         color: var(--pink-ink);
         font-size: var(--fs-sm);

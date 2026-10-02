@@ -75,7 +75,8 @@ const nn = String(n).padStart(2, '0');
         margin: 0 0 28px;
     }
 
-    .chapter :global(h3) {
+    /* 章の小見出し。カードの中の h3 には効かせないよう、章の直下だけにする */
+    .chapter > :global(h3) {
         font-size: var(--fs-xl);
         margin: 48px 0 16px;
         display: flex;
