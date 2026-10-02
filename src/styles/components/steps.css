@@ -82,3 +82,35 @@
         display: none;
     }
 }
+
+/* 3つのステップを並べる図（辞書の章など）。
+   タブレットでは3列のまま矢印を残し、スマホでは縦に積む */
+.steps-3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width: 960px) {
+    .steps-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .steps-3 .step:not(:last-child)::after {
+        display: block;
+    }
+}
+
+@media (max-width: 640px) {
+    .steps-3 {
+        grid-template-columns: 1fr;
+        gap: 22px;
+    }
+    /* 縦に積んだときは、矢印を下向きにしてカードの間に置く */
+    .steps-3 .step:not(:last-child)::after {
+        right: auto;
+        top: auto;
+        left: 50%;
+        bottom: -19px;
+        border: 7px solid transparent;
+        border-top: 10px solid var(--pink);
+        transform: translateX(-50%);
+    }
+}
