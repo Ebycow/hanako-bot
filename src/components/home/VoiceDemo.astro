@@ -111,7 +111,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                         </div>
                     </div>
 
-                    <!-- 画面を見ている「えび」の通話パネルとユーザーパネル -->
+                    {/* 画面を見ている「えび」の通話パネルとユーザーパネル */}
                     <div class="dc-panel" aria-hidden="true">
                         <div class="dc-rtc">
                             <svg class="dc-rtc-icon" viewBox="0 0 24 24"><path d="M5 19h.01M5 15a4 4 0 0 1 4 4M5 11a8 8 0 0 1 8 8M5 7a12 12 0 0 1 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"></path></svg>
@@ -189,14 +189,14 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                             </div>
                         </li>
                     </template>
-                    <!-- ボイスチャンネルへのメンションに付けるスピーカーのアイコン -->
+                    {/* ボイスチャンネルへのメンションに付けるスピーカーのアイコン */}
                     <template id="dc-voice-icon">
                         <svg viewBox="0 0 24 24" aria-hidden="true">
                             <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor"></path>
                             <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path>
                         </svg>
                     </template>
-                    <!-- 「〇〇 が入力中…」は入力欄の上に出る -->
+                    {/* 「〇〇 が入力中…」は入力欄の上に出る */}
                     <div class="dc-typing" id="dc-typing" aria-hidden="true">
                         <span class="dc-dots"><i></i><i></i><i></i></span>
                         <span><b id="dc-typing-name"></b> が入力中…</span>
@@ -215,7 +215,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
             </div>
         </div>
 
-        <!-- ウインドウの外で、読み上げているはなこを PNGtuber 風に見せる -->
+        {/* ウインドウの外で、読み上げているはなこを PNGtuber 風に見せる */}
         <div class="dc-voice" id="dc-voice" aria-hidden="true">
             <div class="dc-voice-bubble">
                 <span class="dc-voice-eq"><i></i><i></i><i></i><i></i></span>
@@ -231,7 +231,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         </div>
         </div>
 
-        <!-- デモの一時停止・再生。JavaScript が動くときだけ出す -->
+        {/* デモの一時停止・再生。JavaScript が動くときだけ出す */}
         <div class="dc-controls">
             <button class="dc-play" id="dc-play" type="button">
                 <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"

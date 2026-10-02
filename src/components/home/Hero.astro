@@ -18,7 +18,7 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
             </h1>
             <p class="lead">
                 Hanakoは、テキストチャットの発言を<strong>その場で</strong>ボイスチャンネルに読み上げるBotです。<br />
-                <!-- 打っては消す文字は読み上げソフトに1文字ずつ読まれるので隠し、同じ内容をまとめて渡す -->
+                {/* 打っては消す文字は読み上げソフトに1文字ずつ読まれるので隠し、同じ内容をまとめて渡す */}
                 <span class="typing" id="typing" aria-hidden="true" data-phrases={JSON.stringify(phrases)}>{phrases[0]}</span>
                 <span class="sr-only">{phrases.join('')}</span>
             </p>

@@ -6,7 +6,7 @@ const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会'
     <div class="container">
         <p>いろいろな集まりで使えます</p>
         <div class="marquee" aria-hidden="true">
-            <!-- 途切れずに流れるよう、同じ並びを2回くり返す -->
+            {/* 途切れずに流れるよう、同じ並びを2回くり返す */}
             <div class="marquee-track">
                 {[...scenes, ...scenes].map((s) => <span>{s}</span>)}
             </div>

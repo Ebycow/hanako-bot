@@ -57,14 +57,14 @@ const links: Link[] = {
             <Img class="brand-avatar" src="hanako-icon.webp" alt="" width={36} loading="eager" />
             Hanako <span class="ai-badge">TTS</span>
         </a>
-        <!-- タブレット以下で出るメニューの開閉ボタン -->
+        {/* タブレット以下で出るメニューの開閉ボタン */}
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
             <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
             メニュー
         </button>
         <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
             {links.map((l) => <a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
-            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            {/* サイト全体のアニメーションを止める・再開する（押されている＝止まっている） */}
             <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める">
                 <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"
                     ><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"></rect></svg

@@ -3,6 +3,20 @@ import { defineConfig } from 'astro/config';
 import { unified } from '@astrojs/markdown-remark';
 import rehypeExternalLinks from 'rehype-external-links';
 
+/**
+ * Markdown の中の <!-- --> コメントを取り除く（そのままだと公開されるHTMLに残るため）
+ * @returns {(tree: any) => void}
+ */
+function remarkRemoveComments() {
+    const isComment = (/** @type {any} */ node) => node.type === 'html' && /^<!--[\s\S]*-->$/.test(node.value.trim());
+    const walk = (/** @type {any} */ node) => {
+        if (!node.children) return;
+        node.children = node.children.filter((/** @type {any} */ child) => !isComment(child));
+        node.children.forEach(walk);
+    };
+    return walk;
+}
+
 // GitHub Pages（https://ebycow.github.io/hanako-bot/）で公開する
 export default defineConfig({
     site: 'https://ebycow.github.io',
@@ -15,6 +29,7 @@ export default defineConfig({
         processor: unified({
             // 規約の文面を勝手に書き換えない（"" や -- を飾り文字に変換しない）
             smartypants: false,
+            remarkPlugins: [remarkRemoveComments],
             // 外部リンクは新しいタブで開く
             rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }]],
         }),
