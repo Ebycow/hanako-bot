@@ -3,8 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css）。
-             「動きを止める」設定（src/scripts/motion.ts）も、描画の前に反映しておく -->
+        
         <script>
             (function () {
                 var root = document.documentElement;
@@ -31,12 +30,12 @@
         <meta property="og:image:height" content="630">
         <meta property="og:image:alt" content="ヘッドセットのマイクを付けて、口元に手を添えて楽しそうに呼びかける猫耳のはなこ。「Hanako Discordのチャットを読み上げるBot」の文字">
         <meta name="twitter:card" content="summary_large_image">
-        <!-- Discord では、共有したときの埋め込みの帯の色にもなる -->
+        
         <meta name="theme-color" content="#f47aa9">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
-        <!-- ロゴ専用の丸ゴシック。使う文字だけを読み込む -->
+        
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&text=HanakoTTS&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -63,14 +62,14 @@
 <img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt loading="eager" data-astro-cid-fzpbxy5g="true" decoding="async" width="36" height="36" class="brand-avatar">
             Hanako <span class="ai-badge" data-astro-cid-fzpbxy5g>TTS</span>
         </a>
-        <!-- タブレット以下で出るメニューの開閉ボタン -->
+        
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-astro-cid-fzpbxy5g>
             <span class="menu-icon" aria-hidden="true" data-astro-cid-fzpbxy5g><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i></span>
             メニュー
         </button>
         <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション" data-astro-cid-fzpbxy5g>
             <a href="#features" data-astro-cid-fzpbxy5g>機能</a><a href="docs.html" data-astro-cid-fzpbxy5g>ドキュメント</a><a href="docs.html#commands" data-astro-cid-fzpbxy5g>コマンド</a><a href="#pricing" data-astro-cid-fzpbxy5g>料金</a><a href="docs.html#trouble" data-astro-cid-fzpbxy5g>FAQ</a><a href="developers.html" data-astro-cid-fzpbxy5g>開発者</a>
-            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            
             <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める" data-astro-cid-fzpbxy5g>
                 <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect></svg>
                 <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" data-astro-cid-fzpbxy5g></path></svg>
@@ -99,7 +98,7 @@
             </h1>
             <p class="lead" data-astro-cid-i3irphx7>
                 Hanakoは、テキストチャットの発言を<strong data-astro-cid-i3irphx7>その場で</strong>ボイスチャンネルに読み上げるBotです。<br data-astro-cid-i3irphx7>
-                <!-- 打っては消す文字は読み上げソフトに1文字ずつ読まれるので隠し、同じ内容をまとめて渡す -->
+                
                 <span class="typing" id="typing" aria-hidden="true" data-phrases="[&quot;マイクがなくても会話に入れます。&quot;,&quot;聞き専でもチャットがわかります。&quot;,&quot;内輪の呼び名も辞書で読めます。&quot;,&quot;キーワードで効果音が鳴ります。&quot;,&quot;長い読み上げは成敗で止められます。&quot;]" data-astro-cid-i3irphx7>マイクがなくても会話に入れます。</span>
                 <span class="sr-only" data-astro-cid-i3irphx7>マイクがなくても会話に入れます。聞き専でもチャットがわかります。内輪の呼び名も辞書で読めます。キーワードで効果音が鳴ります。長い読み上げは成敗で止められます。</span>
             </p>
@@ -254,7 +253,7 @@
                         </div>
                     </div>
 
-                    <!-- 画面を見ている「えび」の通話パネルとユーザーパネル -->
+                    
                     <div class="dc-panel" aria-hidden="true" data-astro-cid-tv2nfile>
                         <div class="dc-rtc" data-astro-cid-tv2nfile>
                             <svg class="dc-rtc-icon" viewBox="0 0 24 24" data-astro-cid-tv2nfile><path d="M5 19h.01M5 15a4 4 0 0 1 4 4M5 11a8 8 0 0 1 8 8M5 7a12 12 0 0 1 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" data-astro-cid-tv2nfile></path></svg>
@@ -335,14 +334,14 @@
                             </div>
                         </li>
                     </template>
-                    <!-- ボイスチャンネルへのメンションに付けるスピーカーのアイコン -->
+                    
                     <template id="dc-voice-icon" data-astro-cid-tv2nfile>
                         <svg viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-tv2nfile>
                             <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor" data-astro-cid-tv2nfile></path>
                             <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-tv2nfile></path>
                         </svg>
                     </template>
-                    <!-- 「〇〇 が入力中…」は入力欄の上に出る -->
+                    
                     <div class="dc-typing" id="dc-typing" aria-hidden="true" data-astro-cid-tv2nfile>
                         <span class="dc-dots" data-astro-cid-tv2nfile><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i></span>
                         <span data-astro-cid-tv2nfile><b id="dc-typing-name" data-astro-cid-tv2nfile></b> が入力中…</span>
@@ -361,7 +360,7 @@
             </div>
         </div>
 
-        <!-- ウインドウの外で、読み上げているはなこを PNGtuber 風に見せる -->
+        
         <div class="dc-voice" id="dc-voice" aria-hidden="true" data-astro-cid-tv2nfile>
             <div class="dc-voice-bubble" data-astro-cid-tv2nfile>
                 <span class="dc-voice-eq" data-astro-cid-tv2nfile><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i></span>
@@ -379,7 +378,7 @@
         </div>
         </div>
 
-        <!-- デモの一時停止・再生。JavaScript が動くときだけ出す -->
+        
         <div class="dc-controls" data-astro-cid-tv2nfile>
             <button class="dc-play" id="dc-play" type="button" data-astro-cid-tv2nfile>
                 <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-tv2nfile><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-tv2nfile></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-tv2nfile></rect></svg>
@@ -395,7 +394,7 @@
     <div class="container" data-astro-cid-s7nwr5sk>
         <p data-astro-cid-s7nwr5sk>いろいろな集まりで使えます</p>
         <div class="marquee" aria-hidden="true" data-astro-cid-s7nwr5sk>
-            <!-- 途切れずに流れるよう、同じ並びを2回くり返す -->
+            
             <div class="marquee-track" data-astro-cid-s7nwr5sk>
                 <span data-astro-cid-s7nwr5sk>🎮 ゲーム実況</span><span data-astro-cid-s7nwr5sk>🌙 深夜の雑談</span><span data-astro-cid-s7nwr5sk>📖 勉強会</span><span data-astro-cid-s7nwr5sk>🎵 作業通話</span><span data-astro-cid-s7nwr5sk>🎲 TRPG</span><span data-astro-cid-s7nwr5sk>🍜 飯テロ部</span><span data-astro-cid-s7nwr5sk>💼 リモート会議</span><span data-astro-cid-s7nwr5sk>🐈 猫を愛でる会</span><span data-astro-cid-s7nwr5sk>🎮 ゲーム実況</span><span data-astro-cid-s7nwr5sk>🌙 深夜の雑談</span><span data-astro-cid-s7nwr5sk>📖 勉強会</span><span data-astro-cid-s7nwr5sk>🎵 作業通話</span><span data-astro-cid-s7nwr5sk>🎲 TRPG</span><span data-astro-cid-s7nwr5sk>🍜 飯テロ部</span><span data-astro-cid-s7nwr5sk>💼 リモート会議</span><span data-astro-cid-s7nwr5sk>🐈 猫を愛でる会</span>
             </div>
@@ -764,7 +763,7 @@
         <p class="fineprint" data-astro-cid-ndabfdc4>※ ここに載せた感想は、すべてはなこ本人が表情を変えて書いたものです。個人の感想です。</p>
     </div>
 </section>
-    <!-- 料金は無料なので、プランの比較ではなく、はなことの「なかよし度」で使い方の段階を並べる -->
+    
 <section class="section" id="pricing" data-astro-cid-tl27rjbg>
     <div class="container" data-astro-cid-tl27rjbg>
         <div class="section-head reveal" data-astro-cid-tl27rjbg>
@@ -914,9 +913,7 @@
         </div>
     </section>
 </div>
-    <!-- 公式のはなこを誰が動かしているかを示す（トレーサビリティのため）
-     「Botが欲しければこの人に頼めばいい」と受け取られないよう、招待の導線から離したページの一番下に置き、
-     DMにつながるDiscordのユーザー名は載せない -->
+    
 <div class="container" data-astro-cid-wszsle6z>
     <section class="maintainer reveal" id="maintainer" aria-labelledby="maintainer-title" data-astro-cid-wszsle6z>
         

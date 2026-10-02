@@ -3,8 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css）。
-             「動きを止める」設定（src/scripts/motion.ts）も、描画の前に反映しておく -->
+        
         <script>
             (function () {
                 var root = document.documentElement;
@@ -31,12 +30,12 @@
         <meta property="og:image:height" content="630">
         <meta property="og:image:alt" content="ヘッドセットのマイクを付けて、口元に手を添えて楽しそうに呼びかける猫耳のはなこ。「Hanako Discordのチャットを読み上げるBot」の文字">
         <meta name="twitter:card" content="summary_large_image">
-        <!-- Discord では、共有したときの埋め込みの帯の色にもなる -->
+        
         <meta name="theme-color" content="#f47aa9">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
-        <!-- ロゴ専用の丸ゴシック。使う文字だけを読み込む -->
+        
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&text=HanakoTTS&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
@@ -56,14 +55,14 @@
 <img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt loading="eager" data-astro-cid-fzpbxy5g="true" decoding="async" width="36" height="36" class="brand-avatar">
             Hanako <span class="ai-badge" data-astro-cid-fzpbxy5g>TTS</span>
         </a>
-        <!-- タブレット以下で出るメニューの開閉ボタン -->
+        
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-astro-cid-fzpbxy5g>
             <span class="menu-icon" aria-hidden="true" data-astro-cid-fzpbxy5g><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i></span>
             メニュー
         </button>
         <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション" data-astro-cid-fzpbxy5g>
             <a href="./" data-astro-cid-fzpbxy5g>ホーム</a><a href="docs.html" data-astro-cid-fzpbxy5g>ドキュメント</a><a href="developers.html" aria-current="page" data-astro-cid-fzpbxy5g>開発者</a><a href="#self-host" data-astro-cid-fzpbxy5g>ホスト手順</a><a href="#ask-ai" data-astro-cid-fzpbxy5g>AIに相談</a>
-            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            
             <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める" data-astro-cid-fzpbxy5g>
                 <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect></svg>
                 <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" data-astro-cid-fzpbxy5g></path></svg>
