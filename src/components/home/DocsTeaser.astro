@@ -1,0 +1,166 @@
+---
+// 使い方ガイド（docs.html）への入口。本文はトップページに載せず、章の一覧だけを見せる
+import { chapters } from '../../data/chapters';
+const nn = (i: number) => String(i + 1).padStart(2, '0');
+---
+
+<section class="section" id="docs">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Documentation</span>
+            <h2>Hanakoの<span class="hl">使い方ガイド。</span></h2>
+            <p>始め方からコマンド一覧、困ったときの対処まで、使い方を10章にまとめました。</p>
+        </div>
+
+        <ol class="chapter-links">
+            {
+                chapters.map((c, i) => (
+                    <li class="reveal">
+                        <a href={`docs.html#${c.id}`}>
+                            <span class="icon" aria-hidden="true">{c.icon}</span>
+                            <span class="text">
+                                <small>CHAPTER {nn(i)}</small>
+                                <b>{c.label}</b>
+                                <span>{c.summary}</span>
+                            </span>
+                        </a>
+                    </li>
+                ))
+            }
+        </ol>
+
+        <div class="hero-actions">
+            <a class="btn btn-primary" href="docs.html">使い方ガイドを読む →</a>
+        </div>
+    </div>
+</section>
+
+<script>
+    // 以前はガイドがトップページにあったので、古いリンク（/#commands など）で来た人をガイドへ送る
+    import { chapters } from '../../data/chapters';
+
+    const id = location.hash.slice(1);
+    if (chapters.some((c) => c.id === id)) location.replace(`docs.html#${id}`);
+</script>
+
+<style>
+    .chapter-links {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        /* 10章を 5列×2行（タブレットは 2列×5行、スマホは1列）で割り切れるように並べる */
+        grid-template-columns: repeat(5, 1fr);
+        gap: 14px;
+    }
+
+    .chapter-links a {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        height: 100%;
+        padding: 18px 20px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 2px solid var(--border);
+        box-shadow: var(--pop);
+        color: var(--text);
+        transition:
+            transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1),
+            border-color 0.25s,
+            box-shadow 0.25s;
+    }
+
+    .chapter-links a:hover {
+        color: var(--text);
+        transform: translateY(-3px);
+        border-color: var(--border-strong);
+        box-shadow: var(--pop-hover);
+    }
+
+    .icon {
+        flex-shrink: 0;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        background: var(--pink-pale);
+        border: 2px solid var(--pink-soft);
+    }
+
+    /* Features と同じく、桃色・ミント・ラベンダーで塗り分ける */
+    .chapter-links li:nth-child(3n + 2) .icon {
+        background: var(--mint-soft);
+        border-color: #b6e9e2;
+    }
+
+    .chapter-links li:nth-child(3n) .icon {
+        background: var(--lavender-soft);
+        border-color: #cdd3ff;
+    }
+
+    .text {
+        display: grid;
+        line-height: 1.6;
+    }
+
+    .text small {
+        font-size: 11.5px;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        color: var(--pink-ink);
+    }
+
+    .text b {
+        font-size: 16px;
+        font-weight: 900;
+        word-break: auto-phrase;
+    }
+
+    .text span {
+        margin-top: 2px;
+        color: var(--text-muted);
+        font-size: 13.5px;
+    }
+
+    .hero-actions {
+        justify-content: center;
+        margin-top: 34px;
+    }
+
+    @media (max-width: 1100px) {
+        .chapter-links {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        .chapter-links a {
+            flex-direction: row;
+            gap: 14px;
+        }
+    }
+
+    /* スマホでは説明を省き、章の名前だけを2列で並べて短くする */
+    @media (max-width: 640px) {
+        .chapter-links {
+            gap: 10px;
+        }
+        .chapter-links a {
+            flex-direction: column;
+            gap: 8px;
+            padding: 12px 14px;
+        }
+        .icon {
+            width: 36px;
+            height: 36px;
+            font-size: 16px;
+        }
+        .text b {
+            font-size: 14px;
+        }
+        .text span {
+            display: none;
+        }
+    }
+</style>

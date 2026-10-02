@@ -1,5 +1,5 @@
 ---
-export type Page = 'home' | 'terms' | 'privacy';
+export type Page = 'home' | 'docs' | 'terms' | 'privacy';
 
 interface Props {
     page: Page;
@@ -10,21 +10,37 @@ const isHome = page === 'home';
 // トップページ内ではページ内リンク、ほかのページからはトップページへのリンクにする
 const home = isHome ? '' : './';
 
-const links = isHome
-    ? [
-          { href: '#features', label: '機能' },
-          { href: '#docs', label: 'ドキュメント' },
-          { href: '#commands', label: 'コマンド' },
-          { href: '#pricing', label: '料金' },
-          { href: '#trouble', label: 'FAQ' },
-          { href: '#developers', label: '開発者' },
-      ]
-    : [
-          { href: './', label: 'ホーム' },
-          { href: './#docs', label: 'ドキュメント' },
-          { href: 'terms.html', label: '利用規約', current: page === 'terms' },
-          { href: 'privacy.html', label: 'プライバシー', current: page === 'privacy' },
-      ];
+type Link = { href: string; label: string; current?: boolean };
+const links: Link[] = {
+    home: [
+        { href: '#features', label: '機能' },
+        { href: 'docs.html', label: 'ドキュメント' },
+        { href: 'docs.html#commands', label: 'コマンド' },
+        { href: '#pricing', label: '料金' },
+        { href: 'docs.html#trouble', label: 'FAQ' },
+        { href: '#developers', label: '開発者' },
+    ],
+    // ガイドの中は章へのページ内リンクにする
+    docs: [
+        { href: './', label: 'ホーム' },
+        { href: 'docs.html', label: 'ドキュメント', current: true },
+        { href: '#commands', label: 'コマンド' },
+        { href: '#trouble', label: 'FAQ' },
+        { href: './#developers', label: '開発者' },
+    ],
+    terms: [
+        { href: './', label: 'ホーム' },
+        { href: 'docs.html', label: 'ドキュメント' },
+        { href: 'terms.html', label: '利用規約', current: true },
+        { href: 'privacy.html', label: 'プライバシー' },
+    ],
+    privacy: [
+        { href: './', label: 'ホーム' },
+        { href: 'docs.html', label: 'ドキュメント' },
+        { href: 'terms.html', label: '利用規約' },
+        { href: 'privacy.html', label: 'プライバシー', current: true },
+    ],
+}[page];
 ---
 
 <header class="site-header">
@@ -34,7 +50,7 @@ const links = isHome
             Hanako <span class="ai-badge">TTS</span>
         </a>
         <nav class="site-nav" aria-label="メインナビゲーション">
-            {links.map((l) => <a href={l.href} aria-current={'current' in l && l.current ? 'page' : undefined}>{l.label}</a>)}
+            {links.map((l) => <a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
             <a class="btn btn-primary btn-sm" href={`${home}#invite`}>はじめる →</a>
         </nav>
     </div>

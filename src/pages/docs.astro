@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Guide from '../components/docs/Guide.astro';
+---
+
+<BaseLayout
+    page="docs"
+    title="使い方ガイド | Hanako 読み上げBot"
+    description="Discordのチャット読み上げBot「Hanako」の使い方ガイドです。始め方、辞書、SE（効果音）、ブラックリスト、権限の設定、コマンド一覧、よくある質問をまとめています。"
+    ogTitle="使い方ガイド | Hanako 読み上げBot"
+    ogDescription="はじめて使う人にも、使いこなしたい人にも。Hanakoの使い方をひととおりまとめました。"
+>
+    <main>
+        <div class="guide-hero container">
+            <img src="assets/hanako-notebook.webp" alt="ノートとペンを持って考えごとをする花子" />
+            <br /><span class="eyebrow">Documentation</span>
+            <h1>Hanakoの<span class="hl">使い方ガイド。</span></h1>
+            <p>はじめて使う人にも、使いこなしたい人にも向けて、Hanakoの使い方をひととおりまとめました。</p>
+        </div>
+
+        <div class="container">
+            <Guide />
+        </div>
+    </main>
+</BaseLayout>
+
+<style>
+    .guide-hero {
+        padding: 80px 20px 60px;
+        text-align: center;
+    }
+
+    .guide-hero img {
+        width: 150px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        background: var(--surface);
+        border: 3px solid var(--pink-soft);
+        box-shadow: var(--pop);
+    }
+
+    .guide-hero h1 {
+        font-size: clamp(32px, 4.8vw, 54px);
+        line-height: 1.35;
+        margin: 10px 0 14px;
+    }
+
+    .guide-hero p {
+        color: var(--text-muted);
+        font-size: 17px;
+        margin: 0 auto;
+        max-width: 620px;
+    }
+</style>

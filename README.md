@@ -24,7 +24,8 @@ npm run build    # dist/ に出力
 | コマンドの追加・変更（09章の表、08章の権限の図、コマンド数） | `src/data/commands.ts` |
 | 辞書やSEの上限などの数字 | `src/data/limits.ts` |
 | 開発者向けの「AIに相談」でコピーされるプロンプト | `src/data/ai-setup-prompt.txt` |
-| ドキュメントの各章 | `src/components/docs/*.astro`（章の順番と目次は `src/components/home/Docs.astro`） |
+| 使い方ガイド（`docs.html`）の各章 | `src/components/docs/*.astro`（章の順番・目次・トップページの章一覧は `src/data/chapters.ts`、章の本文との対応は `src/components/docs/Guide.astro`） |
+| 使い方ガイドのページの見出し | `src/pages/docs.astro` |
 | トップページの各セクション | `src/components/home/*.astro`（並び順は `src/pages/index.astro`） |
 | ヘッダー・フッター | `src/components/SiteHeader.astro`、`src/components/SiteFooter.astro` |
 | 利用規約・プライバシーポリシーの本文 | `src/content/terms.md`、`src/content/privacy.md` |

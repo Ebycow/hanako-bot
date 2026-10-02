@@ -1,53 +1,50 @@
 ---
-import Start from '../docs/Start.astro';
-import Input from '../docs/Input.astro';
-import Reading from '../docs/Reading.astro';
-import Dictionary from '../docs/Dictionary.astro';
-import SoundEffects from '../docs/SoundEffects.astro';
-import Voice from '../docs/Voice.astro';
-import Blacklist from '../docs/Blacklist.astro';
-import Admin from '../docs/Admin.astro';
-import Commands from '../docs/Commands.astro';
-import Faq from '../docs/Faq.astro';
+// 使い方ガイド（docs.html）の目次と本文
+import { chapters, type ChapterId } from '../../data/chapters';
+import Start from './Start.astro';
+import Input from './Input.astro';
+import Reading from './Reading.astro';
+import Dictionary from './Dictionary.astro';
+import SoundEffects from './SoundEffects.astro';
+import Voice from './Voice.astro';
+import Blacklist from './Blacklist.astro';
+import Admin from './Admin.astro';
+import Commands from './Commands.astro';
+import Faq from './Faq.astro';
 
-// 章の並び順。目次と章番号（CHAPTER 01 など）はここから作る
-const chapters = [
-    { id: 'start', label: 'はじめる', Chapter: Start },
-    { id: 'input', label: 'コマンドの打ち方', Chapter: Input },
-    { id: 'reading', label: '読み上げのしくみ', Chapter: Reading },
-    { id: 'dictionary', label: '辞書', Chapter: Dictionary },
-    { id: 'se', label: 'SE（効果音）', Chapter: SoundEffects },
-    { id: 'voice', label: '声と読み方', Chapter: Voice },
-    { id: 'blacklist', label: 'ブラックリスト', Chapter: Blacklist },
-    { id: 'admin', label: '権限と管理', Chapter: Admin },
-    { id: 'commands', label: 'コマンド一覧', Chapter: Commands },
-    { id: 'trouble', label: 'FAQ', Chapter: Faq },
-];
+// 章の id と本文の対応。並び順は src/data/chapters.ts
+const bodies: Record<ChapterId, typeof Start> = {
+    start: Start,
+    input: Input,
+    reading: Reading,
+    dictionary: Dictionary,
+    se: SoundEffects,
+    voice: Voice,
+    blacklist: Blacklist,
+    admin: Admin,
+    commands: Commands,
+    trouble: Faq,
+};
 const nn = (i: number) => String(i + 1).padStart(2, '0');
 ---
 
-<section class="section" id="docs">
-    <div class="container">
-        <div class="section-head reveal">
-            <span class="eyebrow">Documentation</span>
-            <h2>Hanakoの<span class="hl">使い方ガイド。</span></h2>
-            <p>はじめて使う人にも、使いこなしたい人にも向けて、Hanakoの使い方をひととおりまとめました。</p>
-        </div>
+<div class="docs">
+    <nav class="toc" aria-label="目次">
+        <p>目次</p>
+        <ol>
+            {chapters.map((c, i) => <li><a href={`#${c.id}`}>{nn(i)}. {c.label}</a></li>)}
+        </ol>
+    </nav>
 
-        <div class="docs">
-            <nav class="toc" aria-label="目次">
-                <p>目次</p>
-                <ol>
-                    {chapters.map((c, i) => <li><a href={`#${c.id}`}>{nn(i)}. {c.label}</a></li>)}
-                </ol>
-            </nav>
-
-            <main>
-                {chapters.map(({ id, Chapter }, i) => <Chapter id={id} n={i + 1} />)}
-            </main>
-        </div>
+    <div>
+        {
+            chapters.map(({ id }, i) => {
+                const Chapter = bodies[id];
+                return <Chapter id={id} n={i + 1} />;
+            })
+        }
     </div>
-</section>
+</div>
 
 <script>
     // 目次の現在位置ハイライト
