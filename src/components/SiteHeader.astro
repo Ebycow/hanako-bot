@@ -50,7 +50,7 @@ const links: Link[] = {
             <Img class="brand-avatar" src="hanako-icon.webp" alt="" width={36} loading="eager" />
             Hanako <span class="ai-badge">TTS</span>
         </a>
-        <!-- スマホだけで出るメニューの開閉ボタン -->
+        <!-- タブレット以下で出るメニューの開閉ボタン -->
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
             <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
             メニュー
@@ -219,7 +219,7 @@ const links: Link[] = {
         white-space: nowrap;
     }
 
-    /* メニューの開閉ボタン（スマホで JavaScript が動くときだけ出す） */
+    /* メニューの開閉ボタン（タブレット以下で JavaScript が動くときだけ出す） */
     .menu-toggle {
         display: none;
         align-items: center;
@@ -270,7 +270,8 @@ const links: Link[] = {
         transform: translateY(-5px) rotate(-45deg);
     }
 
-    @media (max-width: 640px) {
+    /* ナビが1行に収まらない幅（タブレット以下）では、メニューボタンで開く形にする */
+    @media (max-width: 860px) {
         .site-header {
             border-radius: var(--radius);
         }
