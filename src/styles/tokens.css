@@ -42,7 +42,9 @@
     --radius: 22px;
     --radius-lg: 30px;
     --max-width: 1180px;
-    --font: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP',
+    --font: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
         'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+    /* ロゴのアクセント用 */
+    --font-round: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', var(--font);
     --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 }

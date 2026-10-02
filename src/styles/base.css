@@ -19,7 +19,7 @@ body {
     font-weight: 500;
     line-height: 1.9;
     letter-spacing: 0.04em;
-    /* 和文の字間を詰めて、丸ゴシックがだらっと広がらないようにする */
+    /* 和文の字間を詰める（palt 対応の Noto Sans JP で効く） */
     font-feature-settings: 'palt';
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
