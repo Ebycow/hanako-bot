@@ -69,10 +69,10 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
 </section>
 
 <script>
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    import { isMotionOff, onMotionChange } from '../../scripts/motion';
 
-    // 数字のカウントアップ
-    if ('IntersectionObserver' in window && !reduceMotion) {
+    // 数字のカウントアップ（動きを止めているときは、最初から最終の数字を見せる）
+    if ('IntersectionObserver' in window && !isMotionOff()) {
         const io = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (!entry.isIntersecting) return;
@@ -92,13 +92,14 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
         document.querySelectorAll('[data-count]').forEach((el) => io.observe(el));
     }
 
-    // ヒーローのタイピング演出
-    if (!reduceMotion) {
+    // ヒーローのタイピング演出。動きを止めたら、打ちかけの文を最後まで出して止まる
+    {
         const el = document.getElementById('typing')!;
         const words: string[] = JSON.parse(el.dataset.phrases!);
         let i = 0;
         let pos = words[0].length;
         let deleting = true;
+        let timer: number | undefined;
         const step = () => {
             const word = words[i];
             pos += deleting ? -1 : 1;
@@ -112,9 +113,18 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
                 i = (i + 1) % words.length;
                 delay = 300;
             }
-            setTimeout(step, delay);
+            timer = window.setTimeout(step, delay);
         };
-        setTimeout(step, 1800);
+        const start = () => (timer = window.setTimeout(step, 1800));
+        const stop = () => {
+            clearTimeout(timer);
+            if (pos === 0) i = (i + 1) % words.length;
+            el.textContent = words[i];
+            pos = words[i].length;
+            deleting = true;
+        };
+        if (!isMotionOff()) start();
+        onMotionChange((off) => (off ? stop() : start()));
     }
 </script>
 

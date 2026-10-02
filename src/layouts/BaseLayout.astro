@@ -19,8 +19,21 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css） -->
-        <script is:inline>document.documentElement.classList.add('js');</script>
+        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css）。
+             「動きを止める」設定（src/scripts/motion.ts）も、描画の前に反映しておく -->
+        <script is:inline>
+            (function () {
+                var root = document.documentElement;
+                root.classList.add('js');
+                var saved = null;
+                try {
+                    saved = localStorage.getItem('hanako-motion');
+                } catch (e) {}
+                if (saved === 'off' || (saved !== 'on' && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                    root.classList.add('motion-off');
+                }
+            })();
+        </script>
         <title>{title}</title>
         <meta name="description" content={description} />
         {ogTitle && <meta property="og:title" content={ogTitle} />}

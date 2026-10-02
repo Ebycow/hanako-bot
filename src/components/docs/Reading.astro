@@ -445,17 +445,8 @@ const { id, n } = Astro.props;
         70%, 100% { box-shadow: 0 0 0 10px rgb(var(--pink-rgb) / 0); }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        .seibai-fx,
-        .seibai-stage::after {
-            animation: none;
-        }
-        .seibai-fx {
-            display: none;
-        }
-        .seibai-stage img {
-            transition: none;
-        }
+    :global(.motion-off) .seibai-fx {
+        display: none;
     }
 
     @media (max-width: 860px) {

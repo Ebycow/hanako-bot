@@ -2,10 +2,11 @@
 
 <script>
     // ヒーロー背景の花びら。はなこの髪に合わせた桜色の花びらを降らせる
-    const canvas = document.querySelector<HTMLCanvasElement>('.hero-petals')!;
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    import { isMotionOff, onMotionChange } from '../../scripts/motion';
 
-    if (!reduceMotion) {
+    const canvas = document.querySelector<HTMLCanvasElement>('.hero-petals')!;
+
+    {
         const ctx = canvas.getContext('2d')!;
         // 色は tokens.css の変数から読む
         const css = getComputedStyle(document.documentElement);
@@ -136,19 +137,22 @@
         const stop = () => {
             running = false;
             cancelAnimationFrame(raf);
+            // 動きを止めたときに、花びらが空中で止まったままにならないよう消す
+            if (isMotionOff()) ctx.clearRect(0, 0, w, h);
         };
 
         resize();
         new ResizeObserver(resize).observe(canvas);
 
-        // ヒーローが見えていて、タブが表示中のときだけ動かす
+        // ヒーローが見えていて、タブが表示中で、動きを止めていないときだけ動かす
         let visible = true;
-        const sync = () => (visible && !document.hidden ? start() : stop());
+        const sync = () => (visible && !document.hidden && !isMotionOff() ? start() : stop());
         new IntersectionObserver(([entry]) => {
             visible = entry.isIntersecting;
             sync();
         }).observe(canvas);
         document.addEventListener('visibilitychange', sync);
+        onMotionChange(sync);
     }
 </script>
 

@@ -276,12 +276,11 @@ import { limits, fmt } from '../../data/limits';
         }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        :global(.js) .combo-chart .cline {
-            stroke-dashoffset: 0;
-        }
-        :global(.js) .combo-chart .cbar {
-            transform: none;
-        }
+    /* 動きを止めているときは、最初から描いておく */
+    :global(.motion-off) .combo-chart .cline {
+        stroke-dashoffset: 0;
+    }
+    :global(.motion-off) .combo-chart .cbar {
+        transform: none;
     }
 </style>

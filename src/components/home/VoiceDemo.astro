@@ -235,8 +235,9 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
 
 <script>
     import { voiceScenes } from '../../data/voiceScenes';
+    import { isMotionOff } from '../../scripts/motion';
 
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduceMotion = isMotionOff();
     const list = document.getElementById('dc-messages')!;
     const template = document.getElementById('dc-msg-template') as HTMLTemplateElement;
     const typing = document.getElementById('dc-typing')!;

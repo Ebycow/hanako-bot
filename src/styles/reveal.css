@@ -18,14 +18,25 @@
     }
 }
 
+/* 動きを止める設定（<html class="motion-off">、src/scripts/motion.ts）。
+   ヘッダーのボタンで切り替えられ、初期値は OS の「視差効果を減らす」設定に従う */
+.motion-off *,
+.motion-off *::before,
+.motion-off *::after {
+    animation: none !important;
+    transition: none !important;
+}
+
+.motion-off .reveal:not(.in) {
+    opacity: 1;
+}
+
+/* JavaScript が動かないときは、OS の設定に直接従う */
 @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
+    html:not(.js) *,
+    html:not(.js) *::before,
+    html:not(.js) *::after {
         animation: none !important;
         transition: none !important;
-    }
-    .js .reveal:not(.in) {
-        opacity: 1;
     }
 }

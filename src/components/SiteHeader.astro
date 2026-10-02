@@ -57,12 +57,32 @@ const links: Link[] = {
         </button>
         <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
             {links.map((l) => <a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
+            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める">
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"
+                    ><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"></rect></svg
+                >
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"></path></svg>
+                <span class="motion-label">アニメーションを止める</span>
+            </button>
             <a class="btn btn-primary btn-sm" href={`${home}#invite`}>はなこに会う？</a>
         </nav>
     </div>
 </header>
 
 <script>
+    import { isMotionOff, setMotionOff, onMotionChange } from '../scripts/motion';
+
+    // アニメーションを止めるボタン
+    const motionToggle = document.getElementById('motion-toggle')!;
+    const syncMotion = (off: boolean) => {
+        motionToggle.setAttribute('aria-pressed', String(off));
+        motionToggle.title = off ? 'アニメーションを止めています（押すと再開）' : 'アニメーションを止める';
+    };
+    syncMotion(isMotionOff());
+    motionToggle.addEventListener('click', () => setMotionOff(!isMotionOff()));
+    onMotionChange(syncMotion);
+
     // スマホのメニューの開閉。リンクを選ぶ・Escキー・メニューの外を押すと閉じる
     const header = document.getElementById('site-header')!;
     const toggle = document.getElementById('menu-toggle')!;
@@ -139,6 +159,64 @@ const links: Link[] = {
 
     .site-nav .btn {
         margin: 0 0 3px 6px;
+    }
+
+    /* アニメーションを止めるボタン。JavaScript で切り替えるので、動かないときは出さない */
+    .motion-toggle {
+        display: none;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        flex-shrink: 0;
+        width: 36px;
+        height: 36px;
+        margin-left: 4px;
+        padding: 0;
+        border-radius: 50%;
+        border: 2px solid var(--pink-soft);
+        background: var(--surface);
+        color: var(--pink-ink);
+        font: inherit;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    :global(.js) .motion-toggle {
+        display: inline-flex;
+    }
+
+    .motion-toggle:hover {
+        background: var(--pink-pale);
+    }
+
+    .motion-toggle[aria-pressed='true'] {
+        background: var(--pink-pale);
+        border-color: var(--pink-ink);
+    }
+
+    .motion-toggle svg {
+        width: 16px;
+        height: 16px;
+        flex-shrink: 0;
+    }
+
+    .icon-play,
+    .motion-toggle[aria-pressed='true'] .icon-pause {
+        display: none;
+    }
+
+    .motion-toggle[aria-pressed='true'] .icon-play {
+        display: block;
+    }
+
+    /* PC ではアイコンだけにし、名前は読み上げソフトと title で伝える */
+    .motion-label {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
     }
 
     /* メニューの開閉ボタン（スマホで JavaScript が動くときだけ出す） */
@@ -230,6 +308,23 @@ const links: Link[] = {
         :global(.js) .site-nav a:not(.btn) {
             padding: 10px 14px;
             font-size: var(--fs-base);
+        }
+        /* スマホのメニューの中では、文字も出して1行のボタンにする */
+        :global(.js) .motion-toggle {
+            justify-content: flex-start;
+            width: auto;
+            height: auto;
+            margin: 4px 0 0;
+            padding: 10px 14px;
+            border-radius: var(--radius-pill);
+            font-size: var(--fs-base);
+            font-weight: 700;
+        }
+        .motion-label {
+            position: static;
+            width: auto;
+            height: auto;
+            clip-path: none;
         }
         :global(.js) .site-nav .btn {
             display: inline-flex;
