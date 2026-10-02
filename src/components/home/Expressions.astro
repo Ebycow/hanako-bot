@@ -64,8 +64,8 @@ const expressions = [
         <div class="section-head reveal">
             <span class="eyebrow">Meet Hanako</span>
             <h2 id="expression-title">いろんな顔をする、<br /><span class="hl">はなこです。</span></h2>
+            <p>マウスを乗せると、はなこが何か言います。スマホはタップしてください。</p>
         </div>
-        <p class="fineprint" style="margin: -30px 0 90px">マウスを乗せると、はなこが何か言います。スマホはタップしてください</p>
         <div class="expression-grid">
             {
                 expressions.map((e) => (
@@ -103,6 +103,8 @@ const expressions = [
 
 <style>
     .expression-grid {
+        /* カードの上に吹き出しが出るぶん、見出しとの間をあけておく */
+        padding-top: 40px;
         display: grid;
         grid-template-columns: repeat(6, 1fr);
         gap: 14px;

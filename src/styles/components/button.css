@@ -72,3 +72,8 @@
     flex-wrap: wrap;
     gap: 14px;
 }
+
+/* 中央にそろえる */
+.hero-actions.center {
+    justify-content: center;
+}
