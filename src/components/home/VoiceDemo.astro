@@ -230,14 +230,24 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
             </div>
         </div>
         </div>
+
+        <!-- デモの一時停止・再生。JavaScript が動くときだけ出す -->
+        <div class="dc-controls">
+            <button class="dc-play" id="dc-play" type="button">
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true"
+                    ><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor"></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor"></rect></svg
+                >
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"></path></svg>
+                <span class="dc-play-label">デモを一時停止</span>
+            </button>
+        </div>
     </div>
 </section>
 
 <script>
     import { voiceScenes } from '../../data/voiceScenes';
-    import { isMotionOff } from '../../scripts/motion';
+    import { isMotionOff, onMotionChange } from '../../scripts/motion';
 
-    const reduceMotion = isMotionOff();
     const list = document.getElementById('dc-messages')!;
     const template = document.getElementById('dc-msg-template') as HTMLTemplateElement;
     const typing = document.getElementById('dc-typing')!;
@@ -269,8 +279,21 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         { command: 'bye', reply: 'コマンドを実行しました！😸' },
     ];
 
+    // fast: 動きを止めているときに、待たずに途中の場面まで一気に進める
+    // paused: 一時停止中。待ち時間を進めない
     let fast = false;
-    const wait = (ms: number) => (fast ? Promise.resolve() : new Promise((r) => setTimeout(r, ms)));
+    let paused = isMotionOff();
+    let started = false;
+    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+    const wait = async (ms: number) => {
+        if (fast) return;
+        let left = ms;
+        while (left > 0) {
+            const step = Math.min(left, 100);
+            await sleep(step);
+            if (!paused) left -= step;
+        }
+    };
 
     const addMessage = (step: Step) => {
         const li = template.content.firstElementChild!.cloneNode(true) as HTMLLIElement;
@@ -369,21 +392,47 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         }
     };
 
-    if (reduceMotion) {
-        // 動かさず、はなこが参加して読み上げている途中の場面を見せる
+    // 一時停止・再生
+    const section = document.querySelector<HTMLElement>('.voice-demo')!;
+    const playButton = document.getElementById('dc-play')!;
+    const playLabel = playButton.querySelector('.dc-play-label')!;
+    let visible = false;
+
+    const start = () => {
+        if (started || paused || !visible) return;
+        started = true;
+        run();
+    };
+
+    const setPaused = (value: boolean) => {
+        paused = value;
+        section.classList.toggle('is-paused', value);
+        playLabel.textContent = value ? 'デモを再生' : 'デモを一時停止';
+        start();
+    };
+
+    playButton.addEventListener('click', () => setPaused(!paused));
+    // サイト全体の「動きを止める」に合わせる
+    onMotionChange(setPaused);
+
+    if (paused) {
+        // 動かさず、はなこが参加して読み上げている途中の場面を見せる。再生を押すと続きから動く
         fast = true;
         (async () => {
             for (const step of script.slice(0, -1)) await play(step);
+            fast = false;
         })();
-    } else {
-        // 画面に入ってから動かし始める
-        const io = new IntersectionObserver(([entry]) => {
-            if (!entry.isIntersecting) return;
-            io.disconnect();
-            run();
-        });
-        io.observe(list);
     }
+    setPaused(paused);
+
+    // 画面に入ってから動かし始める
+    const io = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return;
+        io.disconnect();
+        visible = true;
+        start();
+    });
+    io.observe(list);
 </script>
 
 <style>
@@ -1431,5 +1480,59 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         .dc-input-icons {
             display: none;
         }
+    }
+
+    /* 一時停止中は、読み上げの波や入力中の点などのアニメーションも止める */
+    .voice-demo.is-paused .dc-stage *,
+    .voice-demo.is-paused .dc-stage *::before,
+    .voice-demo.is-paused .dc-stage *::after {
+        animation-play-state: paused !important;
+    }
+
+    /* 一時停止・再生ボタン */
+    .dc-controls {
+        display: none;
+        justify-content: flex-end;
+        max-width: 980px;
+        margin: 14px auto 0;
+    }
+
+    :global(.js) .dc-controls {
+        display: flex;
+    }
+
+    .dc-play {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 36px;
+        padding: 6px 16px 6px 12px;
+        border-radius: var(--radius-pill);
+        border: 2px solid var(--pink-soft);
+        background: var(--surface);
+        color: var(--pink-ink);
+        font: inherit;
+        font-size: var(--fs-sm);
+        font-weight: 700;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .dc-play:hover {
+        background: var(--pink-pale);
+    }
+
+    .dc-play svg {
+        width: 14px;
+        height: 14px;
+    }
+
+    .dc-play .icon-play,
+    .is-paused .dc-play .icon-pause {
+        display: none;
+    }
+
+    .is-paused .dc-play .icon-play {
+        display: block;
     }
 </style>
