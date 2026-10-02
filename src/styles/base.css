@@ -72,6 +72,20 @@ a:hover {
     color: var(--pink-deep);
 }
 
+/* 文章の中のリンクには下線を付ける。色だけだと、色の見分けにくい人には周りの文字と区別できない。
+   ボタン・ナビ・目次・カードのリンクは、形でリンクだとわかるので付けない */
+:is(p, td, dd, figcaption, blockquote) a:not(.btn),
+:is(.chapter, .doc) li a:not(.btn) {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+}
+
+:is(p, td, dd, figcaption, blockquote) a:not(.btn):hover,
+:is(.chapter, .doc) li a:not(.btn):hover {
+    text-decoration-thickness: 2px;
+}
+
 strong {
     color: var(--text);
     font-weight: 900;
