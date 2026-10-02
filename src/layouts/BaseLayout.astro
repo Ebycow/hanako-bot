@@ -36,6 +36,7 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
     </head>
     <body>
+        <a class="skip-link" href="#main">本文へスキップ</a>
         <div class="orb orb-1" aria-hidden="true"></div>
         <div class="orb orb-2" aria-hidden="true"></div>
         <div class="orb orb-3" aria-hidden="true"></div>
@@ -43,7 +44,9 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
 
         <SiteHeader page={page} />
 
-        <slot />
+        <main id="main">
+            <slot />
+        </main>
 
         <SiteFooter page={page} />
 
@@ -72,6 +75,25 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
 </script>
 
 <style>
+    /* キーボードで Tab を押したときだけ左上に出る */
+    .skip-link {
+        position: fixed;
+        top: 12px;
+        left: 12px;
+        z-index: 100;
+        padding: 8px 18px;
+        border-radius: 999px;
+        background: var(--pink-ink);
+        color: #fff;
+        font-weight: 900;
+        transform: translateY(-200%);
+    }
+
+    .skip-link:focus {
+        color: #fff;
+        transform: none;
+    }
+
     /* 背景にふわっと浮かぶ色の玉（桃色・ミント・ラベンダー） */
     .orb {
         position: fixed;
