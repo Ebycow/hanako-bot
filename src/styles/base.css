@@ -21,6 +21,11 @@ body {
     letter-spacing: 0.04em;
     /* 和文の字間を詰める（palt 対応の Noto Sans JP で効く） */
     font-feature-settings: 'palt';
+    /* 文節の途中で改行しない（「読み上 / げる」を防ぐ。対応ブラウザのみ）。
+       文節が長くて入りきらないときだけ、途中で折り返す。
+       anywhere にしておくと、長い文節があってもグリッドやフレックスの列が押し広げられない */
+    word-break: auto-phrase;
+    overflow-wrap: anywhere;
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     overflow-x: hidden;
@@ -48,8 +53,13 @@ h4,
 h5 {
     font-weight: 900;
     color: var(--text);
-    /* 文節の途中で改行しない（対応ブラウザのみ） */
-    word-break: auto-phrase;
+}
+
+/* 段落の最後の行に1〜2文字だけ残らないようにする（対応ブラウザのみ） */
+p,
+li,
+figcaption {
+    text-wrap: pretty;
 }
 
 a {
