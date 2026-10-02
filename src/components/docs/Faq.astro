@@ -6,15 +6,15 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="FAQ" mascot="assets/hanako-search.webp" class="faq">
-    <Fragment slot="title">よくある質問と、<span class="hl">その解決策。</span></Fragment>
+    <Fragment slot="title">よくある質問と、<span class="hl">その対処。</span></Fragment>
 
-    <p class="lead">お困りですか？ご安心ください。Hanakoの返事や症状から、原因と対処をすばやく特定できます。</p>
+    <p class="lead">Hanakoの返事や起きていることから、原因と対処を探せるようにまとめました。</p>
 
-    <h3>🙋 Hanakoが来ない</h3>
+    <h3>Hanakoが来ない</h3>
     <details>
         <summary>「通話チャンネルに参加してから呼んでね！」と言われる</summary>
         <div class="answer">
-            <p>あなたがボイスチャンネルに入っていません。先にボイスチャンネルに参加してから <code>/plz</code> を打ってください。</p>
+            <p>あなたがボイスチャンネルに入っていません。先にボイスチャンネルに参加してから<code>/plz</code>を打ってください。</p>
         </div>
     </details>
     <details>
@@ -40,15 +40,15 @@ const { id, n } = Astro.props;
         </div>
     </details>
 
-    <h3>🔇 読んでくれない・読み方がおかしい</h3>
+    <h3>読んでくれない・読み方がおかしい</h3>
     <details>
         <summary>自分の発言だけ読まれない</summary>
         <div class="answer">
             <ul>
-                <li>ブラックリストに入っていないか、モデレーターに <code>/blacklist-show</code> で確認してもらってください。</li>
-                <li>発言が <code>&gt;</code> で始まっていないか確認してください。</li>
+                <li>ブラックリストに入っていないか、モデレーターに<code>/blacklist-show</code>で確認してもらってください。</li>
+                <li>発言が<code>&gt;</code>で始まっていないか確認してください。</li>
                 <li>
-                    <code>/speaker</code> で存在しないキャラクター名を設定していると読めません。<code>/speaker name:default</code> で戻してください。
+                    <code>/speaker</code>で存在しないキャラクター名を設定していると読めません。<code>/speaker name:default</code>で戻してください。
                 </li>
             </ul>
         </div>
@@ -57,23 +57,21 @@ const { id, n } = Astro.props;
         <summary>このチャンネルの発言が読まれない</summary>
         <div class="answer">
             <p>
-                Hanakoは <code>/plz</code> を打ったチャンネルだけを読みます。読んでほしいチャンネルで、もう一度 <code>/plz</code>
-                を打ってください。スレッドの中は読めません。
+                Hanakoは<code>/plz</code>を打ったチャンネルだけを読みます。読んでほしいチャンネルで、もう一度<code>/plz</code>を打ってください。スレッドの中は読めません。
             </p>
         </div>
     </details>
     <details>
         <summary>途中で切れて「イか略。」と言う</summary>
         <div class="answer">
-            <p>文字数制限にかかっています。サーバー管理者が <code>/limit number:0</code>（無制限）か、より大きい数字に設定し直せます。</p>
+            <p>文字数制限にかかっています。サーバー管理者が<code>/limit number:0</code>で制限をなくすか、より大きい数字に設定し直せます。</p>
         </div>
     </details>
     <details>
         <summary>変なところで言葉が置き換わる・SEが鳴る</summary>
         <div class="answer">
             <p>
-                辞書もSEも、単語の一部に反応します。<code>/dictionary</code> や <code>/se-search</code> で原因の登録を探し、<code>/forget</code>・<code>/se-del</code>
-                で消すか、<code>/se-rename</code> で記号つきのキーワードに変えてください。
+                辞書もSEも、単語の一部に反応します。<code>/dictionary</code>や<code>/se-search</code>で原因の登録を探し、<code>/forget</code>や<code>/se-del</code>で消すか、<code>/se-rename</code>で記号つきのキーワードに変えてください。
             </p>
         </div>
     </details>
@@ -81,45 +79,44 @@ const { id, n } = Astro.props;
         <summary>読み上げが止まらない・たまりすぎた</summary>
         <div class="answer">
             <p>
-                <code>/seibai</code> で、再生中と順番待ちの音声をすべて中断できます。何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。
+                <code>/seibai</code>で、再生中と順番待ちの音声をすべて中断できます。何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。
             </p>
         </div>
     </details>
 
-    <h3>⛔ コマンドが使えない</h3>
+    <h3>コマンドが使えない</h3>
     <details>
         <summary>「このコマンドは『〜』の権限を持っている人だけが使えるよ」と言われる</summary>
         <div class="answer">
             <p>
-                そのコマンドには権限が必要です（<a href="#admin">08章</a>の図を参照）。権限を持っている人に頼むか、サーバー管理者に使える人の設定を変えてもらってください。
+                そのコマンドには権限が必要です。必要な権限は<a href="#admin">08章</a>の図で確かめられます。権限を持っている人に頼むか、サーバー管理者に使える人の設定を変えてもらってください。
             </p>
         </div>
     </details>
     <details>
-        <summary><code>@はなこ</code> や <code>&gt;</code> のコマンドに何も反応しない</summary>
+        <summary><code>@はなこ</code>や<code>&gt;</code>のコマンドに何も反応しない</summary>
         <div class="answer">
             <ul>
                 <li>
-                    サーバーでテキストコマンドが無効になっている可能性があります。スラッシュコマンドを使うか、サーバー管理者に
-                    <code>/text-commands enabled:True</code> を実行してもらってください。
+                    サーバーでテキストコマンドが無効になっている可能性があります。スラッシュコマンドを使うか、サーバー管理者に<code>/text-commands enabled:True</code>を実行してもらってください。
                 </li>
-                <li>コマンド名を打ち間違えると、Hanakoは何も返しません（<code>&gt;</code> で始まる独り言と区別できないためです）。</li>
+                <li>コマンド名を打ち間違えると、Hanakoは何も返しません。<code>&gt;</code>で始まる独り言と区別できないためです。</li>
             </ul>
         </div>
     </details>
     <details>
         <summary>スラッシュコマンドの候補に出てこない</summary>
         <div class="answer">
-            <p>権限がないコマンドは、Discordが候補から隠します。また、スラッシュコマンドはサーバー内でのみ使えます（HanakoとのDMでは使えません）。</p>
+            <p>権限がないコマンドは、Discordが候補から隠します。また、スラッシュコマンドはサーバーの中でしか使えず、HanakoとのDMでは使えません。</p>
         </div>
     </details>
 
-    <h3>🎵 SEを登録できない</h3>
+    <h3>SEを登録できない</h3>
     <details>
         <summary>「これサウンドファイルじゃなさそう」「変換できなかったにゃ」と言われる</summary>
         <div class="answer">
             <p>
-                対応しているのは <code>.wav</code> と <code>.mp3</code> です。動画ファイルや別形式の音声は、mp3 か wav に変換してから登録してください。URLで指定する場合は、再生ページではなく音声ファイルそのもののURLが必要です。
+                対応しているのは<code>.wav</code>と<code>.mp3</code>です。動画ファイルや別の形式の音声は、mp3かwavに変換してから登録してください。URLで指定する場合は、再生ページではなく音声ファイルそのもののURLが必要です。
             </p>
         </div>
     </details>
@@ -132,25 +129,25 @@ const { id, n } = Astro.props;
     <details>
         <summary>「すでに登録済みのキーワードです」「一文字登録はできません」と言われる</summary>
         <div class="answer">
-            <p>キーワードは2〜49文字で、サーバー内で重複できません。音を差し替えたいときは、先に <code>/se-del</code> で消してから登録し直します。</p>
+            <p>キーワードは2〜49文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code>/se-del</code>で消してから登録し直します。</p>
         </div>
     </details>
 
-    <h3>🤝 それでも解決しないとき</h3>
+    <h3>それでも解決しないとき</h3>
     <p>
         Hanakoを招待してくれた人に聞いてみてください。Bot本体の不具合と思われる場合は、<a
             href="https://github.com/Ebycow/hanako/issues"
             target="_blank"
             rel="noopener"
-            >GitHub の Issue</a
+            >GitHubのIssue</a
         >に投稿すると、ほかの利用者の助けにもなります。
     </p>
     <p>サーバーデータの削除・開示の請求は、<a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener">データに関する請求フォーム</a>から受け付けています。</p>
 
     <div class="summary">
-        <h4>📝 まとめ</h4>
+        <h4>まとめ</h4>
         <p>
-            いかがでしたか？今回は、Hanakoの使い方を徹底的に解説しました。Hanakoを活用すれば、あなたのDiscordサーバーはもっと楽しく、もっとインクルーシブな場所になるはずです。ぜひ、今日から試してみてください！✨
+            ここまで、Hanakoの使い方をひととおり説明しました。Hanakoを使えば、Discordサーバーはもっと楽しく、誰でも会話に加わりやすい場所になるはずです。ぜひ今日から試してみてください。
         </p>
     </div>
 </Chapter>

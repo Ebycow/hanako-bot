@@ -12,10 +12,10 @@ const tiers = (['everyone', 'moderator', 'admin'] as Permission[]).map((key) => 
 }));
 ---
 
-<Chapter id={id} n={n} kicker="ACCESS CONTROL" mascot="assets/hanako-admin.webp">
-    <Fragment slot="title">柔軟で堅牢な、<span class="hl">権限マネジメント。</span></Fragment>
+<Chapter id={id} n={n} kicker="PERMISSIONS" mascot="assets/hanako-admin.webp">
+    <Fragment slot="title">コマンドを使える人と、<span class="hl">権限の設定。</span></Fragment>
 
-    <p class="lead">ほとんどのコマンドは誰でも使えます。影響の大きいものだけ、Discordの権限でしっかりと守られています。</p>
+    <p class="lead">ほとんどのコマンドは誰でも使えます。影響の大きいコマンドだけは、Discordの権限を持つ人しか使えません。</p>
 
     <div class="tiers">
         {
@@ -40,29 +40,26 @@ const tiers = (['everyone', 'moderator', 'admin'] as Permission[]).map((key) => 
     </div>
     <p class="figcap">コマンドを使える人の初期設定。「管理者」権限を持つ人はすべて使えます</p>
 
-    <h3>⚙️ 使える人を変える</h3>
+    <h3>使える人を変える</h3>
     <p>
-        上の図は初期設定です。サーバー管理者は、Discordの<strong>「サーバー設定 → 連携サービス → はなこ」</strong>から、コマンドごとに使えるロール・メンバー・チャンネルを変更できます（例：ブラックリストを全員が使えるようにする、<code>/se-add</code>
-        を特定のロールだけにする）。
+        上の図は初期設定です。サーバー管理者は、Discordの<strong>「サーバー設定 → 連携サービス → はなこ」</strong>から、コマンドごとに使えるロール・メンバー・チャンネルを変更できます。たとえば、ブラックリストを全員が使えるようにしたり、<code>/se-add</code>を特定のロールだけに許可したりできます。
     </p>
     <div class="callout warn">
-        <span class="callout-title">注意：この変更はスラッシュコマンドにしか効きません</span>
-        <code>@はなこ</code> や <code>&gt;</code>
-        で打つテキストコマンドは、つねに上の図の初期設定で判定されます。連携サービスで細かく制限したいサーバーは、次のコマンドでテキストコマンドを止めてください。
+        <span class="callout-title">この変更が反映されるのはスラッシュコマンドだけです</span>
+        <code>@はなこ</code>や<code>&gt;</code>で打つテキストコマンドは、つねに上の図の初期設定で判定されます。連携サービスで細かく制限したいサーバーは、次のコマンドでテキストコマンドを止めてください。
     </div>
 
-    <h3>🔌 テキストコマンドを止める</h3>
+    <h3>テキストコマンドを止める</h3>
     <p>
-        <code>/text-commands enabled:False</code> を実行すると、そのサーバーでは <code>@はなこ</code> や <code>&gt;</code>
-        で始まるコマンドに反応しなくなります（<code>enabled:True</code> で元に戻ります）。
+        <code>/text-commands enabled:False</code>を実行すると、そのサーバーでは<code>@はなこ</code>や<code>&gt;</code>で始まるコマンドに反応しなくなります。<code>enabled:True</code>で元に戻ります。
     </p>
     <ul>
-        <li>止めている間、テキストコマンドには案内も返さず、黙って無視します。</li>
-        <li><code>&gt;</code> で始まる発言を読み上げない動作は、そのまま変わりません。</li>
-        <li><code>&gt;</code> をほかのBotのコマンドに使いたいサーバーにも向いています。</li>
+        <li>止めている間は、テキストコマンドに案内も含めて何も返しません。</li>
+        <li><code>&gt;</code>で始まる発言を読み上げない動作は、そのまま変わりません。</li>
+        <li><code>&gt;</code>をほかのBotのコマンドに使いたいサーバーにも向いています。</li>
     </ul>
 
-    <h3>🔑 Hanako自身に必要な権限</h3>
+    <h3>Hanako自身に必要な権限</h3>
     <p>Hanakoが動くには、対象のチャンネルで次の権限が必要です。足りないときは、Hanakoがどの権限が足りないかを教えてくれます。</p>
     <div class="table-wrap">
         <table>
@@ -85,7 +82,7 @@ const tiers = (['everyone', 'moderator', 'admin'] as Permission[]).map((key) => 
         </table>
     </div>
 
-    <h3>🔒 データはサーバーごとに完全分離</h3>
+    <h3>データはサーバーごとに完全に分けて保存</h3>
     <p>
         辞書・SE・ブラックリスト・各種設定は、Discordサーバーごとに別々に保存されます。ほかのサーバーの設定が混ざったり、見えたりすることはありません。保存する情報の詳細は<a
             href="privacy.html"

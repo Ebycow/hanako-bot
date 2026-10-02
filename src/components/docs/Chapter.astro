@@ -16,7 +16,7 @@ const nn = String(n).padStart(2, '0');
 <section class:list={['chapter', className]} id={id}>
     <div class="chapter-head">
         <div>
-            <span class="chapter-kicker">STEP {nn} — {kicker}</span>
+            <span class="chapter-kicker">CHAPTER {nn} / {kicker}</span>
             <h2><slot name="title" /></h2>
         </div>
         <img class="chapter-mascot" src={mascot} alt={mascotAlt} loading="lazy" />

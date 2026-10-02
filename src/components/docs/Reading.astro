@@ -4,11 +4,11 @@ import Chapter from './Chapter.astro';
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="UNDER THE HOOD" mascot="assets/hanako-hanakin.webp" mascotAlt="サングラスをかけてこちらを指さす花子（ハナキン）">
-    <Fragment slot="title">声が生まれる、<span class="hl">5つのステージ。</span></Fragment>
+<Chapter id={id} n={n} kicker="HOW IT READS" mascot="assets/hanako-hanakin.webp" mascotAlt="サングラスをかけてこちらを指さす花子（ハナキン）">
+    <Fragment slot="title">発言が声になるまでの、<span class="hl">5つの手順。</span></Fragment>
 
     <p class="lead">
-        発言は、声になるまでに5段階の高度なパイプラインを通過します。「なぜこう読まれたのか」「なぜ読まれなかったのか」——その答えは、すべてこの順番の中にあります。
+        発言は、次の5つの手順を順に通って声になります。思ったとおりに読まれなかったときや、まったく読まれなかったときは、この順番をたどると理由がわかります。
     </p>
 
     <ol class="pipeline">
@@ -53,7 +53,7 @@ const { id, n } = Astro.props;
     </ol>
     <p class="figcap">例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録しているサーバーでの読み上げ</p>
 
-    <h3>🚫 読み上げられない発言</h3>
+    <h3>読み上げられない発言</h3>
     <div class="table-wrap">
         <table>
             <thead>
@@ -65,10 +65,10 @@ const { id, n } = Astro.props;
             <tbody>
                 <tr>
                     <td>読み上げ対象でないチャンネルの発言</td>
-                    <td>そのチャンネルで <code>/plz</code> を打つと対象に加わります</td>
+                    <td>そのチャンネルで<code>/plz</code>を打つと対象に加わります</td>
                 </tr>
                 <tr>
-                    <td><code>&gt;</code> で始まる発言、Hanakoへのメンション</td>
+                    <td><code>&gt;</code>で始まる発言、Hanakoへのメンション</td>
                     <td>コマンドとして扱うため読みません</td>
                 </tr>
                 <tr>
@@ -95,16 +95,16 @@ const { id, n } = Astro.props;
         </table>
     </div>
 
-    <h3>⚔️ 読み上げを止める：成敗</h3>
+    <h3>読み上げを止める「成敗」</h3>
     <div class="seibai">
         <div class="seibai-body">
             <p>
-                長文やSEが流れ続けて困ったときは <code>/seibai</code>。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
+                長文やSEが流れ続けて困ったときは<code>/seibai</code>を使います。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
             </p>
             <ul>
                 <li><b>だれでも使えます。</b>権限は要りません。荒らしや貼り付け事故を見かけたら、気づいた人がすぐ止められます。</li>
                 <li><b>止まるのは「いま溜まっている分」だけ。</b>辞書やSE、読み上げ対象チャンネルの設定はそのまま残ります。</li>
-                <li><b>テキストでも呼べます。</b><code>&gt;成敗</code>、<code>&gt;stop</code> のように打っても同じです。</li>
+                <li><b>テキストでも呼べます。</b><code>&gt;成敗</code>や<code>&gt;stop</code>と打っても同じです。</li>
                 <li>何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。</li>
             </ul>
             <p class="seibai-tip">
@@ -119,8 +119,8 @@ const { id, n } = Astro.props;
             </span>
             <img src="assets/hanako-seibai.webp" alt="刀を振り抜く、和装の花子" loading="lazy" />
             <figcaption class="seibai-bubble" id="seibai-tips" role="tooltip">
-                <span class="seibai-bubble-label">💡 Tips</span>
-                サーバーのスタンプに <code>&gt;seibai</code> と書いて設定しておけば、スタンプを送るだけで<strong>成敗！</strong>できるよ
+                <span class="seibai-bubble-label">Tips</span>
+                サーバーのスタンプに<code>&gt;seibai</code>と書いて設定しておけば、スタンプを送るだけで<strong>成敗！</strong>できるよ
             </figcaption>
         </figure>
     </div>

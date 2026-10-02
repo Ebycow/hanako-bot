@@ -3,19 +3,18 @@
         <div class="section-head reveal">
             <span class="eyebrow">For Developers</span>
             <h2>はなこを、<span class="hl">あなたの手で。</span></h2>
-            <p>Hanako のソースコードは GitHub で公開されています。自分のサーバーで動かしたい方、機能を足したい方はこちらへ。</p>
+            <p>HanakoのソースコードはGitHubで公開しています。自分のサーバーで動かしたい方や、機能を足したい方はこちらをどうぞ。</p>
         </div>
 
         <div class="card partner reveal">
             <div class="partner-art">
-                <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかる Ebyroid を、はなこが揺すって起こそうとしている" loading="lazy" />
+                <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかるEbyroidを、はなこが揺すって起こそうとしている" loading="lazy" />
             </div>
             <div class="partner-copy">
-                <span class="tag hot">💞 Partner</span>
+                <span class="tag hot">相棒</span>
                 <h3>はなこの声の相棒、<span class="hl">Ebyroid。</span></h3>
                 <p>
-                    はなこの声を生み出しているのは、音声サーバーの
-                    <a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>。VOICEROID を Node.js や HTTP から使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。README の最後にいる銀色の猫耳の子が、その Ebyroid。はなこの相棒です。
+                    はなこの声を作っているのは、音声サーバーの<a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>です。VOICEROIDをNode.jsやHTTPから使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。READMEの最後にいる銀色の猫耳の子がEbyroidで、はなこの相棒です。
                 </p>
                 <div class="duo">
                     <p class="duo-line hanako"><b>はなこ</b>えびろいどがいないと、わたし喋れないの。</p>
@@ -24,58 +23,58 @@
             </div>
         </div>
 
-        <h3 class="dev-subhead reveal">🚀 自分でホストするまでの4ステップ</h3>
+        <h3 class="dev-subhead reveal">自分でホストするまでの4ステップ</h3>
         <div class="steps dev-steps">
             <div class="step reveal">
                 <img src="assets/ebyroid-commands.webp" alt="" loading="lazy" />
                 <span class="n">STEP 1</span>
                 <b>Botを作る</b>
-                <small>Discord Developer Portal でアプリを作り、トークンとクライアントIDを取得。Message Content Intent も有効に</small>
+                <small>Discord Developer Portalでアプリを作り、トークンとクライアントIDを取得します。Message Content Intentも有効にします</small>
             </div>
             <div class="step reveal">
                 <img src="assets/ebyroid-listening.webp" alt="" loading="lazy" />
                 <span class="n">STEP 2</span>
                 <b>声を用意する</b>
-                <small>VOICEROID を入れた Windows で Ebyroid を起動（標準ポート 4090）。有効なライセンスが必要です</small>
+                <small>VOICEROIDを入れたWindowsでEbyroidを起動します。標準のポートは4090です。VOICEROIDの有効なライセンスが必要です</small>
             </div>
             <div class="step reveal">
                 <img src="assets/ebyroid-typing.webp" alt="" loading="lazy" />
                 <span class="n">STEP 3</span>
                 <b>はなこを設定する</b>
-                <small>clone して <code>npm i</code>、<code>app-config.yml</code> にトークンなどを書く</small>
+                <small>cloneして<code>npm i</code>を実行し、<code>app-config.yml</code>にトークンなどを書きます</small>
             </div>
             <div class="step main reveal">
                 <img src="assets/ebyroid-happy.webp" alt="" loading="lazy" />
-                <span class="n">STEP 4 ✨</span>
+                <span class="n">STEP 4</span>
                 <b>起動する</b>
-                <small><code>node deploy-commands.js</code> でコマンドを登録し、<code>node index</code> で起動</small>
+                <small><code>node deploy-commands.js</code>でコマンドを登録し、<code>node index</code>で起動します</small>
             </div>
         </div>
-        <p class="figcap">正確な手順とバージョンは、必ず README を確認してください</p>
+        <p class="figcap">正確な手順とバージョンは、必ずREADMEで確認してください</p>
 
         <div class="cards dev-cards">
             <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-admin.webp" alt="" loading="lazy" />
-                <span class="tag">🧰 必要なもの</span>
+                <span class="tag">必要なもの</span>
                 <h4>動かすための環境</h4>
                 <p>
-                    Node.js（バージョンは <code>package.json</code> で指定）、Discord Bot のトークン、音声サーバー。音声サーバーは Ebyroid がおすすめですが、README に書かれた API を返す HTTP サーバーなら差し替えられます。
+                    Node.jsとDiscord Botのトークン、音声サーバーが必要です。Node.jsのバージョンは<code>package.json</code>で指定しています。音声サーバーはEbyroidがおすすめですが、READMEに書かれたAPIを返すHTTPサーバーなら差し替えられます。
                 </p>
             </article>
             <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-terms.webp" alt="" loading="lazy" />
-                <span class="tag">⚖️ 運営について</span>
+                <span class="tag">運営について</span>
                 <h4>あなたが運営者になります</h4>
                 <p>
-                    自分でホストした Bot は、あなたが運営する別の Bot です。このサイトの<a href="terms.html">利用規約</a>・<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROID など音声合成エンジンの利用条件も確認しましょう。
+                    自分でホストしたBotは、あなたが運営する別のBotです。このサイトの<a href="terms.html">利用規約</a>と<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROIDなど、音声合成エンジンの利用条件も確認しましょう。
                 </p>
             </article>
             <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-pointing.webp" alt="" loading="lazy" />
-                <span class="tag">🤝 コントリビュート</span>
+                <span class="tag">コントリビュート</span>
                 <h4>一緒に育てる</h4>
                 <p>
-                    不具合報告や要望は <a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">Issue</a> へ、改善はプルリクエストで歓迎しています。コマンドを足したいときは<a
+                    不具合の報告や要望は<a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">Issue</a>へどうぞ。改善のプルリクエストも歓迎しています。コマンドを足したいときは<a
                         href="https://github.com/Ebycow/hanako/blob/master/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E8%BF%BD%E5%8A%A0%E6%89%8B%E9%A0%86%E6%9B%B8.md"
                         target="_blank"
                         rel="noopener"
@@ -86,36 +85,36 @@
         </div>
 
         <div class="hero-actions" style="justify-content: center; margin-top: 10px">
-            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener">README のセットアップ手順 ↗</a>
-            <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid を見る ↗</a>
+            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener">READMEのセットアップ手順 ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroidを見る ↗</a>
         </div>
 
         <div class="card ask-ai reveal">
             <div class="ask-ai-art">
-                <img src="assets/ebyroid-minihanako.webp" alt="Ebyroid が、手のひらに乗せた小さなはなこを指でつついている" loading="lazy" />
+                <img src="assets/ebyroid-minihanako.webp" alt="Ebyroidが、手のひらに乗せた小さなはなこを指でつついている" loading="lazy" />
             </div>
             <div class="ask-ai-copy">
-                <span class="tag hot">🤖 あなたのAIに相談</span>
-                <h3>迷ったら、まずは<span class="hl">いつもの AI に。</span></h3>
+                <span class="tag hot">あなたのAIに相談</span>
+                <h3>迷ったら、まずは<span class="hl">いつものAIに。</span></h3>
                 <p>
-                    「自分でホストするのは難しそう」と感じた方も、「こんな機能があったらいいな」と思いついた方も、まずは普段使っている AI（ChatGPT・Claude・Gemini など）に聞いてみましょう。下のプロンプトをコピーして貼り付けると、なんとAI が<b>はなこ</b>になりきって、準備から機能の追加まで一歩ずつ付き合ってくれます。
+                    「自分でホストするのは難しそう」と感じた方も、「こんな機能があったらいいな」と思いついた方も、まずはChatGPTやClaude、Geminiなど、普段使っているAIに聞いてみましょう。下のプロンプトをコピーして貼り付けると、AIが<b>はなこ</b>になりきって、準備から機能の追加まで一歩ずつ付き合ってくれます。
                 </p>
                 <div class="duo">
                     <p class="duo-line hanako"><b>はなこ</b>わからないところは、ぜんぶわたしに聞いてね！</p>
                 </div>
                 <div class="ask-ai-caution">
-                    <b>⚠️ 使う前に</b>
+                    <b>使う前に</b>
                     <ul>
-                        <li>AI のチャット欄に貼り付けたら、送信する前にその場で全文を読み、信頼できると判断した場合だけ送信してください。</li>
-                        <li>AI が出したコマンドやコードは、何をするものか確かめてから実行してください。</li>
-                        <li>Bot のトークンなどの秘密の情報は、AI に貼り付けないでください。</li>
+                        <li>AIのチャット欄に貼り付けたら、送信する前にその場で全文を読み、信頼できると判断した場合だけ送信してください。</li>
+                        <li>AIが出したコマンドやコードは、何をするものか確かめてから実行してください。</li>
+                        <li>Botのトークンなどの秘密の情報は、AIに貼り付けないでください。</li>
                     </ul>
                 </div>
                 <div class="ask-ai-actions">
-                    <button type="button" class="btn btn-primary" id="ai-prompt-copy">📋 プロンプトをコピー</button>
+                    <button type="button" class="btn btn-primary" id="ai-prompt-copy">プロンプトをコピー</button>
                     <span class="ask-ai-status" id="ai-prompt-status" role="status" aria-live="polite"></span>
                 </div>
-                <p class="ask-ai-note">AI の答えと README が食い違うときは、README が正しい内容です。</p>
+                <p class="ask-ai-note">AIの答えとREADMEが食い違うときは、READMEのほうが正しい内容です。</p>
             </div>
         </div>
     </div>
@@ -161,7 +160,7 @@
         }
         showStatus(
             copied
-                ? '✅ コピーしました！ AI のチャット欄に貼り付けて、送る前に読んでね'
+                ? 'コピーしました！AIのチャット欄に貼り付けて、送る前に読んでね'
                 : 'ごめんね、このブラウザではコピーできなかったにゃ…',
         );
     });

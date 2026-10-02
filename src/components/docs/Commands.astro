@@ -5,15 +5,15 @@ import { commandGroups, permissions } from '../../data/commands';
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="COMMAND REFERENCE" mascot="assets/hanako-commands.webp">
+<Chapter id={id} n={n} kicker="COMMANDS" mascot="assets/hanako-commands.webp">
     <Fragment slot="title">すべてのコマンドを、<span class="hl">ひと目で。</span></Fragment>
 
-    <p class="lead">インテリジェントな検索で、目的のコマンドに瞬時にアクセスできます。</p>
+    <p class="lead">下の欄に言葉を入れると、一覧を絞り込めます。</p>
     <input
         class="filter"
         id="command-filter"
         type="search"
-        placeholder="なんでも検索…（例：se、辞書、blacklist）"
+        placeholder="絞り込み（例：se、辞書、blacklist）"
         aria-label="コマンドを絞り込む"
     />
     <div class="table-wrap">
@@ -49,9 +49,9 @@ const { id, n } = Astro.props;
             </tbody>
         </table>
     </div>
-    <p class="empty" id="command-empty">🤔 一致するコマンドが見つかりませんでした。別のキーワードで試してみてください！</p>
+    <p class="empty" id="command-empty">一致するコマンドはありません。別の言葉で探してみてください。</p>
     <p class="note">
-        テキストコマンドは、表の別名のどれかを <code>@はなこ</code> または <code>&gt;</code> に続けて打ちます（例：<code>&gt;s</code>、<code>@はなこ お願い</code>）。
+        テキストコマンドは、表の別名のどれかを<code>@はなこ</code>か<code>&gt;</code>に続けて打ちます。たとえば<code>&gt;s</code>や<code>@はなこ お願い</code>のように打ちます。
     </p>
 </Chapter>
 

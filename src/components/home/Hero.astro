@@ -8,17 +8,17 @@ import HeroPetals from './HeroPetals.astro';
     <HeroPetals />
     <div class="container hero-layout">
         <div class="hero-copy">
-            <span class="pill"><b>NEW</b> 🚀 Next-Gen Text-to-Speech for Discord</span>
+            <span class="pill"><b>Discord</b>読み上げBot</span>
             <h1 id="hero-title">
-                あなたの言葉に、<br /><span class="hl">「声」という花を。</span>
+                Discordのチャットを、<br /><span class="hl">はなこが読み上げます。</span>
             </h1>
             <p class="lead">
-                Hanakoは、Discordのチャットを<strong>リアルタイム</strong>で音声に変換する、次世代の読み上げソリューションです。<br />
-                <span class="typing" id="typing" aria-live="polite">シームレスに。</span>
+                Hanakoは、テキストチャットの発言を<strong>その場で</strong>ボイスチャンネルに読み上げるBotです。<br />
+                <span class="typing" id="typing" aria-live="polite">マイクがなくても会話に入れます。</span>
             </p>
             <div class="hero-actions">
-                <a class="btn btn-primary" href="#invite">無料で始める ✨</a>
-                <a class="btn btn-ghost" href="#commands">▶ コマンドを見る</a>
+                <a class="btn btn-primary" href="#invite">無料で始める</a>
+                <a class="btn btn-ghost" href="#commands">コマンドを見る</a>
             </div>
             <div class="hero-trust">
                 <div class="avatars" aria-hidden="true">
@@ -29,7 +29,7 @@ import HeroPetals from './HeroPetals.astro';
                 </div>
                 <div>
                     <span class="stars" aria-hidden="true">★★★★★</span><br />
-                    クレジットカード不要・完全無料
+                    料金はかかりません
                 </div>
             </div>
         </div>
@@ -42,25 +42,25 @@ import HeroPetals from './HeroPetals.astro';
             </div>
             <div class="float-chip chip-a" aria-hidden="true">
                 <span class="ico">🗣️</span>
-                <span><small>Voice Engine</small><strong>読み上げ中…</strong></span>
+                <span><small>はなこ</small><strong>読み上げ中…</strong></span>
             </div>
             <div class="float-chip chip-b" aria-hidden="true">
                 <span class="ico">📚</span>
-                <span><small>Dictionary</small><strong>+1 単語を学習</strong></span>
+                <span><small>辞書</small><strong>単語を1つ覚えました</strong></span>
             </div>
             <div class="float-chip chip-c" aria-hidden="true">
                 <span class="ico">🎺</span>
-                <span><small>SE Engine</small><strong>「（拍手）」を追加</strong></span>
+                <span><small>SE</small><strong>「（拍手）」を追加</strong></span>
             </div>
         </div>
     </div>
 
     <div class="container">
         <div class="stats reveal">
-            <div class="stat"><b class="hl" data-count={allCommands.length}>{allCommands.length}</b><span>のコマンドを搭載</span></div>
-            <div class="stat"><b class="hl" data-count={limits.dictionaryEntries}>{fmt(limits.dictionaryEntries)}</b><span>語の辞書をサーバーごとに</span></div>
-            <div class="stat"><b class="hl" data-count={limits.seEntries}>{fmt(limits.seEntries)}</b><span>件のSEを登録可能</span></div>
-            <div class="stat"><b class="hl">¥0</b><span>どこまでも無料</span></div>
+            <div class="stat"><b class="hl" data-count={allCommands.length}>{allCommands.length}</b><span>種類のコマンド</span></div>
+            <div class="stat"><b class="hl" data-count={limits.dictionaryEntries}>{fmt(limits.dictionaryEntries)}</b><span>語まで辞書へ登録できます</span></div>
+            <div class="stat"><b class="hl" data-count={limits.seEntries}>{fmt(limits.seEntries)}</b><span>件までSEを登録できます</span></div>
+            <div class="stat"><b class="hl">¥0</b><span>料金はかかりません</span></div>
         </div>
     </div>
 </section>
@@ -92,7 +92,7 @@ import HeroPetals from './HeroPetals.astro';
     // ヒーローのタイピング演出
     if (!reduceMotion) {
         const el = document.getElementById('typing')!;
-        const words = ['シームレスに。', '直感的に。', 'パワフルに。', 'インクルーシブに。', '次のレベルへ。'];
+        const words = ['マイクがなくても会話に入れます。', '聞き専でもチャットがわかります。', '内輪の呼び名も辞書で読めます。', 'キーワードで効果音が鳴ります。', '長い読み上げは成敗で止められます。'];
         let i = 0;
         let pos = words[0].length;
         let deleting = true;

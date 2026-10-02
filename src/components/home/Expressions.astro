@@ -10,7 +10,7 @@ const expressions = [
         quotes: [
             `やったー！辞書に${fmt(limits.dictionaryEntries)}件目が登録されたにゃ！`,
             'このサイト、ちょっと盛りすぎじゃない？うれしいけど。',
-            'Pro プランも Enterprise プランも ¥0 だよ。お得でしょ？',
+            'ProプランもEnterpriseプランも¥0だよ。お得でしょ？',
         ],
     },
     {
@@ -19,7 +19,7 @@ const expressions = [
         caption: '考え中…',
         quotes: [
             '「イか略。」の「イ」がカタカナな理由、実はわたしも知らないの。',
-            '>ask で聞いてくれたら、はいかいいえで答えるよ。根拠はないけど。',
+            '>askで聞いてくれたら、はいかいいえで答えるよ。根拠はないけど。',
             '草原を「くさはら」と読むべきか、ずっと考えてる。',
         ],
     },
@@ -28,7 +28,7 @@ const expressions = [
         alt: '驚いた花子',
         caption: 'びっくり',
         quotes: [
-            'えっ、わたし「次世代」だったの！？',
+            'えっ、わたしの料金プランって3つもあるの！？',
             '「草」ってSE登録したら「草原」でも鳴った！！',
             `${limits.seFileMB}MBを超えるSEは入らないにゃ…！`,
         ],
@@ -37,7 +37,7 @@ const expressions = [
         image: 'hanako-sleepy.webp',
         alt: '眠そうな花子',
         caption: 'ひとやすみ',
-        quotes: ['みんな帰ったから、わたしも帰って寝るね…zzz', '/seibai されたから、今日はもう休むにゃ…', '長文は、30文字くらいで勘弁して…'],
+        quotes: ['みんな帰ったから、わたしも帰って寝るね…zzz', '/seibaiされたから、今日はもう休むにゃ…', '長文は、30文字くらいで勘弁して…'],
     },
     {
         image: 'hanako-pointing.webp',
@@ -45,7 +45,7 @@ const expressions = [
         caption: 'こっちだよ',
         quotes: [
             'コマンド一覧は上のほうだよ。ずっと上。',
-            'その発言、> で始まってるから読まないよ？',
+            'その発言、>で始まってるから読まないよ？',
             '招待URLはこっち……じゃなかった、ないんだった。',
         ],
     },
@@ -53,7 +53,7 @@ const expressions = [
         image: 'hanako-blossom.webp',
         alt: '桜を差し出す花子',
         caption: 'ありがとう ♡',
-        quotes: ['「声という花」って、わたしのことかな？えへへ。', '最後まで読んでくれてありがとう ♡', '桜の季節は SE 登録が増えるにゃ。'],
+        quotes: ['「声という花」って、わたしのことかな？えへへ。', '最後まで読んでくれてありがとう ♡', '桜の季節はSEの登録が増えるにゃ。'],
     },
 ];
 ---
@@ -62,9 +62,9 @@ const expressions = [
     <div class="container">
         <div class="section-head reveal">
             <span class="eyebrow">Meet Hanako</span>
-            <h2 id="expression-title">感情豊かな、<br /><span class="hl">あなたの読み上げパートナー。</span></h2>
+            <h2 id="expression-title">いろんな顔をする、<br /><span class="hl">はなこです。</span></h2>
         </div>
-        <p class="fineprint" style="margin: -30px 0 90px">🖱️ マウスを乗せる（スマホはタップ）と、はなこが何か言います</p>
+        <p class="fineprint" style="margin: -30px 0 90px">マウスを乗せると、はなこが何か言います。スマホはタップしてください</p>
         <div class="expression-grid">
             {
                 expressions.map((e) => (

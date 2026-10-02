@@ -5,14 +5,14 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="GETTING STARTED" mascot="assets/hanako-hello.webp">
-    <Fragment slot="title">たった4ステップで、<span class="hl">はじめよう。</span></Fragment>
+    <Fragment slot="title">はじめかたは、<span class="hl">4ステップ。</span></Fragment>
 
     <div class="tldr">
-        <b>TL;DR</b>
-        <p>ボイスチャンネルに入って <code>/plz</code>。以上です。</p>
+        <b>ひとことで</b>
+        <p>ボイスチャンネルに入って<code>/plz</code>。以上です。</p>
     </div>
     <p class="lead">
-        結論から言うと、Hanakoは「あなたがいるボイスチャンネル」に参加し、「呼ばれたテキストチャンネル」を読み上げます。複雑な設定は一切不要。驚くほどシンプルです。
+        Hanakoは、呼んだ人がいるボイスチャンネルに参加して、呼ばれたテキストチャンネルの発言を読み上げます。面倒な設定はいりません。
     </p>
 
     <div class="steps">
@@ -25,40 +25,30 @@ const { id, n } = Astro.props;
         <div class="step">
             <img src="assets/hanako-typing.webp" alt="" loading="lazy" />
             <span class="n">STEP 2</span>
-            <b><code>/plz</code> と打つ</b>
+            <b><code>/plz</code>と打つ</b>
             <small>読んでほしいテキストチャンネルで</small>
         </div>
         <div class="step main">
             <img src="assets/hanako-speaking.webp" alt="" loading="lazy" />
-            <span class="n">STEP 3 ✨</span>
+            <span class="n">STEP 3</span>
             <b>Hanakoが参加</b>
             <small>そのチャンネルの発言を読み上げる</small>
         </div>
         <div class="step">
             <img src="assets/hanako-hello.webp" alt="" loading="lazy" />
             <span class="n">STEP 4</span>
-            <b><code>/bye</code> で退出</b>
+            <b><code>/bye</code>で退出</b>
             <small>誰もいなくなれば自動で退出</small>
         </div>
     </div>
-    <p class="figcap">図：読み上げ開始から終了までのユーザージャーニー</p>
+    <p class="figcap">読み上げを始めてから終わるまでの流れ</p>
 
-    <h3>🚀 知っておきたい4つのパワー機能</h3>
+    <h3>覚えておくと便利なこと</h3>
     <ul>
-        <li>
-            <strong>マルチチャンネル対応：</strong>Hanakoが参加中に、別のテキストチャンネルでもう一度 <code>/plz</code>
-            を打つと、そのチャンネルも読み上げ対象に加わります。
-        </li>
-        <li>
-            <strong>ボイスチャンネル内チャットにも対応：</strong>ボイスチャンネルに付いているテキストチャットで <code>/plz</code>
-            を打てば、そこが読み上げ対象になります。
-        </li>
-        <li>
-            <strong>スマート自動退出：</strong>ボイスチャンネルにHanakoだけが残ると、自動で退出します。リソースの無駄は一切ありません。
-        </li>
-        <li>
-            <strong>自動再接続：</strong>メンテナンスで再起動したときは、元のボイスチャンネルに自動で再接続し、読み上げを再開します。
-        </li>
+        <li>Hanakoが参加しているときに、別のテキストチャンネルでもう一度<code>/plz</code>を打つと、そのチャンネルも読み上げの対象に加わります。</li>
+        <li>ボイスチャンネルに付いているテキストチャットで<code>/plz</code>を打てば、そこが読み上げの対象になります。</li>
+        <li>ボイスチャンネルにHanakoだけが残ると、自動で退出します。</li>
+        <li>メンテナンスで再起動したときは、元のボイスチャンネルに自動で再接続し、読み上げを再開します。</li>
     </ul>
     <div class="callout warn">
         <span class="callout-title">対応していない場所</span>

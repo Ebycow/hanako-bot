@@ -10,7 +10,7 @@ import Admin from '../docs/Admin.astro';
 import Commands from '../docs/Commands.astro';
 import Faq from '../docs/Faq.astro';
 
-// 章の並び順。目次と章番号（STEP 01 など）はここから作る
+// 章の並び順。目次と章番号（CHAPTER 01 など）はここから作る
 const chapters = [
     { id: 'start', label: 'はじめる', Chapter: Start },
     { id: 'input', label: 'コマンドの打ち方', Chapter: Input },
@@ -30,13 +30,13 @@ const nn = (i: number) => String(i + 1).padStart(2, '0');
     <div class="container">
         <div class="section-head reveal">
             <span class="eyebrow">Documentation</span>
-            <h2>徹底解説！<br /><span class="hl">Hanako完全ガイド【2026年最新版】</span></h2>
-            <p>初心者の方からパワーユーザーまで。Hanakoのポテンシャルを最大限に引き出すための、すべてをここに。</p>
+            <h2>Hanakoの<span class="hl">使い方ガイド。</span></h2>
+            <p>はじめて使う人にも、使いこなしたい人にも向けて、Hanakoの使い方をひととおりまとめました。</p>
         </div>
 
         <div class="docs">
             <nav class="toc" aria-label="目次">
-                <p>📑 TABLE OF CONTENTS</p>
+                <p>目次</p>
                 <ol>
                     {chapters.map((c, i) => <li><a href={`#${c.id}`}>{nn(i)}. {c.label}</a></li>)}
                 </ol>

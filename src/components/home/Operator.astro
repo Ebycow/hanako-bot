@@ -11,15 +11,15 @@
         </div>
     </div>
     <div class="op-log" id="op-log" aria-live="polite">
-        <div class="bubble">お電話ありがとうございます！👋 はなこオペレーターです。</div>
+        <div class="bubble">お電話ありがとうございます！はなこオペレーターです。</div>
         <div class="bubble">
-            <code>&gt;ask 質問</code> と送ってくれたら、<strong>「はい」か「いいえ」</strong>でお答えします。答えの根拠は特にありません 😊
+            <code>&gt;ask 質問</code>と送ってくれたら、<strong>「はい」か「いいえ」</strong>でお答えします。答えの根拠は特にありません。
         </div>
     </div>
     <div class="quick-replies">
-        <a href="#start">🚀 始め方</a>
-        <a href="#commands">⌨️ コマンド一覧</a>
-        <a href="#trouble">😵 困ったとき</a>
+        <a href="#start">始め方</a>
+        <a href="#commands">コマンド一覧</a>
+        <a href="#trouble">困ったとき</a>
     </div>
     <form class="op-form" id="op-form" autocomplete="off">
         <input id="op-input" type="text" placeholder="&gt;ask 明日は晴れる？" aria-label="オペレーターへのメッセージ" maxlength="200" />
@@ -69,9 +69,9 @@
             return 'ここはWebサイトだから、ボイスチャンネルには行けないにゃ…';
         }
         if (m) {
-            return 'ごめんなさい、この窓口で使えるのは >ask だけなの。ほかのコマンドはDiscordで試してね！';
+            return 'ごめんなさい、この窓口で使えるのは>askだけなの。ほかのコマンドはDiscordで試してね！';
         }
-        return 'ごめんなさい、オペレーターは >ask しか分からないの。「>ask 質問」の形で聞いてみて！';
+        return 'ごめんなさい、オペレーターは>askしか分からないの。「>ask 質問」の形で聞いてみて！';
     };
 
     form.addEventListener('submit', (e) => {
