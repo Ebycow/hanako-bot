@@ -187,14 +187,25 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
         min-width: 1ch;
         color: var(--pink-ink);
         font-weight: 900;
-        border-right: 3px solid var(--pink);
-        padding-right: 4px;
+        position: relative;
+        padding-right: 7px;
+    }
+
+    /* カーソルは疑似要素の opacity で点滅させる（border-color だと毎回再描画になる） */
+    .typing::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        width: 3px;
+        background: var(--pink);
         animation: caret 1s steps(1) infinite;
     }
 
     @keyframes caret {
         50% {
-            border-color: transparent;
+            opacity: 0;
         }
     }
 

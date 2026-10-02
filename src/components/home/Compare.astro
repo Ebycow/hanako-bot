@@ -13,34 +13,34 @@ import { limits, fmt } from '../../data/limits';
             <table>
                 <thead>
                     <tr>
-                        <th></th>
+                        <td></td>
                         <th>読み上げなし</th>
                         <th>Hanako</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>聞き専でもチャットがわかる</td>
+                        <th scope="row">聞き専でもチャットがわかる</th>
                         <td class="no">✕</td>
                         <td class="yes">✓</td>
                     </tr>
                     <tr>
-                        <td>内輪ネタを正しく読める辞書</td>
+                        <th scope="row">内輪ネタを正しく読める辞書</th>
                         <td class="no">✕</td>
                         <td class="yes">✓（{fmt(limits.dictionaryEntries)}件）</td>
                     </tr>
                     <tr>
-                        <td>キーワードで効果音</td>
+                        <th scope="row">キーワードで効果音</th>
                         <td class="no">✕</td>
                         <td class="yes">✓（{fmt(limits.seEntries)}件）</td>
                     </tr>
                     <tr>
-                        <td>長い読み上げを途中で止める（成敗）</td>
+                        <th scope="row">長い読み上げを途中で止める（成敗）</th>
                         <td class="no">✕</td>
                         <td class="yes">✓</td>
                     </tr>
                     <tr>
-                        <td>料金</td>
+                        <th scope="row">料金</th>
                         <td>¥0</td>
                         <td class="yes">¥0</td>
                     </tr>
@@ -51,6 +51,12 @@ import { limits, fmt } from '../../data/limits';
 </section>
 
 <style>
+    /* 左上の空きマス。見出しではないので td にして、見た目だけ見出し行にそろえる */
+    .compare thead td {
+        background: var(--pink-pale);
+        border-bottom: 2px solid var(--border);
+    }
+
     /* Hanako の列を強調する */
     .compare td:nth-child(3),
     .compare th:nth-child(3) {

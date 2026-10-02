@@ -82,10 +82,11 @@
             };
         };
 
-        const resize = () => {
+        // 大きさは ResizeObserver が渡す値を使う（clientWidth を読むと、読み込み直後にレイアウトの再計算が走る）
+        const resize = ([entry]: ResizeObserverEntry[]) => {
             const dpr = Math.min(window.devicePixelRatio || 1, 2);
-            w = canvas.clientWidth;
-            h = canvas.clientHeight;
+            w = entry.contentRect.width;
+            h = entry.contentRect.height;
             canvas.width = w * dpr;
             canvas.height = h * dpr;
             ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -99,6 +100,12 @@
         let raf = 0;
 
         const frame = (now: number) => {
+            // 最初の大きさが決まるまでは描かない
+            if (w === 0 || h === 0) {
+                last = now;
+                raf = requestAnimationFrame(frame);
+                return;
+            }
             const dt = Math.min((now - last) / 1000, 0.05);
             last = now;
             ctx.clearRect(0, 0, w, h);
@@ -141,7 +148,7 @@
             if (isMotionOff()) ctx.clearRect(0, 0, w, h);
         };
 
-        resize();
+        // 監視を始めたときにも一度呼ばれるので、ここで直接 resize() はしない
         new ResizeObserver(resize).observe(canvas);
 
         // ヒーローが見えていて、タブが表示中で、動きを止めていないときだけ動かす
