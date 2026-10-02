@@ -24,11 +24,6 @@ import { limits, fmt } from '../../data/limits';
                             <span><i class="lg-line"></i>困り度（右軸）</span>
                         </div>
                     </div>
-                    <div class="chart-kpis">
-                        <div><b class="hl">+1,083%</b><small>SE登録数 前年比</small></div>
-                        <div><b class="hl">97%</b><small>はなこの困り度</small></div>
-                        <div><b class="hl">300件</b><small>上限まで残り</small></div>
-                    </div>
                     <div class="chart-scroll"><svg class="combo-chart" viewBox="0 0 1000 380" role="img" aria-labelledby="chart-title chart-desc">
 <title id="chart-title">SE登録数とはなこの困り度の推移（架空）</title><desc id="chart-desc">架空のデータによる棒グラフと折れ線グラフの複合グラフ。SEの登録数が上限の10,000件に近づくにつれ、はなこの困り度も上がっている。</desc>
 <defs><linearGradient id="barg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9cc2"/><stop offset="1" stop-color="#ffd3e3" stop-opacity=".6"/></linearGradient><linearGradient id="lineg" x1="0" x2="1"><stop offset="0" stop-color="#3cc0b5"/><stop offset="1" stop-color="#d6336f"/></linearGradient><linearGradient id="areag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f472b6" stop-opacity=".22"/><stop offset="1" stop-color="#f472b6" stop-opacity="0"/></linearGradient></defs>
@@ -166,30 +161,6 @@ import { limits, fmt } from '../../data/limits';
         background: linear-gradient(90deg, #3cc0b5, #d6336f);
     }
 
-    .chart-kpis {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 12px;
-        margin-bottom: 10px;
-    }
-
-    .chart-kpis div {
-        padding: 12px 16px;
-        border-radius: 18px;
-        background: var(--pink-pale);
-        border: 2px dashed var(--pink-soft);
-    }
-
-    .chart-kpis b {
-        display: block;
-        font-size: 24px;
-        font-weight: 900;
-    }
-
-    .chart-kpis small {
-        color: var(--text-muted);
-        font-size: 12px;
-    }
 
     .chart-scroll {
         overflow-x: auto;
@@ -285,9 +256,6 @@ import { limits, fmt } from '../../data/limits';
     }
 
     @media (max-width: 640px) {
-        .chart-kpis {
-            grid-template-columns: 1fr;
-        }
         .chart-card {
             padding: 20px 14px 12px;
         }
