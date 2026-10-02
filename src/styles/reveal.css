@@ -1,8 +1,9 @@
 /* ===== スクロールリビール・動きを減らす設定 =====
    表示されるまで隠し、.in が付いたらぽよんと出す。
+   隠すのは JavaScript が動くとき（<html class="js">）だけ。動かないときは最初から見せる。
    transform・transition は使わず translate のアニメーションにしているのは、
    .card:hover の浮き上がり（transform）やカードの transition を打ち消さないため */
-.reveal:not(.in) {
+.js .reveal:not(.in) {
     opacity: 0;
 }
 
@@ -24,7 +25,7 @@
         animation: none !important;
         transition: none !important;
     }
-    .reveal:not(.in) {
+    .js .reveal:not(.in) {
         opacity: 1;
     }
 }

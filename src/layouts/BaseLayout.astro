@@ -19,6 +19,8 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css） -->
+        <script is:inline>document.documentElement.classList.add('js');</script>
         <title>{title}</title>
         <meta name="description" content={description} />
         {ogTitle && <meta property="og:title" content={ogTitle} />}
