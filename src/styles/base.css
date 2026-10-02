@@ -95,8 +95,10 @@ mark {
     font-weight: 700;
 }
 
+/* 画像には width / height 属性が付く（Img.astro）。CSS で幅だけ変えたときに縦横比が崩れないよう、高さは自動にする */
 img {
     max-width: 100%;
+    height: auto;
 }
 
 ::selection {

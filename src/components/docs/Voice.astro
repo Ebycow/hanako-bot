@@ -1,18 +1,19 @@
 ---
+import Img from '../Img.astro';
 import { limits } from '../../data/limits';
 import Chapter from './Chapter.astro';
 
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="VOICE & LIMIT" mascot="assets/hanako-settings.webp">
+<Chapter id={id} n={n} kicker="VOICE & LIMIT" mascot="hanako-settings.webp">
     <Fragment slot="title">声と、<span class="hl">読む長さの設定。</span></Fragment>
 
     <p class="lead">「誰の声で」「どこまで」読むかの設定です。設定がおよぶ範囲がそれぞれ違うので注意してください。</p>
 
     <div class="cards">
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-listening.webp" alt="" width={60} />
             <span class="tag">自分の発言だけ</span>
             <h4>キャラクター変更</h4>
             <p><code>/speaker name:キャラクター名</code></p>
@@ -20,7 +21,7 @@ const { id, n } = Astro.props;
             <p>今のところ使える声は<code>default</code>の1種類だけなので、実際には変更できません。</p>
         </article>
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-pointing.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-pointing.webp" alt="" width={60} />
             <span class="tag">サーバー全体</span>
             <h4>文字数制限</h4>
             <p><code>/limit number:30</code></p>

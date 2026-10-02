@@ -1,4 +1,5 @@
 ---
+import Img from '../Img.astro';
 // 通話画面のデモ。/plz ではなこを呼び、チャットの発言を読み上げ、/bye で退出するまでを再現する。
 // 場面（チャンネル名と会話）はページを開くたびにスクリプトで差し替える。HTMLには最初の場面を入れておく
 import { voiceScenes } from '../../data/voiceScenes';
@@ -6,7 +7,7 @@ import { voiceScenes } from '../../data/voiceScenes';
 const { channel, other } = voiceScenes[0];
 
 const members = [
-    { id: 'hanako', name: 'hanako', bot: true, avatar: 'assets/hanako-icon.webp', state: 'deaf' },
+    { id: 'hanako', name: 'hanako', bot: true, avatar: 'hanako-icon.webp', state: 'deaf' },
     { id: 'ebi', name: 'えび', initial: 'え', state: 'mute' },
     { id: 'mikan', name: 'みかん', initial: 'み', state: 'none' },
 ];
@@ -41,7 +42,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                         <svg viewBox="0 0 24 24"><path d="M5 5.5A2.5 2.5 0 0 1 7.5 3h9A2.5 2.5 0 0 1 19 5.5v7a2.5 2.5 0 0 1-2.5 2.5H11l-4 3.5V15h0a2 2 0 0 1-2-2z" fill="currentColor"></path></svg>
                     </span>
                     <span class="dc-guild-sep"></span>
-                    <span class="dc-guild is-current"><img src="assets/hanako-icon.webp" alt="" /></span>
+                    <span class="dc-guild is-current"><Img src="hanako-icon.webp" alt="" width={44} /></span>
                     <span class="dc-guild">ゲ</span>
                     <span class="dc-guild">作</span>
                     <span class="dc-guild is-add">
@@ -79,7 +80,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                                 members.map((m) => (
                                     <li class:list={['dc-member', { 'is-away': m.id === 'hanako' }]} data-member={m.id}>
                                         <span class="dc-avatar">
-                                            {m.avatar ? <img src={m.avatar} alt="" /> : <span class={`dc-initial is-${m.id}`}>{m.initial}</span>}
+                                            {m.avatar ? <Img src={m.avatar} alt="" width={44} /> : <span class={`dc-initial is-${m.id}`}>{m.initial}</span>}
                                         </span>
                                         <span class="dc-name">{m.name}</span>
                                         {m.state === 'deaf' && (
@@ -178,7 +179,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                             </div>
                             <div class="dc-msg-row">
                                 <span class="dc-avatar">
-                                    <img src="assets/hanako-icon.webp" alt="" hidden />
+                                    <Img src="hanako-icon.webp" alt="" hidden width={44} />
                                     <span class="dc-initial"></span>
                                 </span>
                                 <div>
@@ -224,8 +225,8 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
                 <span class="dc-voice-wave"></span>
                 <span class="dc-voice-wave"></span>
                 <span class="dc-voice-wave"></span>
-                <img class="dc-voice-idle" src="assets/hanako-listening.webp" alt="" loading="lazy" />
-                <img class="dc-voice-talk" src="assets/hanako-speaking.webp" alt="" loading="lazy" />
+                <Img class="dc-voice-idle" src="hanako-listening.webp" alt="" width={200} />
+                <Img class="dc-voice-talk" src="hanako-speaking.webp" alt="" width={200} />
             </div>
         </div>
         </div>

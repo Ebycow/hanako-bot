@@ -1,4 +1,5 @@
 ---
+import Img from '../Img.astro';
 import { limits, fmt } from '../../data/limits';
 import { allCommands } from '../../data/commands';
 import HeroPetals from './HeroPetals.astro';
@@ -27,10 +28,10 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
             </div>
             <div class="hero-trust">
                 <div class="avatars" aria-hidden="true">
-                    <img src="assets/hanako-cheer.webp" alt="" />
-                    <img src="assets/hanako-wave.webp" alt="" />
-                    <img src="assets/hanako-icon.webp" alt="" />
-                    <img src="assets/hanako-hello.webp" alt="" />
+                    <Img src="hanako-cheer.webp" alt="" width={38} loading="eager" />
+                    <Img src="hanako-wave.webp" alt="" width={38} loading="eager" />
+                    <Img src="hanako-icon.webp" alt="" width={38} loading="eager" />
+                    <Img src="hanako-hello.webp" alt="" width={38} loading="eager" />
                 </div>
                 <div>
                     <span class="stars" aria-hidden="true">★★★★★</span><br />
@@ -42,7 +43,7 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
             <div class="hero-ring" aria-hidden="true"></div>
             <div class="hero-card">
                 <div class="hero-card-inner">
-                    <img src="assets/hanako-hero.webp" alt="Discordのマスコットを抱きしめてヘッドセットで話す花子。桃色の髪と猫耳、白い制服が特徴のキャラクター" />
+                    <Img src="hanako-hero.webp" alt="Discordのマスコットを抱きしめてヘッドセットで話す花子。桃色の髪と猫耳、白い制服が特徴のキャラクター" width={420} loading="eager" fetchpriority="high" />
                 </div>
             </div>
             <div class="float-chip chip-a" aria-hidden="true">

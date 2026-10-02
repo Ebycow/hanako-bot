@@ -1,3 +1,7 @@
+---
+import Img from '../Img.astro';
+---
+
 <section class="section" id="developers">
     <div class="container">
         <div class="section-head reveal">
@@ -8,7 +12,7 @@
 
         <div class="card partner reveal">
             <div class="partner-art">
-                <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかるEbyroidを、はなこが揺すって起こそうとしている" loading="lazy" />
+                <Img src="hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかるEbyroidを、はなこが揺すって起こそうとしている" width={360} />
             </div>
             <div class="partner-copy">
                 <span class="tag hot">相棒</span>
@@ -26,25 +30,25 @@
         <h3 class="dev-subhead reveal">自分でホストするまでの4ステップ</h3>
         <div class="steps dev-steps">
             <div class="step reveal">
-                <img src="assets/ebyroid-commands.webp" alt="" loading="lazy" />
+                <Img src="ebyroid-commands.webp" alt="" width={88} />
                 <span class="n">STEP 1</span>
                 <b>Botを作る</b>
                 <small>Discord Developer Portalでアプリを作り、トークンとクライアントIDを取得します。Message Content Intentも有効にします</small>
             </div>
             <div class="step reveal">
-                <img src="assets/ebyroid-listening.webp" alt="" loading="lazy" />
+                <Img src="ebyroid-listening.webp" alt="" width={88} />
                 <span class="n">STEP 2</span>
                 <b>声を用意する</b>
                 <small>VOICEROIDを入れたWindowsでEbyroidを起動します。標準のポートは4090です。VOICEROIDの有効なライセンスが必要です</small>
             </div>
             <div class="step reveal">
-                <img src="assets/ebyroid-typing.webp" alt="" loading="lazy" />
+                <Img src="ebyroid-typing.webp" alt="" width={88} />
                 <span class="n">STEP 3</span>
                 <b>はなこを設定する</b>
                 <small>cloneして<code>npm i</code>を実行し、<code>app-config.yml</code>にトークンなどを書きます</small>
             </div>
             <div class="step main reveal">
-                <img src="assets/ebyroid-happy.webp" alt="" loading="lazy" />
+                <Img src="ebyroid-happy.webp" alt="" width={88} />
                 <span class="n">STEP 4</span>
                 <b>起動する</b>
                 <small><code>node deploy-commands.js</code>でコマンドを登録し、<code>node index</code>で起動します</small>
@@ -54,7 +58,7 @@
 
         <div class="cards dev-cards">
             <article class="card reveal">
-                <img class="card-mascot" src="assets/ebyroid-admin.webp" alt="" loading="lazy" />
+                <Img class="card-mascot" src="ebyroid-admin.webp" alt="" width={60} />
                 <span class="tag">必要なもの</span>
                 <h4>動かすための環境</h4>
                 <p>
@@ -62,7 +66,7 @@
                 </p>
             </article>
             <article class="card reveal">
-                <img class="card-mascot" src="assets/ebyroid-terms.webp" alt="" loading="lazy" />
+                <Img class="card-mascot" src="ebyroid-terms.webp" alt="" width={60} />
                 <span class="tag">運営について</span>
                 <h4>あなたが運営者になります</h4>
                 <p>
@@ -70,7 +74,7 @@
                 </p>
             </article>
             <article class="card reveal">
-                <img class="card-mascot" src="assets/ebyroid-pointing.webp" alt="" loading="lazy" />
+                <Img class="card-mascot" src="ebyroid-pointing.webp" alt="" width={60} />
                 <span class="tag">コントリビュート</span>
                 <h4>一緒に育てる</h4>
                 <p>
@@ -91,7 +95,7 @@
 
         <div class="card ask-ai reveal">
             <div class="ask-ai-art">
-                <img src="assets/ebyroid-minihanako.webp" alt="Ebyroidが、手のひらに乗せた小さなはなこを指でつついている" loading="lazy" />
+                <Img src="ebyroid-minihanako.webp" alt="Ebyroidが、手のひらに乗せた小さなはなこを指でつついている" width={380} />
             </div>
             <div class="ask-ai-copy">
                 <span class="tag hot">あなたのAIに相談</span>

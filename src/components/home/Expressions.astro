@@ -1,4 +1,5 @@
 ---
+import Img from '../Img.astro';
 import { limits, fmt } from '../../data/limits';
 
 // マウスを乗せる・タップするたびに、quotes からランダムに1つしゃべる
@@ -70,7 +71,7 @@ const expressions = [
                 expressions.map((e) => (
                     <figure class="card reveal says" tabindex="0" data-quotes={JSON.stringify(e.quotes)}>
                         <span class="speech" aria-live="polite" />
-                        <img src={`assets/${e.image}`} alt={e.alt} loading="lazy" />
+                        <Img src={e.image} alt={e.alt} width={160} />
                         <figcaption>{e.caption}</figcaption>
                     </figure>
                 ))

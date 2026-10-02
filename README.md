@@ -32,6 +32,6 @@ npm run build    # dist/ に出力
 | 規約ページの見出し・制定日 | `src/pages/terms.astro`、`src/pages/privacy.astro` |
 | スタイル（1か所でしか使わないもの） | 各コンポーネントの `<style>` |
 | スタイル（色などの変数、ボタン・カードなど共通の部品） | `src/styles/`（読み込み順は `global.css`） |
-| 画像 | `public/assets/` |
+| 画像 | `src/assets/`（`<Img src="ファイル名" width={表示幅} />` で表示すると、ビルド時に縮小と width/height が付く。ファビコンだけ `public/assets/`） |
 
 Bot 本体（[Ebycow/hanako](https://github.com/Ebycow/hanako)）でコマンドや上限値を変えたときは、`src/data/` の2ファイルも合わせて更新してください。セットアップ手順（Node.js のバージョン、設定項目など）を変えたときは、`src/data/ai-setup-prompt.txt` も更新してください。

@@ -1,6 +1,10 @@
+---
+import Img from '../Img.astro';
+---
+
 <dialog class="invite-modal" id="invite-modal" aria-labelledby="invite-title">
     <button class="modal-close" type="button" aria-label="閉じる" data-close>✕</button>
-    <img class="invite-art" src="assets/hanako-flappy.webp" alt="招待URLを抱えて飛んでいく花子" />
+    <Img class="invite-art" src="hanako-flappy.webp" alt="招待URLを抱えて飛んでいく花子" width={420} />
     <span class="eyebrow">Invitation</span>
     <h2 id="invite-title">はなこは、<span class="hl">恥ずかしがり屋です。</span></h2>
     <p class="invite-lead">

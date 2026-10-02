@@ -1,4 +1,5 @@
 ---
+import Img from './Img.astro';
 export type Page = 'home' | 'docs' | 'terms' | 'privacy';
 
 interface Props {
@@ -46,7 +47,7 @@ const links: Link[] = {
 <header class="site-header">
     <div class="inner">
         <a class="brand" href="./">
-            <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
+            <Img class="brand-avatar" src="hanako-icon.webp" alt="" width={36} loading="eager" />
             Hanako <span class="ai-badge">TTS</span>
         </a>
         <nav class="site-nav" aria-label="メインナビゲーション">

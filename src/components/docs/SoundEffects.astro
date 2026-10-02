@@ -1,11 +1,12 @@
 ---
+import Img from '../Img.astro';
 import { limits, fmt } from '../../data/limits';
 import Chapter from './Chapter.astro';
 
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="SOUND EFFECTS" mascot="assets/hanako-music.webp">
+<Chapter id={id} n={n} kicker="SOUND EFFECTS" mascot="hanako-music.webp">
     <Fragment slot="title">キーワードで、<span class="hl">効果音を鳴らす。</span></Fragment>
 
     <p class="lead">
@@ -15,21 +16,21 @@ const { id, n } = Astro.props;
     <h3>SEを追加する3つの方法</h3>
     <div class="cards">
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-music.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-music.webp" alt="" width={60} />
             <span class="tag">スラッシュ / テキスト</span>
             <h4>URLで指定</h4>
             <p><code>/se-add keyword:（拍手） url:https://…/clap.mp3</code></p>
             <p>ネット上の音声ファイルのURLを指定します。URLは{limits.seUrlLength}文字まで。</p>
         </article>
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-cheer.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-cheer.webp" alt="" width={60} />
             <span class="tag">スラッシュ / テキスト</span>
             <h4>ファイルを1つ添付</h4>
             <p><code>/se-add keyword:（拍手）</code>を打ち、<code>file</code>に添付</p>
             <p>手元のファイルをそのまま登録できます。テキストコマンドなら<code>@はなこ se-add （拍手）</code>と打って添付します。</p>
         </article>
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-listening.webp" alt="" width={60} />
             <span class="tag hot">まとめて登録</span>
             <h4>複数ファイルをまとめて</h4>
             <p><code>@はなこ se-add</code>と打ち、複数のファイルを添付</p>

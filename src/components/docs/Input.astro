@@ -1,10 +1,11 @@
 ---
+import Img from '../Img.astro';
 import Chapter from './Chapter.astro';
 
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="INPUT METHODS" mascot="assets/hanako-typing.webp">
+<Chapter id={id} n={n} kicker="INPUT METHODS" mascot="hanako-typing.webp">
     <Fragment slot="title">コマンドの打ち方は、<span class="hl">3通り。</span></Fragment>
 
     <p class="lead">
@@ -13,7 +14,7 @@ const { id, n } = Astro.props;
 
     <div class="cards">
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-commands.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-commands.webp" alt="" width={60} />
             <span class="tag hot">おすすめ</span>
             <h4>スラッシュコマンド</h4>
             <p><code>/teach from:草 to:くさ</code></p>
@@ -22,14 +23,14 @@ const { id, n } = Astro.props;
             </p>
         </article>
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-hello.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-hello.webp" alt="" width={60} />
             <span class="tag">テキスト</span>
             <h4>メンション</h4>
             <p><code>@はなこ teach 草 くさ</code></p>
             <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。<code>教育</code>のような日本語の別名も使えます。</p>
         </article>
         <article class="card">
-            <img class="card-mascot" src="assets/hanako-typing.webp" alt="" loading="lazy" />
+            <Img class="card-mascot" src="hanako-typing.webp" alt="" width={60} />
             <span class="tag">テキスト</span>
             <h4>プリフィックス<code>&gt;</code></h4>
             <p><code>&gt;teach 草 くさ</code></p>

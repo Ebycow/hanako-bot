@@ -1,4 +1,5 @@
 ---
+import Img from '../components/Img.astro';
 import BaseLayout from './BaseLayout.astro';
 
 interface Props {
@@ -19,7 +20,7 @@ const { page, title, description, image, eyebrow, heading, lead, date, highlight
 
 <BaseLayout page={page} title={title} description={description}>
     <section class="doc-hero container">
-        <img src={image} alt="花子" />
+        <Img src={image} alt="花子" width={150} />
         <br /><span class="eyebrow">{eyebrow}</span>
         <h1><span class="hl">{heading}</span></h1>
         <p>{lead}</p>

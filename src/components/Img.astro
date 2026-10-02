@@ -1,0 +1,25 @@
+---
+// サイトの画像（src/assets/*.webp）を表示する。
+// width には CSS 上の表示幅を書く。ビルド時に、その幅の等倍と2倍（高解像度の画面用）に縮小した画像と、
+// 読み込み中にレイアウトがずれないための width / height 属性を自動で付ける。
+// 既定で遅延読み込み（loading="lazy"）になるので、開いてすぐ見える画像には loading="eager" を付ける
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import type { HTMLAttributes } from 'astro/types';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('../assets/*.webp', { eager: true });
+
+type Props = Omit<HTMLAttributes<'img'>, 'src' | 'width' | 'height'> & {
+    /** src/assets の中のファイル名（例: hanako-icon.webp） */
+    src: string;
+    alt: string;
+    /** CSS 上の表示幅（px） */
+    width: number;
+};
+
+const { src, width, ...attrs } = Astro.props;
+const image = images[`../assets/${src}`]?.default;
+if (!image) throw new Error(`src/assets/${src} が見つかりません`);
+---
+
+<Image src={image} width={width} densities={[1, 2]} {...attrs} />

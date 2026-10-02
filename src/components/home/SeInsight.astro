@@ -1,4 +1,5 @@
 ---
+import Img from '../Img.astro';
 import { limits, fmt } from '../../data/limits';
 ---
 
@@ -12,7 +13,7 @@ import { limits, fmt } from '../../data/limits';
                     </p>
                 </div>
                 <div class="card chart-card reveal">
-                    <img class="chart-mascot" src="assets/hanako-surprised.webp" alt="" loading="lazy" />
+                    <Img class="chart-mascot" src="hanako-surprised.webp" alt="" width={96} />
                     <div class="chart-top">
                         <div>
                             <b>SE登録数 × はなこの困り度</b>
