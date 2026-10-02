@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja" data-astro-cid-z4jru4n3>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css）。
+             「動きを止める」設定（src/scripts/motion.ts）も、描画の前に反映しておく -->
+        <script>
+            (function () {
+                var root = document.documentElement;
+                root.classList.add('js');
+                var saved = null;
+                try {
+                    saved = localStorage.getItem('hanako-motion');
+                } catch (e) {}
+                if (saved === 'off' || (saved !== 'on' && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                    root.classList.add('motion-off');
+                }
+            })();
+        </script><title>開発者向け | Hanako 読み上げBot</title>
+        <meta name="description" content="Discordのチャット読み上げBot「Hanako」を自分でホストしたい方、機能を足したい方向けのページです。音声サーバーEbyroidの紹介、セルフホストの手順、コントリビュートの方法をまとめています。">
+        <link rel="canonical" href="https://ebycow.github.io/hanako-bot/developers.html">
+        <meta property="og:site_name" content="Hanako">
+        <meta property="og:locale" content="ja_JP">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://ebycow.github.io/hanako-bot/developers.html">
+        <meta property="og:title" content="開発者向け | Hanako 読み上げBot">
+        <meta property="og:description" content="はなこを、あなたの手で。Hanakoを自分で動かすための手順と、相棒Ebyroidの紹介です。">
+        <meta property="og:image" content="https://ebycow.github.io/hanako-bot/assets/og.jpg">
+        <meta property="og:image:width" content="1200">
+        <meta property="og:image:height" content="630">
+        <meta property="og:image:alt" content="ヘッドセットのマイクで楽しそうに話す、猫耳のはなこ。「Hanako Discordのチャットを読み上げるBot」の文字">
+        <meta name="twitter:card" content="summary_large_image">
+        <!-- Discord では、共有したときの埋め込みの帯の色にもなる -->
+        <meta name="theme-color" content="#f47aa9">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+        <!-- ロゴ専用の丸ゴシック。使う文字だけを読み込む -->
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&text=HanakoTTS&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/favicon.png">
+        <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.PbQ6GxxA.css">
+<link rel="stylesheet" href="/hanako-bot/_astro/developers.C7rdAdVp.css"></head>
+    <body data-astro-cid-z4jru4n3>
+        <a class="skip-link" href="#main" data-astro-cid-z4jru4n3>本文へスキップ</a>
+        <div class="orb orb-1" aria-hidden="true" data-astro-cid-z4jru4n3></div>
+        <div class="orb orb-2" aria-hidden="true" data-astro-cid-z4jru4n3></div>
+        <div class="orb orb-3" aria-hidden="true" data-astro-cid-z4jru4n3></div>
+        
+
+        <header class="site-header" id="site-header" data-astro-cid-fzpbxy5g>
+    <div class="inner" data-astro-cid-fzpbxy5g>
+        <a class="brand" href="./" data-astro-cid-fzpbxy5g>
+            
+<img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt loading="eager" data-astro-cid-fzpbxy5g="true" decoding="async" width="36" height="36" class="brand-avatar">
+            Hanako <span class="ai-badge" data-astro-cid-fzpbxy5g>TTS</span>
+        </a>
+        <!-- タブレット以下で出るメニューの開閉ボタン -->
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-astro-cid-fzpbxy5g>
+            <span class="menu-icon" aria-hidden="true" data-astro-cid-fzpbxy5g><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i></span>
+            メニュー
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション" data-astro-cid-fzpbxy5g>
+            <a href="./" data-astro-cid-fzpbxy5g>ホーム</a><a href="docs.html" data-astro-cid-fzpbxy5g>ドキュメント</a><a href="developers.html" aria-current="page" data-astro-cid-fzpbxy5g>開発者</a><a href="#self-host" data-astro-cid-fzpbxy5g>ホスト手順</a><a href="#ask-ai" data-astro-cid-fzpbxy5g>AIに相談</a>
+            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める" data-astro-cid-fzpbxy5g>
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" data-astro-cid-fzpbxy5g></path></svg>
+                <span class="motion-label" data-astro-cid-fzpbxy5g>アニメーションを止める</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="./#invite" data-astro-cid-fzpbxy5g>はなこに会う？</a>
+        </nav>
+    </div>
+</header>
+
+<script type="module" src="/hanako-bot/_astro/SiteHeader.astro_astro_type_script_index_0_lang.Cm2AIVHJ.js"></script>
+
+        <main id="main" data-astro-cid-z4jru4n3>
+            
+    <div class="dev-hero container" data-astro-cid-cilp7amf>
+        
+<img src="/hanako-bot/_astro/ebyroid-hello.DNI18IQO_1a9VgB.webp" srcset="/hanako-bot/_astro/ebyroid-hello.DNI18IQO_1a9VgB.webp 1x, /hanako-bot/_astro/ebyroid-hello.DNI18IQO_eVhcE.webp 2x" alt="手を振るEbyroid" loading="eager" data-astro-cid-cilp7amf="true" decoding="async" width="150" height="150">
+        <br data-astro-cid-cilp7amf><span class="eyebrow" data-astro-cid-cilp7amf>For Developers</span>
+        <h1 data-astro-cid-cilp7amf>はなこを、<span class="hl" data-astro-cid-cilp7amf>あなたの手で。</span></h1>
+        <p data-astro-cid-cilp7amf>HanakoのソースコードはGitHubで公開しています。自分のサーバーで動かしたい方や、機能を足したい方はこちらをどうぞ。</p>
+    </div>
+
+    <div class="container" data-astro-cid-cilp7amf>
+        <section class="card partner reveal" id="partner" data-astro-cid-cilp7amf>
+            <div class="partner-art" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/hanako-ebyroid-duo.BvywkVa-_Z2kNtBX.webp" srcset="/hanako-bot/_astro/hanako-ebyroid-duo.BvywkVa-_Z2kNtBX.webp 1x, /hanako-bot/_astro/hanako-ebyroid-duo.BvywkVa-_2q4eHV.webp 2x" alt="PCケースの上にぐったりもたれかかるEbyroidを、はなこが揺すって起こそうとしている" data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="360" height="540">
+            </div>
+            <div class="partner-copy" data-astro-cid-cilp7amf>
+                <span class="tag hot" data-astro-cid-cilp7amf>相棒</span>
+                <h2 data-astro-cid-cilp7amf>はなこの声の相棒、<span class="hl" data-astro-cid-cilp7amf>Ebyroid。</span></h2>
+                <p data-astro-cid-cilp7amf>
+                    はなこの声を作っているのは、音声サーバーの<a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener" data-astro-cid-cilp7amf>Ebyroid</a>です。VOICEROIDをNode.jsやHTTPから使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。READMEの最後にいる銀色の猫耳の子がEbyroidで、はなこの相棒です。
+                </p>
+                <div class="duo" data-astro-cid-cilp7amf>
+                    <p class="duo-line hanako" data-astro-cid-cilp7amf><b data-astro-cid-cilp7amf>はなこ</b>えびろいどがいないと、わたし喋れないの。</p>
+                    <p class="duo-line eby" data-astro-cid-cilp7amf><b data-astro-cid-cilp7amf>Ebyroid</b>……知ってる。だから、ずっといる。</p>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="dev-subhead reveal" id="self-host" data-astro-cid-cilp7amf>自分でホストするまでの4ステップ</h2>
+        <div class="steps dev-steps" data-astro-cid-cilp7amf>
+            <div class="step reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-commands.c8ea8Yji_HSKb2.webp" srcset="/hanako-bot/_astro/ebyroid-commands.c8ea8Yji_HSKb2.webp 1x, /hanako-bot/_astro/ebyroid-commands.c8ea8Yji_WjJkk.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="88" height="88">
+                <span class="n" data-astro-cid-cilp7amf>STEP 1</span>
+                <b data-astro-cid-cilp7amf>Botを作る</b>
+                <small data-astro-cid-cilp7amf>Discord Developer Portalでアプリを作り、トークンとクライアントIDを取得します。Message Content Intentも有効にします</small>
+            </div>
+            <div class="step reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-listening.B7cw74rI_Z1JquYx.webp" srcset="/hanako-bot/_astro/ebyroid-listening.B7cw74rI_Z1JquYx.webp 1x, /hanako-bot/_astro/ebyroid-listening.B7cw74rI_Z1tFUD1.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="88" height="88">
+                <span class="n" data-astro-cid-cilp7amf>STEP 2</span>
+                <b data-astro-cid-cilp7amf>声を用意する</b>
+                <small data-astro-cid-cilp7amf>VOICEROIDを入れたWindowsでEbyroidを起動します。標準のポートは4090です。VOICEROIDの有効なライセンスが必要です</small>
+            </div>
+            <div class="step reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-typing.DYRuWJ1m_1hnnaL.webp" srcset="/hanako-bot/_astro/ebyroid-typing.DYRuWJ1m_1hnnaL.webp 1x, /hanako-bot/_astro/ebyroid-typing.DYRuWJ1m_1pTsCW.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="88" height="88">
+                <span class="n" data-astro-cid-cilp7amf>STEP 3</span>
+                <b data-astro-cid-cilp7amf>はなこを設定する</b>
+                <small data-astro-cid-cilp7amf>cloneして<code data-astro-cid-cilp7amf>npm i</code>を実行し、<code data-astro-cid-cilp7amf>app-config.yml</code>にトークンなどを書きます</small>
+            </div>
+            <div class="step main reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-happy.DjX1WxYj_1tOzoz.webp" srcset="/hanako-bot/_astro/ebyroid-happy.DjX1WxYj_1tOzoz.webp 1x, /hanako-bot/_astro/ebyroid-happy.DjX1WxYj_Z1TNWJg.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="88" height="88">
+                <span class="n" data-astro-cid-cilp7amf>STEP 4</span>
+                <b data-astro-cid-cilp7amf>起動する</b>
+                <small data-astro-cid-cilp7amf><code data-astro-cid-cilp7amf>node deploy-commands.js</code>でコマンドを登録し、<code data-astro-cid-cilp7amf>node index</code>で起動します</small>
+            </div>
+        </div>
+        <p class="figcap" data-astro-cid-cilp7amf>正確な手順とバージョンは、必ずREADMEで確認してください</p>
+
+        <div class="cards dev-cards" data-astro-cid-cilp7amf>
+            <article class="card reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-admin.CEk7G5aq_Z2ng6y1.webp" srcset="/hanako-bot/_astro/ebyroid-admin.CEk7G5aq_Z2ng6y1.webp 1x, /hanako-bot/_astro/ebyroid-admin.CEk7G5aq_1qWs8x.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+                <span class="tag" data-astro-cid-cilp7amf>必要なもの</span>
+                <h3 data-astro-cid-cilp7amf>動かすための環境</h3>
+                <p data-astro-cid-cilp7amf>
+                    Node.jsとDiscord Botのトークン、音声サーバーが必要です。Node.jsのバージョンは<code data-astro-cid-cilp7amf>package.json</code>で指定しています。音声サーバーはEbyroidがおすすめですが、READMEに書かれたAPIを返すHTTPサーバーなら差し替えられます。
+                </p>
+            </article>
+            <article class="card reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-terms.D_JclqNW_1PRQD8.webp" srcset="/hanako-bot/_astro/ebyroid-terms.D_JclqNW_1PRQD8.webp 1x, /hanako-bot/_astro/ebyroid-terms.D_JclqNW_pkM1O.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+                <span class="tag" data-astro-cid-cilp7amf>運営について</span>
+                <h3 data-astro-cid-cilp7amf>あなたが運営者になります</h3>
+                <p data-astro-cid-cilp7amf>
+                    自分でホストしたBotは、あなたが運営する別のBotです。このサイトの<a href="terms.html" data-astro-cid-cilp7amf>利用規約</a>と<a href="privacy.html" data-astro-cid-cilp7amf>プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROIDなど、音声合成エンジンの利用条件も確認しましょう。
+                </p>
+            </article>
+            <article class="card reveal" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-pointing.DkFHQyus_Z2wDS41.webp" srcset="/hanako-bot/_astro/ebyroid-pointing.DkFHQyus_Z2wDS41.webp 1x, /hanako-bot/_astro/ebyroid-pointing.DkFHQyus_3Gujw.webp 2x" alt data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+                <span class="tag" data-astro-cid-cilp7amf>コントリビュート</span>
+                <h3 data-astro-cid-cilp7amf>一緒に育てる</h3>
+                <p data-astro-cid-cilp7amf>
+                    不具合の報告や要望は<a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener" data-astro-cid-cilp7amf>Issue</a>へどうぞ。改善のプルリクエストも歓迎しています。コマンドを足したいときは<a href="https://github.com/Ebycow/hanako/blob/master/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E8%BF%BD%E5%8A%A0%E6%89%8B%E9%A0%86%E6%9B%B8.md" target="_blank" rel="noopener" data-astro-cid-cilp7amf>コマンド追加手順書</a>が参考になります。
+                </p>
+            </article>
+        </div>
+
+        <div class="hero-actions center dev-actions" data-astro-cid-cilp7amf>
+            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener" data-astro-cid-cilp7amf>READMEのセットアップ手順 ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener" data-astro-cid-cilp7amf>Ebyroidを見る ↗</a>
+        </div>
+
+        <section class="card ask-ai reveal" id="ask-ai" data-astro-cid-cilp7amf>
+            <div class="ask-ai-art" data-astro-cid-cilp7amf>
+                
+<img src="/hanako-bot/_astro/ebyroid-minihanako.BNrJAHzK_Z1QdAwM.webp" srcset="/hanako-bot/_astro/ebyroid-minihanako.BNrJAHzK_Z1QdAwM.webp 1x, /hanako-bot/_astro/ebyroid-minihanako.BNrJAHzK_Z193ku7.webp 2x" alt="Ebyroidが、手のひらに乗せた小さなはなこを指でつついている" data-astro-cid-cilp7amf="true" loading="lazy" decoding="async" width="380" height="380">
+            </div>
+            <div class="ask-ai-copy" data-astro-cid-cilp7amf>
+                <span class="tag hot" data-astro-cid-cilp7amf>あなたのAIに相談</span>
+                <h2 data-astro-cid-cilp7amf>迷ったら、まずは<span class="hl" data-astro-cid-cilp7amf>いつものAIに。</span></h2>
+                <p data-astro-cid-cilp7amf>
+                    「自分でホストするのは難しそう」と感じた方も、「こんな機能があったらいいな」と思いついた方も、まずはChatGPTやClaude、Geminiなど、普段使っているAIに聞いてみましょう。下のプロンプトをコピーして貼り付けると、AIが<b data-astro-cid-cilp7amf>はなこ</b>になりきって、準備から機能の追加まで一歩ずつ付き合ってくれます。
+                </p>
+                <div class="duo" data-astro-cid-cilp7amf>
+                    <p class="duo-line hanako" data-astro-cid-cilp7amf><b data-astro-cid-cilp7amf>はなこ</b>わからないところは、ぜんぶわたしに聞いてね！</p>
+                </div>
+                <div class="ask-ai-caution" data-astro-cid-cilp7amf>
+                    <b data-astro-cid-cilp7amf>使う前に</b>
+                    <ul data-astro-cid-cilp7amf>
+                        <li data-astro-cid-cilp7amf>AIのチャット欄に貼り付けたら、送信する前にその場で全文を読み、信頼できると判断した場合だけ送信してください。</li>
+                        <li data-astro-cid-cilp7amf>AIが出したコマンドやコードは、何をするものか確かめてから実行してください。</li>
+                        <li data-astro-cid-cilp7amf>Botのトークンなどの秘密の情報は、AIに貼り付けないでください。</li>
+                    </ul>
+                </div>
+                <div class="ask-ai-actions" data-astro-cid-cilp7amf>
+                    <button type="button" class="btn btn-primary" id="ai-prompt-copy" data-astro-cid-cilp7amf>プロンプトをコピー</button>
+                    <span class="ask-ai-status" id="ai-prompt-status" role="status" aria-live="polite" data-astro-cid-cilp7amf></span>
+                </div>
+                <p class="ask-ai-note" data-astro-cid-cilp7amf>AIの答えとREADMEが食い違うときは、READMEのほうが正しい内容です。</p>
+            </div>
+        </section>
+    </div>
+
+        </main>
+
+        <footer class="site-footer" data-astro-cid-nns7i3if>
+    <div class="container" data-astro-cid-nns7i3if>
+        <div class="footer-grid" data-astro-cid-nns7i3if>
+            <div data-astro-cid-nns7i3if>
+                <a class="brand" href="./" data-astro-cid-nns7i3if>
+                    
+<img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt data-astro-cid-nns7i3if="true" loading="lazy" decoding="async" width="36" height="36" class="brand-avatar">
+                    Hanako <span class="ai-badge" data-astro-cid-nns7i3if>TTS</span>
+                </a>
+                <p data-astro-cid-nns7i3if>言葉に、声という花を。<br data-astro-cid-nns7i3if>Discordのチャット読み上げBotです。</p>
+                <span class="status" data-astro-cid-nns7i3if>All systems operational</span>
+            </div>
+            <div data-astro-cid-nns7i3if>
+                <h2 data-astro-cid-nns7i3if>PRODUCT</h2>
+                <ul data-astro-cid-nns7i3if>
+                    <li data-astro-cid-nns7i3if><a href="./#features" data-astro-cid-nns7i3if>機能</a></li>
+                    <li data-astro-cid-nns7i3if><a href="./#pricing" data-astro-cid-nns7i3if>料金</a></li>
+                    <li data-astro-cid-nns7i3if><a href="./#compare" data-astro-cid-nns7i3if>比較</a></li>
+                </ul>
+            </div>
+            <div data-astro-cid-nns7i3if>
+                <h2 data-astro-cid-nns7i3if>RESOURCES</h2>
+                <ul data-astro-cid-nns7i3if>
+                    <li data-astro-cid-nns7i3if><a href="docs.html" data-astro-cid-nns7i3if>ドキュメント</a></li>
+                    <li data-astro-cid-nns7i3if><a href="docs.html#commands" data-astro-cid-nns7i3if>コマンド一覧</a></li>
+                    <li data-astro-cid-nns7i3if><a href="developers.html" data-astro-cid-nns7i3if>開発者向け</a></li>
+                    <li data-astro-cid-nns7i3if><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener" data-astro-cid-nns7i3if>GitHub</a></li>
+                </ul>
+            </div>
+            <div data-astro-cid-nns7i3if>
+                <h2 data-astro-cid-nns7i3if>LEGAL</h2>
+                <ul data-astro-cid-nns7i3if>
+                    <li data-astro-cid-nns7i3if><a href="terms.html" data-astro-cid-nns7i3if>利用規約</a></li>
+                    <li data-astro-cid-nns7i3if><a href="privacy.html" data-astro-cid-nns7i3if>プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" data-astro-cid-nns7i3if>
+            <p data-astro-cid-nns7i3if>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener" data-astro-cid-nns7i3if>Ebycow</a>. Made with ♡ and AI.</p>
+            <p data-astro-cid-nns7i3if>DiscordはDiscord Inc.の商標です。このBotはDiscord Inc.とは関係ありません。</p>
+        </div>
+    </div>
+</footer>
+
+        
+    </body>
+</html>
+
+<script type="module">var e=document.querySelectorAll(`.reveal`);if(!(`IntersectionObserver`in window))e.forEach(e=>e.classList.add(`in`));else{let t=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(e.target.classList.add(`in`),t.unobserve(e.target))})},{rootMargin:`0px 0px -8% 0px`});e.forEach(e=>t.observe(e))}</script>
+
+<script type="module" src="/hanako-bot/_astro/developers.astro_astro_type_script_index_0_lang.DVsyWW0S.js"></script>
