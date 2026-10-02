@@ -1,0 +1,1 @@
+var e=()=>document.documentElement.classList.contains(`motion-off`),t=e=>{document.documentElement.classList.toggle(`motion-off`,e);try{localStorage.setItem(`hanako-motion`,e?`off`:`on`)}catch{}document.dispatchEvent(new CustomEvent(`motionchange`,{detail:{off:e}}))},n=e=>{document.addEventListener(`motionchange`,t=>e(t.detail.off))};export{n,t as r,e as t};

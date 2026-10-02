@@ -3,7 +3,21 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>プライバシーポリシー | Hanako 読み上げBot</title>
+        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css）。
+             「動きを止める」設定（src/scripts/motion.ts）も、描画の前に反映しておく -->
+        <script>
+            (function () {
+                var root = document.documentElement;
+                root.classList.add('js');
+                var saved = null;
+                try {
+                    saved = localStorage.getItem('hanako-motion');
+                } catch (e) {}
+                if (saved === 'off' || (saved !== 'on' && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                    root.classList.add('motion-off');
+                }
+            })();
+        </script><title>プライバシーポリシー | Hanako 読み上げBot</title>
         <meta name="description" content="Discordのチャット読み上げBot「Hanako」のプライバシーポリシーです。">
         
         
@@ -16,31 +30,48 @@
         <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&text=HanakoTTS&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.UZb-M7IU.css">
-<style>.doc-hero[data-astro-cid-fmzvkzhr]{text-align:center;padding:80px 0 30px}.doc-hero[data-astro-cid-fmzvkzhr] img[data-astro-cid-fmzvkzhr]{filter:drop-shadow(0 8px 14px #d6336f40);width:150px}.doc-hero[data-astro-cid-fmzvkzhr] h1[data-astro-cid-fmzvkzhr]{margin:10px 0 14px;font-size:clamp(32px,4.8vw,54px);line-height:1.35}.doc-hero[data-astro-cid-fmzvkzhr] p[data-astro-cid-fmzvkzhr]{color:var(--text-muted);max-width:620px;margin:0 auto;font-size:17px}.doc-meta[data-astro-cid-fmzvkzhr]{background:var(--surface);border:2px solid var(--border);border-radius:999px;padding:3px 16px;font-weight:700;display:inline-block;margin-top:18px!important;font-size:13px!important}.highlights[data-astro-cid-fmzvkzhr]{grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:30px auto 50px;display:grid}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr]{padding:22px}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr] b[data-astro-cid-fmzvkzhr]{margin-bottom:4px;display:block}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr] span[data-astro-cid-fmzvkzhr]{color:var(--text-muted);font-size:14px}.doc[data-astro-cid-fmzvkzhr]{border-radius:var(--radius-lg);background:var(--surface);border:2px solid var(--border);max-width:860px;box-shadow:var(--pop);margin:0 auto;padding:40px 44px}.doc[data-astro-cid-fmzvkzhr] h2{border-top:2px dashed var(--border);align-items:center;gap:12px;margin:44px 0 14px;padding-top:28px;font-size:21px;display:flex}.doc[data-astro-cid-fmzvkzhr] h2:before{content:"";background:var(--pink);width:12px;height:12px;box-shadow:0 0 0 4px var(--pink-soft);border-radius:50%;flex-shrink:0}.doc[data-astro-cid-fmzvkzhr] h2:first-of-type{margin-top:30px}.doc[data-astro-cid-fmzvkzhr] p,.doc[data-astro-cid-fmzvkzhr] li{color:var(--text)}.doc[data-astro-cid-fmzvkzhr] li{margin-bottom:8px}@media (width<=960px){.highlights[data-astro-cid-fmzvkzhr]{grid-template-columns:1fr}}@media (width<=640px){.doc[data-astro-cid-fmzvkzhr]{padding:26px 20px}}
+    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.PbQ6GxxA.css">
+<style>.doc-hero[data-astro-cid-fmzvkzhr]{text-align:center;padding:80px 0 30px}.doc-hero[data-astro-cid-fmzvkzhr] img[data-astro-cid-fmzvkzhr]{width:150px;filter:drop-shadow(0 8px 14px rgb(var(--shadow-rgb) / .25))}.doc-hero[data-astro-cid-fmzvkzhr] h1[data-astro-cid-fmzvkzhr]{font-size:var(--fs-h1);margin:10px 0 14px;line-height:1.35}.doc-hero[data-astro-cid-fmzvkzhr] p[data-astro-cid-fmzvkzhr]{color:var(--text-muted);font-size:var(--fs-lg);max-width:620px;margin:0 auto}.doc-meta[data-astro-cid-fmzvkzhr]{border-radius:var(--radius-pill);background:var(--surface);border:2px solid var(--border);padding:3px 16px;font-weight:700;display:inline-block;font-size:var(--fs-sm)!important;margin-top:18px!important}.highlights[data-astro-cid-fmzvkzhr]{grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:30px auto 50px;display:grid}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr]{padding:22px}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr] b[data-astro-cid-fmzvkzhr]{margin-bottom:4px;display:block}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr] span[data-astro-cid-fmzvkzhr]{color:var(--text-muted);font-size:var(--fs-md)}.doc[data-astro-cid-fmzvkzhr]{border-radius:var(--radius-lg);background:var(--surface);border:2px solid var(--border);max-width:860px;box-shadow:var(--pop);margin:0 auto;padding:40px 44px}.doc[data-astro-cid-fmzvkzhr] h2{font-size:var(--fs-xl);border-top:2px dashed var(--border);align-items:center;gap:12px;margin:44px 0 14px;padding-top:28px;display:flex}.doc[data-astro-cid-fmzvkzhr] h2:before{content:"";background:var(--pink);width:12px;height:12px;box-shadow:0 0 0 4px var(--pink-soft);border-radius:50%;flex-shrink:0}.doc[data-astro-cid-fmzvkzhr] h2:first-of-type{margin-top:30px}.doc[data-astro-cid-fmzvkzhr] p,.doc[data-astro-cid-fmzvkzhr] li{color:var(--text)}.doc[data-astro-cid-fmzvkzhr] li{margin-bottom:8px}@media (width<=960px){.highlights[data-astro-cid-fmzvkzhr]{grid-template-columns:1fr}}@media (width<=640px){.doc[data-astro-cid-fmzvkzhr]{padding:26px 20px}}
 </style></head>
     <body data-astro-cid-z4jru4n3>
+        <a class="skip-link" href="#main" data-astro-cid-z4jru4n3>本文へスキップ</a>
         <div class="orb orb-1" aria-hidden="true" data-astro-cid-z4jru4n3></div>
         <div class="orb orb-2" aria-hidden="true" data-astro-cid-z4jru4n3></div>
         <div class="orb orb-3" aria-hidden="true" data-astro-cid-z4jru4n3></div>
         
 
-        <header class="site-header" data-astro-cid-fzpbxy5g>
+        <header class="site-header" id="site-header" data-astro-cid-fzpbxy5g>
     <div class="inner" data-astro-cid-fzpbxy5g>
         <a class="brand" href="./" data-astro-cid-fzpbxy5g>
-            <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" data-astro-cid-fzpbxy5g>
+            
+<img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt loading="eager" data-astro-cid-fzpbxy5g="true" decoding="async" width="36" height="36" class="brand-avatar">
             Hanako <span class="ai-badge" data-astro-cid-fzpbxy5g>TTS</span>
         </a>
-        <nav class="site-nav" aria-label="メインナビゲーション" data-astro-cid-fzpbxy5g>
-            <a href="./" data-astro-cid-fzpbxy5g>ホーム</a><a href="./#docs" data-astro-cid-fzpbxy5g>ドキュメント</a><a href="terms.html" data-astro-cid-fzpbxy5g>利用規約</a><a href="privacy.html" aria-current="page" data-astro-cid-fzpbxy5g>プライバシー</a>
-            <a class="btn btn-primary btn-sm" href="./#invite" data-astro-cid-fzpbxy5g>はじめる →</a>
+        <!-- タブレット以下で出るメニューの開閉ボタン -->
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-astro-cid-fzpbxy5g>
+            <span class="menu-icon" aria-hidden="true" data-astro-cid-fzpbxy5g><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i></span>
+            メニュー
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション" data-astro-cid-fzpbxy5g>
+            <a href="./" data-astro-cid-fzpbxy5g>ホーム</a><a href="docs.html" data-astro-cid-fzpbxy5g>ドキュメント</a><a href="terms.html" data-astro-cid-fzpbxy5g>利用規約</a><a href="privacy.html" aria-current="page" data-astro-cid-fzpbxy5g>プライバシー</a>
+            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める" data-astro-cid-fzpbxy5g>
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" data-astro-cid-fzpbxy5g></path></svg>
+                <span class="motion-label" data-astro-cid-fzpbxy5g>アニメーションを止める</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="./#invite" data-astro-cid-fzpbxy5g>はなこに会う？</a>
         </nav>
     </div>
 </header>
 
-        
+<script type="module" src="/hanako-bot/_astro/SiteHeader.astro_astro_type_script_index_0_lang.Cm2AIVHJ.js"></script>
+
+        <main id="main" data-astro-cid-z4jru4n3>
+            
     <section class="doc-hero container" data-astro-cid-fmzvkzhr>
-        <img src="assets/hanako-privacy.webp" alt="花子" data-astro-cid-fmzvkzhr>
+        
+<img src="/hanako-bot/_astro/hanako-privacy.BpLFGZHO_Z2dS8nH.webp" srcset="/hanako-bot/_astro/hanako-privacy.BpLFGZHO_Z2dS8nH.webp 1x, /hanako-bot/_astro/hanako-privacy.BpLFGZHO_Z2jdBYY.webp 2x" alt data-astro-cid-fmzvkzhr="true" loading="lazy" decoding="async" width="150" height="150">
         <br data-astro-cid-fmzvkzhr><span class="eyebrow" data-astro-cid-fmzvkzhr>Privacy Policy</span>
         <h1 data-astro-cid-fmzvkzhr><span class="hl" data-astro-cid-fmzvkzhr>プライバシーポリシー</span></h1>
         <p data-astro-cid-fmzvkzhr>利用者のプライバシーをいちばんに考えています。Hanakoが扱う情報について、ここで説明します。</p>
@@ -65,7 +96,7 @@
         </div>
     </div>
 
-    <main class="container doc" data-astro-cid-fmzvkzhr>
+    <article class="container doc" data-astro-cid-fmzvkzhr>
         
     <p>このプライバシーポリシー（以下「本ポリシー」）は、<a href="https://github.com/Ebycow" rel="noopener" target="_blank">Ebycow</a>（以下「運営者」）が運営・提供する Discord Bot「Hanako」（以下「本Bot」）が取り扱う情報と、その利用目的・保存・削除について説明するものです。</p>
 <p>Hanako のソースコードは公開されており、運営者以外の第三者が独自に運営している Bot（以下「第三者Bot」）が存在する場合があります。本Botの範囲は<a href="terms.html">利用規約</a>第1条に定めるとおりです。本ポリシーは第三者Botには適用されません。運営者は第三者Botが取り扱う情報を保有・管理しておらず、その開示・削除などの請求にも対応できません。第三者Botについては、当該Botの運営者にお問い合わせください。</p>
@@ -161,22 +192,24 @@
 <li><strong>その他のお問い合わせ：</strong><a href="https://github.com/Ebycow/hanako/issues" rel="noopener" target="_blank">GitHub の Issue</a>までお願いします。Issue は公開の場ですので、個人情報を書き込まないようご注意ください。</li>
 </ul>
 
-    </main>
+    </article>
 
+        </main>
 
         <footer class="site-footer" data-astro-cid-nns7i3if>
     <div class="container" data-astro-cid-nns7i3if>
         <div class="footer-grid" data-astro-cid-nns7i3if>
             <div data-astro-cid-nns7i3if>
                 <a class="brand" href="./" data-astro-cid-nns7i3if>
-                    <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" data-astro-cid-nns7i3if>
+                    
+<img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt data-astro-cid-nns7i3if="true" loading="lazy" decoding="async" width="36" height="36" class="brand-avatar">
                     Hanako <span class="ai-badge" data-astro-cid-nns7i3if>TTS</span>
                 </a>
                 <p data-astro-cid-nns7i3if>言葉に、声という花を。<br data-astro-cid-nns7i3if>Discordのチャット読み上げBotです。</p>
                 <span class="status" data-astro-cid-nns7i3if>All systems operational</span>
             </div>
             <div data-astro-cid-nns7i3if>
-                <h5 data-astro-cid-nns7i3if>PRODUCT</h5>
+                <h2 data-astro-cid-nns7i3if>PRODUCT</h2>
                 <ul data-astro-cid-nns7i3if>
                     <li data-astro-cid-nns7i3if><a href="./#features" data-astro-cid-nns7i3if>機能</a></li>
                     <li data-astro-cid-nns7i3if><a href="./#pricing" data-astro-cid-nns7i3if>料金</a></li>
@@ -184,16 +217,16 @@
                 </ul>
             </div>
             <div data-astro-cid-nns7i3if>
-                <h5 data-astro-cid-nns7i3if>RESOURCES</h5>
+                <h2 data-astro-cid-nns7i3if>RESOURCES</h2>
                 <ul data-astro-cid-nns7i3if>
-                    <li data-astro-cid-nns7i3if><a href="./#docs" data-astro-cid-nns7i3if>ドキュメント</a></li>
-                    <li data-astro-cid-nns7i3if><a href="./#commands" data-astro-cid-nns7i3if>コマンド一覧</a></li>
+                    <li data-astro-cid-nns7i3if><a href="docs.html" data-astro-cid-nns7i3if>ドキュメント</a></li>
+                    <li data-astro-cid-nns7i3if><a href="docs.html#commands" data-astro-cid-nns7i3if>コマンド一覧</a></li>
                     <li data-astro-cid-nns7i3if><a href="./#developers" data-astro-cid-nns7i3if>開発者向け</a></li>
                     <li data-astro-cid-nns7i3if><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener" data-astro-cid-nns7i3if>GitHub</a></li>
                 </ul>
             </div>
             <div data-astro-cid-nns7i3if>
-                <h5 data-astro-cid-nns7i3if>LEGAL</h5>
+                <h2 data-astro-cid-nns7i3if>LEGAL</h2>
                 <ul data-astro-cid-nns7i3if>
                     <li data-astro-cid-nns7i3if><a href="terms.html" data-astro-cid-nns7i3if>利用規約</a></li>
                     <li data-astro-cid-nns7i3if><a href="privacy.html" data-astro-cid-nns7i3if>プライバシーポリシー</a></li>

@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ja" data-astro-cid-z4jru4n3>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- JavaScriptが動くときだけ、スクロールで出てくる演出のために要素を隠す（reveal.css）。
+             「動きを止める」設定（src/scripts/motion.ts）も、描画の前に反映しておく -->
+        <script>
+            (function () {
+                var root = document.documentElement;
+                root.classList.add('js');
+                var saved = null;
+                try {
+                    saved = localStorage.getItem('hanako-motion');
+                } catch (e) {}
+                if (saved === 'off' || (saved !== 'on' && matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+                    root.classList.add('motion-off');
+                }
+            })();
+        </script><title>使い方ガイド | Hanako 読み上げBot</title>
+        <meta name="description" content="Discordのチャット読み上げBot「Hanako」の使い方ガイドです。始め方、辞書、SE（効果音）、ブラックリスト、権限の設定、コマンド一覧、よくある質問をまとめています。">
+        <meta property="og:title" content="使い方ガイド | Hanako 読み上げBot">
+        <meta property="og:description" content="はじめて使う人にも、使いこなしたい人にも。Hanakoの使い方をひととおりまとめました。">
+        <meta property="og:type" content="website">
+        <meta name="theme-color" content="#fff8fb">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+        <!-- ロゴ専用の丸ゴシック。使う文字だけを読み込む -->
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&text=HanakoTTS&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/png" href="assets/favicon.png">
+        <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.PbQ6GxxA.css">
+<link rel="stylesheet" href="/hanako-bot/_astro/docs.pwSqn4jh.css"></head>
+    <body data-astro-cid-z4jru4n3>
+        <a class="skip-link" href="#main" data-astro-cid-z4jru4n3>本文へスキップ</a>
+        <div class="orb orb-1" aria-hidden="true" data-astro-cid-z4jru4n3></div>
+        <div class="orb orb-2" aria-hidden="true" data-astro-cid-z4jru4n3></div>
+        <div class="orb orb-3" aria-hidden="true" data-astro-cid-z4jru4n3></div>
+        
+
+        <header class="site-header" id="site-header" data-astro-cid-fzpbxy5g>
+    <div class="inner" data-astro-cid-fzpbxy5g>
+        <a class="brand" href="./" data-astro-cid-fzpbxy5g>
+            
+<img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt loading="eager" data-astro-cid-fzpbxy5g="true" decoding="async" width="36" height="36" class="brand-avatar">
+            Hanako <span class="ai-badge" data-astro-cid-fzpbxy5g>TTS</span>
+        </a>
+        <!-- タブレット以下で出るメニューの開閉ボタン -->
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" data-astro-cid-fzpbxy5g>
+            <span class="menu-icon" aria-hidden="true" data-astro-cid-fzpbxy5g><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i><i data-astro-cid-fzpbxy5g></i></span>
+            メニュー
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション" data-astro-cid-fzpbxy5g>
+            <a href="./" data-astro-cid-fzpbxy5g>ホーム</a><a href="docs.html" aria-current="page" data-astro-cid-fzpbxy5g>ドキュメント</a><a href="#commands" data-astro-cid-fzpbxy5g>コマンド</a><a href="#trouble" data-astro-cid-fzpbxy5g>FAQ</a><a href="./#developers" data-astro-cid-fzpbxy5g>開発者</a>
+            <!-- サイト全体のアニメーションを止める・再開する（押されている＝止まっている） -->
+            <button class="motion-toggle" id="motion-toggle" type="button" aria-pressed="false" title="アニメーションを止める" data-astro-cid-fzpbxy5g>
+                <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><rect x="6" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect><rect x="14" y="5" width="4" height="14" rx="1.5" fill="currentColor" data-astro-cid-fzpbxy5g></rect></svg>
+                <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true" data-astro-cid-fzpbxy5g><path d="M8 5.5v13l10.5-6.5z" fill="currentColor" data-astro-cid-fzpbxy5g></path></svg>
+                <span class="motion-label" data-astro-cid-fzpbxy5g>アニメーションを止める</span>
+            </button>
+            <a class="btn btn-primary btn-sm" href="./#invite" data-astro-cid-fzpbxy5g>はなこに会う？</a>
+        </nav>
+    </div>
+</header>
+
+<script type="module" src="/hanako-bot/_astro/SiteHeader.astro_astro_type_script_index_0_lang.Cm2AIVHJ.js"></script>
+
+        <main id="main" data-astro-cid-z4jru4n3>
+            
+    <div class="guide-hero container" data-astro-cid-37beepxv>
+        
+<img src="/hanako-bot/_astro/hanako-notebook.DYPuRDI-_ZYnlD5.webp" srcset="/hanako-bot/_astro/hanako-notebook.DYPuRDI-_ZYnlD5.webp 1x, /hanako-bot/_astro/hanako-notebook.DYPuRDI-_Z1n7zI0.webp 2x" alt="ノートとペンを持って考えごとをするはなこ" loading="eager" data-astro-cid-37beepxv="true" decoding="async" width="150" height="150">
+        <br data-astro-cid-37beepxv><span class="eyebrow" data-astro-cid-37beepxv>Documentation</span>
+        <h1 data-astro-cid-37beepxv>Hanakoの<span class="hl" data-astro-cid-37beepxv>使い方ガイド。</span></h1>
+        <p data-astro-cid-37beepxv>はじめて使う人にも、使いこなしたい人にも向けて、Hanakoの使い方をひととおりまとめました。</p>
+    </div>
+
+    <div class="container" data-astro-cid-37beepxv>
+        <div class="docs" data-astro-cid-dk5tjkdh>
+    <nav class="toc" aria-label="目次" data-astro-cid-dk5tjkdh>
+        <p data-astro-cid-dk5tjkdh>目次</p>
+        <ol data-astro-cid-dk5tjkdh>
+            <li data-astro-cid-dk5tjkdh><a href="#start" data-astro-cid-dk5tjkdh>01. はじめる</a></li><li data-astro-cid-dk5tjkdh><a href="#input" data-astro-cid-dk5tjkdh>02. コマンドの打ち方</a></li><li data-astro-cid-dk5tjkdh><a href="#reading" data-astro-cid-dk5tjkdh>03. 読み上げのしくみ</a></li><li data-astro-cid-dk5tjkdh><a href="#dictionary" data-astro-cid-dk5tjkdh>04. 辞書</a></li><li data-astro-cid-dk5tjkdh><a href="#se" data-astro-cid-dk5tjkdh>05. SE（効果音）</a></li><li data-astro-cid-dk5tjkdh><a href="#voice" data-astro-cid-dk5tjkdh>06. 声と読み方</a></li><li data-astro-cid-dk5tjkdh><a href="#blacklist" data-astro-cid-dk5tjkdh>07. ブラックリスト</a></li><li data-astro-cid-dk5tjkdh><a href="#admin" data-astro-cid-dk5tjkdh>08. 権限と管理</a></li><li data-astro-cid-dk5tjkdh><a href="#commands" data-astro-cid-dk5tjkdh>09. コマンド一覧</a></li><li data-astro-cid-dk5tjkdh><a href="#trouble" data-astro-cid-dk5tjkdh>10. FAQ</a></li>
+        </ol>
+    </nav>
+
+    <div data-astro-cid-dk5tjkdh>
+        <section class="chapter" id="start" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 01 / GETTING STARTED</span>
+            <h2 data-astro-cid-odlp3k4y>はじめかたは、<span class="hl" data-astro-cid-7476p7kh>4ステップ。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-hello.BQpgyGi2_1bFT59.webp" srcset="/hanako-bot/_astro/hanako-hello.BQpgyGi2_1bFT59.webp 1x, /hanako-bot/_astro/hanako-hello.BQpgyGi2_1wkyUz.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <div class="tldr" data-astro-cid-7476p7kh>
+        <b data-astro-cid-7476p7kh>ひとことで</b>
+        <p data-astro-cid-7476p7kh>ボイスチャンネルに入って<code data-astro-cid-7476p7kh>/plz</code>。以上です。</p>
+    </div>
+    <p class="lead" data-astro-cid-7476p7kh>
+        Hanakoは、呼んだ人がいるボイスチャンネルに参加して、呼ばれたテキストチャンネルの発言を読み上げます。面倒な設定はいりません。
+    </p>
+
+    <div class="steps" data-astro-cid-7476p7kh>
+        <div class="step" data-astro-cid-7476p7kh>
+            
+<img src="/hanako-bot/_astro/hanako-listening.SMM9WbIS_Z1gH62b.webp" srcset="/hanako-bot/_astro/hanako-listening.SMM9WbIS_Z1gH62b.webp 1x, /hanako-bot/_astro/hanako-listening.SMM9WbIS_ZwIJdz.webp 2x" alt data-astro-cid-7476p7kh="true" loading="lazy" decoding="async" width="72" height="72">
+            <span class="n" data-astro-cid-7476p7kh>STEP 1</span>
+            <b data-astro-cid-7476p7kh>ボイスチャンネルに入る</b>
+            <small data-astro-cid-7476p7kh>先にあなたが参加しておく</small>
+        </div>
+        <div class="step" data-astro-cid-7476p7kh>
+            
+<img src="/hanako-bot/_astro/hanako-typing.DUGMdsRG_kVxB2.webp" srcset="/hanako-bot/_astro/hanako-typing.DUGMdsRG_kVxB2.webp 1x, /hanako-bot/_astro/hanako-typing.DUGMdsRG_22gWF8.webp 2x" alt data-astro-cid-7476p7kh="true" loading="lazy" decoding="async" width="72" height="72">
+            <span class="n" data-astro-cid-7476p7kh>STEP 2</span>
+            <b data-astro-cid-7476p7kh><code data-astro-cid-7476p7kh>/plz</code>と打つ</b>
+            <small data-astro-cid-7476p7kh>読んでほしいテキストチャンネルで</small>
+        </div>
+        <div class="step main" data-astro-cid-7476p7kh>
+            
+<img src="/hanako-bot/_astro/hanako-speaking.Duy82aJz_274erw.webp" srcset="/hanako-bot/_astro/hanako-speaking.Duy82aJz_274erw.webp 1x, /hanako-bot/_astro/hanako-speaking.Duy82aJz_Z1l70Sf.webp 2x" alt data-astro-cid-7476p7kh="true" loading="lazy" decoding="async" width="72" height="72">
+            <span class="n" data-astro-cid-7476p7kh>STEP 3</span>
+            <b data-astro-cid-7476p7kh>Hanakoが参加</b>
+            <small data-astro-cid-7476p7kh>そのチャンネルの発言を読み上げる</small>
+        </div>
+        <div class="step" data-astro-cid-7476p7kh>
+            
+<img src="/hanako-bot/_astro/hanako-hello.BQpgyGi2_Z2aQs8K.webp" srcset="/hanako-bot/_astro/hanako-hello.BQpgyGi2_Z2aQs8K.webp 1x, /hanako-bot/_astro/hanako-hello.BQpgyGi2_Z1jeHLm.webp 2x" alt data-astro-cid-7476p7kh="true" loading="lazy" decoding="async" width="72" height="72">
+            <span class="n" data-astro-cid-7476p7kh>STEP 4</span>
+            <b data-astro-cid-7476p7kh><code data-astro-cid-7476p7kh>/bye</code>で退出</b>
+            <small data-astro-cid-7476p7kh>誰もいなくなれば自動で退出</small>
+        </div>
+    </div>
+    <p class="figcap" data-astro-cid-7476p7kh>読み上げを始めてから終わるまでの流れ</p>
+
+    <h3 data-astro-cid-7476p7kh>覚えておくと便利なこと</h3>
+    <ul data-astro-cid-7476p7kh>
+        <li data-astro-cid-7476p7kh>Hanakoが参加しているときに、別のテキストチャンネルでもう一度<code data-astro-cid-7476p7kh>/plz</code>を打つと、そのチャンネルも読み上げの対象に加わります。</li>
+        <li data-astro-cid-7476p7kh>ボイスチャンネルに付いているテキストチャットで<code data-astro-cid-7476p7kh>/plz</code>を打てば、そこが読み上げの対象になります。</li>
+        <li data-astro-cid-7476p7kh>ボイスチャンネルにHanakoだけが残ると、自動で退出します。</li>
+        <li data-astro-cid-7476p7kh>メンテナンスで再起動したときは、元のボイスチャンネルに自動で再接続し、読み上げを再開します。</li>
+    </ul>
+    <div class="callout warn" data-astro-cid-7476p7kh>
+        <span class="callout-title" data-astro-cid-7476p7kh>対応していない場所</span>
+        スレッド、フォーラム、アナウンスチャンネルは読み上げできません。ステージチャンネルにも参加できません。
+    </div>
+
+</section><section class="chapter" id="input" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 02 / INPUT METHODS</span>
+            <h2 data-astro-cid-odlp3k4y>コマンドの打ち方は、<span class="hl">3通り。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-typing.DUGMdsRG_2rYv4f.webp" srcset="/hanako-bot/_astro/hanako-typing.DUGMdsRG_2rYv4f.webp 1x, /hanako-bot/_astro/hanako-typing.DUGMdsRG_1CXxdp.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead">
+        同じコマンドを3通りの書き方で実行できます。使いやすいものを選びましょう。迷ったら、スラッシュコマンドがおすすめです。
+    </p>
+
+    <div class="cards">
+        <article class="card">
+            
+<img src="/hanako-bot/_astro/hanako-commands.CK0KXHnq_Eat9v.webp" srcset="/hanako-bot/_astro/hanako-commands.CK0KXHnq_Eat9v.webp 1x, /hanako-bot/_astro/hanako-commands.CK0KXHnq_nGDjG.webp 2x" alt loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag hot">おすすめ</span>
+            <h3>スラッシュコマンド</h3>
+            <p><code>/teach from:草 to:くさ</code></p>
+            <p>
+                入力欄に<code>/</code>を打つと候補と説明が出ます。引数の名前が表示されるので打ち間違えにくく、一覧系の結果は自分にだけ表示されます。
+            </p>
+        </article>
+        <article class="card">
+            
+<img src="/hanako-bot/_astro/hanako-hello.BQpgyGi2_1kVDjw.webp" srcset="/hanako-bot/_astro/hanako-hello.BQpgyGi2_1kVDjw.webp 1x, /hanako-bot/_astro/hanako-hello.BQpgyGi2_vaGa1.webp 2x" alt loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag">テキスト</span>
+            <h3>メンション</h3>
+            <p><code>@はなこ teach 草 くさ</code></p>
+            <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。<code>教育</code>のような日本語の別名も使えます。</p>
+        </article>
+        <article class="card">
+            
+<img src="/hanako-bot/_astro/hanako-typing.DUGMdsRG_Z1hrjkf.webp" srcset="/hanako-bot/_astro/hanako-typing.DUGMdsRG_Z1hrjkf.webp 1x, /hanako-bot/_astro/hanako-typing.DUGMdsRG_Zc82A7.webp 2x" alt loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag">テキスト</span>
+            <h3>プリフィックス<code>&gt;</code></h3>
+            <p><code>&gt;teach 草 くさ</code></p>
+            <p>発言の先頭に<code>&gt;</code>を付けます。いちばん少ない文字数で打てます。</p>
+        </article>
+    </div>
+
+    <div class="callout">
+        <span class="callout-title">読まれたくない発言は<code>&gt;</code>で始めよう</span>
+        <code>&gt;</code>で始まる発言は、コマンドとして存在しない内容でも読み上げられません。独り言やメモを書きたいときに便利です。
+    </div>
+
+    <h3>スラッシュコマンドとテキストコマンドの違い</h3>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>スラッシュコマンド</th>
+                    <th>テキストコマンド</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>一覧・検索・ヘルプの結果</td>
+                    <td>自分にだけ見える</td>
+                    <td>チャンネルの全員に見える</td>
+                </tr>
+                <tr>
+                    <td>全削除の確認</td>
+                    <td>「実行する」ボタンを押す</td>
+                    <td>コマンドに<code>--force</code>を付ける</td>
+                </tr>
+                <tr>
+                    <td>SEを複数まとめて追加・削除</td>
+                    <td>1件ずつ</td>
+                    <td>まとめてできる</td>
+                </tr>
+                <tr>
+                    <td>使える人の決まり方</td>
+                    <td>サーバー管理者が自由に変更できる</td>
+                    <td>固定（<a href="#admin">08章</a>を参照）</td>
+                </tr>
+                <tr>
+                    <td>サーバーごとに無効化</td>
+                    <td>できない</td>
+                    <td><code>/text-commands</code>で無効にできる</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</section><section class="chapter" id="reading" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 03 / HOW IT READS</span>
+            <h2 data-astro-cid-odlp3k4y>発言が声になるまでの、<span class="hl" data-astro-cid-2xs23qji>5つの手順。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-hanakin.BicM7aj3_Wfddm.webp" srcset="/hanako-bot/_astro/hanako-hanakin.BicM7aj3_Wfddm.webp 1x, /hanako-bot/_astro/hanako-hanakin.BicM7aj3_Zb1on4.webp 2x" alt="サングラスをかけてこちらを指さすはなこ（ハナキン）" data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead" data-astro-cid-2xs23qji>
+        発言は、次の5つの手順を順に通って声になります。思ったとおりに読まれなかったときや、まったく読まれなかったときは、この順番をたどると理由がわかります。
+    </p>
+
+    <ol class="pipeline" data-astro-cid-2xs23qji>
+        <li data-astro-cid-2xs23qji>
+            <div class="what" data-astro-cid-2xs23qji>
+                <b data-astro-cid-2xs23qji>読むかどうかを決める</b>
+                <span data-astro-cid-2xs23qji>読み上げ対象チャンネルの、人間の発言だけを通します（下の表を参照）。</span>
+            </div>
+            <div class="sample" data-astro-cid-2xs23qji>HANAKINの動画見た https://youtu.be/abc （拍手）</div>
+        </li>
+        <li data-astro-cid-2xs23qji>
+            <div class="what" data-astro-cid-2xs23qji>
+                <b data-astro-cid-2xs23qji>読める形に直す</b>
+                <span data-astro-cid-2xs23qji>URLは「ユーアールエル」に、メンションは表示名に、絵文字は名前に置き換えます。</span>
+            </div>
+            <div class="sample" data-astro-cid-2xs23qji>HANAKINの動画見た <mark data-astro-cid-2xs23qji>ユーアールエル</mark> （拍手）</div>
+        </li>
+        <li data-astro-cid-2xs23qji>
+            <div class="what" data-astro-cid-2xs23qji>
+                <b data-astro-cid-2xs23qji>辞書で読み替える</b>
+                <span data-astro-cid-2xs23qji>教育した単語を置き換えます。SEのキーワード部分は書き換えません。</span>
+            </div>
+            <div class="sample" data-astro-cid-2xs23qji><mark data-astro-cid-2xs23qji>ハナキン</mark>の動画見た ユーアールエル （拍手）</div>
+        </li>
+        <li data-astro-cid-2xs23qji>
+            <div class="what" data-astro-cid-2xs23qji>
+                <b data-astro-cid-2xs23qji>長すぎたら切る</b>
+                <span data-astro-cid-2xs23qji>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。</span>
+            </div>
+            <div class="sample" data-astro-cid-2xs23qji>ハナキンの動画見た ユーアールエル （拍手）<br data-astro-cid-2xs23qji><small data-astro-cid-2xs23qji>// 制限内なのでそのまま</small></div>
+        </li>
+        <li data-astro-cid-2xs23qji>
+            <div class="what" data-astro-cid-2xs23qji>
+                <b data-astro-cid-2xs23qji>声とSEに分けて再生する</b>
+                <span data-astro-cid-2xs23qji>SEのキーワードは効果音に、それ以外は合成音声になり、順番に再生されます。</span>
+            </div>
+            <div class="sample" data-astro-cid-2xs23qji>
+                <span class="chip voice" data-astro-cid-2xs23qji>🗣 ハナキンの動画見た ユーアールエル</span>
+                <span class="chip se" data-astro-cid-2xs23qji>🎺 （拍手）</span>
+            </div>
+        </li>
+    </ol>
+    <p class="figcap" data-astro-cid-2xs23qji>例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録しているサーバーでの読み上げ</p>
+
+    <h3 data-astro-cid-2xs23qji>読み上げられない発言</h3>
+    <div class="table-wrap" data-astro-cid-2xs23qji>
+        <table data-astro-cid-2xs23qji>
+            <thead data-astro-cid-2xs23qji>
+                <tr data-astro-cid-2xs23qji>
+                    <th data-astro-cid-2xs23qji>発言</th>
+                    <th data-astro-cid-2xs23qji>理由・対処</th>
+                </tr>
+            </thead>
+            <tbody data-astro-cid-2xs23qji>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji>読み上げ対象でないチャンネルの発言</td>
+                    <td data-astro-cid-2xs23qji>そのチャンネルで<code data-astro-cid-2xs23qji>/plz</code>を打つと対象に加わります</td>
+                </tr>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji><code data-astro-cid-2xs23qji>&gt;</code>で始まる発言、Hanakoへのメンション</td>
+                    <td data-astro-cid-2xs23qji>コマンドとして扱うため読みません</td>
+                </tr>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji>ほかのBotの発言</td>
+                    <td data-astro-cid-2xs23qji>常に読みません</td>
+                </tr>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji>ブラックリストに入っている人の発言</td>
+                    <td data-astro-cid-2xs23qji><a href="#blacklist" data-astro-cid-2xs23qji>07章</a>を参照</td>
+                </tr>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji>画像やファイルだけの発言</td>
+                    <td data-astro-cid-2xs23qji>本文がないので読みません</td>
+                </tr>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji>記号や空白だけの発言</td>
+                    <td data-astro-cid-2xs23qji>声にできる文字がないので読みません</td>
+                </tr>
+                <tr data-astro-cid-2xs23qji>
+                    <td data-astro-cid-2xs23qji>スレッド・フォーラム内の発言</td>
+                    <td data-astro-cid-2xs23qji>対応していません</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 data-astro-cid-2xs23qji>読み上げを止める「成敗」</h3>
+    <div class="seibai" data-astro-cid-2xs23qji>
+        <div class="seibai-body" data-astro-cid-2xs23qji>
+            <p data-astro-cid-2xs23qji>
+                長文やSEが流れ続けて困ったときは<code data-astro-cid-2xs23qji>/seibai</code>を使います。いま読んでいる音声と、その後ろで順番待ちしている音声をすべて中断します。Hanakoは退出しないので、次の発言からまた読み上げます。
+            </p>
+            <ul data-astro-cid-2xs23qji>
+                <li data-astro-cid-2xs23qji><b data-astro-cid-2xs23qji>だれでも使えます。</b>権限は要りません。荒らしや貼り付け事故を見かけたら、気づいた人がすぐ止められます。</li>
+                <li data-astro-cid-2xs23qji><b data-astro-cid-2xs23qji>止まるのは「いま溜まっている分」だけ。</b>辞書やSE、読み上げ対象チャンネルの設定はそのまま残ります。</li>
+                <li data-astro-cid-2xs23qji><b data-astro-cid-2xs23qji>テキストでも呼べます。</b><code data-astro-cid-2xs23qji>&gt;成敗</code>や<code data-astro-cid-2xs23qji>&gt;stop</code>と打っても同じです。</li>
+                <li data-astro-cid-2xs23qji>何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。</li>
+            </ul>
+            <p class="seibai-tip" data-astro-cid-2xs23qji>
+                知らないと、長文が終わるまで全員で待つことになります。サーバーのメンバーにも教えてあげてください。
+            </p>
+        </div>
+        <figure class="seibai-stage" tabindex="0" aria-describedby="seibai-tips" data-astro-cid-2xs23qji>
+            <span class="seibai-fx" aria-hidden="true" data-astro-cid-2xs23qji>
+                <i class="slash" data-astro-cid-2xs23qji></i>
+                <i class="petal" data-astro-cid-2xs23qji></i><i class="petal" data-astro-cid-2xs23qji></i><i class="petal" data-astro-cid-2xs23qji></i>
+                <i class="petal" data-astro-cid-2xs23qji></i><i class="petal" data-astro-cid-2xs23qji></i><i class="petal" data-astro-cid-2xs23qji></i>
+            </span>
+            
+<img src="/hanako-bot/_astro/hanako-seibai.C4JAL0VT_Zk0zvk.webp" srcset="/hanako-bot/_astro/hanako-seibai.C4JAL0VT_Zk0zvk.webp 1x, /hanako-bot/_astro/hanako-seibai.C4JAL0VT_2wXFC.webp 2x" alt="刀を振り抜く、和装のはなこ" data-astro-cid-2xs23qji="true" loading="lazy" decoding="async" width="300" height="300">
+            <figcaption class="seibai-bubble" id="seibai-tips" role="tooltip" data-astro-cid-2xs23qji>
+                <span class="seibai-bubble-label" data-astro-cid-2xs23qji>Tips</span>
+                サーバーのスタンプに<code data-astro-cid-2xs23qji>&gt;seibai</code>と書いて設定しておけば、スタンプを送るだけで<strong data-astro-cid-2xs23qji>成敗！</strong>できるよ
+            </figcaption>
+        </figure>
+    </div>
+
+</section><section class="chapter" id="dictionary" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 04 / DICTIONARY</span>
+            <h2 data-astro-cid-odlp3k4y>読み方を、<span class="hl">辞書で教える。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-studying.CqiFaqah_Z10hMBJ.webp" srcset="/hanako-bot/_astro/hanako-studying.CqiFaqah_Z10hMBJ.webp 1x, /hanako-bot/_astro/hanako-studying.CqiFaqah_Z1K7jJA.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead">
+        読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>200件</strong>まで覚えます。サーバーの中で使われている言葉を、Hanakoに教えていきましょう。
+    </p>
+
+    <div class="steps steps-3">
+        <div class="step">
+            <span class="n">STEP 1</span>
+            <b>発言</b>
+            <small>「電ちゃんかわいい」</small>
+        </div>
+        <div class="step main">
+            <span class="n">STEP 2</span>
+            <b>辞書</b>
+            <small>電 ⇨ いなづま</small>
+        </div>
+        <div class="step">
+            <span class="n">STEP 3</span>
+            <b>読み上げ</b>
+            <small>「いなづまちゃんかわいい」</small>
+        </div>
+    </div>
+    <p class="figcap">読み上げる直前に発言の中の単語を置き換えます。チャットに書かれた発言そのものは変わりません</p>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>やりたいこと</th>
+                    <th>コマンド</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>単語を教える</td>
+                    <td><code>/teach from:置換前 to:置換後</code></td>
+                </tr>
+                <tr>
+                    <td>単語を忘れさせる</td>
+                    <td><code>/forget from:置換前</code></td>
+                </tr>
+                <tr>
+                    <td>覚えている単語を見る</td>
+                    <td><code>/dictionary</code>（ボタンでページ送り）</td>
+                </tr>
+                <tr>
+                    <td>すべて忘れさせる</td>
+                    <td><code>/dictionary-clear</code>（サーバー管理の権限が必要）</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3>登録するときの注意</h3>
+    <ul>
+        <li>置換前・置換後とも2〜50文字。1文字の単語は登録できません。</li>
+        <li>同じ「置換前」は1つだけ。読み方を変えたいときは、いちど<code>/forget</code>してから教え直します。</li>
+        <li>単語の一部にも反応します。短い単語を登録すると、思わぬ言葉の中で置き換わることがあります。</li>
+        <li>SEのキーワードになっている部分は、辞書では置き換えません（SEが優先されます）。</li>
+    </ul>
+
+</section><section class="chapter" id="se" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 05 / SOUND EFFECTS</span>
+            <h2 data-astro-cid-odlp3k4y>キーワードで、<span class="hl" data-astro-cid-tupy4esd>効果音を鳴らす。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-music.B1FXWY6j_jQdV.webp" srcset="/hanako-bot/_astro/hanako-music.B1FXWY6j_jQdV.webp 1x, /hanako-bot/_astro/hanako-music.B1FXWY6j_kXw4m.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead" data-astro-cid-tupy4esd>
+        キーワードに音声ファイルを結びつけると、その言葉が発言に出てきたとき、読み上げの代わりに音を鳴らします。チャットがライブ会場のようににぎやかになります。
+    </p>
+
+    <h3 data-astro-cid-tupy4esd>SEを追加する3つの方法</h3>
+    <div class="cards" data-astro-cid-tupy4esd>
+        <article class="card" data-astro-cid-tupy4esd>
+            
+<img src="/hanako-bot/_astro/hanako-music.B1FXWY6j_Z1Xvzkh.webp" srcset="/hanako-bot/_astro/hanako-music.B1FXWY6j_Z1Xvzkh.webp 1x, /hanako-bot/_astro/hanako-music.B1FXWY6j_ZFblGc.webp 2x" alt data-astro-cid-tupy4esd="true" loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag" data-astro-cid-tupy4esd>スラッシュ / テキスト</span>
+            <h4 data-astro-cid-tupy4esd>URLで指定</h4>
+            <p data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-add keyword:（拍手） url:https://…/clap.mp3</code></p>
+            <p data-astro-cid-tupy4esd>ネット上の音声ファイルのURLを指定します。URLは300文字まで。</p>
+        </article>
+        <article class="card" data-astro-cid-tupy4esd>
+            
+<img src="/hanako-bot/_astro/hanako-cheer.qkIZtP3F_ZciFjw.webp" srcset="/hanako-bot/_astro/hanako-cheer.qkIZtP3F_ZciFjw.webp 1x, /hanako-bot/_astro/hanako-cheer.qkIZtP3F_Z1BNYj6.webp 2x" alt data-astro-cid-tupy4esd="true" loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag" data-astro-cid-tupy4esd>スラッシュ / テキスト</span>
+            <h4 data-astro-cid-tupy4esd>ファイルを1つ添付</h4>
+            <p data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-add keyword:（拍手）</code>を打ち、<code data-astro-cid-tupy4esd>file</code>に添付</p>
+            <p data-astro-cid-tupy4esd>手元のファイルをそのまま登録できます。テキストコマンドなら<code data-astro-cid-tupy4esd>@はなこ se-add （拍手）</code>と打って添付します。</p>
+        </article>
+        <article class="card" data-astro-cid-tupy4esd>
+            
+<img src="/hanako-bot/_astro/hanako-listening.SMM9WbIS_Z1cSeIM.webp" srcset="/hanako-bot/_astro/hanako-listening.SMM9WbIS_Z1cSeIM.webp 1x, /hanako-bot/_astro/hanako-listening.SMM9WbIS_pNk3a.webp 2x" alt data-astro-cid-tupy4esd="true" loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag hot" data-astro-cid-tupy4esd>まとめて登録</span>
+            <h4 data-astro-cid-tupy4esd>複数ファイルをまとめて</h4>
+            <p data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>@はなこ se-add</code>と打ち、複数のファイルを添付</p>
+            <p data-astro-cid-tupy4esd>キーワードを書かずに添付すると、拡張子を除いたファイル名がそのままキーワードになります。テキストコマンドだけで使えます。</p>
+        </article>
+    </div>
+
+    <h3 data-astro-cid-tupy4esd>登録できるファイル</h3>
+    <div class="table-wrap" data-astro-cid-tupy4esd>
+        <table data-astro-cid-tupy4esd>
+            <tbody data-astro-cid-tupy4esd>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>形式</th>
+                    <td data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>.wav</code>、<code data-astro-cid-tupy4esd>.mp3</code></td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>サイズ</th>
+                    <td data-astro-cid-tupy4esd>1ファイル2MBまで</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>長さ</th>
+                    <td data-astro-cid-tupy4esd>60秒まで</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>キーワード</th>
+                    <td data-astro-cid-tupy4esd>2〜49文字（同じキーワードは1つだけ）</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>登録数</th>
+                    <td data-astro-cid-tupy4esd>サーバーごとに10,000件まで</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="callout" data-astro-cid-tupy4esd>
+        <span class="callout-title" data-astro-cid-tupy4esd>キーワードは記号で囲もう</span>
+        SEは発言の一部にも反応します。「草」のような短い言葉を登録すると、「草原」でも鳴ります。<code data-astro-cid-tupy4esd>（拍手）</code>や<code data-astro-cid-tupy4esd>:clap:</code>のように、ふだんの会話に出てこない形にしておくと誤爆しません。
+    </div>
+
+    <h3 data-astro-cid-tupy4esd>探す・直す・消す</h3>
+    <div class="table-wrap" data-astro-cid-tupy4esd>
+        <table data-astro-cid-tupy4esd>
+            <thead data-astro-cid-tupy4esd>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>やりたいこと</th>
+                    <th data-astro-cid-tupy4esd>コマンド</th>
+                    <th data-astro-cid-tupy4esd>補足</th>
+                </tr>
+            </thead>
+            <tbody data-astro-cid-tupy4esd>
+                <tr data-astro-cid-tupy4esd>
+                    <td data-astro-cid-tupy4esd>一覧を見る</td>
+                    <td data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-list</code></td>
+                    <td data-astro-cid-tupy4esd>ボタンでページ送り</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <td data-astro-cid-tupy4esd>うろ覚えで探す</td>
+                    <td data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-search keyword:拍手</code></td>
+                    <td data-astro-cid-tupy4esd>完全一致 → 前方一致 → 部分一致の順に、近いものを5件まで表示。見つからなければ打ち間違いも考慮して探します</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <td data-astro-cid-tupy4esd>キーワードを変える</td>
+                    <td data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-rename old_keyword:旧 new_keyword:新</code></td>
+                    <td data-astro-cid-tupy4esd>音声はそのまま、名前だけ変更</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <td data-astro-cid-tupy4esd>消す</td>
+                    <td data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-del keyword:（拍手）</code></td>
+                    <td data-astro-cid-tupy4esd>テキストコマンドなら<code data-astro-cid-tupy4esd>@はなこ se-del A B C</code>で複数まとめて削除</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 data-astro-cid-tupy4esd>音量をそろえる「SE正規化」</h3>
+    <p data-astro-cid-tupy4esd>
+        SEはファイルごとに音量がばらばらです。正規化をオンにすると、小さすぎるSEを指定したレベルまで持ち上げて、聞こえ方をそろえます。
+    </p>
+    <div class="bars" data-astro-cid-tupy4esd>
+        <div class="panel" data-astro-cid-tupy4esd>
+            <b data-astro-cid-tupy4esd>正規化なし（0）</b>
+            <div class="plot" data-astro-cid-tupy4esd>
+                <div class="target" data-astro-cid-tupy4esd><span data-astro-cid-tupy4esd>目標 80</span></div>
+                <div class="bar" style="height: 22%" data-astro-cid-tupy4esd></div>
+                <div class="bar" style="height: 80%" data-astro-cid-tupy4esd></div>
+                <div class="bar" style="height: 45%" data-astro-cid-tupy4esd></div>
+            </div>
+            <div class="labels" data-astro-cid-tupy4esd><span data-astro-cid-tupy4esd>SE A</span><span data-astro-cid-tupy4esd>SE B</span><span data-astro-cid-tupy4esd>SE C</span></div>
+        </div>
+        <div class="panel" data-astro-cid-tupy4esd>
+            <b data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-normalize level:80</code>のとき</b>
+            <div class="plot" data-astro-cid-tupy4esd>
+                <div class="target" data-astro-cid-tupy4esd><span data-astro-cid-tupy4esd>目標 80</span></div>
+                <div class="bar" style="height: 80%" data-astro-cid-tupy4esd></div>
+                <div class="bar" style="height: 80%" data-astro-cid-tupy4esd></div>
+                <div class="bar" style="height: 80%" data-astro-cid-tupy4esd></div>
+            </div>
+            <div class="labels" data-astro-cid-tupy4esd><span data-astro-cid-tupy4esd>SE A</span><span data-astro-cid-tupy4esd>SE B</span><span data-astro-cid-tupy4esd>SE C</span></div>
+        </div>
+    </div>
+    <p class="figcap" data-astro-cid-tupy4esd>小さいSEが目標レベルまで持ち上がります（イメージ図）</p>
+    <ul data-astro-cid-tupy4esd>
+        <li data-astro-cid-tupy4esd><code data-astro-cid-tupy4esd>/se-normalize level:0〜100</code>で設定します。初期値は50で、<code data-astro-cid-tupy4esd>0</code>にすると無効になります。</li>
+        <li data-astro-cid-tupy4esd>サーバー全体の設定です。変更には「サーバー管理」の権限が必要です。</li>
+    </ul>
+
+</section><section class="chapter" id="voice" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 06 / VOICE &amp; LIMIT</span>
+            <h2 data-astro-cid-odlp3k4y>声と、<span class="hl">読む長さの設定。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-settings.BBYR8O6O_Z2czjkX.webp" srcset="/hanako-bot/_astro/hanako-settings.BBYR8O6O_Z2czjkX.webp 1x, /hanako-bot/_astro/hanako-settings.BBYR8O6O_ZNjT1L.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="98" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead">「誰の声で」「どこまで」読むかの設定です。設定がおよぶ範囲がそれぞれ違うので注意してください。</p>
+
+    <div class="cards">
+        <article class="card">
+            
+<img src="/hanako-bot/_astro/hanako-listening.SMM9WbIS_Z1cSeIM.webp" srcset="/hanako-bot/_astro/hanako-listening.SMM9WbIS_Z1cSeIM.webp 1x, /hanako-bot/_astro/hanako-listening.SMM9WbIS_pNk3a.webp 2x" alt loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag">自分の発言だけ</span>
+            <h3>キャラクター変更</h3>
+            <p><code>/speaker name:キャラクター名</code></p>
+            <p><strong>あなたの発言を読む声</strong>を変えるコマンドです。ほかの人の声は変わりません。設定はサーバーごとに覚えます。</p>
+            <p>今のところ使える声は<code>default</code>の1種類だけなので、実際には変更できません。</p>
+        </article>
+        <article class="card">
+            
+<img src="/hanako-bot/_astro/hanako-pointing.B5OxyVC1_1FEctp.webp" srcset="/hanako-bot/_astro/hanako-pointing.B5OxyVC1_1FEctp.webp 1x, /hanako-bot/_astro/hanako-pointing.B5OxyVC1_1CBiw2.webp 2x" alt loading="lazy" decoding="async" width="60" height="60" class="card-mascot">
+            <span class="tag">サーバー全体</span>
+            <h3>文字数制限</h3>
+            <p><code>/limit number:30</code></p>
+            <p>1つの発言で読む文字数の上限を、0〜2000で決めます。超えた分は読まず、最後に「イか略。」と付けます。</p>
+            <p>初期値は<code>/limit number:0</code>で、制限はありません。変更には「サーバー管理」の権限が必要です。</p>
+        </article>
+    </div>
+    <div class="callout warn">
+        <span class="callout-title">使えるキャラクター名（現在1種類）</span>
+        いま使えるのは既定の声の<code>default</code>だけです。ほかの名前を指定すると読み上げに失敗することがあるので、その場合は<code>/speaker name:default</code>で戻してください。
+    </div>
+
+</section><section class="chapter" id="blacklist" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 07 / BLACKLIST</span>
+            <h2 data-astro-cid-odlp3k4y>読み上げない人を、<span class="hl">決めておく。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-shield.CR-Er5QN_Z11csoJ.webp" srcset="/hanako-bot/_astro/hanako-shield.CR-Er5QN_Z11csoJ.webp 1x, /hanako-bot/_astro/hanako-shield.CR-Er5QN_Z1Pdqfz.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead">
+        特定のユーザーの発言を読み上げないようにする機能です。Discord上のミュートやタイムアウトとは別で、Hanakoが「その人の発言を読まない」だけです。
+    </p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>やりたいこと</th>
+                    <th>コマンド</th>
+                    <th>必要な権限</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>読まないようにする</td>
+                    <td><code>/blacklist-add user:@ユーザー</code></td>
+                    <td>メンバーをタイムアウト</td>
+                </tr>
+                <tr>
+                    <td>解除する</td>
+                    <td><code>/blacklist-remove user:@ユーザー</code></td>
+                    <td>メンバーをタイムアウト</td>
+                </tr>
+                <tr>
+                    <td>一覧を見る</td>
+                    <td><code>/blacklist-show</code></td>
+                    <td>メンバーをタイムアウト</td>
+                </tr>
+                <tr>
+                    <td>全員を解除する</td>
+                    <td><code>/blacklist-clear</code></td>
+                    <td>サーバー管理</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <ul>
+        <li>その人がコマンドを使うことは妨げません。止まるのは読み上げだけです。</li>
+        <li>ほかのBotの発言はもともと読まないので、登録は不要です。</li>
+    </ul>
+
+</section><section class="chapter" id="admin" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 08 / PERMISSIONS</span>
+            <h2 data-astro-cid-odlp3k4y>コマンドを使える人と、<span class="hl" data-astro-cid-xixhzuru>権限の設定。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-admin.BPmtFxfQ_Z1oQoQB.webp" srcset="/hanako-bot/_astro/hanako-admin.BPmtFxfQ_Z1oQoQB.webp 1x, /hanako-bot/_astro/hanako-admin.BPmtFxfQ_Z14cJ1b.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead" data-astro-cid-xixhzuru>ほとんどのコマンドは誰でも使えます。影響の大きいコマンドだけは、Discordの権限を持つ人しか使えません。</p>
+
+    <div class="tiers" data-astro-cid-xixhzuru>
+        <div class="tier" data-astro-cid-xixhzuru>
+                    <div class="who" data-astro-cid-xixhzuru>
+                        <b data-astro-cid-xixhzuru>
+                            👥 だれでも
+                        </b>
+                        <small data-astro-cid-xixhzuru>権限は不要</small>
+                    </div>
+                    <div data-astro-cid-xixhzuru>
+                        
+                                <code data-astro-cid-xixhzuru>/plz</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/bye</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/seibai</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/speaker</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/teach</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/forget</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/dictionary</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/se-add</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/se-del</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/se-list</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/se-search</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/se-rename</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/help</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/ask</code> 
+                            
+                    </div>
+                </div><div class="tier" data-astro-cid-xixhzuru>
+                    <div class="who" data-astro-cid-xixhzuru>
+                        <b data-astro-cid-xixhzuru>
+                            🛡️ モデレーター
+                        </b>
+                        <small data-astro-cid-xixhzuru>「メンバーをタイムアウト」</small>
+                    </div>
+                    <div data-astro-cid-xixhzuru>
+                        
+                                <code data-astro-cid-xixhzuru>/blacklist-add</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/blacklist-remove</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/blacklist-show</code> 
+                            
+                    </div>
+                </div><div class="tier" data-astro-cid-xixhzuru>
+                    <div class="who" data-astro-cid-xixhzuru>
+                        <b data-astro-cid-xixhzuru>
+                            👑 サーバー管理者
+                        </b>
+                        <small data-astro-cid-xixhzuru>「サーバー管理」</small>
+                    </div>
+                    <div data-astro-cid-xixhzuru>
+                        
+                                <code data-astro-cid-xixhzuru>/limit</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/dictionary-clear</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/se-normalize</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/blacklist-clear</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/text-commands</code> 
+                            
+                    </div>
+                </div>
+    </div>
+    <p class="figcap" data-astro-cid-xixhzuru>コマンドを使える人の初期設定。「管理者」権限を持つ人はすべて使えます</p>
+
+    <h3 data-astro-cid-xixhzuru>使える人を変える</h3>
+    <p data-astro-cid-xixhzuru>
+        上の図は初期設定です。サーバー管理者は、Discordの<strong data-astro-cid-xixhzuru>「サーバー設定 → 連携サービス → はなこ」</strong>から、コマンドごとに使えるロール・メンバー・チャンネルを変更できます。たとえば、ブラックリストを全員が使えるようにしたり、<code data-astro-cid-xixhzuru>/se-add</code>を特定のロールだけに許可したりできます。
+    </p>
+    <div class="callout warn" data-astro-cid-xixhzuru>
+        <span class="callout-title" data-astro-cid-xixhzuru>この変更が反映されるのはスラッシュコマンドだけです</span>
+        <code data-astro-cid-xixhzuru>@はなこ</code>や<code data-astro-cid-xixhzuru>&gt;</code>で打つテキストコマンドは、つねに上の図の初期設定で判定されます。連携サービスで細かく制限したいサーバーは、次のコマンドでテキストコマンドを止めてください。
+    </div>
+
+    <h3 data-astro-cid-xixhzuru>テキストコマンドを止める</h3>
+    <p data-astro-cid-xixhzuru>
+        <code data-astro-cid-xixhzuru>/text-commands enabled:False</code>を実行すると、そのサーバーでは<code data-astro-cid-xixhzuru>@はなこ</code>や<code data-astro-cid-xixhzuru>&gt;</code>で始まるコマンドに反応しなくなります。<code data-astro-cid-xixhzuru>enabled:True</code>で元に戻ります。
+    </p>
+    <ul data-astro-cid-xixhzuru>
+        <li data-astro-cid-xixhzuru>止めている間は、テキストコマンドに案内も含めて何も返しません。</li>
+        <li data-astro-cid-xixhzuru><code data-astro-cid-xixhzuru>&gt;</code>で始まる発言を読み上げない動作は、そのまま変わりません。</li>
+        <li data-astro-cid-xixhzuru><code data-astro-cid-xixhzuru>&gt;</code>をほかのBotのコマンドに使いたいサーバーにも向いています。</li>
+    </ul>
+
+    <h3 data-astro-cid-xixhzuru>Hanako自身に必要な権限</h3>
+    <p data-astro-cid-xixhzuru>Hanakoが動くには、対象のチャンネルで次の権限が必要です。足りないときは、Hanakoがどの権限が足りないかを教えてくれます。</p>
+    <div class="table-wrap" data-astro-cid-xixhzuru>
+        <table data-astro-cid-xixhzuru>
+            <thead data-astro-cid-xixhzuru>
+                <tr data-astro-cid-xixhzuru>
+                    <th data-astro-cid-xixhzuru>場所</th>
+                    <th data-astro-cid-xixhzuru>権限</th>
+                </tr>
+            </thead>
+            <tbody data-astro-cid-xixhzuru>
+                <tr data-astro-cid-xixhzuru>
+                    <td data-astro-cid-xixhzuru>ボイスチャンネル</td>
+                    <td data-astro-cid-xixhzuru>チャンネルを見る／接続／発言</td>
+                </tr>
+                <tr data-astro-cid-xixhzuru>
+                    <td data-astro-cid-xixhzuru>テキストチャンネル</td>
+                    <td data-astro-cid-xixhzuru>チャンネルを見る／メッセージを送信／埋め込みリンク／メッセージ履歴を読む／リアクションの追加</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h3 data-astro-cid-xixhzuru>データはサーバーごとに完全に分けて保存</h3>
+    <p data-astro-cid-xixhzuru>
+        辞書・SE・ブラックリスト・各種設定は、Discordサーバーごとに別々に保存されます。ほかのサーバーの設定が混ざったり、見えたりすることはありません。保存する情報の詳細は<a href="privacy.html" data-astro-cid-xixhzuru>プライバシーポリシー</a>をご覧ください。
+    </p>
+
+</section><section class="chapter" id="commands" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 09 / COMMANDS</span>
+            <h2 data-astro-cid-odlp3k4y>すべてのコマンドを、<span class="hl" data-astro-cid-k4v3wdt3>ひと目で。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-commands.CK0KXHnq_1zcGx2.webp" srcset="/hanako-bot/_astro/hanako-commands.CK0KXHnq_1zcGx2.webp 1x, /hanako-bot/_astro/hanako-commands.CK0KXHnq_Onapb.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead" data-astro-cid-k4v3wdt3>下の欄に言葉を入れると、一覧を絞り込めます。</p>
+    <input class="filter" id="command-filter" type="search" placeholder="絞り込み（例：se、辞書、blacklist）" aria-label="コマンドを絞り込む" data-astro-cid-k4v3wdt3>
+    <div class="table-wrap" data-astro-cid-k4v3wdt3>
+        <table id="command-table" data-astro-cid-k4v3wdt3>
+            <thead data-astro-cid-k4v3wdt3>
+                <tr data-astro-cid-k4v3wdt3>
+                    <th data-astro-cid-k4v3wdt3>機能</th>
+                    <th data-astro-cid-k4v3wdt3>スラッシュコマンド</th>
+                    <th data-astro-cid-k4v3wdt3>テキストコマンド（別名）</th>
+                    <th data-astro-cid-k4v3wdt3>必要な権限</th>
+                </tr>
+            </thead>
+            <tbody data-astro-cid-k4v3wdt3>
+                
+                            <tr class="table-group" data-astro-cid-k4v3wdt3>
+                                <td colspan="4" data-astro-cid-k4v3wdt3>🗣️ 読み上げ</td>
+                            </tr>
+                            <tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>ボイスチャンネルに参加</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/plz</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>お願い / plz / summon / s</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>ボイスチャンネルから退出</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/bye</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>さようなら / bye / b</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>読み上げを中止</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/seibai</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>成敗 / seibai / stop</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>文字数制限（0で解除）</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/limit 30</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>制限 / limit / readlimit</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>サーバー管理</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>読み上げキャラクター変更</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/speaker 名前</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>キャラクター変更 / speaker</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr>
+                        
+                            <tr class="table-group" data-astro-cid-k4v3wdt3>
+                                <td colspan="4" data-astro-cid-k4v3wdt3>📚 辞書</td>
+                            </tr>
+                            <tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>単語を教育</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/teach 置換前 置換後</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>教育 / teach / mk / wbook-add</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>単語を忘却</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/forget 単語</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>忘却 / forget / rm / wbook-delete</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>辞書の一覧</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/dictionary</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>辞書 / dictionary / dic / wbook-list</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>辞書を全削除</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/dictionary-clear</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>白紙 / alldelete / wbook-alldel</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>サーバー管理</td>
+                                </tr>
+                        
+                            <tr class="table-group" data-astro-cid-k4v3wdt3>
+                                <td colspan="4" data-astro-cid-k4v3wdt3>🎺 SE（効果音）</td>
+                            </tr>
+                            <tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>SEを追加（URLまたはファイル添付）</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/se-add キーワード</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>音声教育 / se-add</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>SEを削除</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/se-del キーワード</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>音声忘却 / se-delete / se-del</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>SEの一覧</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/se-list</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>音声辞書 / 音声一覧 / se-dic / se-list</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>SEを検索</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/se-search キーワード</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>se?</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>SEの名前変更</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/se-rename 旧 新</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>音声名置換 / se-rename</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>SE音量の正規化（0〜100）</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/se-normalize 80</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>SE正規化 / se-normalize / senorm</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>サーバー管理</td>
+                                </tr>
+                        
+                            <tr class="table-group" data-astro-cid-k4v3wdt3>
+                                <td colspan="4" data-astro-cid-k4v3wdt3>🛡️ ブラックリスト</td>
+                            </tr>
+                            <tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>ユーザーを追加</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/blacklist-add @user</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>沈黙 / blacklist-add</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>メンバーをタイムアウト</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>ユーザーを除外</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/blacklist-remove @user</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>恩赦 / blacklist-remove</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>メンバーをタイムアウト</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>一覧を表示</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/blacklist-show</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>名簿 / blacklist-show</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>メンバーをタイムアウト</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>全員を解除</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/blacklist-clear</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>大赦 / blacklist-clear</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>サーバー管理</td>
+                                </tr>
+                        
+                            <tr class="table-group" data-astro-cid-k4v3wdt3>
+                                <td colspan="4" data-astro-cid-k4v3wdt3>✨ その他</td>
+                            </tr>
+                            <tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>ヘルプ</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/help</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>使い方 / help</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>質問（はい／いいえで答えます）</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/ask</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>質問 / ask</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>テキストコマンドの有効・無効</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/text-commands</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>（スラッシュコマンドのみ）</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>サーバー管理</td>
+                                </tr>
+                        
+            </tbody>
+        </table>
+    </div>
+    <p class="empty" id="command-empty" data-astro-cid-k4v3wdt3>一致するコマンドはありません。別の言葉で探してみてください。</p>
+    <p class="note" data-astro-cid-k4v3wdt3>
+        テキストコマンドは、表の別名のどれかを<code data-astro-cid-k4v3wdt3>@はなこ</code>か<code data-astro-cid-k4v3wdt3>&gt;</code>に続けて打ちます。たとえば<code data-astro-cid-k4v3wdt3>&gt;s</code>や<code data-astro-cid-k4v3wdt3>@はなこ お願い</code>のように打ちます。
+    </p>
+
+</section>
+
+<script type="module">var e=document.getElementById(`command-filter`),t=Array.from(document.querySelectorAll(`#command-table tbody tr`)),n=document.getElementById(`command-empty`);e.addEventListener(`input`,()=>{let r=e.value.trim().toLowerCase(),i=e=>e.textContent.toLowerCase().includes(r),a=null,o=!1,s=0,c=0,l=()=>{a&&(a.hidden=s===0)};t.forEach(e=>{if(e.classList.contains(`table-group`)){l(),a=e,s=0,o=r!==``&&i(e);return}let t=!r||o||i(e);e.hidden=!t,t&&(s++,c++)}),l(),n.style.display=c===0?`block`:`none`});</script><section class="chapter faq" id="trouble" data-astro-cid-odlp3k4y>
+    <div class="chapter-head" data-astro-cid-odlp3k4y>
+        <div data-astro-cid-odlp3k4y>
+            <span class="chapter-kicker" data-astro-cid-odlp3k4y>CHAPTER 10 / FAQ</span>
+            <h2 data-astro-cid-odlp3k4y>よくある質問と、<span class="hl" data-astro-cid-xo3h5via>その対処。</span></h2>
+        </div>
+        
+<img src="/hanako-bot/_astro/hanako-search.CaSxoXJL_1SkHfg.webp" srcset="/hanako-bot/_astro/hanako-search.CaSxoXJL_1SkHfg.webp 1x, /hanako-bot/_astro/hanako-search.CaSxoXJL_14jJoq.webp 2x" alt data-astro-cid-odlp3k4y="true" loading="lazy" decoding="async" width="104" height="104" class="chapter-mascot">
+    </div>
+    
+    
+
+    <p class="lead" data-astro-cid-xo3h5via>Hanakoの返事や起きていることから、原因と対処を探せるようにまとめました。</p>
+
+    <h3 data-astro-cid-xo3h5via>Hanakoが来ない</h3>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「通話チャンネルに参加してから呼んでね！」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>あなたがボイスチャンネルに入っていません。先にボイスチャンネルに参加してから<code data-astro-cid-xo3h5via>/plz</code>を打ってください。</p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「〜の権限がないみたい…」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                そのボイスチャンネルで、Hanakoに「チャンネルを見る」「接続」「発言」のいずれかが許可されていません。返事に足りない権限の名前が出るので、サーバーの管理者にチャンネルの権限設定を確認してもらってください。
+            </p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「満員で入れないよ」「タイムアウト中だから入れないよ」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>ボイスチャンネルの人数制限に達しているか、Hanako自身がタイムアウトされています。人数制限を広げるか、Hanakoのタイムアウトを解除してください。</p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「ステージチャンネルには参加できないの」「このチャンネルは読み上げに対応していないの」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                ステージチャンネルへの参加と、スレッド・フォーラムなどの読み上げには対応していません。通常のボイスチャンネルに入り、通常のテキストチャンネル（またはボイスチャンネル内のチャット）で呼んでください。
+            </p>
+        </div>
+    </details>
+
+    <h3 data-astro-cid-xo3h5via>読んでくれない・読み方がおかしい</h3>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>自分の発言だけ読まれない</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <ul data-astro-cid-xo3h5via>
+                <li data-astro-cid-xo3h5via>ブラックリストに入っていないか、モデレーターに<code data-astro-cid-xo3h5via>/blacklist-show</code>で確認してもらってください。</li>
+                <li data-astro-cid-xo3h5via>発言が<code data-astro-cid-xo3h5via>&gt;</code>で始まっていないか確認してください。</li>
+                <li data-astro-cid-xo3h5via>
+                    <code data-astro-cid-xo3h5via>/speaker</code>で存在しないキャラクター名を設定していると読めません。<code data-astro-cid-xo3h5via>/speaker name:default</code>で戻してください。
+                </li>
+            </ul>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>このチャンネルの発言が読まれない</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                Hanakoは<code data-astro-cid-xo3h5via>/plz</code>を打ったチャンネルだけを読みます。読んでほしいチャンネルで、もう一度<code data-astro-cid-xo3h5via>/plz</code>を打ってください。スレッドの中は読めません。
+            </p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>途中で切れて「イか略。」と言う</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>文字数制限にかかっています。サーバー管理者が<code data-astro-cid-xo3h5via>/limit number:0</code>で制限をなくすか、より大きい数字に設定し直せます。</p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>変なところで言葉が置き換わる・SEが鳴る</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                辞書もSEも、単語の一部に反応します。<code data-astro-cid-xo3h5via>/dictionary</code>や<code data-astro-cid-xo3h5via>/se-search</code>で原因の登録を探し、<code data-astro-cid-xo3h5via>/forget</code>や<code data-astro-cid-xo3h5via>/se-del</code>で消すか、<code data-astro-cid-xo3h5via>/se-rename</code>で記号つきのキーワードに変えてください。
+            </p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>読み上げが止まらない・たまりすぎた</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                <code data-astro-cid-xo3h5via>/seibai</code>で、再生中と順番待ちの音声をすべて中断できます。何も読んでいないときに打つと「安心せい、みねうちにゃ…」と返ります。
+            </p>
+        </div>
+    </details>
+
+    <h3 data-astro-cid-xo3h5via>コマンドが使えない</h3>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「このコマンドは『〜』の権限を持っている人だけが使えるよ」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                そのコマンドには権限が必要です。必要な権限は<a href="#admin" data-astro-cid-xo3h5via>08章</a>の図で確かめられます。権限を持っている人に頼むか、サーバー管理者に使える人の設定を変えてもらってください。
+            </p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via><code data-astro-cid-xo3h5via>@はなこ</code>や<code data-astro-cid-xo3h5via>&gt;</code>のコマンドに何も反応しない</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <ul data-astro-cid-xo3h5via>
+                <li data-astro-cid-xo3h5via>
+                    サーバーでテキストコマンドが無効になっている可能性があります。スラッシュコマンドを使うか、サーバー管理者に<code data-astro-cid-xo3h5via>/text-commands enabled:True</code>を実行してもらってください。
+                </li>
+                <li data-astro-cid-xo3h5via>コマンド名を打ち間違えると、Hanakoは何も返しません。<code data-astro-cid-xo3h5via>&gt;</code>で始まる独り言と区別できないためです。</li>
+            </ul>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>スラッシュコマンドの候補に出てこない</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>権限がないコマンドは、Discordが候補から隠します。また、スラッシュコマンドはサーバーの中でしか使えず、HanakoとのDMでは使えません。</p>
+        </div>
+    </details>
+
+    <h3 data-astro-cid-xo3h5via>SEを登録できない</h3>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「これサウンドファイルじゃなさそう」「変換できなかったにゃ」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                対応しているのは<code data-astro-cid-xo3h5via>.wav</code>と<code data-astro-cid-xo3h5via>.mp3</code>です。動画ファイルや別の形式の音声は、mp3かwavに変換してから登録してください。URLで指定する場合は、再生ページではなく音声ファイルそのもののURLが必要です。
+            </p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「〜秒より長い音声は登録できないにゃ」と言われる／大きいファイルが登録できない</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>SEは60秒・2MBまでです。短く切るか、ビットレートを下げてから登録してください。</p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「すでに登録済みのキーワードです」「一文字登録はできません」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>キーワードは2〜49文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code data-astro-cid-xo3h5via>/se-del</code>で消してから登録し直します。</p>
+        </div>
+    </details>
+
+    <h3 data-astro-cid-xo3h5via>それでも解決しないとき</h3>
+    <p data-astro-cid-xo3h5via>
+        Hanakoを招待してくれた人に聞いてみてください。Bot本体の不具合と思われる場合は、<a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener" data-astro-cid-xo3h5via>GitHubのIssue</a>に投稿すると、ほかの利用者の助けにもなります。
+    </p>
+    <p data-astro-cid-xo3h5via>サーバーデータの削除・開示の請求は、<a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener" data-astro-cid-xo3h5via>データに関する請求フォーム</a>から受け付けています。</p>
+
+    <div class="summary" data-astro-cid-xo3h5via>
+        <h4 data-astro-cid-xo3h5via>まとめ</h4>
+        <p data-astro-cid-xo3h5via>
+            ここまで、Hanakoの使い方をひととおり説明しました。Hanakoを使えば、Discordサーバーはもっと楽しく、誰でも会話に加わりやすい場所になるはずです。ぜひ今日から試してみてください。
+        </p>
+    </div>
+
+</section>
+    </div>
+</div>
+
+<script type="module">if(`IntersectionObserver`in window){let e=new Map;document.querySelectorAll(`.toc a`).forEach(t=>{e.set(t.getAttribute(`href`).slice(1),t)});let t=new IntersectionObserver(t=>{t.forEach(t=>{t.isIntersecting&&e.forEach((e,n)=>e.classList.toggle(`active`,n===t.target.id))})},{rootMargin:`-20% 0px -70% 0px`});document.querySelectorAll(`.chapter`).forEach(e=>t.observe(e))}</script>
+    </div>
+
+        </main>
+
+        <footer class="site-footer" data-astro-cid-nns7i3if>
+    <div class="container" data-astro-cid-nns7i3if>
+        <div class="footer-grid" data-astro-cid-nns7i3if>
+            <div data-astro-cid-nns7i3if>
+                <a class="brand" href="./" data-astro-cid-nns7i3if>
+                    
+<img src="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp" srcset="/hanako-bot/_astro/hanako-icon.DD89kve3_4nltP.webp 1x, /hanako-bot/_astro/hanako-icon.DD89kve3_Z1jnr8i.webp 2x" alt data-astro-cid-nns7i3if="true" loading="lazy" decoding="async" width="36" height="36" class="brand-avatar">
+                    Hanako <span class="ai-badge" data-astro-cid-nns7i3if>TTS</span>
+                </a>
+                <p data-astro-cid-nns7i3if>言葉に、声という花を。<br data-astro-cid-nns7i3if>Discordのチャット読み上げBotです。</p>
+                <span class="status" data-astro-cid-nns7i3if>All systems operational</span>
+            </div>
+            <div data-astro-cid-nns7i3if>
+                <h2 data-astro-cid-nns7i3if>PRODUCT</h2>
+                <ul data-astro-cid-nns7i3if>
+                    <li data-astro-cid-nns7i3if><a href="./#features" data-astro-cid-nns7i3if>機能</a></li>
+                    <li data-astro-cid-nns7i3if><a href="./#pricing" data-astro-cid-nns7i3if>料金</a></li>
+                    <li data-astro-cid-nns7i3if><a href="./#compare" data-astro-cid-nns7i3if>比較</a></li>
+                </ul>
+            </div>
+            <div data-astro-cid-nns7i3if>
+                <h2 data-astro-cid-nns7i3if>RESOURCES</h2>
+                <ul data-astro-cid-nns7i3if>
+                    <li data-astro-cid-nns7i3if><a href="docs.html" data-astro-cid-nns7i3if>ドキュメント</a></li>
+                    <li data-astro-cid-nns7i3if><a href="docs.html#commands" data-astro-cid-nns7i3if>コマンド一覧</a></li>
+                    <li data-astro-cid-nns7i3if><a href="./#developers" data-astro-cid-nns7i3if>開発者向け</a></li>
+                    <li data-astro-cid-nns7i3if><a href="https://github.com/Ebycow/hanako" target="_blank" rel="noopener" data-astro-cid-nns7i3if>GitHub</a></li>
+                </ul>
+            </div>
+            <div data-astro-cid-nns7i3if>
+                <h2 data-astro-cid-nns7i3if>LEGAL</h2>
+                <ul data-astro-cid-nns7i3if>
+                    <li data-astro-cid-nns7i3if><a href="terms.html" data-astro-cid-nns7i3if>利用規約</a></li>
+                    <li data-astro-cid-nns7i3if><a href="privacy.html" data-astro-cid-nns7i3if>プライバシーポリシー</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom" data-astro-cid-nns7i3if>
+            <p data-astro-cid-nns7i3if>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener" data-astro-cid-nns7i3if>Ebycow</a>. Made with ♡ and AI.</p>
+            <p data-astro-cid-nns7i3if>DiscordはDiscord Inc.の商標です。このBotはDiscord Inc.とは関係ありません。</p>
+        </div>
+    </div>
+</footer>
+
+        
+    </body>
+</html>
+
+<script type="module">var e=document.querySelectorAll(`.reveal`);if(!(`IntersectionObserver`in window))e.forEach(e=>e.classList.add(`in`));else{let t=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(e.target.classList.add(`in`),t.unobserve(e.target))})},{rootMargin:`0px 0px -8% 0px`});e.forEach(e=>t.observe(e))}</script>
