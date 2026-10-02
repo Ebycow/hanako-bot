@@ -2,53 +2,54 @@
 import { limits, fmt } from '../../data/limits';
 ---
 
+<!-- 料金は無料なので、プランの比較ではなく、はなことの「なかよし度」で使い方の段階を並べる -->
 <section class="section" id="pricing">
     <div class="container">
         <div class="section-head reveal">
             <span class="eyebrow">Pricing</span>
             <h2>料金は、<span class="hl">かかりません。</span></h2>
-            <p>どのプランを選んでも無料で、あとから料金がかかることもありません。</p>
+            <p>どれだけ使いこなしても、ずっと無料です。かわりに、はなことの「なかよし度」を3段階で並べてみました。</p>
         </div>
         <div class="pricing">
             <article class="card price-card reveal">
-                <h3>Starter</h3>
-                <p>まずは気軽に試したい方に。</p>
-                <div class="price">¥0<small> /月</small></div>
+                <span class="level">なかよし度 Lv.1</span>
+                <h3>はじめまして</h3>
+                <p>まずは呼んで、話してみる。</p>
+                <div class="price">¥0<small> / ずっと</small></div>
                 <ul>
-                    <li>リアルタイム読み上げ</li>
-                    <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
-                    <li>SE {fmt(limits.seEntries)}件</li>
-                    <li>コミュニティサポート</li>
+                    <li><code>/plz</code>で呼んで、<code>/bye</code>で帰す</li>
+                    <li>チャットの発言を、その場で読み上げ</li>
+                    <li>長い読み上げは<code>/seibai</code>で止める</li>
                 </ul>
-                <a class="btn btn-ghost" href="#invite">はなこに会うには？</a>
+                <a class="btn btn-ghost" href="docs.html#start">始め方を読む</a>
             </article>
             <article class="card price-card featured reveal">
-                <span class="badge">一番人気</span>
-                <h3>Pro</h3>
-                <p>サーバーをもっと盛り上げたい方に。</p>
-                <div class="price"><span class="hl">¥0</span><small> /月</small></div>
+                <span class="badge">ここを目指そう</span>
+                <span class="level">なかよし度 Lv.2</span>
+                <h3>なかよし</h3>
+                <p>サーバーの言葉を教えて、なじませる。</p>
+                <div class="price"><span class="hl">¥0</span><small> / ずっと</small></div>
                 <ul>
-                    <li>Starterのすべての機能</li>
-                    <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
-                    <li>SE {fmt(limits.seEntries)}件</li>
-                    <li>SE正規化</li>
+                    <li>内輪の呼び名を辞書で教える（{fmt(limits.dictionaryEntries)}件まで）</li>
+                    <li>キーワードでSEを鳴らす（{fmt(limits.seEntries)}件まで）</li>
+                    <li><code>/speaker</code>で声を変える</li>
                 </ul>
-                <a class="btn btn-primary" href="#invite">はなこに会うには？</a>
+                <a class="btn btn-primary" href="docs.html#dictionary">辞書とSEの使い方</a>
             </article>
             <article class="card price-card reveal">
-                <h3>Enterprise</h3>
-                <p>大きなサーバーを運営している方に。</p>
-                <div class="price">¥0<small> /月</small></div>
+                <span class="level">なかよし度 Lv.3</span>
+                <h3>相棒</h3>
+                <p>サーバーの一員として、まかせる。</p>
+                <div class="price">¥0<small> / ずっと</small></div>
                 <ul>
-                    <li>Proのすべての機能</li>
-                    <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
-                    <li>SE {fmt(limits.seEntries)}件</li>
-                    <li>Discordの権限設定</li>
+                    <li>SE正規化で音量をそろえる</li>
+                    <li>ブラックリストと権限で管理する</li>
+                    <li>自分のサーバーでホストする</li>
                 </ul>
-                <a class="btn btn-ghost" href="#invite">はなこに会うには？</a>
+                <a class="btn btn-ghost" href="#developers">自分でホストする方法</a>
             </article>
         </div>
-        <p class="fineprint">※ どのプランも中身はまったく同じです。Hanakoは無料で提供しています。</p>
+        <p class="fineprint">※ なかよし度はただの目安です。どの段階でも料金はかからず、使える機能も同じです。</p>
     </div>
 </section>
 
@@ -82,6 +83,25 @@ import { limits, fmt } from '../../data/limits';
         background: var(--pink-ink);
         color: var(--on-accent);
         transform: rotate(4deg);
+    }
+
+    /* なかよし度の段階 */
+    .level {
+        display: inline-block;
+        align-self: flex-start;
+        margin-bottom: 10px;
+        padding: 1px 12px;
+        border-radius: var(--radius-pill);
+        background: var(--mint-soft);
+        color: var(--mint-ink);
+        font-size: var(--fs-xs);
+        font-weight: 900;
+        letter-spacing: 0.06em;
+    }
+
+    .featured .level {
+        background: var(--surface);
+        color: var(--pink-ink);
     }
 
     .price {
