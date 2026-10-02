@@ -40,18 +40,18 @@ const nn = String(n).padStart(2, '0');
 
     .chapter-kicker {
         display: inline-block;
-        font-size: 12px;
+        font-size: var(--fs-xs);
         font-weight: 900;
         color: var(--mint-ink);
         background: var(--mint-soft);
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         padding: 1px 14px;
         letter-spacing: 0.08em;
         margin-bottom: 12px;
     }
 
     h2 {
-        font-size: clamp(26px, 3.4vw, 38px);
+        font-size: var(--fs-h3);
         line-height: 1.4;
         margin: 0;
     }
@@ -63,20 +63,20 @@ const nn = String(n).padStart(2, '0');
         object-fit: contain;
         flex-shrink: 0;
         border-radius: 50%;
-        background: radial-gradient(circle at 50% 40%, #fff, var(--pink-pale) 70%);
+        background: radial-gradient(circle at 50% 40%, var(--surface), var(--pink-pale) 70%);
         border: 3px solid var(--pink-soft);
         padding: 6px;
     }
 
     /* ここから下は各章（docs/*.astro）からスロットで渡される本文に効かせる */
     .chapter :global(.lead) {
-        font-size: 18px;
+        font-size: var(--fs-lg);
         color: var(--text-muted);
         margin: 0 0 28px;
     }
 
     .chapter :global(h3) {
-        font-size: 21px;
+        font-size: var(--fs-xl);
         margin: 48px 0 16px;
         display: flex;
         align-items: center;
@@ -111,10 +111,10 @@ const nn = String(n).padStart(2, '0');
         border-radius: 50%;
         display: grid;
         place-items: center;
-        font-size: 11px;
+        font-size: var(--fs-xs);
         font-weight: 900;
         line-height: 1;
-        color: #fff;
+        color: var(--on-accent);
         background: var(--pink);
     }
 

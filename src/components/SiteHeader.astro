@@ -99,7 +99,7 @@ const links: Link[] = {
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
         border: 2px solid var(--border);
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         box-shadow: 0 4px 0 var(--pink-soft);
     }
 
@@ -125,10 +125,10 @@ const links: Link[] = {
     /* 「今すぐ始める」ボタン（.btn）の色や大きさは変えない */
     .site-nav a:not(.btn) {
         color: var(--text-muted);
-        font-size: 14px;
+        font-size: var(--fs-md);
         font-weight: 700;
         padding: 6px 14px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
     }
 
     .site-nav a:not(.btn):hover,
@@ -148,12 +148,12 @@ const links: Link[] = {
         gap: 8px;
         min-height: 40px;
         padding: 6px 16px 6px 12px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         border: 2px solid var(--pink-soft);
         background: var(--surface);
         color: var(--pink-ink);
         font: inherit;
-        font-size: 14px;
+        font-size: var(--fs-md);
         font-weight: 900;
         cursor: pointer;
         -webkit-tap-highlight-color: transparent;
@@ -172,7 +172,7 @@ const links: Link[] = {
     .menu-icon i {
         display: block;
         height: 2px;
-        border-radius: 1px;
+        border-radius: var(--radius-xs);
         background: currentColor;
         transition:
             transform 0.2s,
@@ -194,7 +194,7 @@ const links: Link[] = {
 
     @media (max-width: 640px) {
         .site-header {
-            border-radius: 24px;
+            border-radius: var(--radius);
         }
         .inner {
             flex-wrap: wrap;
@@ -229,14 +229,14 @@ const links: Link[] = {
         }
         :global(.js) .site-nav a:not(.btn) {
             padding: 10px 14px;
-            font-size: 15px;
+            font-size: var(--fs-base);
         }
         :global(.js) .site-nav .btn {
             display: inline-flex;
             justify-content: center;
             margin: 8px 0 4px;
             padding: 11px 16px;
-            font-size: 15px;
+            font-size: var(--fs-base);
         }
     }
 </style>

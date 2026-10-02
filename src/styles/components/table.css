@@ -10,7 +10,7 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 14.5px;
+    font-size: var(--fs-md);
 }
 
 th,
@@ -22,7 +22,7 @@ td {
 }
 
 thead th {
-    font-size: 13px;
+    font-size: var(--fs-sm);
     font-weight: 900;
     letter-spacing: 0.04em;
     color: var(--pink-deep);
@@ -42,7 +42,7 @@ tbody tr:last-child th {
 }
 
 tbody tr:hover td {
-    background: #fffafc;
+    background: var(--bg);
 }
 
 td {

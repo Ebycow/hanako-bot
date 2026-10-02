@@ -96,13 +96,13 @@ const { id, n } = Astro.props;
     .filter {
         width: 100%;
         padding: 16px 20px 16px 50px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         border: 2px solid var(--border-strong);
         background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23f47aa9' stroke-width='2.5' stroke-linecap='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")
             no-repeat 20px center;
         color: var(--text);
         font: inherit;
-        font-size: 15.5px;
+        font-size: var(--fs-body);
         outline: none;
         transition:
             border-color 0.2s,
@@ -123,7 +123,7 @@ const { id, n } = Astro.props;
         background: var(--surface-soft) !important;
         color: var(--pink-ink);
         font-weight: 900;
-        font-size: 13px;
+        font-size: var(--fs-sm);
         letter-spacing: 0.06em;
     }
 
@@ -135,7 +135,7 @@ const { id, n } = Astro.props;
 
     .note {
         color: var(--text-muted);
-        font-size: 14px;
+        font-size: var(--fs-md);
     }
 
     /* スマホでは4列が収まらないので、1コマンドを1枚のカードのように縦に並べる */
@@ -181,14 +181,14 @@ const { id, n } = Astro.props;
             display: grid;
             grid-template-columns: 5.5em minmax(0, 1fr);
             gap: 8px;
-            font-size: 14px;
+            font-size: var(--fs-md);
             margin-top: 2px;
         }
 
         #command-table td[data-label]::before {
             content: attr(data-label);
             color: var(--text-muted);
-            font-size: 12px;
+            font-size: var(--fs-xs);
             font-weight: 700;
             line-height: 2.1;
         }

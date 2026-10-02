@@ -168,10 +168,10 @@ const { id, n } = Astro.props;
         display: grid;
         place-items: center;
         font-weight: 900;
-        font-size: 14px;
+        font-size: var(--fs-md);
         background: var(--pink-ink);
-        border: 3px solid #fff;
-        color: #fff;
+        border: 3px solid var(--surface);
+        color: var(--on-accent);
         box-shadow: 0 0 0 2px var(--pink-soft);
     }
 
@@ -189,14 +189,14 @@ const { id, n } = Astro.props;
 
     .pipeline .what span {
         color: var(--text-muted);
-        font-size: 14.5px;
+        font-size: var(--fs-md);
     }
 
     .pipeline .sample {
         font-family: var(--mono);
-        font-size: 13px;
+        font-size: var(--fs-sm);
         padding: 12px 14px;
-        border-radius: 16px;
+        border-radius: var(--radius-md);
         background: var(--surface);
         border: 2px solid var(--border);
         color: var(--text);
@@ -210,14 +210,14 @@ const { id, n } = Astro.props;
     .chip {
         display: inline-block;
         padding: 3px 10px;
-        border-radius: 999px;
-        font-size: 12.5px;
+        border-radius: var(--radius-pill);
+        font-size: var(--fs-sm);
         margin: 2px 4px 2px 0;
     }
 
     .chip.voice {
         background: var(--lavender-soft);
-        border: 1px solid #cdd3ff;
+        border: 1px solid var(--lavender-line);
     }
 
     .chip.se {
@@ -236,7 +236,7 @@ const { id, n } = Astro.props;
         padding: 26px 28px;
         border-radius: var(--radius-lg);
         background:
-            radial-gradient(120% 140% at 100% 50%, rgba(255, 179, 207, 0.4), transparent 55%),
+            radial-gradient(120% 140% at 100% 50%, rgb(var(--glow-pink) / 0.4), transparent 55%),
             var(--surface);
         border: 2px solid var(--pink-soft);
         box-shadow: var(--pop);
@@ -259,7 +259,7 @@ const { id, n } = Astro.props;
         padding-top: 14px;
         border-top: 2px dashed var(--pink-soft);
         color: var(--text-muted);
-        font-size: 14px;
+        font-size: var(--fs-md);
     }
 
     /* 画像の舞台：光・斬撃・花びらを重ねる */
@@ -269,8 +269,8 @@ const { id, n } = Astro.props;
         aspect-ratio: 1;
         border-radius: 50%;
         background:
-            radial-gradient(circle at 50% 55%, #fff 0%, var(--pink-pale) 45%, var(--pink-soft) 100%);
-        border: 3px solid #fff;
+            radial-gradient(circle at 50% 55%, var(--surface) 0%, var(--pink-pale) 45%, var(--pink-soft) 100%);
+        border: 3px solid var(--surface);
         box-shadow: 0 0 0 2px var(--pink-soft);
         cursor: help;
         outline: none;
@@ -295,9 +295,9 @@ const { id, n } = Astro.props;
         left: -10%;
         width: 120%;
         height: 3px;
-        border-radius: 3px;
-        background: linear-gradient(90deg, transparent, #fff 45%, #f9a8d4 60%, transparent);
-        box-shadow: 0 0 12px 2px rgba(244, 114, 182, 0.8);
+        border-radius: var(--radius-xs);
+        background: linear-gradient(90deg, transparent, var(--surface) 45%, rgb(var(--glow-pink)) 60%, transparent);
+        box-shadow: 0 0 12px 2px rgb(var(--pink-rgb) / 0.8);
         transform: rotate(-24deg) scaleX(0);
         transform-origin: left center;
         opacity: 0;
@@ -310,7 +310,7 @@ const { id, n } = Astro.props;
         width: 10px;
         height: 7px;
         border-radius: 70% 0 70% 0;
-        background: linear-gradient(135deg, #fecdd3, #f472b6);
+        background: linear-gradient(135deg, rgb(var(--glow-pink)), var(--pink));
         opacity: 0;
         animation: seibai-petal 7s linear infinite;
     }
@@ -329,7 +329,7 @@ const { id, n } = Astro.props;
         width: 100%;
         height: 100%;
         object-fit: contain;
-        filter: drop-shadow(0 10px 16px rgba(214, 51, 111, 0.25));
+        filter: drop-shadow(0 10px 16px rgb(var(--shadow-rgb) / 0.25));
         transition:
             transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1.2),
             filter 0.35s;
@@ -346,9 +346,9 @@ const { id, n } = Astro.props;
         height: 30px;
         display: grid;
         place-items: center;
-        font-size: 15px;
+        font-size: var(--fs-base);
         border-radius: 50%;
-        background: #fff;
+        background: var(--surface);
         border: 2px solid var(--pink-soft);
         animation: seibai-ping 2.4s ease-out infinite;
         transition: opacity 0.2s;
@@ -357,7 +357,7 @@ const { id, n } = Astro.props;
     .seibai-stage:hover img,
     .seibai-stage:focus-visible img {
         transform: translate(-4px, -4px) scale(1.05) rotate(-1.5deg);
-        filter: drop-shadow(0 14px 22px rgba(214, 51, 111, 0.4)) brightness(1.04);
+        filter: drop-shadow(0 14px 22px rgb(var(--shadow-rgb) / 0.4)) brightness(1.04);
     }
 
     .seibai-stage:hover .slash,
@@ -378,11 +378,11 @@ const { id, n } = Astro.props;
         bottom: calc(100% - 28px);
         width: 270px;
         padding: 12px 14px;
-        border-radius: 18px;
-        background: #fff;
+        border-radius: var(--radius-md);
+        background: var(--surface);
         border: 2px solid var(--pink-soft);
         color: var(--text);
-        font-size: 13.5px;
+        font-size: var(--fs-md);
         line-height: 1.65;
         box-shadow: 0 4px 0 var(--pink-soft);
         opacity: 0;
@@ -415,7 +415,7 @@ const { id, n } = Astro.props;
 
     .seibai-bubble-label {
         display: block;
-        font-size: 11.5px;
+        font-size: var(--fs-xs);
         font-weight: 800;
         letter-spacing: 0.06em;
         color: var(--pink-ink);
@@ -441,8 +441,8 @@ const { id, n } = Astro.props;
     }
 
     @keyframes seibai-ping {
-        0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.55); }
-        70%, 100% { box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+        0% { box-shadow: 0 0 0 0 rgb(var(--pink-rgb) / 0.55); }
+        70%, 100% { box-shadow: 0 0 0 10px rgb(var(--pink-rgb) / 0); }
     }
 
     @media (prefers-reduced-motion: reduce) {

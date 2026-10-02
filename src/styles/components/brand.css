@@ -6,7 +6,7 @@
     color: var(--text);
     font-family: var(--font-round);
     font-weight: 900;
-    font-size: 19px;
+    font-size: var(--fs-lg);
     letter-spacing: 0.02em;
 }
 
@@ -25,10 +25,10 @@
 }
 
 .brand .ai-badge {
-    font-size: 10.5px;
+    font-size: var(--fs-xs);
     font-weight: 900;
     padding: 1px 8px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: var(--mint-soft);
     color: var(--mint-ink);
     letter-spacing: 0.06em;

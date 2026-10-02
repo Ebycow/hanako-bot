@@ -7,7 +7,12 @@
 
     if (!reduceMotion) {
         const ctx = canvas.getContext('2d')!;
-        const colors = ['#ffb3cf', '#ff9cc2', '#f9a8d4', '#ffc9dc', '#f47aa9'];
+        // 色は tokens.css の変数から読む
+        const css = getComputedStyle(document.documentElement);
+        const token = (name: string) => css.getPropertyValue(name).trim();
+        const glow = `rgb(${token('--glow-pink')})`;
+        const colors = [glow, token('--pink-bloom'), token('--pink-soft'), glow, token('--pink')];
+        const tip = token('--pink-pale');
         const SPRITE = 48;
 
         // 花びら（先端に切れ込みのある桜型）を色ごとにオフスクリーンへ描いておく
@@ -25,7 +30,7 @@
             g.bezierCurveTo(s * 0.58, -s * 0.55, s * 0.62, s * 0.12, 0, s * 0.55);
             g.closePath();
             const fill = g.createLinearGradient(0, s * 0.55, 0, -s * 0.62);
-            fill.addColorStop(0, '#fff4f8');
+            fill.addColorStop(0, tip);
             fill.addColorStop(0.5, color);
             fill.addColorStop(1, color);
             g.fillStyle = fill;

@@ -414,17 +414,36 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         --dc-green-text: #1b7d45;
         --dc-blurple: #5865f2;
         --dc-red: #d83a42;
+        --dc-red-tint: rgba(216, 58, 66, 0.12);
+        --dc-green-tint: rgba(35, 165, 90, 0.08);
+        --dc-surface: #fff;
+        --dc-on-accent: #fff;
+        --dc-border: #d3d4d8;
+        --dc-sep: #d5d6da;
+        --dc-avatar: #e3e5e8;
+        --dc-reply-line: #c4c6cc;
+        --dc-mention-text: #4752c4;
+        --dc-mention-bg: rgba(88, 101, 242, 0.15);
+        /* 登場人物の色（アバターとロール） */
+        --dc-ebi: #4a9fd8;
+        --dc-mikan: #f08a24;
+        --dc-role-hanako: #c4364b;
+        --dc-guild-hanako: #ffe1ec;
+        /* macOS のウィンドウの信号ボタン */
+        --dc-light-close: #ff5f57;
+        --dc-light-min: #febc2e;
+        --dc-light-max: #28c840;
         max-width: 980px;
         margin: 0 auto;
         border-radius: 12px;
-        border: 1px solid #d3d4d8;
+        border: 1px solid var(--dc-border);
         background: var(--dc-bg);
         overflow: hidden;
         box-shadow:
             0 2px 4px rgba(0, 0, 0, 0.04),
-            0 30px 60px -24px rgba(74, 54, 64, 0.35);
+            0 30px 60px -24px rgb(var(--text-rgb) / 0.35);
         font-family: 'gg sans', 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Yu Gothic UI', 'Meiryo', sans-serif;
-        font-size: 15px;
+        font-size: var(--fs-base);
         font-weight: 400;
         line-height: 1.375;
         letter-spacing: 0;
@@ -458,19 +477,19 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         width: 12px;
         height: 12px;
         border-radius: 50%;
-        background: #ff5f57;
+        background: var(--dc-light-close);
     }
 
     .dc-lights i:nth-child(2) {
-        background: #febc2e;
+        background: var(--dc-light-min);
     }
 
     .dc-lights i:nth-child(3) {
-        background: #28c840;
+        background: var(--dc-light-max);
     }
 
     .dc-title {
-        font-size: 13px;
+        font-size: var(--fs-sm);
         font-weight: 600;
         color: var(--dc-muted);
     }
@@ -498,9 +517,9 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         border-radius: 50%;
         display: grid;
         place-items: center;
-        background: #fff;
+        background: var(--dc-surface);
         color: var(--dc-text);
-        font-size: 16px;
+        font-size: var(--fs-body);
         font-weight: 600;
     }
 
@@ -523,7 +542,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
 
     .dc-guild.is-current {
         border-radius: 14px;
-        background: #ffe1ec;
+        background: var(--dc-guild-hanako);
     }
 
     /* 選んでいるサーバーの左に出る縦棒 */
@@ -552,7 +571,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         width: 32px;
         height: 2px;
         border-radius: 1px;
-        background: #d5d6da;
+        background: var(--dc-sep);
     }
 
     /* チャンネル一覧 */
@@ -573,7 +592,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         height: 48px;
         flex: none;
         padding: 0 14px 0 16px;
-        font-size: 16px;
+        font-size: var(--fs-body);
         font-weight: 600;
         color: var(--dc-header);
         border-bottom: 1px solid var(--dc-line);
@@ -597,7 +616,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         align-items: center;
         justify-content: space-between;
         padding: 14px 4px 4px 6px;
-        font-size: 13px;
+        font-size: var(--fs-sm);
         font-weight: 500;
         color: var(--dc-muted);
     }
@@ -609,7 +628,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     .dc-category span::after {
         content: '⌄';
         margin-left: 4px;
-        font-size: 12px;
+        font-size: var(--fs-xs);
         position: relative;
         top: -3px;
     }
@@ -625,7 +644,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         gap: 6px;
         padding: 5px 8px;
         border-radius: 6px;
-        font-size: 15px;
+        font-size: var(--fs-base);
         font-weight: 500;
         color: var(--dc-muted);
     }
@@ -653,7 +672,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         gap: 8px;
         padding: 3px 8px;
         border-radius: 6px;
-        font-size: 14px;
+        font-size: var(--fs-md);
         color: var(--dc-muted);
     }
 
@@ -663,7 +682,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     }
 
     .dc-member .dc-initial {
-        font-size: 11px;
+        font-size: var(--fs-xs);
     }
 
     .dc-member.is-away {
@@ -697,7 +716,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         flex: none;
         margin: 0 8px 8px;
         border-radius: 8px;
-        background: #fff;
+        background: var(--dc-surface);
         border: 1px solid var(--dc-line);
         box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     }
@@ -726,14 +745,14 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     }
 
     .dc-rtc-text b {
-        font-size: 14px;
+        font-size: var(--fs-md);
         font-weight: 600;
         color: var(--dc-green-text);
     }
 
     .dc-rtc-text small,
     .dc-user-text small {
-        font-size: 12px;
+        font-size: var(--fs-xs);
         color: var(--dc-muted);
         white-space: nowrap;
         overflow: hidden;
@@ -770,11 +789,11 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         height: 10px;
         border-radius: 50%;
         background: var(--dc-green);
-        border: 3px solid #fff;
+        border: 3px solid var(--dc-surface);
     }
 
     .dc-user-text b {
-        font-size: 14px;
+        font-size: var(--fs-md);
         font-weight: 600;
         color: var(--dc-header);
     }
@@ -794,7 +813,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     }
 
     .dc-user-btn.is-muted {
-        background: rgba(216, 58, 66, 0.12);
+        background: var(--dc-red-tint);
         color: var(--dc-red);
     }
 
@@ -805,7 +824,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: #e3e5e8;
+        background: var(--dc-avatar);
     }
 
     .dc-avatar img {
@@ -838,18 +857,18 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         height: 100%;
         display: grid;
         place-items: center;
-        font-size: 15px;
+        font-size: var(--fs-base);
         font-weight: 600;
-        color: #fff;
+        color: var(--dc-on-accent);
         border-radius: 50%;
     }
 
     .dc-initial.is-ebi {
-        background: #4a9fd8;
+        background: var(--dc-ebi);
     }
 
     .dc-initial.is-mikan {
-        background: #f08a24;
+        background: var(--dc-mikan);
     }
 
     .dc-bot {
@@ -858,8 +877,8 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         padding: 0 4px;
         border-radius: 4px;
         background: var(--dc-blurple);
-        color: #fff;
-        font-size: 10px;
+        color: var(--dc-on-accent);
+        font-size: var(--fs-xs);
         font-weight: 600;
         line-height: 15px;
     }
@@ -884,7 +903,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         flex: none;
         height: 48px;
         padding: 0 16px;
-        font-size: 16px;
+        font-size: var(--fs-body);
         font-weight: 600;
         color: var(--dc-header);
         border-bottom: 1px solid var(--dc-line);
@@ -944,7 +963,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         align-items: center;
         gap: 4px;
         margin: 0 0 2px 56px;
-        font-size: 14px;
+        font-size: var(--fs-md);
         color: var(--dc-muted);
     }
 
@@ -959,7 +978,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         top: 50%;
         width: 30px;
         height: 12px;
-        border: 2px solid #c4c6cc;
+        border: 2px solid var(--dc-reply-line);
         border-right: 0;
         border-bottom: 0;
         border-top-left-radius: 6px;
@@ -968,7 +987,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     .dc-cmd .dc-initial {
         width: 16px;
         height: 16px;
-        font-size: 9px;
+        font-size: var(--fs-xs);
         flex: none;
     }
 
@@ -985,8 +1004,8 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         margin: 0 2px;
         padding: 0 3px;
         border-radius: 4px;
-        background: rgba(88, 101, 242, 0.15);
-        color: #4752c4;
+        background: var(--dc-mention-bg);
+        color: var(--dc-mention-text);
         font-weight: 500;
         vertical-align: baseline;
     }
@@ -1013,7 +1032,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
 
     /* 説明用：はなこが読み上げている発言を緑でしるす */
     .dc-msg.is-reading {
-        background: rgba(35, 165, 90, 0.08);
+        background: var(--dc-green-tint);
         border-left-color: var(--dc-green);
     }
 
@@ -1024,19 +1043,19 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     }
 
     .dc-msg-head b {
-        font-size: 15.5px;
+        font-size: var(--fs-body);
         font-weight: 500;
         color: var(--dc-header);
     }
 
     /* はなこのロールの色 */
     .dc-msg-head b.is-hanako {
-        color: #c4364b;
+        color: var(--dc-role-hanako);
     }
 
     .dc-msg-head time {
         margin-left: 2px;
-        font-size: 12px;
+        font-size: var(--fs-xs);
         color: var(--dc-faint);
     }
 
@@ -1055,7 +1074,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         padding: 0 14px;
         height: 50px;
         border-radius: 8px;
-        background: #fff;
+        background: var(--dc-surface);
         border: 1px solid var(--dc-line);
         color: var(--dc-faint);
         margin-bottom: 16px;
@@ -1070,7 +1089,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     .dc-input-text {
         flex: 1;
         min-width: 0;
-        font-size: 15px;
+        font-size: var(--fs-base);
         color: var(--dc-text);
         white-space: nowrap;
         overflow: hidden;
@@ -1119,8 +1138,8 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         padding: 0 3px;
         border-radius: 4px;
         background: var(--dc-muted);
-        color: #fff;
-        font-size: 10px;
+        color: var(--dc-on-accent);
+        font-size: var(--fs-xs);
         font-weight: 700;
         line-height: 16px;
     }
@@ -1133,7 +1152,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         height: 24px;
         margin-top: -6px;
         padding: 0 18px;
-        font-size: 12.5px;
+        font-size: var(--fs-sm);
         color: var(--dc-muted);
         opacity: 0;
         transition: opacity 0.2s;
@@ -1223,7 +1242,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         inset: 0;
         width: 100%;
         height: 100%;
-        filter: drop-shadow(0 14px 18px rgba(214, 51, 111, 0.28));
+        filter: drop-shadow(0 14px 18px rgb(var(--shadow-rgb) / 0.28));
         /* 胸像の下端がまっすぐ切れて見えないよう、ふわっと消す */
         -webkit-mask-image: linear-gradient(to bottom, #000 70%, transparent 97%);
         mask-image: linear-gradient(to bottom, #000 70%, transparent 97%);
@@ -1288,7 +1307,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         background: var(--surface);
         box-shadow: var(--soft-shadow);
         font-family: var(--font);
-        font-size: 15px;
+        font-size: var(--fs-base);
         font-weight: 700;
         color: var(--text);
         white-space: nowrap;
@@ -1366,7 +1385,7 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
             right: -8px;
         }
         .dc-voice-bubble {
-            font-size: 13px;
+            font-size: var(--fs-sm);
             max-width: 250px;
         }
     }

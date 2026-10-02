@@ -20,26 +20,26 @@ import Img from '../Img.astro';
         margin: 120px auto 0;
         padding: 70px 30px;
         text-align: center;
-        border-radius: 40px;
+        border-radius: var(--radius-xl);
         overflow: hidden;
         background:
             radial-gradient(circle, rgba(255, 255, 255, 0.7) 2px, transparent 2.5px) 0 0 / 26px 26px,
-            linear-gradient(160deg, #ffe3ee, #ffd0e2 60%, #ffe8d9);
-        border: 3px solid #fff;
+            linear-gradient(160deg, var(--pink-pale), var(--pink-soft) 60%, var(--peach-soft));
+        border: 3px solid var(--surface);
         box-shadow:
             0 0 0 2px var(--pink-soft),
             0 10px 0 2px var(--pink-soft);
     }
 
     .cta h2 {
-        font-size: clamp(28px, 4.4vw, 50px);
+        font-size: var(--fs-h2);
         line-height: 1.35;
         margin: 0 0 16px;
     }
 
     .cta p {
         color: var(--text);
-        font-size: 17px;
+        font-size: var(--fs-lg);
         margin: 0 auto 30px;
         max-width: 560px;
     }
@@ -52,7 +52,7 @@ import Img from '../Img.astro';
         width: 140px;
         display: block;
         margin: 0 auto 10px;
-        filter: drop-shadow(0 8px 14px rgba(214, 51, 111, 0.25));
+        filter: drop-shadow(0 8px 14px rgb(var(--shadow-rgb) / 0.25));
         animation: bob 4s ease-in-out infinite;
     }
 </style>

@@ -155,7 +155,7 @@ const { id, n } = Astro.props;
 <style>
     details {
         margin: 10px 0;
-        border-radius: 20px;
+        border-radius: var(--radius-md);
         background: var(--surface);
         border: 2px solid var(--border);
         transition: border-color 0.2s;
@@ -193,7 +193,7 @@ const { id, n } = Astro.props;
         background: var(--pink-soft);
         color: var(--pink-deep);
         font-weight: 900;
-        font-size: 18px;
+        font-size: var(--fs-lg);
         transition: transform 0.2s;
     }
 
@@ -220,7 +220,7 @@ const { id, n } = Astro.props;
 
     .summary h4 {
         margin: 0 0 10px;
-        font-size: 17px;
+        font-size: var(--fs-lg);
     }
 
     .summary p {

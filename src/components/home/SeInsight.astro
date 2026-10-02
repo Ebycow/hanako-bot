@@ -26,7 +26,7 @@ import { limits, fmt } from '../../data/limits';
                     </div>
                     <div class="chart-scroll"><svg class="combo-chart" viewBox="0 0 1000 380" role="img" aria-labelledby="chart-title chart-desc">
 <title id="chart-title">SE登録数とはなこの困り度の推移（架空）</title><desc id="chart-desc">架空のデータによる棒グラフと折れ線グラフの複合グラフ。SEの登録数が上限の10,000件に近づくにつれ、はなこの困り度も上がっている。</desc>
-<defs><linearGradient id="barg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9cc2"/><stop offset="1" stop-color="#ffd3e3" stop-opacity=".6"/></linearGradient><linearGradient id="lineg" x1="0" x2="1"><stop offset="0" stop-color="#3cc0b5"/><stop offset="1" stop-color="#d6336f"/></linearGradient><linearGradient id="areag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f472b6" stop-opacity=".22"/><stop offset="1" stop-color="#f472b6" stop-opacity="0"/></linearGradient></defs>
+<defs><linearGradient id="barg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: var(--pink-bloom)"/><stop offset="1" style="stop-color: var(--pink-soft)" stop-opacity=".6"/></linearGradient><linearGradient id="lineg" x1="0" x2="1"><stop offset="0" style="stop-color: var(--mint)"/><stop offset="1" style="stop-color: var(--pink-ink)"/></linearGradient><linearGradient id="areag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" style="stop-color: var(--pink)" stop-opacity=".22"/><stop offset="1" style="stop-color: var(--pink)" stop-opacity="0"/></linearGradient></defs>
 <line x1="78" x2="930" y1="30" y2="30" class="grid"/>
 <text x="68" y="34" class="axl" text-anchor="end">10,000</text>
 <text x="940" y="34" class="axr">100%</text>
@@ -111,7 +111,7 @@ import { limits, fmt } from '../../data/limits';
         top: -34px;
         right: 22px;
         width: 96px;
-        filter: drop-shadow(0 8px 14px rgba(214, 51, 111, 0.25));
+        filter: drop-shadow(0 8px 14px rgb(var(--shadow-rgb) / 0.25));
         pointer-events: none;
     }
 
@@ -126,18 +126,18 @@ import { limits, fmt } from '../../data/limits';
 
     .chart-top b {
         display: block;
-        font-size: 17px;
+        font-size: var(--fs-lg);
     }
 
     .chart-top small {
         color: var(--text-dim);
-        font-size: 12px;
+        font-size: var(--fs-xs);
     }
 
     .chart-legend {
         display: flex;
         gap: 18px;
-        font-size: 13px;
+        font-size: var(--fs-sm);
         color: var(--text-muted);
     }
 
@@ -150,15 +150,15 @@ import { limits, fmt } from '../../data/limits';
     .lg-bar {
         width: 12px;
         height: 12px;
-        border-radius: 3px;
-        background: linear-gradient(#ff9cc2, #ffd3e3);
+        border-radius: var(--radius-xs);
+        background: linear-gradient(var(--pink-bloom), var(--pink-soft));
     }
 
     .lg-line {
         width: 20px;
         height: 3px;
-        border-radius: 2px;
-        background: linear-gradient(90deg, #3cc0b5, #d6336f);
+        border-radius: var(--radius-xs);
+        background: linear-gradient(90deg, var(--mint), var(--pink-ink));
     }
 
 
@@ -175,17 +175,17 @@ import { limits, fmt } from '../../data/limits';
     }
 
     .combo-chart .grid {
-        stroke: rgba(74, 54, 64, 0.08);
+        stroke: rgb(var(--text-rgb) / 0.08);
     }
 
     .combo-chart text {
         font-family: var(--mono);
-        font-size: 12px;
+        font-size: var(--fs-xs);
         fill: var(--text-dim);
     }
 
     .combo-chart .axl {
-        fill: #c2457a;
+        fill: var(--pink-ink);
     }
 
     .combo-chart .axr {
@@ -194,7 +194,7 @@ import { limits, fmt } from '../../data/limits';
 
     .combo-chart .axt {
         font-family: var(--font);
-        font-size: 12px;
+        font-size: var(--fs-xs);
         fill: var(--text-muted);
     }
 
@@ -211,20 +211,20 @@ import { limits, fmt } from '../../data/limits';
     }
 
     .combo-chart .cdot {
-        fill: #fff;
+        fill: var(--surface);
         stroke: var(--pink-ink);
         stroke-width: 2.5;
     }
 
     .combo-chart .annot line {
-        stroke: rgba(74, 54, 64, 0.35);
+        stroke: rgb(var(--text-rgb) / 0.35);
         stroke-dasharray: 3 3;
     }
 
     .combo-chart .annot text {
         font-family: var(--font);
         fill: var(--text);
-        font-size: 13px;
+        font-size: var(--fs-sm);
         font-weight: 700;
     }
 

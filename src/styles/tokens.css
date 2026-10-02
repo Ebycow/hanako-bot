@@ -1,6 +1,9 @@
 /* ===== 色・形・文字の変数 =====
    はなこ（桃色の髪・白い制服・ミントの瞳・赤いリボン）の配色に合わせた、白と桃色のゆるいテーマ。
-   文字色は黒ではなく、猫耳のこげ茶に寄せてやわらかくしている */
+   文字色は黒ではなく、猫耳のこげ茶に寄せてやわらかくしている。
+   コンポーネントでは色・文字の大きさ・角丸を直接書かず、ここの変数を使う
+   （例外：Discordの再現画面 VoiceDemo.astro は Discord の見た目に合わせた --dc-* を使う。
+   白・黒の半透明と、mask-image の #000 もそのまま書いてよい） */
 
 :root {
     color-scheme: light;
@@ -17,6 +20,8 @@
     --text: #4a3640;
     --text-muted: #6e5963;
     --text-dim: #78636d;
+    /* 濃い色（--pink-ink など）の上に乗せる文字 */
+    --on-accent: #ffffff;
 
     /* 桃色（髪）。--pink は飾り用（文字に使うとコントラストが足りない）。
        文字・ボタン・フォーカスの枠には --pink-ink を使う */
@@ -25,23 +30,63 @@
     --pink-deep: #b0245c;
     --pink-soft: #ffd3e3;
     --pink-pale: #fff0f6;
+    /* グラフの棒など、飾りに使う中間の桃色 */
+    --pink-bloom: #ff9cc2;
 
-    /* ミント（瞳）・赤（リボン）・ラベンダー（Discordのぬいぐるみ） */
+    /* ミント（瞳）・赤（リボン）・ラベンダー（Discordのぬいぐるみ）。
+       *-soft は面、*-line はその面のふち、*-ink は文字に使う */
     --mint: #3cc0b5;
     --mint-ink: #0b7069;
     --mint-soft: #d9f5f1;
+    --mint-line: #b6e9e2;
     --red: #c62f3d;
     --lavender: #8f9cf7;
+    --lavender-ink: #4652b5;
     --lavender-soft: #e6e9ff;
+    --lavender-line: #cdd3ff;
     --yellow-soft: #fff6d8;
+    --yellow-line: #f5d98c;
+    --peach-soft: #ffe8d9;
+
+    /* 透明度を変えて使う色。rgb(var(--glow-pink) / 0.4) のように書く */
+    --pink-rgb: 244 122 169;
+    --text-rgb: 74 54 64;
+    /* 影の色（少し濃い桃色） */
+    --shadow-rgb: 214 51 111;
+    /* 背景の色の玉やグラデーションに使う、ふわっとした光の色 */
+    --glow-pink: 255 179 207;
+    --glow-mint: 201 241 236;
+    --glow-lavender: 223 227 255;
 
     /* ぷっくりしたステッカー風の影 */
     --pop: 0 5px 0 var(--pink-soft);
-    --pop-hover: 0 9px 0 var(--pink-soft), 0 18px 30px -12px rgba(214, 51, 111, 0.28);
-    --soft-shadow: 0 18px 40px -18px rgba(214, 51, 111, 0.35);
+    --pop-hover: 0 9px 0 var(--pink-soft), 0 18px 30px -12px rgb(var(--shadow-rgb) / 0.28);
+    --soft-shadow: 0 18px 40px -18px rgb(var(--shadow-rgb) / 0.35);
 
+    /* 角丸。円は 50% をそのまま書く */
+    --radius-xs: 4px;
+    --radius-sm: 8px;
+    --radius-md: 18px;
     --radius: 22px;
     --radius-lg: 30px;
+    --radius-xl: 40px;
+    --radius-pill: 999px;
+
+    /* 文字の大きさ。本文・部品は7段階で、12px より小さくしない */
+    --fs-xs: 12px; /* ラベル・バッジ */
+    --fs-sm: 13px; /* 注記・キャプション */
+    --fs-md: 14px; /* ナビ・表・小さめの本文 */
+    --fs-base: 15px; /* カードの本文・ボタン */
+    --fs-body: 16px; /* 本文 */
+    --fs-lg: 18px; /* リード文 */
+    --fs-xl: 21px; /* 小見出し */
+    /* 見出しは画面の幅に合わせて伸び縮みする */
+    --fs-h4: clamp(22px, 2.6vw, 30px);
+    --fs-h3: clamp(24px, 3.4vw, 38px);
+    --fs-h2: clamp(28px, 4.2vw, 46px);
+    --fs-h1: clamp(32px, 4.8vw, 54px);
+    --fs-display: clamp(36px, 5.6vw, 66px);
+
     --max-width: 1180px;
     --font: 'Noto Sans JP', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
         'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;

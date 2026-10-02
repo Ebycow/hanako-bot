@@ -5,7 +5,7 @@
     padding: 20px 22px 20px 64px;
     border-radius: var(--radius);
     background: var(--mint-soft);
-    border: 2px dashed #a6e3dc;
+    border: 2px dashed var(--mint-line);
     color: var(--text);
 }
 
@@ -14,12 +14,12 @@
     position: absolute;
     left: 20px;
     top: 18px;
-    font-size: 24px;
+    font-size: var(--fs-xl);
 }
 
 .callout.warn {
     background: var(--yellow-soft);
-    border-color: #f5d98c;
+    border-color: var(--yellow-line);
 }
 
 .callout.warn::before {

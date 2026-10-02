@@ -26,7 +26,7 @@
     border-radius: 50%;
     display: grid;
     place-items: center;
-    font-size: 24px;
+    font-size: var(--fs-xl);
     background: var(--pink-pale);
     border: 2px solid var(--pink-soft);
     margin-bottom: 18px;
@@ -34,7 +34,7 @@
 
 .card h3,
 .card h4 {
-    font-size: 20px;
+    font-size: var(--fs-xl);
     margin: 0 0 10px;
     letter-spacing: 0.02em;
 }
@@ -42,7 +42,7 @@
 .card p {
     color: var(--text-muted);
     margin: 0 0 10px;
-    font-size: 15px;
+    font-size: var(--fs-base);
 }
 
 .card p:last-child {
@@ -79,10 +79,10 @@
 
 .tag {
     display: inline-block;
-    font-size: 12px;
+    font-size: var(--fs-xs);
     font-weight: 700;
     padding: 2px 12px;
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     background: var(--mint-soft);
     color: var(--mint-ink);
     margin-bottom: 14px;

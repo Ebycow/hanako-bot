@@ -158,7 +158,7 @@ const { id, n } = Astro.props;
     .panel > b {
         display: block;
         margin-bottom: 14px;
-        font-size: 14px;
+        font-size: var(--fs-md);
         font-weight: 900;
     }
 
@@ -184,21 +184,21 @@ const { id, n } = Astro.props;
         position: absolute;
         right: 0;
         top: -22px;
-        font-size: 11px;
+        font-size: var(--fs-xs);
         font-weight: 900;
         color: var(--mint-ink);
     }
 
     .plot .bar {
         width: 30%;
-        border-radius: 14px 14px 0 0;
-        background: linear-gradient(180deg, #ff9cc2, #ffc4da);
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+        background: linear-gradient(180deg, var(--pink-bloom), rgb(var(--glow-pink)));
     }
 
     .labels {
         display: flex;
         justify-content: space-around;
-        font-size: 12px;
+        font-size: var(--fs-xs);
         color: var(--text-dim);
         margin-top: 8px;
     }

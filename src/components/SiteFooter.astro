@@ -58,7 +58,7 @@ const home = Astro.props.page === 'home' ? '' : './';
         margin-top: 140px;
         padding: 64px 0 40px;
         background: var(--pink-pale);
-        font-size: 14px;
+        font-size: var(--fs-md);
         color: var(--text-muted);
     }
 
@@ -84,7 +84,7 @@ const home = Astro.props.page === 'home' ? '' : './';
     .footer-grid h5 {
         margin: 0 0 12px;
         color: var(--pink-ink);
-        font-size: 13px;
+        font-size: var(--fs-sm);
         letter-spacing: 0.1em;
     }
 
@@ -113,7 +113,7 @@ const home = Astro.props.page === 'home' ? '' : './';
         gap: 10px;
         padding-top: 24px;
         border-top: 2px dashed var(--pink-soft);
-        font-size: 13px;
+        font-size: var(--fs-sm);
         color: var(--text-dim);
     }
 
@@ -126,10 +126,10 @@ const home = Astro.props.page === 'home' ? '' : './';
         align-items: center;
         gap: 8px;
         margin-top: 14px;
-        font-size: 13px;
+        font-size: var(--fs-sm);
         font-weight: 700;
         padding: 4px 14px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         background: var(--surface);
         color: var(--mint-ink);
         border: 2px solid var(--mint-soft);

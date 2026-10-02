@@ -82,15 +82,15 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         left: 12px;
         z-index: 100;
         padding: 8px 18px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         background: var(--pink-ink);
-        color: #fff;
+        color: var(--on-accent);
         font-weight: 900;
         transform: translateY(-200%);
     }
 
     .skip-link:focus {
-        color: #fff;
+        color: var(--on-accent);
         transform: none;
     }
 
@@ -110,7 +110,7 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         height: 520px;
         top: -200px;
         left: -160px;
-        background: #ffc6dc;
+        background: rgb(var(--glow-pink));
     }
 
     .orb-2 {
@@ -118,7 +118,7 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         height: 440px;
         top: 20%;
         right: -180px;
-        background: #c9f1ec;
+        background: rgb(var(--glow-mint));
         animation-delay: -6s;
     }
 
@@ -127,7 +127,7 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         height: 400px;
         bottom: -180px;
         left: 30%;
-        background: #dfe3ff;
+        background: rgb(var(--glow-lavender));
         animation-delay: -12s;
     }
 

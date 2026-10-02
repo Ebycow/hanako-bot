@@ -75,24 +75,24 @@ import { limits, fmt } from '../../data/limits';
         position: absolute;
         top: 18px;
         right: 18px;
-        font-size: 11.5px;
+        font-size: var(--fs-xs);
         font-weight: 900;
         padding: 2px 12px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         background: var(--pink-ink);
-        color: #fff;
+        color: var(--on-accent);
         transform: rotate(4deg);
     }
 
     .price {
-        font-size: 48px;
+        font-size: var(--fs-h2);
         font-weight: 900;
         margin: 8px 0 4px;
         line-height: 1.2;
     }
 
     .price small {
-        font-size: 15px;
+        font-size: var(--fs-base);
         color: var(--text-muted);
         font-weight: 700;
     }
@@ -108,7 +108,7 @@ import { limits, fmt } from '../../data/limits';
         padding: 6px 0 6px 28px;
         position: relative;
         color: var(--text);
-        font-size: 14.5px;
+        font-size: var(--fs-md);
         border-bottom: 1px dashed var(--border);
     }
 

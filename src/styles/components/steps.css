@@ -49,11 +49,11 @@
 
 .step .n {
     display: inline-block;
-    font-size: 11.5px;
+    font-size: var(--fs-xs);
     font-weight: 900;
     color: var(--pink-ink);
     background: var(--pink-pale);
-    border-radius: 999px;
+    border-radius: var(--radius-pill);
     padding: 0 10px;
     letter-spacing: 0.08em;
     margin-bottom: 6px;
@@ -66,12 +66,12 @@
 .step b {
     display: block;
     color: var(--text);
-    font-size: 15px;
+    font-size: var(--fs-base);
 }
 
 .step small {
     color: var(--text-muted);
-    font-size: 13px;
+    font-size: var(--fs-sm);
 }
 
 @media (max-width: 960px) {

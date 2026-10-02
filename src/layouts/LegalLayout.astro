@@ -52,18 +52,18 @@ const { page, title, description, image, eyebrow, heading, lead, date, highlight
 
     .doc-hero img {
         width: 150px;
-        filter: drop-shadow(0 8px 14px rgba(214, 51, 111, 0.25));
+        filter: drop-shadow(0 8px 14px rgb(var(--shadow-rgb) / 0.25));
     }
 
     .doc-hero h1 {
-        font-size: clamp(32px, 4.8vw, 54px);
+        font-size: var(--fs-h1);
         line-height: 1.35;
         margin: 10px 0 14px;
     }
 
     .doc-hero p {
         color: var(--text-muted);
-        font-size: 17px;
+        font-size: var(--fs-lg);
         margin: 0 auto;
         max-width: 620px;
     }
@@ -71,10 +71,10 @@ const { page, title, description, image, eyebrow, heading, lead, date, highlight
     .doc-meta {
         display: inline-block;
         margin-top: 18px !important;
-        font-size: 13px !important;
+        font-size: var(--fs-sm) !important;
         font-weight: 700;
         padding: 3px 16px;
-        border-radius: 999px;
+        border-radius: var(--radius-pill);
         background: var(--surface);
         border: 2px solid var(--border);
     }
@@ -98,7 +98,7 @@ const { page, title, description, image, eyebrow, heading, lead, date, highlight
 
     .highlights .card span {
         color: var(--text-muted);
-        font-size: 14px;
+        font-size: var(--fs-md);
     }
 
     /* 本文。Markdown から作られる要素には :global() で効かせる */
@@ -113,7 +113,7 @@ const { page, title, description, image, eyebrow, heading, lead, date, highlight
     }
 
     .doc :global(h2) {
-        font-size: 21px;
+        font-size: var(--fs-xl);
         margin: 44px 0 14px;
         padding-top: 28px;
         border-top: 2px dashed var(--border);

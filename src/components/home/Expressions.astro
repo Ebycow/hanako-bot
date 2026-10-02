@@ -129,7 +129,7 @@ const expressions = [
     }
 
     .expression-grid figcaption {
-        font-size: 13px;
+        font-size: var(--fs-sm);
         font-weight: 900;
         color: var(--pink-ink);
     }
@@ -154,11 +154,11 @@ const expressions = [
         width: max-content;
         max-width: 220px;
         padding: 10px 14px;
-        border-radius: 18px;
-        background: #fff;
+        border-radius: var(--radius-md);
+        background: var(--surface);
         border: 2px solid var(--pink-soft);
         color: var(--text);
-        font-size: 13px;
+        font-size: var(--fs-sm);
         font-weight: 700;
         line-height: 1.6;
         text-align: left;
@@ -179,7 +179,7 @@ const expressions = [
         width: 14px;
         height: 14px;
         margin: -7px 0 0 -7px;
-        background: #fff;
+        background: var(--surface);
         border: solid var(--pink-soft);
         border-width: 0 2px 2px 0;
         transform: rotate(45deg);
@@ -214,7 +214,7 @@ const expressions = [
     @media (max-width: 640px) {
         .speech {
             max-width: 160px;
-            font-size: 12px;
+            font-size: var(--fs-xs);
         }
     }
 </style>
