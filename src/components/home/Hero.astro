@@ -2,6 +2,9 @@
 import { limits, fmt } from '../../data/limits';
 import { allCommands } from '../../data/commands';
 import HeroPetals from './HeroPetals.astro';
+
+// ヒーローのタイピング演出で、順に打ち込む文
+const phrases = ['マイクがなくても会話に入れます。', '聞き専でもチャットがわかります。', '内輪の呼び名も辞書で読めます。', 'キーワードで効果音が鳴ります。', '長い読み上げは成敗で止められます。'];
 ---
 
 <section class="hero" aria-labelledby="hero-title">
@@ -14,7 +17,9 @@ import HeroPetals from './HeroPetals.astro';
             </h1>
             <p class="lead">
                 Hanakoは、テキストチャットの発言を<strong>その場で</strong>ボイスチャンネルに読み上げるBotです。<br />
-                <span class="typing" id="typing" aria-live="polite">マイクがなくても会話に入れます。</span>
+                <!-- 打っては消す文字は読み上げソフトに1文字ずつ読まれるので隠し、同じ内容をまとめて渡す -->
+                <span class="typing" id="typing" aria-hidden="true" data-phrases={JSON.stringify(phrases)}>{phrases[0]}</span>
+                <span class="sr-only">{phrases.join('')}</span>
             </p>
             <div class="hero-actions">
                 <a class="btn btn-primary" href="#invite">無料で始める</a>
@@ -92,7 +97,7 @@ import HeroPetals from './HeroPetals.astro';
     // ヒーローのタイピング演出
     if (!reduceMotion) {
         const el = document.getElementById('typing')!;
-        const words = ['マイクがなくても会話に入れます。', '聞き専でもチャットがわかります。', '内輪の呼び名も辞書で読めます。', 'キーワードで効果音が鳴ります。', '長い読み上げは成敗で止められます。'];
+        const words: string[] = JSON.parse(el.dataset.phrases!);
         let i = 0;
         let pos = words[0].length;
         let deleting = true;
