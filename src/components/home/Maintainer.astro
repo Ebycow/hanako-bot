@@ -1,0 +1,113 @@
+---
+import Img from '../Img.astro';
+---
+
+<!-- 公式のはなこを誰が動かしているかを示す（トレーサビリティのため）
+     「Botが欲しければこの人に頼めばいい」と受け取られないよう、招待の導線から離したページの一番下に置き、
+     DMにつながるDiscordのユーザー名は載せない -->
+<div class="container">
+    <section class="maintainer reveal" id="maintainer" aria-labelledby="maintainer-title">
+        <Img class="maintainer-icon" src="ebycow-icon.webp" alt="Ebycowのアイコン。猫耳で丸メガネの女の子" width={96} />
+        <div class="maintainer-copy">
+            <span class="tag">Bot管理者</span>
+            <h2 id="maintainer-title">えびかう <small>(Ebycow)</small></h2>
+            <p>
+                2020年からDiscord上の<code>hanako#7612</code>を運営しています。
+            </p>
+            <p class="maintainer-bio">
+                Twtich配信・DTVまわりのツールも作っています。
+            </p>
+            <ul class="maintainer-links">
+                <li><a href="https://github.com/Ebycow" target="_blank" rel="noopener">GitHub<span class="ext" aria-hidden="true">↗</span></a></li>
+                <li><a href="https://ebycow.net" target="_blank" rel="noopener">ebycow.net<span class="ext" aria-hidden="true">↗</span></a></li>
+            </ul>
+        </div>
+    </section>
+</div>
+
+<style>
+    .maintainer {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        max-width: 760px;
+        margin: 70px auto 0;
+        padding: 26px 30px;
+        border-radius: var(--radius);
+        background: var(--surface);
+        border: 2px dashed var(--lavender-line);
+    }
+
+    .maintainer-icon {
+        flex: none;
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        border: 3px solid var(--lavender-line);
+        box-shadow: var(--pop);
+    }
+
+    .maintainer-copy h2 {
+        font-size: var(--fs-xl);
+        margin: 6px 0 6px;
+    }
+
+    .maintainer-copy h2 small {
+        color: var(--text-muted);
+        font-size: var(--fs-md);
+        font-weight: 700;
+    }
+
+    .maintainer-copy p {
+        margin: 0;
+        color: var(--text);
+    }
+
+    .maintainer-copy .maintainer-bio {
+        margin-top: 6px;
+        color: var(--text-muted);
+        font-size: var(--fs-md);
+    }
+
+    .maintainer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px 18px;
+        list-style: none;
+        padding: 0;
+        margin: 10px 0 0;
+        font-size: var(--fs-md);
+        font-weight: 700;
+    }
+
+    /* 指で押しやすいよう、リンクの高さを 24px 以上にする
+       ボタンの形をしていないので、文章の中のリンクと同じく下線でリンクだとわかるようにする */
+    .maintainer-links a {
+        display: inline-block;
+        padding: 2px 0;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 0.25em;
+    }
+
+    .maintainer-links a:hover {
+        text-decoration-thickness: 2px;
+    }
+
+    /* 下線は文字だけに引き、外部リンクの矢印には引かない（inline-block の中には親の下線が届かない） */
+    .maintainer-links .ext {
+        display: inline-block;
+        margin-left: 0.3em;
+    }
+
+    @media (max-width: 600px) {
+        .maintainer {
+            flex-direction: column;
+            text-align: center;
+            padding: 24px 20px;
+        }
+        .maintainer-links {
+            justify-content: center;
+        }
+    }
+</style>
