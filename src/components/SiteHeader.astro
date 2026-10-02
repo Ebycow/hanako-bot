@@ -44,18 +44,48 @@ const links: Link[] = {
 }[page];
 ---
 
-<header class="site-header">
+<header class="site-header" id="site-header">
     <div class="inner">
         <a class="brand" href="./">
             <Img class="brand-avatar" src="hanako-icon.webp" alt="" width={36} loading="eager" />
             Hanako <span class="ai-badge">TTS</span>
         </a>
-        <nav class="site-nav" aria-label="メインナビゲーション">
+        <!-- スマホだけで出るメニューの開閉ボタン -->
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+            <span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+            メニュー
+        </button>
+        <nav class="site-nav" id="site-nav" aria-label="メインナビゲーション">
             {links.map((l) => <a href={l.href} aria-current={l.current ? 'page' : undefined}>{l.label}</a>)}
             <a class="btn btn-primary btn-sm" href={`${home}#invite`}>はじめる →</a>
         </nav>
     </div>
 </header>
+
+<script>
+    // スマホのメニューの開閉。リンクを選ぶ・Escキー・メニューの外を押すと閉じる
+    const header = document.getElementById('site-header')!;
+    const toggle = document.getElementById('menu-toggle')!;
+    const nav = document.getElementById('site-nav')!;
+
+    const setOpen = (open: boolean) => {
+        header.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', String(open));
+    };
+
+    toggle.addEventListener('click', () => setOpen(!header.classList.contains('is-open')));
+    nav.addEventListener('click', (e) => {
+        if ((e.target as Element).closest('a')) setOpen(false);
+    });
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || !header.classList.contains('is-open')) return;
+        setOpen(false);
+        toggle.focus();
+    });
+    document.addEventListener('click', (e) => {
+        if (!header.contains(e.target as Node)) setOpen(false);
+    });
+</script>
 
 <style>
     .site-header {
@@ -111,20 +141,102 @@ const links: Link[] = {
         margin: 0 0 3px 6px;
     }
 
+    /* メニューの開閉ボタン（スマホで JavaScript が動くときだけ出す） */
+    .menu-toggle {
+        display: none;
+        align-items: center;
+        gap: 8px;
+        min-height: 40px;
+        padding: 6px 16px 6px 12px;
+        border-radius: 999px;
+        border: 2px solid var(--pink-soft);
+        background: var(--surface);
+        color: var(--pink-ink);
+        font: inherit;
+        font-size: 14px;
+        font-weight: 900;
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .menu-toggle[aria-expanded='true'] {
+        background: var(--pink-pale);
+    }
+
+    .menu-icon {
+        display: grid;
+        gap: 3px;
+        width: 16px;
+    }
+
+    .menu-icon i {
+        display: block;
+        height: 2px;
+        border-radius: 1px;
+        background: currentColor;
+        transition:
+            transform 0.2s,
+            opacity 0.2s;
+    }
+
+    /* 開いているときは × にする */
+    .is-open .menu-icon i:nth-child(1) {
+        transform: translateY(5px) rotate(45deg);
+    }
+
+    .is-open .menu-icon i:nth-child(2) {
+        opacity: 0;
+    }
+
+    .is-open .menu-icon i:nth-child(3) {
+        transform: translateY(-5px) rotate(-45deg);
+    }
+
     @media (max-width: 640px) {
         .site-header {
             border-radius: 24px;
         }
         .inner {
             flex-wrap: wrap;
-            padding: 10px 14px;
+            gap: 8px;
+            padding: 7px 7px 7px 12px;
         }
+
+        /* JavaScript が動かないときは、リンクを横に並べてスクロールさせる */
         .site-nav {
             width: 100%;
             overflow-x: auto;
         }
         .site-nav .btn {
             display: none;
+        }
+
+        /* JavaScript が動くときは、メニューボタンで縦に開く */
+        :global(.js) .menu-toggle {
+            display: inline-flex;
+        }
+        :global(.js) .site-nav {
+            display: none;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 2px;
+            padding: 4px 0 6px;
+            overflow: visible;
+            border-top: 2px dashed var(--border);
+        }
+        :global(.js) .is-open .site-nav {
+            display: flex;
+        }
+        :global(.js) .site-nav a:not(.btn) {
+            padding: 10px 14px;
+            font-size: 15px;
+        }
+        :global(.js) .site-nav .btn {
+            display: inline-flex;
+            justify-content: center;
+            margin: 8px 0 4px;
+            padding: 11px 16px;
+            font-size: 15px;
         }
     }
 </style>
