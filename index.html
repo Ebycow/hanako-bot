@@ -11,11 +11,13 @@
         <meta name="theme-color" content="#fff8fb">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700;900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500;700;900&display=swap" rel="stylesheet">
+        <!-- ロゴ専用の丸ゴシック。使う文字だけを読み込む -->
+        <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@900&text=HanakoTTS&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.B_4cHZMw.css">
-<link rel="stylesheet" href="/hanako-bot/_astro/index.ElIkVNVF.css"></head>
+    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.UZb-M7IU.css">
+<link rel="stylesheet" href="/hanako-bot/_astro/index.BFv1li0e.css"></head>
     <body data-astro-cid-z4jru4n3>
         <div class="orb orb-1" aria-hidden="true" data-astro-cid-z4jru4n3></div>
         <div class="orb orb-2" aria-hidden="true" data-astro-cid-z4jru4n3></div>
@@ -93,7 +95,7 @@
             </div>
             <div class="float-chip chip-c" aria-hidden="true" data-astro-cid-i3irphx7>
                 <span class="ico" data-astro-cid-i3irphx7>🎺</span>
-                <span data-astro-cid-i3irphx7><small data-astro-cid-i3irphx7>SE</small><strong data-astro-cid-i3irphx7>「（拍手）」を追加</strong></span>
+                <span data-astro-cid-i3irphx7><small data-astro-cid-i3irphx7>SE</small><strong data-astro-cid-i3irphx7>（拍手）を追加</strong></span>
             </div>
         </div>
     </div>
@@ -119,7 +121,8 @@
             </p>
         </div>
 
-        <div class="dc-window reveal" aria-label="Discordの通話画面のイメージ" data-astro-cid-tv2nfile>
+        <div class="dc-stage reveal" data-astro-cid-tv2nfile>
+        <div class="dc-window" aria-label="Discordの通話画面のイメージ" data-astro-cid-tv2nfile>
             <div class="dc-titlebar" aria-hidden="true" data-astro-cid-tv2nfile>
                 <span class="dc-lights" data-astro-cid-tv2nfile><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i></span>
                 <span class="dc-title" data-astro-cid-tv2nfile>Hanako Lounge</span>
@@ -161,7 +164,7 @@
                                 <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor" data-astro-cid-tv2nfile></path>
                                 <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-tv2nfile></path>
                             </svg>
-                            <span class="dc-channel-name" data-astro-cid-tv2nfile>ゲーム部屋</span>
+                            <span class="dc-channel-name" data-dc-channel data-astro-cid-tv2nfile>ゲーム部屋</span>
                         </div>
                         <ul class="dc-members" data-astro-cid-tv2nfile>
                             <li class="dc-member is-away" data-member="hanako" data-astro-cid-tv2nfile>
@@ -201,7 +204,7 @@
                                 <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor" data-astro-cid-tv2nfile></path>
                                 <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-tv2nfile></path>
                             </svg>
-                            <span data-astro-cid-tv2nfile>作業部屋</span>
+                            <span data-dc-other data-astro-cid-tv2nfile>作業部屋</span>
                         </div>
                     </div>
 
@@ -209,7 +212,7 @@
                     <div class="dc-panel" aria-hidden="true" data-astro-cid-tv2nfile>
                         <div class="dc-rtc" data-astro-cid-tv2nfile>
                             <svg class="dc-rtc-icon" viewBox="0 0 24 24" data-astro-cid-tv2nfile><path d="M5 19h.01M5 15a4 4 0 0 1 4 4M5 11a8 8 0 0 1 8 8M5 7a12 12 0 0 1 12 12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" data-astro-cid-tv2nfile></path></svg>
-                            <span class="dc-rtc-text" data-astro-cid-tv2nfile><b data-astro-cid-tv2nfile>通話中</b><small data-astro-cid-tv2nfile>ゲーム部屋 / Hanako Lounge</small></span>
+                            <span class="dc-rtc-text" data-astro-cid-tv2nfile><b data-astro-cid-tv2nfile>通話中</b><small data-astro-cid-tv2nfile><span data-dc-channel data-astro-cid-tv2nfile>ゲーム部屋</span> / Hanako Lounge</small></span>
                             <svg class="dc-rtc-leave" viewBox="0 0 24 24" data-astro-cid-tv2nfile><path d="M3 14.5c5-5 13-5 18 0l-2.4 2.3-3.3-1.4v-2.6a10.5 10.5 0 0 0-6.6 0v2.6l-3.3 1.4z" fill="currentColor" data-astro-cid-tv2nfile></path></svg>
                         </div>
                         <div class="dc-user" data-astro-cid-tv2nfile>
@@ -234,7 +237,7 @@
                             <path d="M11 4.5 6.5 8.5H3v7h3.5l4.5 4z" fill="currentColor" data-astro-cid-tv2nfile></path>
                             <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-tv2nfile></path>
                         </svg>
-                        ゲーム部屋
+                        <span data-dc-channel data-astro-cid-tv2nfile>ゲーム部屋</span>
                     </div>
                     <ol class="dc-messages" id="dc-messages" data-astro-cid-tv2nfile>
                         <li class="dc-msg" data-user="mikan" data-astro-cid-tv2nfile>
@@ -292,6 +295,11 @@
                             <path d="M15 9a4 4 0 0 1 0 6M17.5 6.5a7.5 7.5 0 0 1 0 11" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-tv2nfile></path>
                         </svg>
                     </template>
+                    <!-- 「〇〇 が入力中…」は入力欄の上に出る -->
+                    <div class="dc-typing" id="dc-typing" aria-hidden="true" data-astro-cid-tv2nfile>
+                        <span class="dc-dots" data-astro-cid-tv2nfile><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i></span>
+                        <span data-astro-cid-tv2nfile><b id="dc-typing-name" data-astro-cid-tv2nfile></b> が入力中…</span>
+                    </div>
                     <div class="dc-input" aria-hidden="true" data-astro-cid-tv2nfile>
                         <svg class="dc-input-plus" viewBox="0 0 24 24" data-astro-cid-tv2nfile><path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" data-astro-cid-tv2nfile></path></svg>
                         <span class="dc-input-text" id="dc-input" data-placeholder="#ゲーム部屋へメッセージを送信" data-astro-cid-tv2nfile></span>
@@ -302,17 +310,29 @@
                             <svg viewBox="0 0 24 24" data-astro-cid-tv2nfile><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2" data-astro-cid-tv2nfile></circle><circle cx="9" cy="10" r="1.3" fill="currentColor" data-astro-cid-tv2nfile></circle><circle cx="15" cy="10" r="1.3" fill="currentColor" data-astro-cid-tv2nfile></circle><path d="M8.3 14a4.3 4.3 0 0 0 7.4 0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" data-astro-cid-tv2nfile></path></svg>
                         </span>
                     </div>
-                    <div class="dc-typing" id="dc-typing" aria-hidden="true" data-astro-cid-tv2nfile>
-                        <span class="dc-dots" data-astro-cid-tv2nfile><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i></span>
-                        <span data-astro-cid-tv2nfile><b id="dc-typing-name" data-astro-cid-tv2nfile></b> が入力中…</span>
-                    </div>
                 </div>
             </div>
+        </div>
+
+        <!-- ウインドウの外で、読み上げているはなこを PNGtuber 風に見せる -->
+        <div class="dc-voice" id="dc-voice" aria-hidden="true" data-astro-cid-tv2nfile>
+            <div class="dc-voice-bubble" data-astro-cid-tv2nfile>
+                <span class="dc-voice-eq" data-astro-cid-tv2nfile><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i><i data-astro-cid-tv2nfile></i></span>
+                <span id="dc-voice-text" data-astro-cid-tv2nfile></span>
+            </div>
+            <div class="dc-voice-body" data-astro-cid-tv2nfile>
+                <span class="dc-voice-wave" data-astro-cid-tv2nfile></span>
+                <span class="dc-voice-wave" data-astro-cid-tv2nfile></span>
+                <span class="dc-voice-wave" data-astro-cid-tv2nfile></span>
+                <img class="dc-voice-idle" src="assets/hanako-listening.webp" alt="" loading="lazy" data-astro-cid-tv2nfile>
+                <img class="dc-voice-talk" src="assets/hanako-speaking.webp" alt="" loading="lazy" data-astro-cid-tv2nfile>
+            </div>
+        </div>
         </div>
     </div>
 </section>
 
-<script type="module">var e=window.matchMedia(`(prefers-reduced-motion: reduce)`).matches,t=document.getElementById(`dc-messages`),n=document.getElementById(`dc-msg-template`),r=document.getElementById(`dc-typing`),i=document.getElementById(`dc-typing-name`),a=document.getElementById(`dc-input`),o=document.querySelector(`[data-member="hanako"]`),s=document.getElementById(`dc-voice-icon`),c=document.querySelector(`.dc-channel-name`).textContent,l={ebi:{name:`えび`,initial:`え`},mikan:{name:`みかん`,initial:`み`}},u=[{command:`plz`,reply:`#${c} に参加したよ、よろしくね`},{user:`mikan`,text:`ボス戦いくよー`},{user:`ebi`,text:`ミュートだけど聞いてるよ〜`},{user:`ebi`,text:`回復まかせて！`},{user:`mikan`,text:`ナイス〜！おつかれさま`},{command:`bye`,reply:`コマンドを実行しました！😸`}],d=!1,f=e=>d?Promise.resolve():new Promise(t=>setTimeout(t,e)),p=e=>{let r=n.content.firstElementChild.cloneNode(!0),i=r.querySelector(`img`),a=r.querySelector(`.dc-avatar .dc-initial`),o=r.querySelector(`.dc-msg-head b`),c=r.querySelector(`p`);if(`command`in e){r.querySelector(`.dc-cmd`).hidden=!1,r.querySelector(`.dc-cmd-name`).textContent=e.command,i.hidden=!1,a.remove(),o.textContent=`hanako`,o.classList.add(`is-hanako`),r.querySelector(`.dc-msg-head .dc-bot`).hidden=!1;let[,t,n]=e.reply.match(/^(?:#(\S+))?(.*)$/);if(t){let e=document.createElement(`span`);e.className=`dc-chip`,e.append(s.content.cloneNode(!0),t),c.append(e)}c.append(n.trim())}else{let t=l[e.user];i.remove(),a.classList.add(`is-${e.user}`),a.textContent=t.initial,o.textContent=t.name,o.classList.add(`is-${e.user}`),c.textContent=e.text}r.dataset.user=`command`in e?`hanako`:e.user;let u=t.lastElementChild;for(!(`command`in e)&&u?.dataset.user===e.user&&r.classList.add(`is-cont`),d&&r.classList.remove(`is-new`),t.append(r);t.children.length>8;)t.firstElementChild.remove();return r},m=async e=>{if(!d){for(let t=1;t<=e.length;t++)a.textContent=e.slice(0,t),await f(e.startsWith(`/`)?140:90);await f(450),a.textContent=``}},h=async e=>{if(`command`in e){await m(`/${e.command}`),await f(700),p(e),await f(600),o.classList.toggle(`is-away`,e.command===`bye`),e.command===`plz`&&o.classList.add(`is-joined`);return}e.user===`ebi`?await m(e.text):d||(i.textContent=l[e.user].name,r.classList.add(`is-on`),await f(1200+e.text.length*60),r.classList.remove(`is-on`));let t=p(e);d||(await f(350),t.classList.add(`is-reading`),o.classList.add(`is-speaking`),await f(900+e.text.length*140),o.classList.remove(`is-speaking`),t.classList.remove(`is-reading`))},g=async()=>{for(;;){await f(1200);for(let e of u)await h(e),await f(900);await f(2e3)}};if(e)d=!0,(async()=>{for(let e of u.slice(0,-1))await h(e)})();else{let e=new IntersectionObserver(([t])=>{t.isIntersecting&&(e.disconnect(),g())});e.observe(t)}</script>
+<script type="module" src="/hanako-bot/_astro/VoiceDemo.astro_astro_type_script_index_0_lang.D2_zQjIh.js"></script>
     <section class="logos" aria-label="利用シーン" data-astro-cid-s7nwr5sk>
     <div class="container" data-astro-cid-s7nwr5sk>
         <p data-astro-cid-s7nwr5sk>いろいろな集まりで使えます</p>
