@@ -49,6 +49,10 @@ import Img from '../Img.astro';
         display: block;
         margin: 0 auto 10px;
         filter: drop-shadow(0 8px 14px rgb(var(--shadow-rgb) / 0.25));
-        animation: bob 4s ease-in-out infinite;
+    }
+
+    /* 画面に入ったときに2回だけ揺れる（飾りの動きは5秒以内で止める） */
+    .cta:global(.in) .cta-mascot {
+        animation: bob 2.5s ease-in-out 2;
     }
 </style>

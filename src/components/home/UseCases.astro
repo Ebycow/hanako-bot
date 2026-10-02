@@ -40,6 +40,11 @@ const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会'
         animation: marquee 30s linear infinite;
     }
 
+    /* マウスを乗せているあいだは止める。サイト全体の「動きを止める」でも止まる */
+    .marquee:hover .marquee-track {
+        animation-play-state: paused;
+    }
+
     .marquee-track span {
         color: var(--text-muted);
         font-weight: 700;

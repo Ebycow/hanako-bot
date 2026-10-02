@@ -206,8 +206,12 @@ import Img from '../Img.astro';
         line-height: 1;
         color: var(--pink);
         text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
-        animation: bob 3s ease-in-out infinite;
         pointer-events: none;
+    }
+
+    /* 画面に入ったときに2回だけ揺れる（飾りの動きは5秒以内で止める） */
+    .partner:global(.in) .partner-art::after {
+        animation: bob 2.5s ease-in-out 2;
     }
 
     .partner-art img {

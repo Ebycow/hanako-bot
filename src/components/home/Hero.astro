@@ -236,18 +236,18 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
         place-items: center;
     }
 
-    /* 点線の輪がゆっくり回る */
+    /* 点線の輪が、読み込んだときに少し回って止まる（飾りの動きは5秒以内で止める） */
     .hero-ring {
         position: absolute;
         inset: 1%;
         border-radius: 50%;
         border: 3px dashed var(--pink-soft);
-        animation: spin 40s linear infinite;
+        animation: ring-in 5s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
-    @keyframes spin {
-        to {
-            transform: rotate(360deg);
+    @keyframes ring-in {
+        from {
+            transform: rotate(-90deg);
         }
     }
 
@@ -267,7 +267,7 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
             0 0 0 10px rgba(255, 255, 255, 0.85),
             0 0 0 12px var(--pink-soft),
             var(--soft-shadow);
-        animation: blob 9s ease-in-out infinite alternate;
+        animation: blob 5s ease-in-out forwards;
     }
 
     @keyframes blob {
@@ -305,7 +305,7 @@ const phrases = ['マイクがなくても会話に入れます。', '聞き専�
         border: 2px solid var(--border);
         font-size: var(--fs-sm);
         box-shadow: var(--pop);
-        animation: bob 5s ease-in-out infinite;
+        animation: bob 5s ease-in-out;
         white-space: nowrap;
     }
 

@@ -301,7 +301,7 @@ const { id, n } = Astro.props;
         transform: rotate(-24deg) scaleX(0);
         transform-origin: left center;
         opacity: 0;
-        animation: seibai-slash 4.8s cubic-bezier(0.2, 0.7, 0.2, 1) infinite;
+        animation: seibai-slash 1.6s cubic-bezier(0.2, 0.7, 0.2, 1) infinite paused;
     }
 
     .seibai-fx .petal {
@@ -312,7 +312,13 @@ const { id, n } = Astro.props;
         border-radius: 70% 0 70% 0;
         background: linear-gradient(135deg, rgb(var(--glow-pink)), var(--pink));
         opacity: 0;
-        animation: seibai-petal 7s linear infinite;
+        animation: seibai-petal 7s linear infinite paused;
+    }
+
+    /* 刀の光と花びらは、マウスを乗せている・フォーカスしているときだけ動かす */
+    .seibai-stage:hover .seibai-fx *,
+    .seibai-stage:focus-visible .seibai-fx * {
+        animation-play-state: running;
     }
 
     .seibai-fx .petal:nth-child(2) { left: 12%; animation-delay: 0s; }
@@ -350,7 +356,6 @@ const { id, n } = Astro.props;
         border-radius: 50%;
         background: var(--surface);
         border: 2px solid var(--pink-soft);
-        animation: seibai-ping 2.4s ease-out infinite;
         transition: opacity 0.2s;
     }
 
@@ -358,11 +363,6 @@ const { id, n } = Astro.props;
     .seibai-stage:focus-visible img {
         transform: translate(-4px, -4px) scale(1.05) rotate(-1.5deg);
         filter: drop-shadow(0 14px 22px rgb(var(--shadow-rgb) / 0.4)) brightness(1.04);
-    }
-
-    .seibai-stage:hover .slash,
-    .seibai-stage:focus-visible .slash {
-        animation-duration: 1.6s;
     }
 
     .seibai-stage:hover::after,
@@ -440,10 +440,6 @@ const { id, n } = Astro.props;
         100% { transform: translate(-60px, 330px) rotate(540deg); opacity: 0; }
     }
 
-    @keyframes seibai-ping {
-        0% { box-shadow: 0 0 0 0 rgb(var(--pink-rgb) / 0.55); }
-        70%, 100% { box-shadow: 0 0 0 10px rgb(var(--pink-rgb) / 0); }
-    }
 
     :global(.motion-off) .seibai-fx {
         display: none;

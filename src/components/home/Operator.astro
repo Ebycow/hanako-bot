@@ -103,7 +103,8 @@ import Img from '../Img.astro';
         cursor: pointer;
         background: var(--pink-soft);
         box-shadow: 0 5px 0 var(--pink-soft);
-        animation: pulse 2.6s ease-in-out infinite;
+        /* 気づいてもらうために2回だけ脈打つ（飾りの動きは5秒以内で止める） */
+        animation: pulse 2.5s ease-in-out 2;
     }
 
     .op-fab img {

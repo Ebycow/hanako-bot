@@ -115,7 +115,8 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         filter: blur(90px);
         opacity: 0.45;
         pointer-events: none;
-        animation: orb-float 18s ease-in-out infinite alternate;
+        /* 読み込んだときに一度だけ漂って止まる（飾りの動きは5秒以内で止める） */
+        animation: orb-float 5s ease-out forwards;
     }
 
     .orb-1 {
@@ -132,7 +133,6 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         top: 20%;
         right: -180px;
         background: rgb(var(--glow-mint));
-        animation-delay: -6s;
     }
 
     .orb-3 {
@@ -141,7 +141,6 @@ const { page, title, description, ogTitle, ogDescription } = Astro.props;
         bottom: -180px;
         left: 30%;
         background: rgb(var(--glow-lavender));
-        animation-delay: -12s;
     }
 
     @keyframes orb-float {

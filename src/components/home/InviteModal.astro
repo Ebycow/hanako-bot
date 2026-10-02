@@ -108,7 +108,8 @@ import Img from '../Img.astro';
         display: block;
         margin: -6px auto 4px;
         border-radius: var(--radius);
-        animation: flap 3.2s ease-in-out infinite;
+        /* 開くたびに2回だけはばたく（飾りの動きは5秒以内で止める） */
+        animation: flap 2.5s ease-in-out 2;
         mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 55%, transparent 100%);
     }
 
