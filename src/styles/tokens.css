@@ -13,21 +13,22 @@
     --border: #f7d9e5;
     --border-strong: #f0bcd0;
 
-    /* 文字 */
+    /* 文字。--text-muted・--text-dim も、背景（--bg・--pink-pale）の上でコントラスト比 4.5:1 以上にしている */
     --text: #4a3640;
-    --text-muted: #7d6670;
-    --text-dim: #8f7a84;
+    --text-muted: #6e5963;
+    --text-dim: #78636d;
 
-    /* 桃色（髪）。--pink は飾り用、文字やボタンには --pink-ink を使う */
+    /* 桃色（髪）。--pink は飾り用（文字に使うとコントラストが足りない）。
+       文字・ボタン・フォーカスの枠には --pink-ink を使う */
     --pink: #f47aa9;
-    --pink-ink: #d6336f;
+    --pink-ink: #c4285f;
     --pink-deep: #b0245c;
     --pink-soft: #ffd3e3;
     --pink-pale: #fff0f6;
 
     /* ミント（瞳）・赤（リボン）・ラベンダー（Discordのぬいぐるみ） */
     --mint: #3cc0b5;
-    --mint-ink: #0f7f78;
+    --mint-ink: #0b7069;
     --mint-soft: #d9f5f1;
     --red: #c62f3d;
     --lavender: #8f9cf7;

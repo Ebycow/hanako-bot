@@ -118,7 +118,7 @@ img {
 }
 
 :focus-visible {
-    outline: 3px solid var(--pink);
+    outline: 3px solid var(--pink-ink);
     outline-offset: 2px;
 }
 
