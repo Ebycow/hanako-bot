@@ -27,7 +27,10 @@ npm run build    # dist/ に出力
 | 使い方ガイド（`docs.html`）の各章 | `src/components/docs/*.astro`（章の順番・目次・トップページの章一覧は `src/data/chapters.ts`、章の本文との対応は `src/components/docs/Guide.astro`） |
 | 使い方ガイドのページの見出し | `src/pages/docs.astro` |
 | トップページの各セクション | `src/components/home/*.astro`（並び順は `src/pages/index.astro`） |
+| 開発者向けページ（`developers.html`） | `src/pages/developers.astro` |
 | ヘッダー・フッター | `src/components/SiteHeader.astro`、`src/components/SiteFooter.astro` |
+| ページのタイトル・説明文（検索結果やSNSでの表示） | 各ページの `title` / `description`（SNS用に変えたいときは `ogTitle` / `ogDescription`）。共通のメタタグは `src/layouts/BaseLayout.astro` |
+| SNSで共有したときの画像（OGP画像） | `public/assets/og.jpg`（1200×630。差し替えるときはSNSのキャッシュに残らないよう、ファイル名を変えて `BaseLayout.astro` も直す） |
 | 利用規約・プライバシーポリシーの本文 | `src/content/terms.md`、`src/content/privacy.md` |
 | 規約ページの見出し・制定日 | `src/pages/terms.astro`、`src/pages/privacy.astro` |
 | スタイル（1か所でしか使わないもの） | 各コンポーネントの `<style>` |
