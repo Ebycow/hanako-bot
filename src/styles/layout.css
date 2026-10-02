@@ -6,33 +6,34 @@
     padding: 0 20px;
 }
 
-.gradient-text {
-    /* 流したときに継ぎ目が出ないよう、端と端を同じ色にして往復させる */
-    background: linear-gradient(90deg, #a78bfa, #818cf8, #60a5fa, #22d3ee, #60a5fa, #818cf8, #a78bfa);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    background-size: 200% auto;
-    animation: shimmer 6s linear infinite;
+/* 見出しの強調。蛍光ペンでなぞったような桃色の下線を引く */
+.hl {
+    color: var(--pink-ink);
+    background: linear-gradient(transparent 64%, var(--pink-soft) 64%, var(--pink-soft) 92%, transparent 92%);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+    padding: 0 0.06em;
 }
 
-@keyframes shimmer {
-    to {
-        background-position: 200% center;
-    }
-}
-
+/* セクションの小見出し（✦ Features など）。肉球のついた小さなラベル */
 .eyebrow {
-    display: inline-block;
-    font-size: 12.5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
     font-weight: 700;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    background: var(--grad);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    margin-bottom: 14px;
+    letter-spacing: 0.06em;
+    color: var(--pink-ink);
+    background: var(--surface);
+    border: 2px solid var(--pink-soft);
+    padding: 3px 14px 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 16px;
+}
+
+.eyebrow::before {
+    content: '🐾';
+    font-size: 12px;
 }
 
 .section {
@@ -46,23 +47,22 @@
 }
 
 .section-head h2 {
-    font-size: clamp(30px, 4.4vw, 50px);
-    line-height: 1.2;
-    letter-spacing: -0.03em;
+    font-size: clamp(28px, 4.2vw, 46px);
+    line-height: 1.35;
+    letter-spacing: 0.01em;
     margin: 0 0 18px;
-    font-weight: 800;
 }
 
 .section-head p {
     color: var(--text-muted);
-    font-size: 17.5px;
+    font-size: 17px;
     margin: 0;
 }
 
 /* 注記（※〜） */
 .fineprint {
     color: var(--text-dim);
-    font-size: 12px;
+    font-size: 12.5px;
     text-align: center;
     margin: 14px 0 0;
 }

@@ -1,12 +1,12 @@
-/* ===== コールアウト ===== */
+/* ===== コールアウト（付せん風のメモ） ===== */
 .callout {
     position: relative;
     margin: 24px 0;
     padding: 20px 22px 20px 64px;
     border-radius: var(--radius);
-    background: linear-gradient(135deg, rgba(139, 92, 246, 0.14), rgba(37, 99, 235, 0.08));
-    border: 1px solid rgba(139, 92, 246, 0.35);
-    color: #d9d6f5;
+    background: var(--mint-soft);
+    border: 2px dashed #a6e3dc;
+    color: var(--text);
 }
 
 .callout::before {
@@ -18,8 +18,8 @@
 }
 
 .callout.warn {
-    background: linear-gradient(135deg, rgba(245, 158, 11, 0.13), rgba(236, 72, 153, 0.08));
-    border-color: rgba(245, 158, 11, 0.4);
+    background: var(--yellow-soft);
+    border-color: #f5d98c;
 }
 
 .callout.warn::before {
@@ -32,7 +32,7 @@
 
 .callout .callout-title {
     display: block;
-    font-weight: 800;
-    color: #fff;
+    font-weight: 900;
+    color: var(--text);
     margin-bottom: 4px;
 }

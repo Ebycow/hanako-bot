@@ -5,18 +5,18 @@ import { limits, fmt } from '../../data/limits';
         <section class="section" id="insights">
             <div class="container">
                 <div class="section-head reveal">
-                    <span class="eyebrow">✦ Killer Feature</span>
-                    <h2>最強機能、<span class="gradient-text">SE。</span><br />強すぎて、困っちゃう。</h2>
+                    <span class="eyebrow">Sound Effects</span>
+                    <h2>最強の機能、<span class="hl">SE。</span><br />強すぎて、ちょっと困ってます。</h2>
                     <p>
-                        キーワードに音声ファイルを結びつけるだけで、その言葉が出た瞬間に効果音が鳴る。wav / mp3 を1サーバーあたり最大<strong>{fmt(limits.seEntries)}件</strong>。会話は一気にライブ会場へ——と思ったら、みんなが登録しすぎて、はなこも困っています。
+                        キーワードと音声ファイルを登録しておくと、その言葉が発言に出たときに効果音が鳴ります。wavとmp3のファイルを、1つのサーバーで<strong>{fmt(limits.seEntries)}件</strong>まで登録できます。会話はライブ会場のようににぎやかになりますが、みんなが登録しすぎて、はなこも困っています。
                     </p>
                 </div>
-                <div class="glass chart-card reveal">
+                <div class="card chart-card reveal">
                     <img class="chart-mascot" src="assets/hanako-surprised.webp" alt="" loading="lazy" />
                     <div class="chart-top">
                         <div>
                             <b>SE登録数 × はなこの困り度</b>
-                            <small>FY2026 · とあるサーバー · 月次</small>
+                            <small>2026年・とあるサーバー・月ごと</small>
                         </div>
                         <div class="chart-legend">
                             <span><i class="lg-bar"></i>SE登録数（左軸）</span>
@@ -24,13 +24,13 @@ import { limits, fmt } from '../../data/limits';
                         </div>
                     </div>
                     <div class="chart-kpis">
-                        <div><b class="gradient-text">+1,083%</b><small>SE登録数 前年比</small></div>
-                        <div><b class="gradient-text">97%</b><small>はなこの困り度</small></div>
-                        <div><b class="gradient-text">300件</b><small>上限まで残り</small></div>
+                        <div><b class="hl">+1,083%</b><small>SE登録数 前年比</small></div>
+                        <div><b class="hl">97%</b><small>はなこの困り度</small></div>
+                        <div><b class="hl">300件</b><small>上限まで残り</small></div>
                     </div>
                     <div class="chart-scroll"><svg class="combo-chart" viewBox="0 0 1000 380" role="img" aria-labelledby="chart-title chart-desc">
 <title id="chart-title">SE登録数とはなこの困り度の推移（架空）</title><desc id="chart-desc">架空のデータによる棒グラフと折れ線グラフの複合グラフ。SEの登録数が上限の10,000件に近づくにつれ、はなこの困り度も上がっている。</desc>
-<defs><linearGradient id="barg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a78bfa"/><stop offset="1" stop-color="#4f46e5" stop-opacity=".35"/></linearGradient><linearGradient id="lineg" x1="0" x2="1"><stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#f472b6"/></linearGradient><linearGradient id="areag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f472b6" stop-opacity=".22"/><stop offset="1" stop-color="#f472b6" stop-opacity="0"/></linearGradient></defs>
+<defs><linearGradient id="barg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9cc2"/><stop offset="1" stop-color="#ffd3e3" stop-opacity=".6"/></linearGradient><linearGradient id="lineg" x1="0" x2="1"><stop offset="0" stop-color="#3cc0b5"/><stop offset="1" stop-color="#d6336f"/></linearGradient><linearGradient id="areag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f472b6" stop-opacity=".22"/><stop offset="1" stop-color="#f472b6" stop-opacity="0"/></linearGradient></defs>
 <line x1="78" x2="930" y1="30" y2="30" class="grid"/>
 <text x="68" y="34" class="axl" text-anchor="end">10,000</text>
 <text x="940" y="34" class="axr">100%</text>
@@ -85,14 +85,14 @@ import { limits, fmt } from '../../data/limits';
 <circle cx="752.5" cy="128.6" r="5" class="cdot"/>
 <circle cx="823.5" cy="88.0" r="5" class="cdot"/>
 <circle cx="894.5" cy="38.7" r="5" class="cdot"/>
-<g class="annot"><line x1="326.5" y1="267.8" x2="326.5" y2="177.8"/><text x="326.5" y="169.8" text-anchor="middle">🌱「草」を登録 → 草原でも鳴る</text></g>
-<g class="annot"><line x1="610.5" y1="189.5" x2="610.5" y2="119.5"/><text x="610.5" y="111.5" text-anchor="middle">🎺（拍手）が3種類に</text></g>
-<g class="annot"><line x1="894.5" y1="38.7" x2="784.5" y2="64.7"/><text x="776.5" y="68.7" text-anchor="end">😵 どれが何の音かわからない</text></g>
+<g class="annot"><line x1="326.5" y1="267.8" x2="326.5" y2="177.8"/><text x="326.5" y="169.8" text-anchor="middle">「草」を登録したら草原でも鳴る</text></g>
+<g class="annot"><line x1="610.5" y1="189.5" x2="610.5" y2="119.5"/><text x="610.5" y="111.5" text-anchor="middle">（拍手）が3種類に</text></g>
+<g class="annot"><line x1="894.5" y1="38.7" x2="784.5" y2="64.7"/><text x="776.5" y="68.7" text-anchor="end">どれが何の音かわからない</text></g>
 <text x="16" y="175.0" class="axt" transform="rotate(-90 16 175.0)" text-anchor="middle">SE登録数（件・累計）</text>
 <text x="986" y="175.0" class="axt" transform="rotate(90 986 175.0)" text-anchor="middle">はなこの困り度</text>
 </svg></div>
                 </div>
-                <p class="fineprint">※ グラフはイメージです。データは存在せず、はなこの困り度も目分量です。</p>
+                <p class="fineprint">※ 架空のグラフです。実際のデータはなく、はなこの困り度も目分量です。</p>
                 <div class="hero-actions" style="justify-content: center; margin-top: 26px">
                     <a class="btn btn-ghost" href="#se">SEの使い方を見る →</a>
                 </div>
@@ -115,7 +115,7 @@ import { limits, fmt } from '../../data/limits';
         top: -34px;
         right: 22px;
         width: 96px;
-        filter: drop-shadow(0 10px 24px rgba(124, 58, 237, 0.55));
+        filter: drop-shadow(0 8px 14px rgba(214, 51, 111, 0.25));
         pointer-events: none;
     }
 
@@ -135,7 +135,6 @@ import { limits, fmt } from '../../data/limits';
 
     .chart-top small {
         color: var(--text-dim);
-        font-family: var(--mono);
         font-size: 12px;
     }
 
@@ -156,14 +155,14 @@ import { limits, fmt } from '../../data/limits';
         width: 12px;
         height: 12px;
         border-radius: 3px;
-        background: linear-gradient(#a78bfa, #4f46e5);
+        background: linear-gradient(#ff9cc2, #ffd3e3);
     }
 
     .lg-line {
         width: 20px;
         height: 3px;
         border-radius: 2px;
-        background: linear-gradient(90deg, #f472b6, #22d3ee);
+        background: linear-gradient(90deg, #3cc0b5, #d6336f);
     }
 
     .chart-kpis {
@@ -175,16 +174,15 @@ import { limits, fmt } from '../../data/limits';
 
     .chart-kpis div {
         padding: 12px 16px;
-        border-radius: 14px;
-        background: var(--surface);
-        border: 1px solid var(--border);
+        border-radius: 18px;
+        background: var(--pink-pale);
+        border: 2px dashed var(--pink-soft);
     }
 
     .chart-kpis b {
         display: block;
         font-size: 24px;
-        font-weight: 800;
-        letter-spacing: -0.02em;
+        font-weight: 900;
     }
 
     .chart-kpis small {
@@ -205,7 +203,7 @@ import { limits, fmt } from '../../data/limits';
     }
 
     .combo-chart .grid {
-        stroke: rgba(255, 255, 255, 0.07);
+        stroke: rgba(74, 54, 64, 0.08);
     }
 
     .combo-chart text {
@@ -215,11 +213,11 @@ import { limits, fmt } from '../../data/limits';
     }
 
     .combo-chart .axl {
-        fill: #a78bfa;
+        fill: #c2457a;
     }
 
     .combo-chart .axr {
-        fill: #67e8f9;
+        fill: var(--mint-ink);
     }
 
     .combo-chart .axt {
@@ -229,31 +227,31 @@ import { limits, fmt } from '../../data/limits';
     }
 
     .combo-chart .limit {
-        stroke: #f87171;
+        stroke: var(--red);
         stroke-width: 1.5;
         stroke-dasharray: 6 5;
     }
 
     .combo-chart .limit-label {
-        fill: #fca5a5;
+        fill: var(--red);
         font-family: var(--font);
         font-weight: 700;
     }
 
     .combo-chart .cdot {
-        fill: var(--bg-2);
-        stroke: #f0abfc;
+        fill: #fff;
+        stroke: var(--pink-ink);
         stroke-width: 2.5;
     }
 
     .combo-chart .annot line {
-        stroke: rgba(255, 255, 255, 0.4);
+        stroke: rgba(74, 54, 64, 0.35);
         stroke-dasharray: 3 3;
     }
 
     .combo-chart .annot text {
         font-family: var(--font);
-        fill: #fff;
+        fill: var(--text);
         font-size: 13px;
         font-weight: 700;
     }

@@ -16,7 +16,7 @@ const home = Astro.props.page === 'home' ? '' : './';
                     <img class="brand-avatar" src="assets/hanako-icon.webp" alt="" />
                     Hanako <span class="ai-badge">TTS</span>
                 </a>
-                <p>言葉に、声という花を。<br />Empowering every voice on Discord.</p>
+                <p>言葉に、声という花を。<br />Discordのチャット読み上げBotです。</p>
                 <span class="status">All systems operational</span>
             </div>
             <div>
@@ -45,20 +45,32 @@ const home = Astro.props.page === 'home' ? '' : './';
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>. Made with 💜 and AI.</p>
-            <p>Discord は Discord Inc. の商標です。本Botは Discord Inc. とは関係ありません。</p>
+            <p>&copy; 2026 Hanako. Operated by <a href="https://github.com/Ebycow" target="_blank" rel="noopener">Ebycow</a>. Made with ♡ and AI.</p>
+            <p>DiscordはDiscord Inc.の商標です。このBotはDiscord Inc.とは関係ありません。</p>
         </div>
     </div>
 </footer>
 
 <style>
     .site-footer {
-        margin-top: 120px;
-        padding: 60px 0 40px;
-        border-top: 1px solid var(--border);
-        background: linear-gradient(180deg, transparent, rgba(124, 58, 237, 0.06));
+        position: relative;
+        margin-top: 140px;
+        padding: 64px 0 40px;
+        background: var(--pink-pale);
         font-size: 14px;
         color: var(--text-muted);
+    }
+
+    /* 上のふちを、ふわふわした雲の形にする */
+    .site-footer::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: -27px;
+        height: 28px;
+        background: radial-gradient(circle at 30px 30px, var(--pink-pale) 28px, transparent 29px) repeat-x;
+        background-size: 60px 60px;
     }
 
     .footer-grid {
@@ -70,7 +82,7 @@ const home = Astro.props.page === 'home' ? '' : './';
 
     .footer-grid h5 {
         margin: 0 0 12px;
-        color: var(--text);
+        color: var(--pink-ink);
         font-size: 13px;
         letter-spacing: 0.1em;
     }
@@ -90,7 +102,7 @@ const home = Astro.props.page === 'home' ? '' : './';
     }
 
     .footer-grid a:hover {
-        color: #fff;
+        color: var(--pink-ink);
     }
 
     .footer-bottom {
@@ -99,7 +111,7 @@ const home = Astro.props.page === 'home' ? '' : './';
         justify-content: space-between;
         gap: 10px;
         padding-top: 24px;
-        border-top: 1px solid var(--border);
+        border-top: 2px dashed var(--pink-soft);
         font-size: 13px;
         color: var(--text-dim);
     }
@@ -114,9 +126,12 @@ const home = Astro.props.page === 'home' ? '' : './';
         gap: 8px;
         margin-top: 14px;
         font-size: 13px;
-        padding: 6px 12px;
+        font-weight: 700;
+        padding: 4px 14px;
         border-radius: 999px;
-        border: 1px solid var(--border);
+        background: var(--surface);
+        color: var(--mint-ink);
+        border: 2px solid var(--mint-soft);
     }
 
     .status::before {
@@ -124,8 +139,8 @@ const home = Astro.props.page === 'home' ? '' : './';
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: #4ade80;
-        box-shadow: 0 0 10px #4ade80;
+        background: var(--mint);
+        box-shadow: 0 0 0 3px var(--mint-soft);
     }
 
     @media (max-width: 960px) {

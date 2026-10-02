@@ -5,45 +5,44 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="INPUT METHODS" mascot="assets/hanako-typing.webp">
-    <Fragment slot="title">あなたに最適な、<span class="gradient-text">3つの入力体験。</span></Fragment>
+    <Fragment slot="title">コマンドの打ち方は、<span class="hl">3通り。</span></Fragment>
 
     <p class="lead">
-        同じコマンドを3通りの書き方で実行できます。ワークフローに合わせて、自由に選択しましょう。迷ったら、スラッシュコマンドがおすすめです。
+        同じコマンドを3通りの書き方で実行できます。使いやすいものを選びましょう。迷ったら、スラッシュコマンドがおすすめです。
     </p>
 
     <div class="cards">
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-commands.webp" alt="" loading="lazy" />
-            <span class="tag hot">🔥 おすすめ</span>
+            <span class="tag hot">おすすめ</span>
             <h4>スラッシュコマンド</h4>
             <p><code>/teach from:草 to:くさ</code></p>
             <p>
-                入力欄に <code>/</code> を打つと候補と説明が出ます。引数の名前が表示されるので打ち間違えにくく、一覧系の結果は自分にだけ表示されます。
+                入力欄に<code>/</code>を打つと候補と説明が出ます。引数の名前が表示されるので打ち間違えにくく、一覧系の結果は自分にだけ表示されます。
             </p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-hello.webp" alt="" loading="lazy" />
             <span class="tag">テキスト</span>
             <h4>メンション</h4>
             <p><code>@はなこ teach 草 くさ</code></p>
-            <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。日本語の別名（<code>教育</code> など）も使えます。</p>
+            <p>Hanakoにメンションして、コマンド名と引数をスペース区切りで続けます。<code>教育</code>のような日本語の別名も使えます。</p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-typing.webp" alt="" loading="lazy" />
             <span class="tag">テキスト</span>
-            <h4>プリフィックス <code>&gt;</code></h4>
+            <h4>プリフィックス<code>&gt;</code></h4>
             <p><code>&gt;teach 草 くさ</code></p>
-            <p>発言の先頭に <code>&gt;</code> を付けます。最小のキーストロークで最大の成果を。</p>
+            <p>発言の先頭に<code>&gt;</code>を付けます。いちばん少ない文字数で打てます。</p>
         </article>
     </div>
 
     <div class="callout">
-        <span class="callout-title">Pro Tip：読まれたくない発言は <code>&gt;</code> で始めよう</span>
-        <code>&gt;</code>
-        で始まる発言は、コマンドとして存在しない内容でも読み上げられません。独り言やメモに最適な、まさに「隠れた神機能」と言えるでしょう。
+        <span class="callout-title">読まれたくない発言は<code>&gt;</code>で始めよう</span>
+        <code>&gt;</code>で始まる発言は、コマンドとして存在しない内容でも読み上げられません。独り言やメモを書きたいときに便利です。
     </div>
 
-    <h3>📊 スラッシュ vs テキスト：徹底比較</h3>
+    <h3>スラッシュコマンドとテキストコマンドの違い</h3>
     <div class="table-wrap">
         <table>
             <thead>
@@ -62,7 +61,7 @@ const { id, n } = Astro.props;
                 <tr>
                     <td>全削除の確認</td>
                     <td>「実行する」ボタンを押す</td>
-                    <td>コマンドに <code>--force</code> を付ける</td>
+                    <td>コマンドに<code>--force</code>を付ける</td>
                 </tr>
                 <tr>
                     <td>SEを複数まとめて追加・削除</td>
@@ -77,7 +76,7 @@ const { id, n } = Astro.props;
                 <tr>
                     <td>サーバーごとに無効化</td>
                     <td>できない</td>
-                    <td><code>/text-commands</code> で無効にできる</td>
+                    <td><code>/text-commands</code>で無効にできる</td>
                 </tr>
             </tbody>
         </table>

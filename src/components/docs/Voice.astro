@@ -5,32 +5,31 @@ import Chapter from './Chapter.astro';
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="PERSONALIZATION" mascot="assets/hanako-settings.webp">
-    <Fragment slot="title">声と、<span class="gradient-text">読む長さの設定。</span></Fragment>
+<Chapter id={id} n={n} kicker="VOICE & LIMIT" mascot="assets/hanako-settings.webp">
+    <Fragment slot="title">声と、<span class="hl">読む長さの設定。</span></Fragment>
 
-    <p class="lead">「誰の声で」「どこまで」読むかの設定です。効く範囲がそれぞれ違うので注意してください。</p>
+    <p class="lead">「誰の声で」「どこまで」読むかの設定です。設定がおよぶ範囲がそれぞれ違うので注意してください。</p>
 
     <div class="cards">
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
-            <span class="tag">👤 自分だけに効く</span>
+            <span class="tag">自分の発言だけ</span>
             <h4>キャラクター変更</h4>
             <p><code>/speaker name:キャラクター名</code></p>
             <p><strong>あなたの発言を読む声</strong>を変えるコマンドです。ほかの人の声は変わりません。設定はサーバーごとに覚えます。</p>
-            <p>現在使える声は <code>default</code> の1種類だけなので、実質的には変更できません。</p>
+            <p>今のところ使える声は<code>default</code>の1種類だけなので、実際には変更できません。</p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-pointing.webp" alt="" loading="lazy" />
-            <span class="tag">🌐 サーバー全体に効く</span>
+            <span class="tag">サーバー全体</span>
             <h4>文字数制限</h4>
             <p><code>/limit number:30</code></p>
-            <p>1つの発言で読む文字数の上限です（0〜{limits.readLimitMax}）。超えた分は読まず、最後に「イか略。」と付けます。</p>
-            <p><code>/limit number:0</code> で無制限（初期値）。変更には「サーバー管理」の権限が必要です。</p>
+            <p>1つの発言で読む文字数の上限を、0〜{limits.readLimitMax}で決めます。超えた分は読まず、最後に「イか略。」と付けます。</p>
+            <p>初期値は<code>/limit number:0</code>で、制限はありません。変更には「サーバー管理」の権限が必要です。</p>
         </article>
     </div>
     <div class="callout warn">
         <span class="callout-title">使えるキャラクター名（現在1種類）</span>
-        いま使えるのは <code>default</code>（既定の声）だけです。ほかの名前を指定すると読み上げに失敗することがあるので、その場合は
-        <code>/speaker name:default</code> で戻してください。
+        いま使えるのは既定の声の<code>default</code>だけです。ほかの名前を指定すると読み上げに失敗することがあるので、その場合は<code>/speaker name:default</code>で戻してください。
     </div>
 </Chapter>

@@ -16,44 +16,66 @@ body {
     color: var(--text);
     font-family: var(--font);
     font-size: 16px;
-    line-height: 1.85;
-    letter-spacing: 0.01em;
+    font-weight: 500;
+    line-height: 1.9;
+    letter-spacing: 0.04em;
+    /* 和文の字間を詰めて、丸ゴシックがだらっと広がらないようにする */
+    font-feature-settings: 'palt';
     -webkit-font-smoothing: antialiased;
     -webkit-text-size-adjust: 100%;
     overflow-x: hidden;
 }
 
-/* 背景のグリッド（グロウオーブは BaseLayout.astro） */
+/* 背景の水玉（ふわっとした色の玉は BaseLayout.astro） */
 body::before {
     content: '';
     position: fixed;
     inset: 0;
     z-index: -2;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+        radial-gradient(circle, rgba(244, 122, 169, 0.16) 2px, transparent 2.5px),
+        radial-gradient(circle, rgba(244, 122, 169, 0.1) 2px, transparent 2.5px);
+    background-size: 44px 44px;
+    background-position:
+        0 0,
+        22px 22px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-weight: 900;
+    color: var(--text);
+    /* 文節の途中で改行しない（対応ブラウザのみ） */
+    word-break: auto-phrase;
 }
 
 a {
-    color: #a5b4fc;
+    color: var(--pink-ink);
     text-decoration: none;
     transition: color 0.2s;
 }
 
 a:hover {
-    color: #e0e7ff;
+    color: var(--pink-deep);
+}
+
+strong {
+    color: var(--text);
+    font-weight: 900;
 }
 
 code {
-    background: rgba(139, 92, 246, 0.14);
-    border: 1px solid rgba(139, 92, 246, 0.28);
-    color: #d8ccff;
+    background: var(--pink-pale);
+    border: 1px solid var(--pink-soft);
+    color: var(--pink-deep);
     border-radius: 8px;
     padding: 0.08em 0.45em;
     font-family: var(--mono);
     font-size: 0.86em;
+    font-weight: 500;
     white-space: nowrap;
 }
 
@@ -66,8 +88,8 @@ code {
 }
 
 mark {
-    background: var(--grad);
-    color: #0b0820;
+    background: var(--pink-soft);
+    color: var(--pink-deep);
     border-radius: 6px;
     padding: 0 0.3em;
     font-weight: 700;
@@ -75,6 +97,16 @@ mark {
 
 img {
     max-width: 100%;
+}
+
+::selection {
+    background: var(--pink-soft);
+    color: var(--text);
+}
+
+:focus-visible {
+    outline: 3px solid var(--pink);
+    outline-offset: 2px;
 }
 
 /* ふわふわ上下する（ヒーローのチップ、開発者向けのハートで共有） */

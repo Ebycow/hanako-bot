@@ -1,31 +1,48 @@
-/* ==========================================================================
-   Hanako — Next-Gen Design System ✨
-   Crafted for seamless, intuitive, and delightful experiences.
-   ========================================================================== */
+/* ===== 色・形・文字の変数 =====
+   はなこ（桃色の髪・白い制服・ミントの瞳・赤いリボン）の配色に合わせた、白と桃色のゆるいテーマ。
+   文字色は黒ではなく、猫耳のこげ茶に寄せてやわらかくしている */
 
 :root {
-    color-scheme: dark;
-    --bg: #07060f;
-    --bg-2: #0d0b1d;
-    --surface: rgba(255, 255, 255, 0.04);
-    --surface-strong: rgba(255, 255, 255, 0.07);
-    --border: rgba(255, 255, 255, 0.09);
-    --border-strong: rgba(255, 255, 255, 0.16);
-    --text: #ecebff;
-    --text-muted: #9d9bbd;
-    --text-dim: #6e6c8e;
-    --violet: #8b5cf6;
-    --indigo: #6366f1;
-    --blue: #3b82f6;
-    --cyan: #22d3ee;
-    --pink: #ec4899;
-    --grad: linear-gradient(135deg, #a78bfa 0%, #818cf8 30%, #60a5fa 60%, #22d3ee 100%);
-    --grad-warm: linear-gradient(135deg, #f472b6 0%, #a78bfa 50%, #60a5fa 100%);
-    --glow: 0 0 0 1px rgba(139, 92, 246, 0.25), 0 10px 40px -10px rgba(139, 92, 246, 0.55);
-    --radius: 20px;
-    --radius-lg: 28px;
+    color-scheme: light;
+
+    /* 背景・面 */
+    --bg: #fff8fb;
+    --bg-2: #ffffff;
+    --surface: #ffffff;
+    --surface-soft: #fff1f6;
+    --border: #f7d9e5;
+    --border-strong: #f0bcd0;
+
+    /* 文字 */
+    --text: #4a3640;
+    --text-muted: #7d6670;
+    --text-dim: #8f7a84;
+
+    /* 桃色（髪）。--pink は飾り用、文字やボタンには --pink-ink を使う */
+    --pink: #f47aa9;
+    --pink-ink: #d6336f;
+    --pink-deep: #b0245c;
+    --pink-soft: #ffd3e3;
+    --pink-pale: #fff0f6;
+
+    /* ミント（瞳）・赤（リボン）・ラベンダー（Discordのぬいぐるみ） */
+    --mint: #3cc0b5;
+    --mint-ink: #0f7f78;
+    --mint-soft: #d9f5f1;
+    --red: #c62f3d;
+    --lavender: #8f9cf7;
+    --lavender-soft: #e6e9ff;
+    --yellow-soft: #fff6d8;
+
+    /* ぷっくりしたステッカー風の影 */
+    --pop: 0 5px 0 var(--pink-soft);
+    --pop-hover: 0 9px 0 var(--pink-soft), 0 18px 30px -12px rgba(214, 51, 111, 0.28);
+    --soft-shadow: 0 18px 40px -18px rgba(214, 51, 111, 0.35);
+
+    --radius: 22px;
+    --radius-lg: 30px;
     --max-width: 1180px;
-    --font: 'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN',
-        'Noto Sans JP', 'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
+    --font: 'Zen Maru Gothic', 'Hiragino Maru Gothic ProN', 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans JP',
+        'Yu Gothic UI', 'Meiryo', system-ui, sans-serif;
     --mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
 }

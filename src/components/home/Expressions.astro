@@ -10,7 +10,7 @@ const expressions = [
         quotes: [
             `やったー！辞書に${fmt(limits.dictionaryEntries)}件目が登録されたにゃ！`,
             'このサイト、ちょっと盛りすぎじゃない？うれしいけど。',
-            'Pro プランも Enterprise プランも ¥0 だよ。お得でしょ？',
+            'ProプランもEnterpriseプランも¥0だよ。お得でしょ？',
         ],
     },
     {
@@ -19,7 +19,7 @@ const expressions = [
         caption: '考え中…',
         quotes: [
             '「イか略。」の「イ」がカタカナな理由、実はわたしも知らないの。',
-            '>ask で聞いてくれたら、はいかいいえで答えるよ。根拠はないけど。',
+            '>askで聞いてくれたら、はいかいいえで答えるよ。根拠はないけど。',
             '草原を「くさはら」と読むべきか、ずっと考えてる。',
         ],
     },
@@ -28,7 +28,7 @@ const expressions = [
         alt: '驚いた花子',
         caption: 'びっくり',
         quotes: [
-            'えっ、わたし「次世代」だったの！？',
+            'えっ、わたしの料金プランって3つもあるの！？',
             '「草」ってSE登録したら「草原」でも鳴った！！',
             `${limits.seFileMB}MBを超えるSEは入らないにゃ…！`,
         ],
@@ -37,7 +37,7 @@ const expressions = [
         image: 'hanako-sleepy.webp',
         alt: '眠そうな花子',
         caption: 'ひとやすみ',
-        quotes: ['みんな帰ったから、わたしも帰って寝るね…zzz', '/seibai されたから、今日はもう休むにゃ…', '長文は、30文字くらいで勘弁して…'],
+        quotes: ['みんな帰ったから、わたしも帰って寝るね…zzz', '/seibaiされたから、今日はもう休むにゃ…', '長文は、30文字くらいで勘弁して…'],
     },
     {
         image: 'hanako-pointing.webp',
@@ -45,7 +45,7 @@ const expressions = [
         caption: 'こっちだよ',
         quotes: [
             'コマンド一覧は上のほうだよ。ずっと上。',
-            'その発言、> で始まってるから読まないよ？',
+            'その発言、>で始まってるから読まないよ？',
             '招待URLはこっち……じゃなかった、ないんだった。',
         ],
     },
@@ -53,7 +53,7 @@ const expressions = [
         image: 'hanako-blossom.webp',
         alt: '桜を差し出す花子',
         caption: 'ありがとう ♡',
-        quotes: ['「声という花」って、わたしのことかな？えへへ。', '最後まで読んでくれてありがとう ♡', '桜の季節は SE 登録が増えるにゃ。'],
+        quotes: ['「声という花」って、わたしのことかな？えへへ。', '最後まで読んでくれてありがとう ♡', '桜の季節はSEの登録が増えるにゃ。'],
     },
 ];
 ---
@@ -61,14 +61,14 @@ const expressions = [
 <section class="section" aria-labelledby="expression-title">
     <div class="container">
         <div class="section-head reveal">
-            <span class="eyebrow">✦ Meet Hanako</span>
-            <h2 id="expression-title">感情豊かな、<br /><span class="gradient-text">あなたの読み上げパートナー。</span></h2>
+            <span class="eyebrow">Meet Hanako</span>
+            <h2 id="expression-title">いろんな顔をする、<br /><span class="hl">はなこです。</span></h2>
         </div>
-        <p class="fineprint" style="margin: -30px 0 90px">🖱️ マウスを乗せる（スマホはタップ）と、はなこが何か言います</p>
+        <p class="fineprint" style="margin: -30px 0 90px">マウスを乗せると、はなこが何か言います。スマホはタップしてください</p>
         <div class="expression-grid">
             {
                 expressions.map((e) => (
-                    <figure class="glass reveal says" tabindex="0" data-quotes={JSON.stringify(e.quotes)}>
+                    <figure class="card reveal says" tabindex="0" data-quotes={JSON.stringify(e.quotes)}>
                         <span class="speech" aria-live="polite" />
                         <img src={`assets/${e.image}`} alt={e.alt} loading="lazy" />
                         <figcaption>{e.caption}</figcaption>
@@ -119,9 +119,18 @@ const expressions = [
         object-fit: contain;
     }
 
+    .expression-grid figure:nth-child(odd) {
+        rotate: -1.5deg;
+    }
+
+    .expression-grid figure:nth-child(even) {
+        rotate: 1.5deg;
+    }
+
     .expression-grid figcaption {
         font-size: 13px;
-        color: var(--text-muted);
+        font-weight: 900;
+        color: var(--pink-ink);
     }
 
     /* 吹き出し */
@@ -132,7 +141,8 @@ const expressions = [
     }
 
     .says:focus-visible {
-        box-shadow: 0 0 0 3px var(--violet);
+        outline: 3px solid var(--pink);
+        outline-offset: 3px;
     }
 
     .speech {
@@ -143,14 +153,15 @@ const expressions = [
         width: max-content;
         max-width: 220px;
         padding: 10px 14px;
-        border-radius: 14px;
+        border-radius: 18px;
         background: #fff;
-        color: #1a1033;
+        border: 2px solid var(--pink-soft);
+        color: var(--text);
         font-size: 13px;
-        font-weight: 600;
+        font-weight: 700;
         line-height: 1.6;
         text-align: left;
-        box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+        box-shadow: 0 4px 0 var(--pink-soft);
         opacity: 0;
         transform: translate(-50%, 8px) scale(0.92);
         transition:
@@ -164,9 +175,13 @@ const expressions = [
         position: absolute;
         left: 50%;
         top: 100%;
-        margin-left: -8px;
-        border: 8px solid transparent;
-        border-top-color: #fff;
+        width: 14px;
+        height: 14px;
+        margin: -7px 0 0 -7px;
+        background: #fff;
+        border: solid var(--pink-soft);
+        border-width: 0 2px 2px 0;
+        transform: rotate(45deg);
     }
 
     .says:hover .speech,

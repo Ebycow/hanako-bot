@@ -5,15 +5,15 @@ import { commandGroups, permissions } from '../../data/commands';
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="COMMAND REFERENCE" mascot="assets/hanako-commands.webp">
-    <Fragment slot="title">すべてのコマンドを、<span class="gradient-text">ひと目で。</span></Fragment>
+<Chapter id={id} n={n} kicker="COMMANDS" mascot="assets/hanako-commands.webp">
+    <Fragment slot="title">すべてのコマンドを、<span class="hl">ひと目で。</span></Fragment>
 
-    <p class="lead">インテリジェントな検索で、目的のコマンドに瞬時にアクセスできます。</p>
+    <p class="lead">下の欄に言葉を入れると、一覧を絞り込めます。</p>
     <input
         class="filter"
         id="command-filter"
         type="search"
-        placeholder="なんでも検索…（例：se、辞書、blacklist）"
+        placeholder="絞り込み（例：se、辞書、blacklist）"
         aria-label="コマンドを絞り込む"
     />
     <div class="table-wrap">
@@ -49,9 +49,9 @@ const { id, n } = Astro.props;
             </tbody>
         </table>
     </div>
-    <p class="empty" id="command-empty">🤔 一致するコマンドが見つかりませんでした。別のキーワードで試してみてください！</p>
+    <p class="empty" id="command-empty">一致するコマンドはありません。別の言葉で探してみてください。</p>
     <p class="note">
-        テキストコマンドは、表の別名のどれかを <code>@はなこ</code> または <code>&gt;</code> に続けて打ちます（例：<code>&gt;s</code>、<code>@はなこ お願い</code>）。
+        テキストコマンドは、表の別名のどれかを<code>@はなこ</code>か<code>&gt;</code>に続けて打ちます。たとえば<code>&gt;s</code>や<code>@はなこ お願い</code>のように打ちます。
     </p>
 </Chapter>
 
@@ -96,10 +96,10 @@ const { id, n } = Astro.props;
     .filter {
         width: 100%;
         padding: 16px 20px 16px 50px;
-        border-radius: 16px;
-        border: 1px solid var(--border-strong);
-        background: rgba(13, 11, 29, 0.8) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23a78bfa' stroke-width='2' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")
-            no-repeat 18px center;
+        border-radius: 999px;
+        border: 2px solid var(--border-strong);
+        background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%23f47aa9' stroke-width='2.5' stroke-linecap='round' viewBox='0 0 24 24'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m20 20-3.5-3.5'/%3E%3C/svg%3E")
+            no-repeat 20px center;
         color: var(--text);
         font: inherit;
         font-size: 15.5px;
@@ -110,8 +110,8 @@ const { id, n } = Astro.props;
     }
 
     .filter:focus {
-        border-color: var(--violet);
-        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.25);
+        border-color: var(--pink);
+        box-shadow: 0 0 0 4px var(--pink-soft);
     }
 
     .filter::placeholder {
@@ -120,9 +120,9 @@ const { id, n } = Astro.props;
 
     /* 表の中の見出し行（グループ名） */
     .table-group td {
-        background: linear-gradient(90deg, rgba(139, 92, 246, 0.2), transparent) !important;
-        color: #fff;
-        font-weight: 800;
+        background: var(--surface-soft) !important;
+        color: var(--pink-ink);
+        font-weight: 900;
         font-size: 13px;
         letter-spacing: 0.06em;
     }

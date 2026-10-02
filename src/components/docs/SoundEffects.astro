@@ -6,52 +6,52 @@ const { id, n } = Astro.props;
 ---
 
 <Chapter id={id} n={n} kicker="SOUND EFFECTS" mascot="assets/hanako-music.webp">
-    <Fragment slot="title">会話に、<span class="gradient-text">没入感という魔法を。</span></Fragment>
+    <Fragment slot="title">キーワードで、<span class="hl">効果音を鳴らす。</span></Fragment>
 
     <p class="lead">
-        キーワードに音声ファイルを結びつけると、その言葉が発言に出てきたとき、読み上げの代わりに音を鳴らします。テキストチャットが、まるでライブ会場のように生まれ変わります。
+        キーワードに音声ファイルを結びつけると、その言葉が発言に出てきたとき、読み上げの代わりに音を鳴らします。チャットがライブ会場のようににぎやかになります。
     </p>
 
-    <h3>➕ 追加する：3つの柔軟な方法</h3>
+    <h3>SEを追加する3つの方法</h3>
     <div class="cards">
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-music.webp" alt="" loading="lazy" />
             <span class="tag">スラッシュ / テキスト</span>
             <h4>URLで指定</h4>
             <p><code>/se-add keyword:（拍手） url:https://…/clap.mp3</code></p>
             <p>ネット上の音声ファイルのURLを指定します。URLは{limits.seUrlLength}文字まで。</p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-cheer.webp" alt="" loading="lazy" />
             <span class="tag">スラッシュ / テキスト</span>
             <h4>ファイルを1つ添付</h4>
-            <p><code>/se-add keyword:（拍手）</code> ＋ <code>file</code> に添付</p>
-            <p>手元のファイルをそのまま登録できます。テキストなら <code>@はなこ se-add （拍手）</code> に添付。</p>
+            <p><code>/se-add keyword:（拍手）</code>を打ち、<code>file</code>に添付</p>
+            <p>手元のファイルをそのまま登録できます。テキストコマンドなら<code>@はなこ se-add （拍手）</code>と打って添付します。</p>
         </article>
-        <article class="glass">
+        <article class="card">
             <img class="card-mascot" src="assets/hanako-listening.webp" alt="" loading="lazy" />
-            <span class="tag hot">⚡ バッチ処理</span>
+            <span class="tag hot">まとめて登録</span>
             <h4>複数ファイルをまとめて</h4>
-            <p><code>@はなこ se-add</code> ＋ 複数ファイルを添付</p>
-            <p>キーワードを書かずに添付すると、ファイル名（拡張子を除く）がそのままキーワードになります。テキストコマンドのみ対応。</p>
+            <p><code>@はなこ se-add</code>と打ち、複数のファイルを添付</p>
+            <p>キーワードを書かずに添付すると、拡張子を除いたファイル名がそのままキーワードになります。テキストコマンドだけで使えます。</p>
         </article>
     </div>
 
-    <h3>📋 技術仕様</h3>
+    <h3>登録できるファイル</h3>
     <div class="table-wrap">
         <table>
             <tbody>
                 <tr>
                     <th>形式</th>
-                    <td><code>.wav</code> / <code>.mp3</code></td>
+                    <td><code>.wav</code>、<code>.mp3</code></td>
                 </tr>
                 <tr>
                     <th>サイズ</th>
-                    <td>1ファイル {limits.seFileMB}MB まで</td>
+                    <td>1ファイル{limits.seFileMB}MBまで</td>
                 </tr>
                 <tr>
                     <th>長さ</th>
-                    <td>{limits.seSeconds}秒 まで</td>
+                    <td>{limits.seSeconds}秒まで</td>
                 </tr>
                 <tr>
                     <th>キーワード</th>
@@ -59,18 +59,17 @@ const { id, n } = Astro.props;
                 </tr>
                 <tr>
                     <th>登録数</th>
-                    <td>サーバーごとに {fmt(limits.seEntries)}件 まで</td>
+                    <td>サーバーごとに{fmt(limits.seEntries)}件まで</td>
                 </tr>
             </tbody>
         </table>
     </div>
     <div class="callout">
-        <span class="callout-title">ベストプラクティス：キーワードは記号で囲もう</span>
-        SEは発言の一部にも反応します。「草」のような短い言葉を登録すると、「草原」でも鳴ります。<code>（拍手）</code> や
-        <code>:clap:</code> のように、ふだんの会話に出てこない形にしておくと誤爆しません。
+        <span class="callout-title">キーワードは記号で囲もう</span>
+        SEは発言の一部にも反応します。「草」のような短い言葉を登録すると、「草原」でも鳴ります。<code>（拍手）</code>や<code>:clap:</code>のように、ふだんの会話に出てこない形にしておくと誤爆しません。
     </div>
 
-    <h3>🔍 探す・直す・消す</h3>
+    <h3>探す・直す・消す</h3>
     <div class="table-wrap">
         <table>
             <thead>
@@ -99,19 +98,19 @@ const { id, n } = Astro.props;
                 <tr>
                     <td>消す</td>
                     <td><code>/se-del keyword:（拍手）</code></td>
-                    <td>テキストなら <code>@はなこ se-del A B C</code> で複数まとめて削除</td>
+                    <td>テキストコマンドなら<code>@はなこ se-del A B C</code>で複数まとめて削除</td>
                 </tr>
             </tbody>
         </table>
     </div>
 
-    <h3>🎚️ 音量をそろえる：SE正規化</h3>
+    <h3>音量をそろえる「SE正規化」</h3>
     <p>
-        SEはファイルごとに音量がばらばらです。正規化をオンにすると、小さすぎるSEを指定したレベルまで持ち上げて、聞こえ方をそろえます。まさに、音量のイコライゼーションです。
+        SEはファイルごとに音量がばらばらです。正規化をオンにすると、小さすぎるSEを指定したレベルまで持ち上げて、聞こえ方をそろえます。
     </p>
     <div class="bars">
         <div class="panel">
-            <b>Before：正規化なし（0）</b>
+            <b>正規化なし（0）</b>
             <div class="plot">
                 <div class="target"><span>目標 80</span></div>
                 <div class="bar" style="height: 22%"></div>
@@ -121,7 +120,7 @@ const { id, n } = Astro.props;
             <div class="labels"><span>SE A</span><span>SE B</span><span>SE C</span></div>
         </div>
         <div class="panel">
-            <b>After：<code>/se-normalize level:80</code></b>
+            <b><code>/se-normalize level:80</code>のとき</b>
             <div class="plot">
                 <div class="target"><span>目標 80</span></div>
                 <div class="bar" style="height: 80%"></div>
@@ -133,7 +132,7 @@ const { id, n } = Astro.props;
     </div>
     <p class="figcap">小さいSEが目標レベルまで持ち上がります（イメージ図）</p>
     <ul>
-        <li><code>/se-normalize level:0〜100</code> で設定します。初期値は {limits.seNormalizeDefault}、<code>0</code> で無効です。</li>
+        <li><code>/se-normalize level:0〜100</code>で設定します。初期値は{limits.seNormalizeDefault}で、<code>0</code>にすると無効になります。</li>
         <li>サーバー全体の設定です。変更には「サーバー管理」の権限が必要です。</li>
     </ul>
 </Chapter>
@@ -151,13 +150,15 @@ const { id, n } = Astro.props;
         padding: 22px;
         border-radius: var(--radius);
         background: var(--surface);
-        border: 1px solid var(--border);
+        border: 2px solid var(--border);
+        box-shadow: var(--pop);
     }
 
     .panel > b {
         display: block;
         margin-bottom: 14px;
         font-size: 14px;
+        font-weight: 900;
     }
 
     .plot {
@@ -167,7 +168,7 @@ const { id, n } = Astro.props;
         align-items: flex-end;
         justify-content: space-around;
         gap: 16px;
-        border-bottom: 1px solid var(--border-strong);
+        border-bottom: 2px solid var(--border-strong);
     }
 
     .plot .target {
@@ -175,7 +176,7 @@ const { id, n } = Astro.props;
         left: 0;
         right: 0;
         bottom: 80%;
-        border-top: 1px dashed var(--cyan);
+        border-top: 2px dashed var(--mint);
     }
 
     .plot .target span {
@@ -183,15 +184,14 @@ const { id, n } = Astro.props;
         right: 0;
         top: -22px;
         font-size: 11px;
-        color: var(--cyan);
-        font-family: var(--mono);
+        font-weight: 900;
+        color: var(--mint-ink);
     }
 
     .plot .bar {
         width: 30%;
-        border-radius: 10px 10px 0 0;
-        background: linear-gradient(180deg, #a78bfa, #4f46e5);
-        box-shadow: 0 0 24px rgba(139, 92, 246, 0.45);
+        border-radius: 14px 14px 0 0;
+        background: linear-gradient(180deg, #ff9cc2, #ffc4da);
     }
 
     .labels {

@@ -5,12 +5,12 @@ import { limits, fmt } from '../../data/limits';
 <section class="section" id="pricing">
     <div class="container">
         <div class="section-head reveal">
-            <span class="eyebrow">✦ Pricing</span>
-            <h2>シンプルで透明な、<span class="gradient-text">料金プラン。</span></h2>
-            <p>隠れたコストは一切ありません。どのプランを選んでも、すべて無料です。</p>
+            <span class="eyebrow">Pricing</span>
+            <h2>料金は、<span class="hl">かかりません。</span></h2>
+            <p>どのプランを選んでも無料で、あとから料金がかかることもありません。</p>
         </div>
         <div class="pricing">
-            <article class="glass price-card reveal">
+            <article class="card price-card reveal">
                 <h3>Starter</h3>
                 <p>まずは気軽に試したい方に。</p>
                 <div class="price">¥0<small> /月</small></div>
@@ -22,33 +22,33 @@ import { limits, fmt } from '../../data/limits';
                 </ul>
                 <a class="btn btn-ghost" href="#invite">はじめる</a>
             </article>
-            <article class="glass price-card featured reveal">
-                <span class="badge">🔥 一番人気</span>
+            <article class="card price-card featured reveal">
+                <span class="badge">一番人気</span>
                 <h3>Pro</h3>
-                <p>本気でコミュニティを盛り上げたい方に。</p>
-                <div class="price"><span class="gradient-text">¥0</span><small> /月</small></div>
+                <p>サーバーをもっと盛り上げたい方に。</p>
+                <div class="price"><span class="hl">¥0</span><small> /月</small></div>
                 <ul>
                     <li>Starterのすべての機能</li>
                     <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
                     <li>SE {fmt(limits.seEntries)}件</li>
                     <li>SE正規化</li>
                 </ul>
-                <a class="btn btn-primary" href="#invite">Proで始める ✨</a>
+                <a class="btn btn-primary" href="#invite">Proで始める</a>
             </article>
-            <article class="glass price-card reveal">
+            <article class="card price-card reveal">
                 <h3>Enterprise</h3>
-                <p>大規模サーバーを運営する方に。</p>
+                <p>大きなサーバーを運営している方に。</p>
                 <div class="price">¥0<small> /月</small></div>
                 <ul>
                     <li>Proのすべての機能</li>
                     <li>辞書 {fmt(limits.dictionaryEntries)}件</li>
                     <li>SE {fmt(limits.seEntries)}件</li>
-                    <li>Discordネイティブの権限管理</li>
+                    <li>Discordの権限設定</li>
                 </ul>
                 <a class="btn btn-ghost" href="#invite">はじめる</a>
             </article>
         </div>
-        <p class="fineprint">※ 全プランの内容は完全に同一です。Hanakoは無償で提供されています。</p>
+        <p class="fineprint">※ どのプランも中身はまったく同じです。Hanakoは無料で提供しています。</p>
     </div>
 </section>
 
@@ -66,38 +66,35 @@ import { limits, fmt } from '../../data/limits';
     }
 
     .price-card.featured {
-        background:
-            linear-gradient(180deg, rgba(40, 28, 90, 0.95), rgba(18, 14, 40, 0.95)) padding-box,
-            var(--grad) border-box;
-        border: 1.5px solid transparent;
-        box-shadow: 0 30px 80px -20px rgba(124, 58, 237, 0.7);
+        background: var(--pink-pale);
+        border: 3px solid var(--pink);
+        box-shadow: 0 8px 0 var(--pink-soft);
     }
 
     .price-card .badge {
         position: absolute;
         top: 18px;
         right: 18px;
-        font-size: 11px;
-        font-weight: 800;
-        padding: 4px 10px;
+        font-size: 11.5px;
+        font-weight: 900;
+        padding: 2px 12px;
         border-radius: 999px;
-        background: var(--grad-warm);
+        background: var(--pink-ink);
         color: #fff;
+        transform: rotate(4deg);
     }
 
     .price {
         font-size: 48px;
-        font-weight: 800;
-        letter-spacing: -0.04em;
+        font-weight: 900;
         margin: 8px 0 4px;
-        line-height: 1.1;
+        line-height: 1.2;
     }
 
     .price small {
         font-size: 15px;
         color: var(--text-muted);
-        font-weight: 500;
-        letter-spacing: 0;
+        font-weight: 700;
     }
 
     .price-card ul {
@@ -110,16 +107,16 @@ import { limits, fmt } from '../../data/limits';
     .price-card li {
         padding: 6px 0 6px 28px;
         position: relative;
-        color: #d4d2ee;
+        color: var(--text);
         font-size: 14.5px;
+        border-bottom: 1px dashed var(--border);
     }
 
     .price-card li::before {
-        content: '✓';
+        content: '✿';
         position: absolute;
-        left: 0;
-        color: #4ade80;
-        font-weight: 800;
+        left: 2px;
+        color: var(--pink);
     }
 
     .price-card .btn {

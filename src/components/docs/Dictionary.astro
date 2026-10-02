@@ -5,31 +5,31 @@ import Chapter from './Chapter.astro';
 const { id, n } = Astro.props;
 ---
 
-<Chapter id={id} n={n} kicker="SMART DICTIONARY" mascot="assets/hanako-studying.webp">
-    <Fragment slot="title">読み間違い、<span class="gradient-text">ゼロの世界へ。</span></Fragment>
+<Chapter id={id} n={n} kicker="DICTIONARY" mascot="assets/hanako-studying.webp">
+    <Fragment slot="title">読み方を、<span class="hl">辞書で教える。</span></Fragment>
 
     <p class="lead">
-        読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>{fmt(limits.dictionaryEntries)}件</strong>まで覚えます。あなたのコミュニティの「文化」を、Hanakoに学ばせましょう。
+        読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>{fmt(limits.dictionaryEntries)}件</strong>まで覚えます。サーバーの中で使われている言葉を、Hanakoに教えていきましょう。
     </p>
 
     <div class="steps" style="grid-template-columns: repeat(3, 1fr)">
         <div class="step">
-            <span class="n">INPUT</span>
+            <span class="n">STEP 1</span>
             <b>発言</b>
             <small>「電ちゃんかわいい」</small>
         </div>
         <div class="step main">
-            <span class="n">PROCESS ✨</span>
+            <span class="n">STEP 2</span>
             <b>辞書</b>
             <small>電 ⇨ いなづま</small>
         </div>
         <div class="step">
-            <span class="n">OUTPUT</span>
+            <span class="n">STEP 3</span>
             <b>読み上げ</b>
             <small>「いなづまちゃんかわいい」</small>
         </div>
     </div>
-    <p class="figcap">発言の中に含まれる単語を、読み上げる直前に置き換えます（発言そのものは変わりません）</p>
+    <p class="figcap">読み上げる直前に発言の中の単語を置き換えます。チャットに書かれた発言そのものは変わりません</p>
 
     <div class="table-wrap">
         <table>
@@ -60,10 +60,10 @@ const { id, n } = Astro.props;
         </table>
     </div>
 
-    <h3>🎯 押さえておきたい重要なポイント</h3>
+    <h3>登録するときの注意</h3>
     <ul>
         <li>置換前・置換後とも2〜50文字。1文字の単語は登録できません。</li>
-        <li>同じ「置換前」は1つだけ。読み方を変えたいときは、いちど <code>/forget</code> してから教え直します。</li>
+        <li>同じ「置換前」は1つだけ。読み方を変えたいときは、いちど<code>/forget</code>してから教え直します。</li>
         <li>単語の一部にも反応します。短い単語を登録すると、思わぬ言葉の中で置き換わることがあります。</li>
         <li>SEのキーワードになっている部分は、辞書では置き換えません（SEが優先されます）。</li>
     </ul>

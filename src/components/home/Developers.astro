@@ -1,21 +1,20 @@
 <section class="section" id="developers">
     <div class="container">
         <div class="section-head reveal">
-            <span class="eyebrow">✦ For Developers</span>
-            <h2>はなこを、<span class="gradient-text">あなたの手で。</span></h2>
-            <p>Hanako のソースコードは GitHub で公開されています。自分のサーバーで動かしたい方、機能を足したい方はこちらへ。</p>
+            <span class="eyebrow">For Developers</span>
+            <h2>はなこを、<span class="hl">あなたの手で。</span></h2>
+            <p>HanakoのソースコードはGitHubで公開しています。自分のサーバーで動かしたい方や、機能を足したい方はこちらをどうぞ。</p>
         </div>
 
-        <div class="glass partner reveal">
+        <div class="card partner reveal">
             <div class="partner-art">
-                <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかる Ebyroid を、はなこが揺すって起こそうとしている" loading="lazy" />
+                <img src="assets/hanako-ebyroid-duo.webp" alt="PCケースの上にぐったりもたれかかるEbyroidを、はなこが揺すって起こそうとしている" loading="lazy" />
             </div>
             <div class="partner-copy">
-                <span class="tag hot">💞 Partner</span>
-                <h3>はなこの声の相棒、<span class="gradient-text">Ebyroid。</span></h3>
+                <span class="tag hot">相棒</span>
+                <h3>はなこの声の相棒、<span class="hl">Ebyroid。</span></h3>
                 <p>
-                    はなこの声を生み出しているのは、音声サーバーの
-                    <a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>。VOICEROID を Node.js や HTTP から使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。README の最後にいる銀色の猫耳の子が、その Ebyroid。はなこの相棒です。
+                    はなこの声を作っているのは、音声サーバーの<a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>です。VOICEROIDをNode.jsやHTTPから使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。READMEの最後にいる銀色の猫耳の子がEbyroidで、はなこの相棒です。
                 </p>
                 <div class="duo">
                     <p class="duo-line hanako"><b>はなこ</b>えびろいどがいないと、わたし喋れないの。</p>
@@ -24,58 +23,58 @@
             </div>
         </div>
 
-        <h3 class="dev-subhead reveal">🚀 自分でホストするまでの4ステップ</h3>
+        <h3 class="dev-subhead reveal">自分でホストするまでの4ステップ</h3>
         <div class="steps dev-steps">
             <div class="step reveal">
                 <img src="assets/ebyroid-commands.webp" alt="" loading="lazy" />
                 <span class="n">STEP 1</span>
                 <b>Botを作る</b>
-                <small>Discord Developer Portal でアプリを作り、トークンとクライアントIDを取得。Message Content Intent も有効に</small>
+                <small>Discord Developer Portalでアプリを作り、トークンとクライアントIDを取得します。Message Content Intentも有効にします</small>
             </div>
             <div class="step reveal">
                 <img src="assets/ebyroid-listening.webp" alt="" loading="lazy" />
                 <span class="n">STEP 2</span>
                 <b>声を用意する</b>
-                <small>VOICEROID を入れた Windows で Ebyroid を起動（標準ポート 4090）。有効なライセンスが必要です</small>
+                <small>VOICEROIDを入れたWindowsでEbyroidを起動します。標準のポートは4090です。VOICEROIDの有効なライセンスが必要です</small>
             </div>
             <div class="step reveal">
                 <img src="assets/ebyroid-typing.webp" alt="" loading="lazy" />
                 <span class="n">STEP 3</span>
                 <b>はなこを設定する</b>
-                <small>clone して <code>npm i</code>、<code>app-config.yml</code> にトークンなどを書く</small>
+                <small>cloneして<code>npm i</code>を実行し、<code>app-config.yml</code>にトークンなどを書きます</small>
             </div>
             <div class="step main reveal">
                 <img src="assets/ebyroid-happy.webp" alt="" loading="lazy" />
-                <span class="n">STEP 4 ✨</span>
+                <span class="n">STEP 4</span>
                 <b>起動する</b>
-                <small><code>node deploy-commands.js</code> でコマンドを登録し、<code>node index</code> で起動</small>
+                <small><code>node deploy-commands.js</code>でコマンドを登録し、<code>node index</code>で起動します</small>
             </div>
         </div>
-        <p class="figcap">正確な手順とバージョンは、必ず README を確認してください</p>
+        <p class="figcap">正確な手順とバージョンは、必ずREADMEで確認してください</p>
 
         <div class="cards dev-cards">
-            <article class="glass reveal">
+            <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-admin.webp" alt="" loading="lazy" />
-                <span class="tag">🧰 必要なもの</span>
+                <span class="tag">必要なもの</span>
                 <h4>動かすための環境</h4>
                 <p>
-                    Node.js（バージョンは <code>package.json</code> で指定）、Discord Bot のトークン、音声サーバー。音声サーバーは Ebyroid がおすすめですが、README に書かれた API を返す HTTP サーバーなら差し替えられます。
+                    Node.jsとDiscord Botのトークン、音声サーバーが必要です。Node.jsのバージョンは<code>package.json</code>で指定しています。音声サーバーはEbyroidがおすすめですが、READMEに書かれたAPIを返すHTTPサーバーなら差し替えられます。
                 </p>
             </article>
-            <article class="glass reveal">
+            <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-terms.webp" alt="" loading="lazy" />
-                <span class="tag">⚖️ 運営について</span>
+                <span class="tag">運営について</span>
                 <h4>あなたが運営者になります</h4>
                 <p>
-                    自分でホストした Bot は、あなたが運営する別の Bot です。このサイトの<a href="terms.html">利用規約</a>・<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROID など音声合成エンジンの利用条件も確認しましょう。
+                    自分でホストしたBotは、あなたが運営する別のBotです。このサイトの<a href="terms.html">利用規約</a>と<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROIDなど、音声合成エンジンの利用条件も確認しましょう。
                 </p>
             </article>
-            <article class="glass reveal">
+            <article class="card reveal">
                 <img class="card-mascot" src="assets/ebyroid-pointing.webp" alt="" loading="lazy" />
-                <span class="tag">🤝 コントリビュート</span>
+                <span class="tag">コントリビュート</span>
                 <h4>一緒に育てる</h4>
                 <p>
-                    不具合報告や要望は <a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">Issue</a> へ、改善はプルリクエストで歓迎しています。コマンドを足したいときは<a
+                    不具合の報告や要望は<a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener">Issue</a>へどうぞ。改善のプルリクエストも歓迎しています。コマンドを足したいときは<a
                         href="https://github.com/Ebycow/hanako/blob/master/%E3%82%B3%E3%83%9E%E3%83%B3%E3%83%89%E8%BF%BD%E5%8A%A0%E6%89%8B%E9%A0%86%E6%9B%B8.md"
                         target="_blank"
                         rel="noopener"
@@ -86,11 +85,86 @@
         </div>
 
         <div class="hero-actions" style="justify-content: center; margin-top: 10px">
-            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener">README のセットアップ手順 ↗</a>
-            <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid を見る ↗</a>
+            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener">READMEのセットアップ手順 ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroidを見る ↗</a>
+        </div>
+
+        <div class="card ask-ai reveal">
+            <div class="ask-ai-art">
+                <img src="assets/ebyroid-minihanako.webp" alt="Ebyroidが、手のひらに乗せた小さなはなこを指でつついている" loading="lazy" />
+            </div>
+            <div class="ask-ai-copy">
+                <span class="tag hot">あなたのAIに相談</span>
+                <h3>迷ったら、まずは<span class="hl">いつものAIに。</span></h3>
+                <p>
+                    「自分でホストするのは難しそう」と感じた方も、「こんな機能があったらいいな」と思いついた方も、まずはChatGPTやClaude、Geminiなど、普段使っているAIに聞いてみましょう。下のプロンプトをコピーして貼り付けると、AIが<b>はなこ</b>になりきって、準備から機能の追加まで一歩ずつ付き合ってくれます。
+                </p>
+                <div class="duo">
+                    <p class="duo-line hanako"><b>はなこ</b>わからないところは、ぜんぶわたしに聞いてね！</p>
+                </div>
+                <div class="ask-ai-caution">
+                    <b>使う前に</b>
+                    <ul>
+                        <li>AIのチャット欄に貼り付けたら、送信する前にその場で全文を読み、信頼できると判断した場合だけ送信してください。</li>
+                        <li>AIが出したコマンドやコードは、何をするものか確かめてから実行してください。</li>
+                        <li>Botのトークンなどの秘密の情報は、AIに貼り付けないでください。</li>
+                    </ul>
+                </div>
+                <div class="ask-ai-actions">
+                    <button type="button" class="btn btn-primary" id="ai-prompt-copy">プロンプトをコピー</button>
+                    <span class="ask-ai-status" id="ai-prompt-status" role="status" aria-live="polite"></span>
+                </div>
+                <p class="ask-ai-note">AIの答えとREADMEが食い違うときは、READMEのほうが正しい内容です。</p>
+            </div>
         </div>
     </div>
 </section>
+
+<script>
+    // AI に貼り付けると、はなこになりきって導入を手伝ってくれるプロンプトをコピーする
+    // サイト上には中身を表示しない。表示した文章とコピーされる文章が同じだと利用者には確かめようがないので、
+    // 貼り付けた先（AI のチャット欄）で読んでもらう
+    import aiSetupPrompt from '../../data/ai-setup-prompt.txt?raw';
+
+    const copyButton = document.getElementById('ai-prompt-copy')!;
+    const status = document.getElementById('ai-prompt-status')!;
+    let resetTimer: number | undefined;
+
+    const showStatus = (message: string) => {
+        status.textContent = message;
+        clearTimeout(resetTimer);
+        resetTimer = window.setTimeout(() => (status.textContent = ''), 4000);
+    };
+
+    // Clipboard API が使えないブラウザ向けに、画面外のテキストエリアから従来の方法でコピーする
+    const copyWithTextarea = (text: string) => {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.setAttribute('readonly', '');
+        textarea.style.position = 'fixed';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.select();
+        const copied = document.execCommand('copy');
+        textarea.remove();
+        return copied;
+    };
+
+    copyButton.addEventListener('click', async () => {
+        let copied = false;
+        try {
+            await navigator.clipboard.writeText(aiSetupPrompt);
+            copied = true;
+        } catch {
+            copied = copyWithTextarea(aiSetupPrompt);
+        }
+        showStatus(
+            copied
+                ? 'コピーしました！AIのチャット欄に貼り付けて、送る前に読んでね'
+                : 'ごめんね、このブラウザではコピーできなかったにゃ…',
+        );
+    });
+</script>
 
 <style>
     /* 相棒 Ebyroid の紹介 */
@@ -102,9 +176,9 @@
         padding: 34px;
         margin-bottom: 70px;
         background:
-            radial-gradient(ellipse at 20% 30%, rgba(244, 114, 182, 0.18), transparent 60%),
-            radial-gradient(ellipse at 80% 70%, rgba(147, 197, 253, 0.18), transparent 60%),
-            linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
+            radial-gradient(ellipse at 20% 30%, rgba(255, 179, 207, 0.35), transparent 60%),
+            radial-gradient(ellipse at 80% 70%, rgba(201, 214, 255, 0.4), transparent 60%),
+            var(--surface);
     }
 
     .partner:hover {
@@ -126,8 +200,8 @@
         top: 14%;
         font-size: clamp(22px, 2.6vw, 32px);
         line-height: 1;
-        color: #f9a8d4;
-        text-shadow: 0 0 18px rgba(244, 114, 182, 0.85);
+        color: var(--pink);
+        text-shadow: 0 0 12px rgba(255, 255, 255, 0.9);
         animation: bob 3s ease-in-out infinite;
         pointer-events: none;
     }
@@ -138,14 +212,13 @@
         max-width: 360px;
         margin: 0 auto;
         border-radius: 24px;
-        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+        filter: drop-shadow(0 12px 20px rgba(74, 54, 64, 0.18));
         mask-image: radial-gradient(ellipse 75% 80% at 50% 50%, #000 70%, transparent 100%);
     }
 
     .partner-copy h3 {
         font-size: clamp(22px, 2.6vw, 30px);
-        letter-spacing: -0.02em;
-        line-height: 1.3;
+        line-height: 1.4;
     }
 
     .duo {
@@ -159,28 +232,35 @@
         max-width: 100%;
         margin: 0 !important;
         padding: 10px 16px;
-        border-radius: 16px;
-        color: #f4f3ff !important;
+        border-radius: 18px;
+        color: var(--text) !important;
     }
 
     .duo-line b {
         display: block;
         font-size: 11.5px;
         letter-spacing: 0.08em;
-        opacity: 0.75;
     }
 
     .duo-line.hanako {
-        background: rgba(244, 114, 182, 0.16);
-        border: 1px solid rgba(244, 114, 182, 0.4);
+        background: var(--pink-pale);
+        border: 2px solid var(--pink-soft);
         border-bottom-left-radius: 4px;
+    }
+
+    .duo-line.hanako b {
+        color: var(--pink-ink);
     }
 
     .duo-line.eby {
         margin-left: auto !important;
-        background: rgba(147, 197, 253, 0.14);
-        border: 1px solid rgba(147, 197, 253, 0.4);
+        background: var(--lavender-soft);
+        border: 2px solid #cdd3ff;
         border-bottom-right-radius: 4px;
+    }
+
+    .duo-line.eby b {
+        color: #5562c9;
     }
 
     /* セルフホストの手順 */
@@ -203,12 +283,90 @@
         margin: 40px 0 30px;
     }
 
-    .dev-cards .glass p {
+    .dev-cards .card p {
         padding-right: 0;
     }
 
     .dev-cards h4 {
         padding-right: 60px;
+    }
+
+    /* AI に相談 */
+    .ask-ai {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: 36px;
+        align-items: center;
+        padding: 34px;
+        margin-top: 70px;
+        background:
+            radial-gradient(ellipse at 25% 40%, rgba(201, 214, 255, 0.4), transparent 60%),
+            radial-gradient(ellipse at 80% 70%, rgba(255, 179, 207, 0.35), transparent 60%),
+            var(--surface);
+    }
+
+    .ask-ai:hover {
+        transform: none;
+    }
+
+    .ask-ai-art img {
+        display: block;
+        width: 100%;
+        max-width: 380px;
+        margin: 0 auto;
+        /* 元画像の下端が直線で切れているので、下をぼかしてカードになじませる */
+        mask-image: linear-gradient(180deg, #000 78%, transparent 100%);
+    }
+
+    .ask-ai-copy h3 {
+        font-size: clamp(22px, 2.6vw, 30px);
+        line-height: 1.4;
+    }
+
+    .ask-ai-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 16px;
+        margin-top: 22px;
+    }
+
+    .ask-ai-actions .btn {
+        border: 0;
+        font-family: inherit;
+        cursor: pointer;
+    }
+
+    .ask-ai-status {
+        color: var(--pink-ink);
+        font-size: 13.5px;
+        font-weight: 700;
+    }
+
+    .ask-ai-caution {
+        margin-top: 22px;
+        padding: 14px 18px;
+        border-radius: 18px;
+        background: var(--yellow-soft);
+        border: 2px dashed #f5d98c;
+        font-size: 13.5px;
+        line-height: 1.7;
+    }
+
+    .ask-ai-caution b {
+        color: var(--text);
+    }
+
+    .ask-ai-caution ul {
+        margin: 4px 0 0;
+        padding-left: 1.2em;
+        color: var(--text);
+    }
+
+    .ask-ai-copy .ask-ai-note {
+        margin-top: 14px;
+        color: var(--text-dim);
+        font-size: 12.5px;
     }
 
     @media (max-width: 960px) {
@@ -217,6 +375,13 @@
             padding: 24px;
         }
         .partner-art {
+            max-width: 280px;
+        }
+        .ask-ai {
+            grid-template-columns: 1fr;
+            padding: 24px;
+        }
+        .ask-ai-art img {
             max-width: 280px;
         }
     }

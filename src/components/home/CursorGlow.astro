@@ -1,7 +1,7 @@
 <div class="cursor-glow" aria-hidden="true"></div>
 
 <script>
-    // カーソル追従グロウ
+    // カーソルについてくる、ほんのり桃色の光
     const glow = document.querySelector<HTMLElement>('.cursor-glow')!;
     window.addEventListener('pointermove', (e) => {
         glow.style.left = e.clientX + 'px';
@@ -16,7 +16,7 @@
         width: 500px;
         height: 500px;
         border-radius: 50%;
-        background: radial-gradient(circle, rgba(139, 92, 246, 0.14), transparent 60%);
+        background: radial-gradient(circle, rgba(255, 168, 203, 0.22), transparent 60%);
         transform: translate(-50%, -50%);
         pointer-events: none;
         left: -999px;
