@@ -95,10 +95,13 @@ const home = Astro.props.page === 'home' ? '' : './';
     }
 
     .footer-grid li {
-        margin: 6px 0;
+        margin: 2px 0;
     }
 
+    /* 指で押しやすいよう、リンクの高さを 24px 以上にする */
     .footer-grid a {
+        display: inline-block;
+        padding: 4px 0;
         color: var(--text-muted);
     }
 

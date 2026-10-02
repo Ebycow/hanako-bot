@@ -62,7 +62,10 @@ import Operator from '../components/home/Operator.astro';
         color: var(--on-accent);
     }
 
+    /* 指で押しやすいよう、リンクの高さを 24px 以上にする */
     .announce a {
+        display: inline-block;
+        padding: 2px 0;
         color: var(--on-accent);
         margin-left: 6px;
         text-decoration: underline;
