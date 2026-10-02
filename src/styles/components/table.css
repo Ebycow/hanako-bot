@@ -48,3 +48,11 @@ tbody tr:hover td {
 td {
     color: var(--text);
 }
+
+/* 表の中のコマンドは、空白の位置でだけ折り返す（/p|lz のように途中で切らない）。
+   それでも幅が足りなければ .table-wrap ごと横にスクロールさせる */
+.table-wrap code {
+    white-space: normal;
+    word-break: keep-all;
+    overflow-wrap: normal;
+}

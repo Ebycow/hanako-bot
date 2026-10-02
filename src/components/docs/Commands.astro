@@ -36,11 +36,11 @@ const { id, n } = Astro.props;
                             {group.commands.map((c) => (
                                 <tr>
                                     <td>{c.description}</td>
-                                    <td>
+                                    <td data-label="スラッシュ">
                                         <code>{c.usage ? `/${c.name} ${c.usage}` : `/${c.name}`}</code>
                                     </td>
-                                    <td>{c.aliases.length ? c.aliases.join(' / ') : '（スラッシュコマンドのみ）'}</td>
-                                    <td>{permissions[c.permission].label}</td>
+                                    <td data-label="別名">{c.aliases.length ? c.aliases.join(' / ') : '（スラッシュコマンドのみ）'}</td>
+                                    <td data-label="権限">{permissions[c.permission].label}</td>
                                 </tr>
                             ))}
                         </>
@@ -136,5 +136,69 @@ const { id, n } = Astro.props;
     .note {
         color: var(--text-muted);
         font-size: 14px;
+    }
+
+    /* スマホでは4列が収まらないので、1コマンドを1枚のカードのように縦に並べる */
+    @media (max-width: 640px) {
+        #command-table,
+        #command-table tbody,
+        #command-table tr,
+        #command-table td {
+            display: block;
+        }
+
+        /* display: block が hidden 属性より優先されてしまうので、絞り込みで隠した行はここで消す */
+        #command-table tr[hidden] {
+            display: none;
+        }
+
+        /* 列の見出しは各セルのラベルで代わりに示す。読み上げソフト向けには残す */
+        #command-table thead {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+        }
+
+        #command-table tbody tr:not(.table-group) {
+            padding: 12px 16px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        #command-table tbody td {
+            padding: 0;
+            border: 0;
+        }
+
+        #command-table tbody tr:not(.table-group) td:first-child {
+            font-weight: 900;
+            margin-bottom: 4px;
+        }
+
+        #command-table td[data-label] {
+            display: grid;
+            grid-template-columns: 5.5em minmax(0, 1fr);
+            gap: 8px;
+            font-size: 14px;
+            margin-top: 2px;
+        }
+
+        #command-table td[data-label]::before {
+            content: attr(data-label);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            line-height: 2.1;
+        }
+
+        #command-table td[data-label] > code {
+            justify-self: start;
+        }
+
+        #command-table .table-group td {
+            padding: 10px 16px;
+        }
     }
 </style>
