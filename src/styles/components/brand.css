@@ -8,6 +8,8 @@
     font-weight: 900;
     font-size: var(--fs-lg);
     letter-spacing: 0.02em;
+    /* ロゴは「Hana / ko」のように途中で折り返さない */
+    white-space: nowrap;
 }
 
 .brand:hover {
