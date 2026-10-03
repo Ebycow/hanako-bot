@@ -129,7 +129,7 @@ const { id, n } = Astro.props;
     <details>
         <summary>「すでに登録済みのキーワードです」「一文字登録はできません」と言われる</summary>
         <div class="answer">
-            <p>キーワードは2〜49文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code>/se-del</code>で消してから登録し直します。</p>
+            <p>キーワードは{limits.wordLengthMin}〜{limits.wordLengthMax}文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code>/se-del</code>で消してから登録し直します。</p>
         </div>
     </details>
 

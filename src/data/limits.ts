@@ -3,6 +3,9 @@
 export const limits = {
     /** 辞書の登録数（src/domain/model/commands/word_create_command.js） */
     dictionaryEntries: 200,
+    /** 辞書の単語・SEのキーワードの文字数（word_create_command.js / foley_create_command.js / foley_rename_command.js） */
+    wordLengthMin: 2,
+    wordLengthMax: 50,
     /** SEの登録数（src/domain/model/commands/foley_create_command.js） */
     seEntries: 10000,
     /** SE 1ファイルのサイズ（MB） */
