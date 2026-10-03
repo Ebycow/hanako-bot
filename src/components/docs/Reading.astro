@@ -18,28 +18,28 @@ const { id, n } = Astro.props;
                 <b>読むかどうかを決める</b>
                 <span>読み上げ対象チャンネルの、人間の発言だけを通します（下の表を参照）。</span>
             </div>
-            <div class="sample">HANAKINの動画見た https://youtu.be/abc （拍手）</div>
+            <div class="sample"><span class="mention">@ぴよ</span> HANAKINの動画見た https://youtu.be/abc （拍手）<Img class="emoji" src="hanako-hey.webp" alt=":hanako_hey:" width={22} /> 今更メントスコーラ？っておもったけどNOPEでやってる動画はじめてみたかも</div>
         </li>
         <li>
             <div class="what">
                 <b>読める形に直す</b>
                 <span>URLは「ユーアールエル」に、メンションは表示名に、絵文字は名前に置き換えます。</span>
             </div>
-            <div class="sample">HANAKINの動画見た <mark>ユーアールエル</mark> （拍手）</div>
+            <div class="sample"><mark>@ぴよ</mark> HANAKINの動画見た <mark>ユーアールエル</mark> （拍手）<mark>:hanako_hey:</mark> 今更メントスコーラ？っておもったけどNOPEでやってる動画はじめてみたかも</div>
         </li>
         <li>
             <div class="what">
                 <b>辞書で読み替える</b>
                 <span>教育した単語を置き換えます。SEのキーワード部分は書き換えません。</span>
             </div>
-            <div class="sample"><mark>ハナキン</mark>の動画見た ユーアールエル （拍手）</div>
+            <div class="sample">@ぴよ <mark>ハナキン</mark>の動画見た ユーアールエル （拍手）:hanako_hey: 今更メントスコーラ？っておもったけどNOPEでやってる動画はじめてみたかも</div>
         </li>
         <li>
             <div class="what">
                 <b>長すぎたら切る</b>
-                <span>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。</span>
+                <span>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。短すぎて途中で切れてしまう場合は、サーバー管理者が<code>/limit</code>で上限を増やすか、<code>/limit number:0</code>で制限をなくせます（<a href="#voice">06章</a>を参照）。</span>
             </div>
-            <div class="sample">ハナキンの動画見た ユーアールエル （拍手）<br /><small>// 制限内なのでそのまま</small></div>
+            <div class="sample">@ぴよ ハナキンの動画見た ユーアールエル （拍手）:hanako_hey: 今更メントスコーラ？っておもったけどNOP<mark>イか略。</mark><br /><small>// 60文字を超えた「Eでやってる動画はじめてみたかも」を切り捨て</small></div>
         </li>
         <li>
             <div class="what">
@@ -47,12 +47,13 @@ const { id, n } = Astro.props;
                 <span>SEのキーワードは効果音に、それ以外は合成音声になり、順番に再生されます。</span>
             </div>
             <div class="sample">
-                <span class="chip voice">🗣 ハナキンの動画見た ユーアールエル</span>
+                <span class="chip voice">🗣 @ぴよ ハナキンの動画見た ユーアールエル</span>
                 <span class="chip se">🎺 （拍手）</span>
+                <span class="chip voice">🗣 :hanako_hey: 今更メントスコーラ？っておもったけどNOPイか略。</span>
             </div>
         </li>
     </ol>
-    <p class="figcap">例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録しているサーバーでの読み上げ</p>
+    <p class="figcap">例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録し、文字数制限を60文字にしているサーバーでの読み上げ</p>
 
     <h3>読み上げられない発言</h3>
     <div class="table-wrap">
@@ -201,6 +202,23 @@ const { id, n } = Astro.props;
         border: 2px solid var(--border);
         color: var(--text);
         align-self: start;
+        overflow-wrap: anywhere;
+    }
+
+    .pipeline .sample .mention {
+        padding: 0 2px;
+        border-radius: var(--radius-xs);
+        background: var(--lavender-soft);
+        color: var(--text);
+        font-weight: 700;
+    }
+
+    .pipeline .sample .emoji {
+        display: inline-block;
+        width: 1.375em;
+        height: 1.375em;
+        vertical-align: -0.35em;
+        object-fit: contain;
     }
 
     .pipeline .sample small {
