@@ -263,34 +263,30 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
         mikan: { name: 'みかん', initial: 'み' },
     };
 
-    // ページを開くたびに場面をひとつ選び、チャンネル名と最初の会話を差し替える
-    const scene = voiceScenes[Math.floor(Math.random() * voiceScenes.length)];
-    const { channel } = scene;
-    document.querySelectorAll('[data-dc-channel]').forEach((el) => (el.textContent = channel));
-    document.querySelector('[data-dc-other]')!.textContent = scene.other;
-    input.dataset.placeholder = `#${channel}へメッセージを送信`;
-    list.querySelectorAll('.dc-msg p').forEach((p, i) => (p.textContent = scene.initial[i]));
-
     // 画面を見ている人は「えび」。えびの発言は入力欄に打ち込まれてから送信される
     type Step = { user: 'ebi' | 'mikan'; text: string } | { command: 'plz' | 'bye'; reply: string };
-    const script: Step[] = [
-        { command: 'plz', reply: `#${channel} に参加したよ、よろしくね` },
-        ...scene.lines,
-        { command: 'bye', reply: 'コマンドを実行しました！😸' },
-    ];
+    // 流している場面の台本。showScene で差し替える
+    let script: Step[] = [];
+    // 台本のどこから流すか。動きを止めて途中の場面を見せたあとは、その続きから
+    let resumeAt = 0;
 
     // fast: 動きを止めているときに、待たずに途中の場面まで一気に進める
     // paused: 一時停止中。待ち時間を進めない
+    // runId: 場面を切り替えるたびに増やす。古い場面の再生は、次に待つところで止まる
     let fast = false;
     let paused = isMotionOff();
     let started = false;
+    let runId = 0;
+    class Cancelled extends Error {}
     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
     const wait = async (ms: number) => {
         if (fast) return;
+        const id = runId;
         let left = ms;
         while (left > 0) {
             const step = Math.min(left, 100);
             await sleep(step);
+            if (id !== runId) throw new Cancelled();
             if (!paused) left -= step;
         }
     };
@@ -382,13 +378,18 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     };
 
     const run = async () => {
-        for (;;) {
-            await wait(1200);
-            for (const step of script) {
-                await play(step);
-                await wait(900);
+        try {
+            for (;;) {
+                await wait(1200);
+                for (const step of script.slice(resumeAt)) {
+                    await play(step);
+                    await wait(900);
+                }
+                resumeAt = 0;
+                await wait(2000);
             }
-            await wait(2000);
+        } catch (e) {
+            if (!(e instanceof Cancelled)) throw e;
         }
     };
 
@@ -415,14 +416,58 @@ const people = Object.fromEntries(members.map((m) => [m.id, m]));
     // サイト全体の「動きを止める」に合わせる
     onMotionChange(setPaused);
 
-    if (paused) {
-        // 動かさず、はなこが参加して読み上げている途中の場面を見せる。再生を押すと続きから動く
-        fast = true;
-        (async () => {
-            for (const step of script.slice(0, -1)) await play(step);
-            fast = false;
-        })();
-    }
+    // 場面を切り替える。チャンネル名と最初の会話を差し替え、はなこを呼ぶ前からやり直す
+    const firstMessages = [...list.children].map((li) => li.cloneNode(true) as HTMLElement);
+    const sceneButtons = document.querySelectorAll<HTMLButtonElement>('[data-voice-scene]');
+
+    const showScene = (index: number) => {
+        runId++;
+        started = false;
+        const scene = voiceScenes[index];
+        const { channel } = scene;
+        script = [
+            { command: 'plz', reply: `#${channel} に参加したよ、よろしくね` },
+            ...scene.lines,
+            { command: 'bye', reply: 'コマンドを実行しました！😸' },
+        ];
+        resumeAt = 0;
+
+        document.querySelectorAll('[data-dc-channel]').forEach((el) => (el.textContent = channel));
+        document.querySelector('[data-dc-other]')!.textContent = scene.other;
+        input.dataset.placeholder = `#${channel}へメッセージを送信`;
+        input.textContent = '';
+        list.replaceChildren(...firstMessages.map((li) => li.cloneNode(true)));
+        list.querySelectorAll('.dc-msg p').forEach((p, i) => (p.textContent = scene.initial[i]));
+        typing.classList.remove('is-on');
+        hanako.classList.remove('is-joined', 'is-speaking');
+        hanako.classList.add('is-away');
+        voice.classList.remove('is-on', 'is-speaking');
+        voiceText.textContent = '';
+        sceneButtons.forEach((b) => b.setAttribute('aria-pressed', String(Number(b.dataset.voiceScene) === index)));
+
+        if (paused) {
+            // 動かさず、はなこが参加して読み上げている途中の場面を見せる。再生を押すと続きから動く
+            fast = true;
+            (async () => {
+                for (const step of script.slice(0, -1)) await play(step);
+                fast = false;
+            })();
+            resumeAt = script.length - 1;
+        }
+        start();
+    };
+
+    // 「いろいろな集まりで使えます」の場面を押すと切り替え、ウインドウが見えていなければそこまで動かす
+    const stage = document.querySelector<HTMLElement>('.dc-stage')!;
+    sceneButtons.forEach((b) =>
+        b.addEventListener('click', () => {
+            showScene(Number(b.dataset.voiceScene));
+            stage.scrollIntoView({ behavior: isMotionOff() ? 'auto' : 'smooth', block: 'nearest' });
+        }),
+    );
+
+    // ページを開くたびに場面をひとつ選ぶ
+    showScene(Math.floor(Math.random() * voiceScenes.length));
     setPaused(paused);
 
     // 画面に入ってから動かし始める

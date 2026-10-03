@@ -1,14 +1,29 @@
 ---
-const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会', '🎵 作業通話', '🎲 TRPG', '🍜 飯テロ部', '💼 リモート会議', '🐈 猫を愛でる会'];
+// 押すと、上の通話デモ（VoiceDemo.astro）がその場面に切り替わる。切り替えはVoiceDemoのスクリプトが受け持つ
+import { voiceScenes } from '../../data/voiceScenes';
 ---
 
 <section class="logos" aria-label="利用シーン">
     <div class="container">
         <p>いろいろな集まりで使えます</p>
-        <div class="marquee" aria-hidden="true">
-            {/* 途切れずに流れるよう、同じ並びを2回くり返す */}
+        <div class="marquee">
+            {/* 途切れずに流れるよう、同じ並びを2回くり返す。2回目は読み上げやTabキーの対象から外す */}
             <div class="marquee-track">
-                {[...scenes, ...scenes].map((s) => <span>{s}</span>)}
+                {
+                    [0, 1].map((copy) =>
+                        voiceScenes.map((s, i) => (
+                            <button
+                                type="button"
+                                data-voice-scene={i}
+                                aria-pressed="false"
+                                aria-hidden={copy ? 'true' : undefined}
+                                tabindex={copy ? -1 : undefined}
+                            >
+                                {s.label}
+                            </button>
+                        )),
+                    )
+                }
             </div>
         </div>
     </div>
@@ -40,13 +55,15 @@ const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会'
         animation: marquee 30s linear infinite;
     }
 
-    /* マウスを乗せているあいだは止める。サイト全体の「動きを止める」でも止まる */
-    .marquee:hover .marquee-track {
+    /* マウスを乗せているあいだと、Tabキーで選んでいるあいだは止める。サイト全体の「動きを止める」でも止まる */
+    .marquee:hover .marquee-track,
+    .marquee:focus-within .marquee-track {
         animation-play-state: paused;
     }
 
-    .marquee-track span {
+    .marquee-track button {
         color: var(--text-muted);
+        font: inherit;
         font-weight: 700;
         font-size: var(--fs-body);
         white-space: nowrap;
@@ -55,6 +72,29 @@ const scenes = ['🎮 ゲーム実況', '🌙 深夜の雑談', '📖 勉強会'
         background: var(--surface);
         border: 2px solid var(--border);
         box-shadow: 0 3px 0 var(--pink-soft);
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    /* 切り替えはJavaScriptで動かすので、押せる見た目もJavaScriptが動くときだけにする */
+    :global(.js) .marquee-track button {
+        cursor: pointer;
+    }
+
+    :global(.js) .marquee-track button:hover {
+        color: var(--pink-ink);
+        border-color: var(--pink-soft);
+    }
+
+    /* いま通話デモで流している場面 */
+    .marquee-track button[aria-pressed='true'] {
+        color: var(--pink-ink);
+        background: var(--pink-pale);
+        border-color: var(--pink);
+    }
+
+    /* 枠の内側に輪を出す。外側だと、上下を切り取っている .marquee に隠れる */
+    .marquee-track button:focus-visible {
+        outline-offset: -5px;
     }
 
     @keyframes marquee {

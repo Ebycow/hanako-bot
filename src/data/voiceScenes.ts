@@ -1,10 +1,12 @@
 // トップの通話デモ（VoiceDemo.astro）で流す場面。ページを開くたびにひとつ選ばれる。
-// 「いろいろな集まりで使えます」（UseCases.astro）の場面に合わせている。
+// 「いろいろな集まりで使えます」（UseCases.astro）にも同じ順で並び、押すとその場面に切り替わる。
 // 画面を見ているのは「えび」（マイクミュート）で、もう一人が「みかん」。
 
 export type SceneLine = { user: 'ebi' | 'mikan'; text: string };
 
 export type VoiceScene = {
+    /** 「いろいろな集まりで使えます」に出す名前 */
+    label: string;
     /** はなこを呼ぶボイスチャンネル */
     channel: string;
     /** サイドバーに並ぶ、もうひとつのボイスチャンネル */
@@ -17,6 +19,7 @@ export type VoiceScene = {
 
 export const voiceScenes: VoiceScene[] = [
     {
+        label: '🎮 ゲーム実況',
         channel: 'ゲーム部屋',
         other: '作業部屋',
         initial: ['そろそろ始めよっか', 'はなこ呼ぶね！'],
@@ -28,6 +31,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '🌙 深夜の雑談',
         channel: '深夜の雑談',
         other: '寝落ち部屋',
         initial: ['まだ起きてる人〜？', 'いるよ、はなこ呼ぶね'],
@@ -39,6 +43,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '📖 勉強会',
         channel: '勉強会',
         other: '休憩室',
         initial: ['じゃあ25分集中しよう', 'はなこ呼んでおくね'],
@@ -50,6 +55,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '🎵 作業通話',
         channel: '作業通話',
         other: '雑談部屋',
         initial: ['今日もがんばろ〜', 'はなこ呼ぶね！'],
@@ -61,6 +67,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '🎲 TRPG',
         channel: 'TRPG卓',
         other: '雑談部屋',
         initial: ['GMです、そろそろ始めます', 'ロールプレイはチャットでやるね'],
@@ -72,6 +79,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '🍜 飯テロ部',
         channel: '飯テロ部',
         other: '雑談部屋',
         initial: ['今日の晩ごはん報告会〜', 'はなこ呼ぶね！'],
@@ -83,6 +91,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '💼 リモート会議',
         channel: '定例ミーティング',
         other: '雑談部屋',
         initial: ['では定例を始めます', '読み上げBotを呼びますね'],
@@ -94,6 +103,7 @@ export const voiceScenes: VoiceScene[] = [
         ],
     },
     {
+        label: '🐈 猫を愛でる会',
         channel: '猫を愛でる会',
         other: '雑談部屋',
         initial: ['今日の猫ちゃん見せて〜', 'はなこ呼ぶね'],
