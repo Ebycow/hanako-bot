@@ -2,7 +2,7 @@
 // Bot 側で値を変えたら、ここも合わせて変更すること。サイト中の数字はすべてここから参照している。
 export const limits = {
     /** 辞書の登録数（src/domain/model/commands/word_create_command.js） */
-    dictionaryEntries: 200,
+    dictionaryEntries: 10000,
     /** 辞書の単語・SEのキーワードの文字数（word_create_command.js / foley_create_command.js / foley_rename_command.js） */
     wordLengthMin: 2,
     wordLengthMax: 50,
