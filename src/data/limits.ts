@@ -8,6 +8,8 @@ export const limits = {
     wordLengthMax: 50,
     /** SEの登録数（src/domain/model/commands/foley_create_command.js） */
     seEntries: 10000,
+    /** SEの保存容量（GB）。サーバーごとの合計（app-config-default.yml の foley_max_storage_byte_size） */
+    seStorageGB: 3,
     /** SE 1ファイルのサイズ（MB） */
     seFileMB: 2,
     /** SE 1ファイルの長さ（秒） */

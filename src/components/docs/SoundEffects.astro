@@ -62,6 +62,10 @@ const { id, n } = Astro.props;
                     <th>登録数</th>
                     <td>サーバーごとに{fmt(limits.seEntries)}件まで</td>
                 </tr>
+                <tr>
+                    <th>保存容量</th>
+                    <td>サーバーごとに合計{limits.seStorageGB}GBまで（音の長さ1秒につき約0.2MBで数えます）</td>
+                </tr>
             </tbody>
         </table>
     </div>

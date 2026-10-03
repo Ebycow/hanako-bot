@@ -127,6 +127,14 @@ const { id, n } = Astro.props;
         </div>
     </details>
     <details>
+        <summary>「SEの保存容量がいっぱい」と言われる</summary>
+        <div class="answer">
+            <p>
+                SEはサーバーごとに合計{limits.seStorageGB}GBまで保存できます。音は変換して保存するため、元のファイルの大きさではなく音の長さで決まり、1秒につき約0.2MBです。使っていないSEを<code>/se-del</code>で消すと、また登録できます。登録済みのSEが消されることはありません。
+            </p>
+        </div>
+    </details>
+    <details>
         <summary>「すでに登録済みのキーワードです」「一文字登録はできません」と言われる</summary>
         <div class="answer">
             <p>キーワードは{limits.wordLengthMin}〜{limits.wordLengthMax}文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code>/se-del</code>で消してから登録し直します。</p>
