@@ -45,7 +45,7 @@
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
     <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.PbQ6GxxA.css">
-<link rel="stylesheet" href="/hanako-bot/_astro/docs.pwSqn4jh.css"></head>
+<link rel="stylesheet" href="/hanako-bot/_astro/docs.DYWxCCoA.css"></head>
     <body data-astro-cid-z4jru4n3>
         <a class="skip-link" href="#main" data-astro-cid-z4jru4n3>本文へスキップ</a>
         <div class="orb orb-1" aria-hidden="true" data-astro-cid-z4jru4n3></div>
@@ -253,6 +253,12 @@
             </tbody>
         </table>
     </div>
+    <ul>
+        <li>スラッシュコマンドは、自分にだけ見える返事や確認ボタン、コマンドごとの使える人の設定など、Discordの機能をフルに使えます。</li>
+        <li>テキストコマンドのほうが便利なのは、SEを複数まとめて追加・削除するときだけです。</li>
+        <li>ふだんはスラッシュコマンド、SEをまとめて登録・整理したいときだけテキストコマンド、という使い分けがおすすめです。</li>
+        <li>テキストコマンドは使える人を細かく変えられません。権限をきっちり管理したいサーバーでは、<code>/text-commands</code>で止めておけます。</li>
+    </ul>
 
 </section><section class="chapter" id="reading" data-astro-cid-odlp3k4y>
     <div class="chapter-head" data-astro-cid-odlp3k4y>
@@ -276,28 +282,29 @@
                 <b data-astro-cid-2xs23qji>読むかどうかを決める</b>
                 <span data-astro-cid-2xs23qji>読み上げ対象チャンネルの、人間の発言だけを通します（下の表を参照）。</span>
             </div>
-            <div class="sample" data-astro-cid-2xs23qji>HANAKINの動画見た https://youtu.be/abc （拍手）</div>
+            <div class="sample" data-astro-cid-2xs23qji><span class="mention" data-astro-cid-2xs23qji>@ぴよ</span> HANAKINの動画見た https://youtu.be/abc （拍手）
+<img src="/hanako-bot/_astro/hanako-hey.B8SaNiN9_2n880H.webp" srcset="/hanako-bot/_astro/hanako-hey.B8SaNiN9_2n880H.webp 1x, /hanako-bot/_astro/hanako-hey.B8SaNiN9_Z28fae7.webp 2x" alt=":hanako_hey:" data-astro-cid-2xs23qji="true" loading="lazy" decoding="async" width="22" height="22" class="emoji"> 今更メントスコーラ？っておもったけどNOPEでやってる動画はじめてみたかも</div>
         </li>
         <li data-astro-cid-2xs23qji>
             <div class="what" data-astro-cid-2xs23qji>
                 <b data-astro-cid-2xs23qji>読める形に直す</b>
                 <span data-astro-cid-2xs23qji>URLは「ユーアールエル」に、メンションは表示名に、絵文字は名前に置き換えます。</span>
             </div>
-            <div class="sample" data-astro-cid-2xs23qji>HANAKINの動画見た <mark data-astro-cid-2xs23qji>ユーアールエル</mark> （拍手）</div>
+            <div class="sample" data-astro-cid-2xs23qji><mark data-astro-cid-2xs23qji>@ぴよ</mark> HANAKINの動画見た <mark data-astro-cid-2xs23qji>ユーアールエル</mark> （拍手）<mark data-astro-cid-2xs23qji>:hanako_hey:</mark> 今更メントスコーラ？っておもったけどNOPEでやってる動画はじめてみたかも</div>
         </li>
         <li data-astro-cid-2xs23qji>
             <div class="what" data-astro-cid-2xs23qji>
                 <b data-astro-cid-2xs23qji>辞書で読み替える</b>
                 <span data-astro-cid-2xs23qji>教育した単語を置き換えます。SEのキーワード部分は書き換えません。</span>
             </div>
-            <div class="sample" data-astro-cid-2xs23qji><mark data-astro-cid-2xs23qji>ハナキン</mark>の動画見た ユーアールエル （拍手）</div>
+            <div class="sample" data-astro-cid-2xs23qji>@ぴよ <mark data-astro-cid-2xs23qji>ハナキン</mark>の動画見た ユーアールエル （拍手）:hanako_hey: 今更メントスコーラ？っておもったけどNOPEでやってる動画はじめてみたかも</div>
         </li>
         <li data-astro-cid-2xs23qji>
             <div class="what" data-astro-cid-2xs23qji>
                 <b data-astro-cid-2xs23qji>長すぎたら切る</b>
-                <span data-astro-cid-2xs23qji>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。</span>
+                <span data-astro-cid-2xs23qji>文字数制限を超えた分を切り捨て、最後に「イか略。」と読みます。短すぎて途中で切れてしまう場合は、サーバー管理者が<code data-astro-cid-2xs23qji>/limit</code>で上限を増やすか、<code data-astro-cid-2xs23qji>/limit number:0</code>で制限をなくせます（<a href="#voice" data-astro-cid-2xs23qji>06章</a>を参照）。</span>
             </div>
-            <div class="sample" data-astro-cid-2xs23qji>ハナキンの動画見た ユーアールエル （拍手）<br data-astro-cid-2xs23qji><small data-astro-cid-2xs23qji>// 制限内なのでそのまま</small></div>
+            <div class="sample" data-astro-cid-2xs23qji>@ぴよ ハナキンの動画見た ユーアールエル （拍手）:hanako_hey: 今更メントスコーラ？っておもったけどNOP<mark data-astro-cid-2xs23qji>イか略。</mark><br data-astro-cid-2xs23qji><small data-astro-cid-2xs23qji>// 60文字を超えた「Eでやってる動画はじめてみたかも」を切り捨て</small></div>
         </li>
         <li data-astro-cid-2xs23qji>
             <div class="what" data-astro-cid-2xs23qji>
@@ -305,12 +312,13 @@
                 <span data-astro-cid-2xs23qji>SEのキーワードは効果音に、それ以外は合成音声になり、順番に再生されます。</span>
             </div>
             <div class="sample" data-astro-cid-2xs23qji>
-                <span class="chip voice" data-astro-cid-2xs23qji>🗣 ハナキンの動画見た ユーアールエル</span>
+                <span class="chip voice" data-astro-cid-2xs23qji>🗣 @ぴよ ハナキンの動画見た ユーアールエル</span>
                 <span class="chip se" data-astro-cid-2xs23qji>🎺 （拍手）</span>
+                <span class="chip voice" data-astro-cid-2xs23qji>🗣 :hanako_hey: 今更メントスコーラ？っておもったけどNOPイか略。</span>
             </div>
         </li>
     </ol>
-    <p class="figcap" data-astro-cid-2xs23qji>例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録しているサーバーでの読み上げ</p>
+    <p class="figcap" data-astro-cid-2xs23qji>例：辞書に「HANAKIN → ハナキン」、SEに「（拍手）」を登録し、文字数制限を60文字にしているサーバーでの読み上げ</p>
 
     <h3 data-astro-cid-2xs23qji>読み上げられない発言</h3>
     <div class="table-wrap" data-astro-cid-2xs23qji>
@@ -398,7 +406,7 @@
     
 
     <p class="lead">
-        読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>200件</strong>まで覚えます。サーバーの中で使われている言葉を、Hanakoに教えていきましょう。
+        読み間違える単語や、内輪の呼び名の読み方を教える機能です。サーバーごとに<strong>10,000件</strong>まで覚えます。サーバーの中で使われている言葉を、Hanakoに教えていきましょう。
     </p>
 
     <div class="steps steps-3">
@@ -519,11 +527,15 @@
                 </tr>
                 <tr data-astro-cid-tupy4esd>
                     <th data-astro-cid-tupy4esd>キーワード</th>
-                    <td data-astro-cid-tupy4esd>2〜49文字（同じキーワードは1つだけ）</td>
+                    <td data-astro-cid-tupy4esd>2〜50文字（同じキーワードは1つだけ）</td>
                 </tr>
                 <tr data-astro-cid-tupy4esd>
                     <th data-astro-cid-tupy4esd>登録数</th>
                     <td data-astro-cid-tupy4esd>サーバーごとに10,000件まで</td>
+                </tr>
+                <tr data-astro-cid-tupy4esd>
+                    <th data-astro-cid-tupy4esd>保存容量</th>
+                    <td data-astro-cid-tupy4esd>サーバーごとに合計3GBまで（音の長さ1秒につき約0.2MBで数えます）</td>
                 </tr>
             </tbody>
         </table>
@@ -704,7 +716,7 @@
     
     
 
-    <p class="lead" data-astro-cid-xixhzuru>ほとんどのコマンドは誰でも使えます。影響の大きいコマンドだけは、Discordの権限を持つ人しか使えません。</p>
+    <p class="lead" data-astro-cid-xixhzuru>ほとんどのコマンドは誰でも使えます。影響の大きいコマンドだけは、サーバーで「サーバー管理」か「メンバーをタイムアウト」の権限を持つ人しか使えません。</p>
 
     <div class="tiers" data-astro-cid-xixhzuru>
         <div class="tier" data-astro-cid-xixhzuru>
@@ -1178,9 +1190,17 @@
         </div>
     </details>
     <details data-astro-cid-xo3h5via>
+        <summary data-astro-cid-xo3h5via>「SEの保存容量がいっぱい」と言われる</summary>
+        <div class="answer" data-astro-cid-xo3h5via>
+            <p data-astro-cid-xo3h5via>
+                SEはサーバーごとに合計3GBまで保存できます。音は変換して保存するため、元のファイルの大きさではなく音の長さで決まり、1秒につき約0.2MBです。使っていないSEを<code data-astro-cid-xo3h5via>/se-del</code>で消すと、また登録できます。登録済みのSEが消されることはありません。
+            </p>
+        </div>
+    </details>
+    <details data-astro-cid-xo3h5via>
         <summary data-astro-cid-xo3h5via>「すでに登録済みのキーワードです」「一文字登録はできません」と言われる</summary>
         <div class="answer" data-astro-cid-xo3h5via>
-            <p data-astro-cid-xo3h5via>キーワードは2〜49文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code data-astro-cid-xo3h5via>/se-del</code>で消してから登録し直します。</p>
+            <p data-astro-cid-xo3h5via>キーワードは2〜50文字で、サーバー内で重複できません。音を差し替えたいときは、先に<code data-astro-cid-xo3h5via>/se-del</code>で消してから登録し直します。</p>
         </div>
     </details>
 
@@ -1188,7 +1208,7 @@
     <p data-astro-cid-xo3h5via>
         Hanakoを招待してくれた人に聞いてみてください。Bot本体の不具合と思われる場合は、<a href="https://github.com/Ebycow/hanako/issues" target="_blank" rel="noopener" data-astro-cid-xo3h5via>GitHubのIssue</a>に投稿すると、ほかの利用者の助けにもなります。
     </p>
-    <p data-astro-cid-xo3h5via>サーバーデータの削除・開示の請求は、<a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener" data-astro-cid-xo3h5via>データに関する請求フォーム</a>から受け付けています。</p>
+    <p data-astro-cid-xo3h5via>サーバーデータの削除・開示の請求は、<a href="https://forms.gle/gPkC8C5Dj4GeQAtx7" target="_blank" rel="noopener" data-astro-cid-xo3h5via>お問い合わせフォーム</a>から受け付けています。削除の請求は、はなこを退出させたサーバーのみが対象です。</p>
 
     <div class="summary" data-astro-cid-xo3h5via>
         <h4 data-astro-cid-xo3h5via>まとめ</h4>
