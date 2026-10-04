@@ -44,7 +44,7 @@
         </noscript>
         <link rel="icon" type="image/png" href="assets/favicon.png">
         <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.PbQ6GxxA.css">
+    <link rel="stylesheet" href="/hanako-bot/_astro/BaseLayout.CkzOR2yJ.css">
 <style>.doc-hero[data-astro-cid-fmzvkzhr]{text-align:center;padding:80px 0 30px}.doc-hero[data-astro-cid-fmzvkzhr] img[data-astro-cid-fmzvkzhr]{width:150px;filter:drop-shadow(0 8px 14px rgb(var(--shadow-rgb) / .25))}.doc-hero[data-astro-cid-fmzvkzhr] h1[data-astro-cid-fmzvkzhr]{font-size:var(--fs-h1);margin:10px 0 14px;line-height:1.35}.doc-hero[data-astro-cid-fmzvkzhr] p[data-astro-cid-fmzvkzhr]{color:var(--text-muted);font-size:var(--fs-lg);max-width:620px;margin:0 auto}.doc-meta[data-astro-cid-fmzvkzhr]{border-radius:var(--radius-pill);background:var(--surface);border:2px solid var(--border);padding:3px 16px;font-weight:700;display:inline-block;font-size:var(--fs-sm)!important;margin-top:18px!important}.highlights[data-astro-cid-fmzvkzhr]{grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:30px auto 50px;display:grid}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr]{padding:22px}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr] b[data-astro-cid-fmzvkzhr]{margin-bottom:4px;display:block}.highlights[data-astro-cid-fmzvkzhr] .card[data-astro-cid-fmzvkzhr] span[data-astro-cid-fmzvkzhr]{color:var(--text-muted);font-size:var(--fs-md)}.doc[data-astro-cid-fmzvkzhr]{border-radius:var(--radius-lg);background:var(--surface);border:2px solid var(--border);max-width:860px;box-shadow:var(--pop);margin:0 auto;padding:40px 44px}.doc[data-astro-cid-fmzvkzhr] h2{font-size:var(--fs-xl);border-top:2px dashed var(--border);align-items:center;gap:12px;margin:44px 0 14px;padding-top:28px;display:flex}.doc[data-astro-cid-fmzvkzhr] h2:before{content:"";background:var(--pink);width:12px;height:12px;box-shadow:0 0 0 4px var(--pink-soft);border-radius:50%;flex-shrink:0}.doc[data-astro-cid-fmzvkzhr] h2:first-of-type{margin-top:30px}.doc[data-astro-cid-fmzvkzhr] p,.doc[data-astro-cid-fmzvkzhr] li{color:var(--text)}.doc[data-astro-cid-fmzvkzhr] li{margin-bottom:8px}@media (width<=960px){.highlights[data-astro-cid-fmzvkzhr]{grid-template-columns:1fr}}@media (width<=640px){.doc[data-astro-cid-fmzvkzhr]{padding:26px 20px}}
 </style></head>
     <body data-astro-cid-z4jru4n3>
@@ -230,7 +230,13 @@
                     Hanako <span class="ai-badge" data-astro-cid-nns7i3if>TTS</span>
                 </a>
                 <p data-astro-cid-nns7i3if>言葉に、声という花を。<br data-astro-cid-nns7i3if>Discordのチャット読み上げBotです。</p>
-                <span class="status" data-astro-cid-nns7i3if>All systems operational</span>
+                <a class="status-list" href="https://status.ebycow.net/" target="_blank" rel="noopener" title="ステータスページを開く" data-astro-cid-nns7i3if>
+                    <span class="status" data-bot="Hanako" data-state="unknown" data-astro-cid-nns7i3if>
+                                Hanako <span class="status-label" data-astro-cid-nns7i3if>確認中…</span>
+                            </span><span class="status" data-bot="Ebyroid" data-state="unknown" data-astro-cid-nns7i3if>
+                                Ebyroid <span class="status-label" data-astro-cid-nns7i3if>確認中…</span>
+                            </span>
+                </a>
             </div>
             <div data-astro-cid-nns7i3if>
                 <h2 data-astro-cid-nns7i3if>PRODUCT</h2>
@@ -263,6 +269,8 @@
         </div>
     </div>
 </footer>
+
+<script type="module">var e={operational:`稼働中`,degraded:`一部不調`,downtime:`停止中`,maintenance:`メンテナンス中`},t=document.querySelectorAll(`.status[data-bot]`),n=(t,n)=>{t.dataset.state=n in e?n:`unknown`,t.querySelector(`.status-label`).textContent=e[n]??`確認できません`};fetch(`https://status.ebycow.net/index.json`).then(e=>e.ok?e.json():Promise.reject(e.status)).then(e=>{let r=new Map((e.included??[]).filter(e=>e.type===`status_page_resource`).map(e=>[e.attributes.public_name,e.attributes.status]));t.forEach(e=>n(e,r.get(e.dataset.bot)??`unknown`))}).catch(()=>t.forEach(e=>n(e,`unknown`)));</script>
 
         
     </body>
