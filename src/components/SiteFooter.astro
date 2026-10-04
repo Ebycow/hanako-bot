@@ -1,6 +1,7 @@
 ---
 import Img from './Img.astro';
 import type { Page } from './SiteHeader.astro';
+import { STATUS_PAGE_URL as statusPage } from '../scripts/status';
 
 interface Props {
     page: Page;
@@ -8,8 +9,7 @@ interface Props {
 
 const home = Astro.props.page === 'home' ? '' : './';
 
-// 稼働状況は Better Stack のステータスページから読む。名前はステータスページの表示名（public_name）と合わせる
-const statusPage = 'https://status.ebycow.net/';
+// 稼働状況は Better Stack のステータスページから読む（src/scripts/status.ts）。名前はステータスページの表示名（public_name）と合わせる
 const bots = ['Hanako', 'Ebyroid'];
 ---
 
@@ -65,7 +65,9 @@ const bots = ['Hanako', 'Ebyroid'];
 </footer>
 
 <script>
-    // ステータスページの公開JSON（CORS 許可あり）から、Bot ごとの稼働状況を読んで表示する
+    import { fetchStatuses } from '../scripts/status';
+
+    // Bot ごとの稼働状況を表示する
     const labels: Record<string, string> = {
         operational: '稼働中',
         degraded: '一部不調',
@@ -73,27 +75,14 @@ const bots = ['Hanako', 'Ebyroid'];
         maintenance: 'メンテナンス中',
     };
 
-    interface Resource {
-        type: string;
-        attributes: { public_name: string; status: string };
-    }
-
     const items = document.querySelectorAll<HTMLElement>('.status[data-bot]');
     const show = (item: HTMLElement, state: string) => {
         item.dataset.state = state in labels ? state : 'unknown';
         item.querySelector('.status-label')!.textContent = labels[state] ?? '確認できません';
     };
 
-    fetch('https://status.ebycow.net/index.json')
-        .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
-        .then((json: { included?: Resource[] }) => {
-            const states = new Map(
-                (json.included ?? [])
-                    .filter((r) => r.type === 'status_page_resource')
-                    .map((r) => [r.attributes.public_name, r.attributes.status]),
-            );
-            items.forEach((item) => show(item, states.get(item.dataset.bot!) ?? 'unknown'));
-        })
+    fetchStatuses()
+        .then((states) => items.forEach((item) => show(item, states.get(item.dataset.bot!) ?? 'unknown')))
         .catch(() => items.forEach((item) => show(item, 'unknown')));
 </script>
 

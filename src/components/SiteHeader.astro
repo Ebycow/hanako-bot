@@ -55,7 +55,8 @@ const links: Link[] = {
     <div class="inner">
         <a class="brand" href="./">
             <Img class="brand-avatar" src="hanako-icon.webp" alt="" width={36} loading="eager" />
-            Hanako <span class="ai-badge">TTS</span>
+            {/* Hanako が稼働中なら「読み上げ中」に変わる（下の script） */}
+            Hanako <span class="ai-badge" id="brand-badge">TTS</span>
         </a>
         {/* タブレット以下で出るメニューの開閉ボタン */}
         <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
@@ -79,6 +80,17 @@ const links: Link[] = {
 
 <script>
     import { isMotionOff, setMotionOff, onMotionChange } from '../scripts/motion';
+    import { fetchStatuses } from '../scripts/status';
+
+    // Hanako が稼働中のときだけ、ロゴの「TTS」を「● 読み上げ中」にする。それ以外（確認できないときも）は TTS のまま
+    const badge = document.getElementById('brand-badge')!;
+    fetchStatuses()
+        .then((states) => {
+            if (states.get('Hanako') !== 'operational') return;
+            badge.classList.add('is-live');
+            badge.textContent = '読み上げ中';
+        })
+        .catch(() => {});
 
     // アニメーションを止めるボタン
     const motionToggle = document.getElementById('motion-toggle')!;

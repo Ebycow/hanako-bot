@@ -35,3 +35,30 @@
     color: var(--mint-ink);
     letter-spacing: 0.06em;
 }
+
+/* Hanako が稼働中のとき（SiteHeader.astro） */
+.brand .ai-badge.is-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.02em;
+}
+
+.brand .ai-badge.is-live::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--mint);
+    animation: live-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes live-pulse {
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--mint) 55%, transparent);
+    }
+    50% {
+        box-shadow: 0 0 0 4px transparent;
+    }
+}
