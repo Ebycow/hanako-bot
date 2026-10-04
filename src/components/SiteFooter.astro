@@ -7,6 +7,10 @@ interface Props {
 }
 
 const home = Astro.props.page === 'home' ? '' : './';
+
+// 稼働状況は Better Stack のステータスページから読む。名前はステータスページの表示名（public_name）と合わせる
+const statusPage = 'https://status.ebycow.net/';
+const bots = ['Hanako', 'Ebyroid'];
 ---
 
 <footer class="site-footer">
@@ -18,7 +22,15 @@ const home = Astro.props.page === 'home' ? '' : './';
                     Hanako <span class="ai-badge">TTS</span>
                 </a>
                 <p>言葉に、声という花を。<br />Discordのチャット読み上げBotです。</p>
-                <span class="status">All systems operational</span>
+                <a class="status-list" href={statusPage} target="_blank" rel="noopener" title="ステータスページを開く">
+                    {
+                        bots.map((name) => (
+                            <span class="status" data-bot={name} data-state="unknown">
+                                {name} <span class="status-label">確認中…</span>
+                            </span>
+                        ))
+                    }
+                </a>
             </div>
             <div>
                 <h2>PRODUCT</h2>
@@ -51,6 +63,39 @@ const home = Astro.props.page === 'home' ? '' : './';
         </div>
     </div>
 </footer>
+
+<script>
+    // ステータスページの公開JSON（CORS 許可あり）から、Bot ごとの稼働状況を読んで表示する
+    const labels: Record<string, string> = {
+        operational: '稼働中',
+        degraded: '一部不調',
+        downtime: '停止中',
+        maintenance: 'メンテナンス中',
+    };
+
+    interface Resource {
+        type: string;
+        attributes: { public_name: string; status: string };
+    }
+
+    const items = document.querySelectorAll<HTMLElement>('.status[data-bot]');
+    const show = (item: HTMLElement, state: string) => {
+        item.dataset.state = state in labels ? state : 'unknown';
+        item.querySelector('.status-label')!.textContent = labels[state] ?? '確認できません';
+    };
+
+    fetch('https://status.ebycow.net/index.json')
+        .then((res) => (res.ok ? res.json() : Promise.reject(res.status)))
+        .then((json: { included?: Resource[] }) => {
+            const states = new Map(
+                (json.included ?? [])
+                    .filter((r) => r.type === 'status_page_resource')
+                    .map((r) => [r.attributes.public_name, r.attributes.status]),
+            );
+            items.forEach((item) => show(item, states.get(item.dataset.bot!) ?? 'unknown'));
+        })
+        .catch(() => items.forEach((item) => show(item, 'unknown')));
+</script>
 
 <style>
     .site-footer {
@@ -127,18 +172,26 @@ const home = Astro.props.page === 'home' ? '' : './';
         margin: 0;
     }
 
+    .status-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 14px;
+    }
+
     .status {
+        --dot: var(--border-strong);
+        --ring: var(--border);
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        margin-top: 14px;
         font-size: var(--fs-sm);
         font-weight: 700;
         padding: 4px 14px;
         border-radius: var(--radius-pill);
         background: var(--surface);
-        color: var(--mint-ink);
-        border: 2px solid var(--mint-soft);
+        color: var(--text-dim);
+        border: 2px solid var(--ring);
     }
 
     .status::before {
@@ -146,8 +199,36 @@ const home = Astro.props.page === 'home' ? '' : './';
         width: 8px;
         height: 8px;
         border-radius: 50%;
-        background: var(--mint);
-        box-shadow: 0 0 0 3px var(--mint-soft);
+        background: var(--dot);
+        box-shadow: 0 0 0 3px var(--ring);
+    }
+
+    .status-list:hover .status {
+        background: var(--pink-pale);
+    }
+
+    .status[data-state='operational'] {
+        --dot: var(--mint);
+        --ring: var(--mint-soft);
+        color: var(--mint-ink);
+    }
+
+    .status[data-state='degraded'] {
+        --dot: var(--yellow);
+        --ring: var(--yellow-line);
+        color: var(--text);
+    }
+
+    .status[data-state='downtime'] {
+        --dot: var(--red);
+        --ring: var(--pink-soft);
+        color: var(--red);
+    }
+
+    .status[data-state='maintenance'] {
+        --dot: var(--lavender);
+        --ring: var(--lavender-line);
+        color: var(--lavender-ink);
     }
 
     @media (max-width: 960px) {
