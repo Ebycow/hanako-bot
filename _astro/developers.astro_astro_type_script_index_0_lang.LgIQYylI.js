@@ -35,7 +35,7 @@ var e=`これから、Discord の読み上げBot「Hanako（はなこ）」本�
 ## リンク
 - ソースと README: https://github.com/Ebycow/hanako （README の「Install」章）
 - 音声サーバー Ebyroid: https://github.com/nanokina/ebyroid
-- 公式サイト: https://ebycow.github.io/hanako-bot/
+- 公式サイト: https://hanako.ebycow.net/
 - 質問・不具合: https://github.com/Ebycow/hanako/issues
 
 ## 動かせる環境
