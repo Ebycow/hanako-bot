@@ -17,10 +17,9 @@ function remarkRemoveComments() {
     return walk;
 }
 
-// GitHub Pages（https://ebycow.github.io/hanako-bot/）で公開する
+// GitHub Pages のカスタムドメイン（https://hanako.ebycow.net/）で公開する
 export default defineConfig({
-    site: 'https://ebycow.github.io',
-    base: '/hanako-bot',
+    site: 'https://hanako.ebycow.net',
     // terms.html / privacy.html のURLを変えないため、ディレクトリではなくファイルとして出力する
     build: { format: 'file' },
     // 改行を含む空白を詰めると「<code>/plz</code> を打つと」の空白が消えるため、圧縮しない

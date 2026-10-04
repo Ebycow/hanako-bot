@@ -1,6 +1,6 @@
 # Hanako 公式サイト
 
-https://ebycow.github.io/hanako-bot/ のソースです。[Astro](https://astro.build/) で作っています。
+https://hanako.ebycow.net/ のソースです。[Astro](https://astro.build/) で作っています。
 
 ## 開発
 
@@ -8,7 +8,7 @@ Node.js 22.12 以上が必要です。
 
 ```sh
 npm install
-npm run dev      # http://localhost:4321/hanako-bot/ で確認
+npm run dev      # http://localhost:4321/ で確認
 npm run check    # 型チェック
 npm run build    # dist/ に出力
 ```
