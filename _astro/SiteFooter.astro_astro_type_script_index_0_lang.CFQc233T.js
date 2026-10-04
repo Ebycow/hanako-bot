@@ -1,0 +1,1 @@
+import{t as e}from"./status.DHvW13N_.js";var t={operational:`稼働中`,degraded:`一部不調`,downtime:`停止中`,maintenance:`メンテナンス中`},n=document.querySelectorAll(`.status[data-bot]`),r=(e,n)=>{e.dataset.state=n in t?n:`unknown`,e.querySelector(`.status-label`).textContent=t[n]??`確認できません`};e().then(e=>n.forEach(t=>r(t,e.get(t.dataset.bot)??`unknown`))).catch(()=>n.forEach(e=>r(e,`unknown`)));

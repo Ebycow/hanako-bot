@@ -1,0 +1,1 @@
+var e,t=()=>e??=fetch(new URL(`index.json`,`https://status.ebycow.net/`)).then(e=>e.ok?e.json():Promise.reject(e.status)).then(e=>new Map((e.included??[]).filter(e=>e.type===`status_page_resource`).map(e=>[e.attributes.public_name,e.attributes.status])));export{t};
