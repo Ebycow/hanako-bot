@@ -35,6 +35,7 @@ export const commandGroups: CommandGroup[] = [
             { name: 'seibai', description: '読み上げを中止', aliases: ['成敗', 'seibai', 'stop'], permission: 'everyone' },
             { name: 'limit', description: '文字数制限（0で解除）', usage: '30', aliases: ['制限', 'limit', 'readlimit'], permission: 'admin' },
             { name: 'speaker', description: '読み上げキャラクター変更', usage: '名前', aliases: ['キャラクター変更', 'speaker'], permission: 'everyone' },
+            { name: 'speakers', description: '読み上げキャラクターの一覧', aliases: ['キャラクター一覧', 'speakers'], permission: 'everyone' },
         ],
     },
     {
@@ -69,7 +70,7 @@ export const commandGroups: CommandGroup[] = [
     {
         label: '✨ その他',
         commands: [
-            { name: 'help', description: 'ヘルプ', aliases: ['使い方', 'help'], permission: 'everyone' },
+            { name: 'help', description: 'コマンドの一覧と使い方（コマンド名を付けるとその使い方）', usage: 'コマンド名', aliases: ['使い方', 'help'], permission: 'everyone' },
             { name: 'ask', description: '質問（はい／いいえで答えます）', aliases: ['質問', 'ask'], permission: 'everyone' },
             { name: 'text-commands', description: 'テキストコマンドの有効・無効', aliases: [], permission: 'admin' },
         ],
