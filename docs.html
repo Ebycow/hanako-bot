@@ -635,7 +635,7 @@
             <h3>キャラクター変更</h3>
             <p><code>/speaker name:キャラクター名</code></p>
             <p><strong>あなたの発言を読む声</strong>を変えるコマンドです。ほかの人の声は変わりません。設定はサーバーごとに覚えます。</p>
-            <p>今のところ使える声は<code>default</code>の1種類だけなので、実際には変更できません。</p>
+            <p>名前を打ち始めると候補が出るので、そこから選べます。名前がうろ覚えでも一番近い声に変わり、見つからないときは候補を教えてくれます。<code>/speaker name:default</code>で既定の声に戻ります。</p>
         </article>
         <article class="card">
             
@@ -647,9 +647,9 @@
             <p>初期値は<code>/limit number:0</code>で、制限はありません。変更には「サーバー管理」の権限が必要です。</p>
         </article>
     </div>
-    <div class="callout warn">
-        <span class="callout-title">使えるキャラクター名（現在1種類）</span>
-        いま使えるのは既定の声の<code>default</code>だけです。ほかの名前を指定すると読み上げに失敗することがあるので、その場合は<code>/speaker name:default</code>で戻してください。
+    <div class="callout">
+        <span class="callout-title">使えるキャラクターは<code>/speakers</code>で</span>
+        使える声は変わることがあるので、このページには載せていません。<code>/speakers</code>で一覧を表示できます。いま使えない声には「停止中」と付きます。キャラクターを変えると、Hanakoの返事にその声のクレジットと利用規約へのリンクが出るので、利用規約を守って使ってください。
     </div>
 
 </section><section class="chapter" id="blacklist" data-astro-cid-odlp3k4y>
@@ -736,6 +736,8 @@
                                 <code data-astro-cid-xixhzuru>/seibai</code> 
                             
                                 <code data-astro-cid-xixhzuru>/speaker</code> 
+                            
+                                <code data-astro-cid-xixhzuru>/speakers</code> 
                             
                                 <code data-astro-cid-xixhzuru>/teach</code> 
                             
@@ -857,7 +859,9 @@
     
     
 
-    <p class="lead" data-astro-cid-k4v3wdt3>下の欄に言葉を入れると、一覧を絞り込めます。</p>
+    <p class="lead" data-astro-cid-k4v3wdt3>
+        下の欄に言葉を入れると、一覧を絞り込めます。Discordの中では<code data-astro-cid-k4v3wdt3>/help</code>で一覧を、<code data-astro-cid-k4v3wdt3>/help command:limit</code>のようにコマンド名を付けると、オプション・使える人・テキストでの書き方を確かめられます。
+    </p>
     <input class="filter" id="command-filter" type="search" placeholder="絞り込み（例：se、辞書、blacklist）" aria-label="コマンドを絞り込む" data-astro-cid-k4v3wdt3>
     <div class="table-wrap" data-astro-cid-k4v3wdt3>
         <table id="command-table" data-astro-cid-k4v3wdt3>
@@ -908,6 +912,13 @@
                                         <code data-astro-cid-k4v3wdt3>/speaker 名前</code>
                                     </td>
                                     <td data-label="別名" data-astro-cid-k4v3wdt3>キャラクター変更 / speaker</td>
+                                    <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
+                                </tr><tr data-astro-cid-k4v3wdt3>
+                                    <td data-astro-cid-k4v3wdt3>読み上げキャラクターの一覧</td>
+                                    <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
+                                        <code data-astro-cid-k4v3wdt3>/speakers</code>
+                                    </td>
+                                    <td data-label="別名" data-astro-cid-k4v3wdt3>キャラクター一覧 / speakers</td>
                                     <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
                                 </tr>
                         
@@ -1028,9 +1039,9 @@
                                 <td colspan="4" data-astro-cid-k4v3wdt3>✨ その他</td>
                             </tr>
                             <tr data-astro-cid-k4v3wdt3>
-                                    <td data-astro-cid-k4v3wdt3>ヘルプ</td>
+                                    <td data-astro-cid-k4v3wdt3>コマンドの一覧と使い方（コマンド名を付けるとその使い方）</td>
                                     <td data-label="スラッシュ" data-astro-cid-k4v3wdt3>
-                                        <code data-astro-cid-k4v3wdt3>/help</code>
+                                        <code data-astro-cid-k4v3wdt3>/help コマンド名</code>
                                     </td>
                                     <td data-label="別名" data-astro-cid-k4v3wdt3>使い方 / help</td>
                                     <td data-label="権限" data-astro-cid-k4v3wdt3>—</td>
@@ -1112,7 +1123,7 @@
                 <li data-astro-cid-xo3h5via>ブラックリストに入っていないか、モデレーターに<code data-astro-cid-xo3h5via>/blacklist-show</code>で確認してもらってください。</li>
                 <li data-astro-cid-xo3h5via>発言が<code data-astro-cid-xo3h5via>&gt;</code>で始まっていないか確認してください。</li>
                 <li data-astro-cid-xo3h5via>
-                    <code data-astro-cid-xo3h5via>/speaker</code>で存在しないキャラクター名を設定していると読めません。<code data-astro-cid-xo3h5via>/speaker name:default</code>で戻してください。
+                    <code data-astro-cid-xo3h5via>/speaker</code>で選んだ声が、いま使えなくなっていることがあります。<code data-astro-cid-xo3h5via>/speakers</code>で「停止中」になっていないか確かめ、別の声を選ぶか<code data-astro-cid-xo3h5via>/speaker name:default</code>で戻してください。
                 </li>
             </ul>
         </div>
