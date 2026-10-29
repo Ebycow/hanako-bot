@@ -1,0 +1,32 @@
+# 依存を新しくするプルリクエストを Dependabot に作らせる。
+# 脆弱性の修正（セキュリティ更新）は、リポジトリの Settings → Advanced Security で有効にしてあり、この設定とは別に届く。
+# Dependabot のプルリクエストを長く放っておくと、Dependabot が更新を一時停止してしまうので、届いたら早めにマージか close する。
+version: 2
+updates:
+    - package-ecosystem: npm
+      directory: /
+      schedule:
+          interval: weekly
+          day: saturday
+          time: '09:00'
+          timezone: Asia/Tokyo
+      # 公開されたばかりの版は避け、1週間たってから取り込む（セキュリティ更新はすぐ届く）
+      cooldown:
+          default-days: 7
+      # マイナー・パッチの更新は1つのプルリクエストにまとめる。メジャーの更新は個別に届く
+      groups:
+          npm-minor-and-patch:
+              update-types: [minor, patch]
+
+    - package-ecosystem: github-actions
+      directory: /
+      schedule:
+          interval: weekly
+          day: saturday
+          time: '09:00'
+          timezone: Asia/Tokyo
+      cooldown:
+          default-days: 7
+      groups:
+          github-actions:
+              patterns: ['*']
