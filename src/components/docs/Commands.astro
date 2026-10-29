@@ -8,7 +8,9 @@ const { id, n } = Astro.props;
 <Chapter id={id} n={n} kicker="COMMANDS" mascot="hanako-commands.webp">
     <Fragment slot="title">すべてのコマンドを、<span class="hl">ひと目で。</span></Fragment>
 
-    <p class="lead">下の欄に言葉を入れると、一覧を絞り込めます。</p>
+    <p class="lead">
+        下の欄に言葉を入れると、一覧を絞り込めます。Discordの中では<code>/help</code>で一覧を、<code>/help command:limit</code>のようにコマンド名を付けると、オプション・使える人・テキストでの書き方を確かめられます。
+    </p>
     <input
         class="filter"
         id="command-filter"
