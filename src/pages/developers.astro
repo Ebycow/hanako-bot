@@ -6,7 +6,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout
     page="developers"
     title="開発者向け | Hanako 読み上げBot"
-    description="Discordのチャット読み上げBot「Hanako」を自分でホストしたい方、機能を足したい方向けのページです。音声サーバーEbyroidの紹介、セルフホストの手順、コントリビュートの方法をまとめています。"
+    description="Discordのチャット読み上げBot「Hanako」を自分でホストしたい方、機能を足したい方向けのページです。音声サーバーEbyroidの紹介、Dockerでのセルフホストの手順、コントリビュートの方法をまとめています。"
     ogTitle="開発者向け | Hanako 読み上げBot"
     ogDescription="はなこを、あなたの手で。Hanakoを自分で動かすための手順と、相棒Ebyroidの紹介です。"
 >
@@ -28,6 +28,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <p>
                     はなこの声を作っているのは、音声サーバーの<a href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroid</a>です。VOICEROIDをNode.jsやHTTPから使えるようにするオープンソースのプロジェクトで、はなことは「sister project」の間柄です。READMEの最後にいる銀色の猫耳の子がEbyroidで、はなこの相棒です。
                 </p>
+                <p>
+                    Docker（Linux）でも動く<a href="https://github.com/Ebycow/ebyroid" target="_blank" rel="noopener">Ebycow版</a>もあります。VOICEVOXなどのエンジンと一緒に使いたいときは、複数のエンジンを1つにまとめる<a href="https://github.com/Ebycow/ttshub" target="_blank" rel="noopener">ttshub</a>を間に置きます。
+                </p>
                 <div class="duo">
                     <p class="duo-line hanako"><b>はなこ</b>えびろいどがいないと、わたし喋れないの。</p>
                     <p class="duo-line eby"><b>Ebyroid</b>……知ってる。だから、ずっといる。</p>
@@ -35,7 +38,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             </div>
         </section>
 
-        <h2 class="dev-subhead reveal" id="self-host">自分でホストするまでの4ステップ</h2>
+        <h2 class="dev-subhead reveal" id="self-host">Dockerで自分でホストする4ステップ</h2>
         <div class="steps dev-steps">
             <div class="step reveal">
                 <Img src="ebyroid-commands.webp" alt="" width={88} />
@@ -46,23 +49,23 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div class="step reveal">
                 <Img src="ebyroid-listening.webp" alt="" width={88} />
                 <span class="n">STEP 2</span>
-                <b>声を用意する</b>
-                <small>VOICEROIDを入れたWindowsでEbyroidを起動します。標準のポートは4090です。VOICEROIDの有効なライセンスが必要です</small>
+                <b>Dockerを用意する</b>
+                <small>DockerとDocker Compose（v2.23以降）を入れます。Windows・Mac・Linuxのどれでも動きます</small>
             </div>
             <div class="step reveal">
                 <Img src="ebyroid-typing.webp" alt="" width={88} />
                 <span class="n">STEP 3</span>
                 <b>はなこを設定する</b>
-                <small>cloneして<code>npm i</code>を実行し、<code>app-config.yml</code>にトークンなどを書きます</small>
+                <small>READMEにある<code>compose.yaml</code>と<code>.env</code>の見本を取ってきて、<code>.env</code>にトークンとクライアントIDを書きます</small>
             </div>
             <div class="step main reveal">
                 <Img src="ebyroid-happy.webp" alt="" width={88} />
                 <span class="n">STEP 4</span>
                 <b>起動する</b>
-                <small><code>node deploy-commands.js</code>でコマンドを登録し、<code>node index</code>で起動します</small>
+                <small><code>docker compose up -d</code>で、はなこと音声サーバー（ttshub・VOICEVOX）がまとめて起動します。コマンドの登録も起動時に行います</small>
             </div>
         </div>
-        <p class="figcap">正確な手順とバージョンは、必ずREADMEで確認してください</p>
+        <p class="figcap">VOICEROIDも使う方法や、Dockerを使わずに動かす方法もREADMEにあります。正確な手順とバージョンは、必ずREADMEで確認してください</p>
 
         <div class="cards dev-cards">
             <article class="card reveal">
@@ -70,7 +73,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <span class="tag">必要なもの</span>
                 <h3>動かすための環境</h3>
                 <p>
-                    Node.jsとDiscord Botのトークン、音声サーバーが必要です。Node.jsのバージョンは<code>package.json</code>で指定しています。音声サーバーはEbyroidがおすすめですが、READMEに書かれたAPIを返すHTTPサーバーなら差し替えられます。
+                    Dockerで動かすなら、DockerとDiscord Botのトークンがあれば動きます。VOICEROIDがなくてもVOICEVOXの声で読み上げられ、VOICEROIDを持っていれば一緒に使えます。Dockerを使わずにNode.jsで動かすこともでき、そのときのバージョンは<code>package.json</code>で指定しています。
                 </p>
             </article>
             <article class="card reveal">
@@ -78,7 +81,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                 <span class="tag">運営について</span>
                 <h3>あなたが運営者になります</h3>
                 <p>
-                    自分でホストしたBotは、あなたが運営する別のBotです。このサイトの<a href="terms.html">利用規約</a>と<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROIDなど、音声合成エンジンの利用条件も確認しましょう。
+                    自分でホストしたBotは、あなたが運営する別のBotです。このサイトの<a href="terms.html">利用規約</a>と<a href="privacy.html">プライバシーポリシー</a>は適用されないので、必要に応じてご自身で用意してください。VOICEROIDやVOICEVOXなど、音声合成エンジンとキャラクターの利用規約も確認しましょう。
                 </p>
             </article>
             <article class="card reveal">
@@ -97,8 +100,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </div>
 
         <div class="hero-actions center dev-actions">
-            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#install" target="_blank" rel="noopener">READMEのセットアップ手順 ↗</a>
-            <a class="btn btn-ghost" href="https://github.com/nanokina/ebyroid" target="_blank" rel="noopener">Ebyroidを見る ↗</a>
+            <a class="btn btn-primary" href="https://github.com/Ebycow/hanako#docker-で一発で動かすおすすめ" target="_blank" rel="noopener">READMEのセットアップ手順 ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/Ebycow/ebyroid" target="_blank" rel="noopener">Ebyroidを見る ↗</a>
+            <a class="btn btn-ghost" href="https://github.com/Ebycow/ttshub" target="_blank" rel="noopener">ttshubを見る ↗</a>
         </div>
 
         <section class="card ask-ai reveal" id="ask-ai">
