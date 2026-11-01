@@ -1,0 +1,631 @@
+---
+import Img from '../Img.astro';
+import { examCode, examQuestionCount, passScore, questions } from '../../data/certification';
+---
+
+{/* 模擬試験。開始 → 問題 → 結果の3画面をスクリプトで切り替える。問題は data/certification.ts */}
+<section class="section" id="mock-exam">
+    <div class="container">
+        <div class="section-head reveal">
+            <span class="eyebrow">Mock Exam</span>
+            <h2>いますぐ、<span class="hl">{examCode}を受験する。</span></h2>
+            <p>{questions.length}問の中から{examQuestionCount}問を出題します。{passScore}点以上で、その場で認定証を発行します。</p>
+        </div>
+
+        <div class="card exam reveal" id="exam">
+            <noscript><p class="exam-noscript">模擬試験にはJavaScriptが必要です。JavaScriptを有効にしてから、もう一度開いてください。</p></noscript>
+
+            <div class="exam-start" data-screen="start">
+                <Img src="hanako-studying.webp" alt="ノートを広げて、ペンをくわえながら勉強するはなこ" width={150} />
+                <div>
+                    <h3>受験者の皆さまへ</h3>
+                    <ul>
+                        <li>使い方ガイドを開いたまま受験できます。むしろ読んでください。</li>
+                        <li>試験官は巡回しません。カメラの確認もありません。</li>
+                        <li>試験の途中でページを閉じても、誰にも知られません。</li>
+                    </ul>
+                    <button class="btn btn-primary" type="button" id="exam-begin">試験を開始する</button>
+                </div>
+            </div>
+
+            <div class="exam-question" data-screen="question" hidden>
+                <div class="exam-meta">
+                    <b id="exam-progress"></b>
+                    <span class="tag" id="exam-domain"></span>
+                </div>
+                <div class="exam-bar" aria-hidden="true"><i id="exam-bar"></i></div>
+                <h3 id="exam-stem" tabindex="-1"></h3>
+                <ol class="choices" id="exam-choices"></ol>
+                <div role="status" id="exam-status">
+                    <div class="verdict" id="exam-verdict" hidden>
+                        <b id="exam-verdict-title"></b>
+                        <p id="exam-note"></p>
+                        <a id="exam-learn" target="_blank" rel="noopener">この分野を学習する ↗</a>
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="button" id="exam-next" hidden></button>
+            </div>
+
+            <div class="exam-result" data-screen="result" hidden>
+                <div class="report" id="exam-report" tabindex="-1">
+                    <span class="report-label">{examCode} スコアレポート</span>
+                    <p class="report-score"><b id="report-score"></b> <small>/ 1000</small></p>
+                    <p class="report-verdict" id="report-verdict"></p>
+                    <p class="report-comment" id="report-comment"></p>
+                </div>
+
+                <h3>分野別の結果</h3>
+                <ul class="report-domains" id="report-domains"></ul>
+
+                <form class="issue" id="certificate-form" hidden>
+                    <h3>認定証の発行</h3>
+                    <label for="certificate-name">認定証に載せるお名前</label>
+                    <div class="issue-row">
+                        <input id="certificate-name" name="name" type="text" maxlength="20" placeholder="名無しのはなこ使い" autocomplete="off" />
+                        <button class="btn btn-primary" type="submit">認定証を発行する</button>
+                    </div>
+                    <p class="issue-note">お名前はこのブラウザの中で画像を作るためだけに使い、どこにも送信しません。</p>
+                </form>
+
+                <div class="certificate" id="certificate" hidden>
+                    <canvas id="certificate-canvas" role="img" width="1200" height="848"></canvas>
+                    <div class="hero-actions center">
+                        <a class="btn btn-primary" id="certificate-save" download="hanako-certificate.png">画像を保存する</a>
+                    </div>
+                </div>
+                {/* 認定証に描く絵。ページには表示しない */}
+                <Img id="certificate-art" src="hanako-terms.webp" alt="" width={256} loading="eager" hidden />
+
+                <div class="hero-actions center">
+                    <button class="btn btn-ghost" type="button" id="exam-retry">もう一度受験する</button>
+                </div>
+                <p class="fineprint">再受験までの待機期間はありません。受験料もかかりません。</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    import { domains, examQuestionCount, passScore, questions, tierForScore, toScore, type Question } from '../../data/certification';
+    import { drawCertificate, newCertificateNumber } from '../../scripts/certificate';
+
+    const byId = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+    const screens = document.querySelectorAll<HTMLElement>('#exam [data-screen]');
+    const progress = byId('exam-progress');
+    const domainTag = byId('exam-domain');
+    const bar = byId('exam-bar');
+    const stem = byId('exam-stem');
+    const choices = byId('exam-choices');
+    const verdict = byId('exam-verdict');
+    const verdictTitle = byId('exam-verdict-title');
+    const note = byId('exam-note');
+    const learn = byId<HTMLAnchorElement>('exam-learn');
+    const next = byId<HTMLButtonElement>('exam-next');
+    const report = byId('exam-report');
+    const form = byId<HTMLFormElement>('certificate-form');
+    const nameInput = byId<HTMLInputElement>('certificate-name');
+    const certificate = byId('certificate');
+    const canvas = byId<HTMLCanvasElement>('certificate-canvas');
+    const save = byId<HTMLAnchorElement>('certificate-save');
+
+    const DEFAULT_NAME = nameInput.placeholder;
+
+    let picked: Question[] = [];
+    let current = 0;
+    /** 問題ごとの正誤（picked と同じ順番） */
+    let results: boolean[] = [];
+
+    const showScreen = (name: string) => screens.forEach((el) => (el.hidden = el.dataset.screen !== name));
+
+    const shuffled = <T,>(items: readonly T[]) => {
+        const copy = [...items];
+        for (let i = copy.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [copy[i], copy[j]] = [copy[j], copy[i]];
+        }
+        return copy;
+    };
+
+    // 問題文の `〜` をコードとして表示する
+    const setRichText = (el: HTMLElement, text: string) => {
+        el.replaceChildren(
+            ...text.split('`').map((part, i) => {
+                if (i % 2 === 0) return document.createTextNode(part);
+                const code = document.createElement('code');
+                code.textContent = part;
+                return code;
+            }),
+        );
+    };
+
+    const domainOf = (question: Question) => domains.find((d) => d.id === question.domain)!;
+
+    const showQuestion = () => {
+        const question = picked[current];
+        progress.textContent = `第${current + 1}問 / 全${picked.length}問`;
+        domainTag.textContent = domainOf(question).label;
+        bar.style.width = `${(current / picked.length) * 100}%`;
+        setRichText(stem, question.stem);
+        verdict.hidden = true;
+        next.hidden = true;
+
+        const letters = ['A', 'B', 'C', 'D'];
+        const options = shuffled([question.answer, ...question.wrong]);
+        choices.replaceChildren(
+            ...options.map((option, i) => {
+                const item = document.createElement('li');
+                const button = document.createElement('button');
+                const letter = document.createElement('span');
+                const label = document.createElement('span');
+                button.type = 'button';
+                button.className = 'choice';
+                button.dataset.correct = String(option === question.answer);
+                letter.className = 'choice-letter';
+                letter.textContent = letters[i];
+                setRichText(label, option);
+                button.append(letter, label);
+                button.addEventListener('click', () => answer(button));
+                item.append(button);
+                return item;
+            }),
+        );
+    };
+
+    const answer = (selected: HTMLButtonElement) => {
+        const question = picked[current];
+        const correct = selected.dataset.correct === 'true';
+        results[current] = correct;
+
+        choices.querySelectorAll<HTMLButtonElement>('.choice').forEach((button) => {
+            button.disabled = true;
+            if (button.dataset.correct === 'true') {
+                button.classList.add('is-correct');
+                button.querySelector('.choice-letter')!.textContent = '○';
+            }
+        });
+        if (!correct) {
+            selected.classList.add('is-wrong');
+            selected.querySelector('.choice-letter')!.textContent = '×';
+        }
+
+        verdict.classList.toggle('is-wrong', !correct);
+        verdictTitle.textContent = correct ? '正解です' : '不正解です';
+        setRichText(note, question.note);
+        learn.href = domainOf(question).href;
+        verdict.hidden = false;
+        next.textContent = current + 1 < picked.length ? '次の問題へ' : '採点する';
+        next.hidden = false;
+        next.focus({ preventScroll: true });
+    };
+
+    const showResult = () => {
+        const correctCount = results.filter(Boolean).length;
+        const score = toScore(correctCount, picked.length);
+        const tier = tierForScore(score);
+
+        byId('report-score').textContent = String(score);
+        const reportVerdict = byId('report-verdict');
+        reportVerdict.textContent = tier ? `合格：${tier.name}` : `不合格（合格ライン ${passScore}点）`;
+        reportVerdict.classList.toggle('is-failed', !tier);
+        byId('report-comment').textContent = !tier
+            ? '大丈夫です。全問不正解でも100点は差し上げています。'
+            : score === 1000
+              ? '全問正解です。もう教えられることはありません。はなこのほうが教わりたいくらいです。'
+              : `${picked.length}問中${correctCount}問に正解しました。おめでとうございます。`;
+
+        byId('report-domains').replaceChildren(
+            ...domains
+                .filter((domain) => picked.some((q) => q.domain === domain.id))
+                .map((domain) => {
+                    const asked = picked.flatMap((q, i) => (q.domain === domain.id ? [results[i]] : []));
+                    const ok = asked.every(Boolean);
+                    const item = document.createElement('li');
+                    const label = document.createElement(ok ? 'span' : 'a');
+                    label.textContent = domain.label;
+                    if (label instanceof HTMLAnchorElement) label.href = domain.href;
+                    const state = document.createElement('b');
+                    state.className = ok ? 'is-good' : 'is-weak';
+                    state.textContent = ok ? '十分な理解' : '要学習';
+                    item.append(label, state);
+                    return item;
+                }),
+        );
+
+        form.hidden = !tier;
+        certificate.hidden = true;
+        showScreen('result');
+        report.focus({ preventScroll: true });
+        report.scrollIntoView({ block: 'center' });
+    };
+
+    const begin = () => {
+        picked = shuffled(questions).slice(0, examQuestionCount);
+        current = 0;
+        results = [];
+        showScreen('question');
+        showQuestion();
+    };
+
+    byId('exam-begin').addEventListener('click', () => {
+        begin();
+        stem.focus({ preventScroll: true });
+    });
+    byId('exam-retry').addEventListener('click', () => {
+        begin();
+        stem.focus({ preventScroll: true });
+        byId('exam').scrollIntoView({ block: 'start' });
+    });
+
+    next.addEventListener('click', () => {
+        current += 1;
+        if (current >= picked.length) {
+            showResult();
+            return;
+        }
+        showQuestion();
+        stem.focus({ preventScroll: true });
+        byId('exam').scrollIntoView({ block: 'start' });
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const score = toScore(results.filter(Boolean).length, picked.length);
+        const tier = tierForScore(score)!;
+        const name = nameInput.value.trim() || DEFAULT_NAME;
+        const today = new Date();
+        const art = byId<HTMLImageElement>('certificate-art');
+        await art.decode().catch(() => {});
+
+        await drawCertificate(canvas, {
+            name,
+            tier,
+            score,
+            number: newCertificateNumber(today),
+            issuedOn: today.toLocaleDateString('ja-JP'),
+            art,
+        });
+        canvas.setAttribute('aria-label', `${name}様の認定証。${tier.name}に認定する内容の画像です。`);
+        save.href = canvas.toDataURL('image/png');
+        certificate.hidden = false;
+        certificate.scrollIntoView({ block: 'center' });
+    });
+</script>
+
+<style>
+    /* 操作中のカードが動くと押しにくいので、乗せても浮かせない */
+    .exam,
+    .exam:hover {
+        max-width: 860px;
+        margin: 0 auto;
+        transform: none;
+        border-color: var(--border-strong);
+        box-shadow: var(--pop);
+    }
+
+    .exam [hidden] {
+        display: none;
+    }
+
+    /* .btn はリンク用の形なので、button にはブラウザ既定のふちとカーソルを直す */
+    .exam .btn {
+        cursor: pointer;
+    }
+
+    .exam .btn-primary {
+        border: 0;
+    }
+
+    /* JavaScript が動かないときは、開始の画面を出さない */
+    html:not(.js) .exam-start {
+        display: none;
+    }
+
+    .exam-noscript {
+        margin: 0;
+        text-align: center;
+    }
+
+    .exam-start {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .exam-start img {
+        flex-shrink: 0;
+        width: 150px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        border: 3px solid var(--pink-soft);
+    }
+
+    .exam-start ul {
+        margin: 0 0 20px;
+        padding-left: 1.2em;
+        color: var(--text-muted);
+        font-size: var(--fs-base);
+    }
+
+    .exam-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: var(--fs-md);
+    }
+
+    .exam-meta .tag {
+        margin: 0;
+    }
+
+    .exam-bar {
+        height: 10px;
+        margin: 10px 0 24px;
+        border-radius: var(--radius-pill);
+        background: var(--pink-pale);
+        overflow: hidden;
+    }
+
+    .exam-bar i {
+        display: block;
+        height: 100%;
+        border-radius: var(--radius-pill);
+        background: var(--pink-bloom);
+        transition: width 0.3s;
+    }
+
+    .exam-question h3 {
+        margin-bottom: 20px;
+        font-size: var(--fs-lg);
+        line-height: 1.7;
+        outline: none;
+    }
+
+    .choices {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        gap: 10px;
+    }
+
+    /* 選択肢はスクリプトで作るので、スコープの外から当てる */
+    .choices :global(.choice) {
+        display: flex;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+        padding: 12px 16px;
+        border-radius: var(--radius-md);
+        border: 2px solid var(--border);
+        background: var(--surface);
+        color: var(--text);
+        font: inherit;
+        font-size: var(--fs-base);
+        line-height: 1.7;
+        text-align: left;
+        cursor: pointer;
+        transition:
+            border-color 0.2s,
+            background 0.2s;
+    }
+
+    .choices :global(.choice:hover:not(:disabled)) {
+        border-color: var(--border-strong);
+        background: var(--pink-pale);
+    }
+
+    .choices :global(.choice:disabled) {
+        cursor: default;
+    }
+
+    .choices :global(.choice-letter) {
+        flex-shrink: 0;
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--pink-pale);
+        color: var(--pink-ink);
+        font-size: var(--fs-sm);
+        font-weight: 900;
+    }
+
+    .choices :global(.is-correct) {
+        border-color: var(--mint);
+        background: var(--mint-soft);
+    }
+
+    .choices :global(.is-correct .choice-letter) {
+        background: var(--mint-ink);
+        color: var(--on-accent);
+    }
+
+    .choices :global(.is-wrong) {
+        border-color: var(--pink-ink);
+        background: var(--pink-pale);
+    }
+
+    .choices :global(.is-wrong .choice-letter) {
+        background: var(--pink-ink);
+        color: var(--on-accent);
+    }
+
+    .verdict {
+        margin-top: 18px;
+        padding: 14px 18px;
+        border-radius: var(--radius-md);
+        background: var(--mint-soft);
+        border: 2px dashed var(--mint-line);
+    }
+
+    .verdict.is-wrong {
+        background: var(--pink-pale);
+        border-color: var(--pink-soft);
+    }
+
+    .verdict b {
+        color: var(--mint-ink);
+    }
+
+    .verdict.is-wrong b {
+        color: var(--pink-ink);
+    }
+
+    .verdict p {
+        margin: 2px 0 4px;
+        color: var(--text);
+    }
+
+    .verdict a {
+        font-size: var(--fs-md);
+        font-weight: 700;
+    }
+
+    #exam-next {
+        margin-top: 20px;
+    }
+
+    .report {
+        text-align: center;
+        outline: none;
+    }
+
+    .report-label {
+        color: var(--text-muted);
+        font-size: var(--fs-sm);
+        font-weight: 700;
+    }
+
+    .card .report-score {
+        margin: 0;
+        color: var(--pink-ink);
+        line-height: 1.2;
+    }
+
+    .report-score b {
+        font-size: var(--fs-display);
+        font-weight: 900;
+    }
+
+    .report-score small {
+        color: var(--text-dim);
+        font-size: var(--fs-body);
+    }
+
+    .card .report-verdict {
+        margin: 6px 0 2px;
+        color: var(--mint-ink);
+        font-size: var(--fs-xl);
+        font-weight: 900;
+    }
+
+    .card .report-verdict.is-failed {
+        color: var(--pink-ink);
+    }
+
+    .exam-result h3 {
+        margin: 28px 0 10px;
+        font-size: var(--fs-body);
+    }
+
+    .report-domains {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: var(--fs-md);
+    }
+
+    .report-domains :global(li) {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 7px 0;
+        border-bottom: 1px dashed var(--border);
+    }
+
+    .report-domains :global(a) {
+        text-decoration: underline;
+        text-underline-offset: 0.25em;
+    }
+
+    .report-domains :global(.is-good) {
+        color: var(--mint-ink);
+    }
+
+    .report-domains :global(.is-weak) {
+        color: var(--pink-ink);
+    }
+
+    .issue label {
+        display: block;
+        margin-bottom: 6px;
+        font-size: var(--fs-md);
+        font-weight: 700;
+    }
+
+    .issue-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .issue input {
+        flex: 1 1 240px;
+        min-width: 0;
+        padding: 11px 18px;
+        border-radius: var(--radius-pill);
+        border: 2px solid var(--border-strong);
+        background: var(--surface);
+        color: var(--text);
+        font: inherit;
+    }
+
+    .issue input::placeholder {
+        color: var(--text-dim);
+    }
+
+    .card .issue-note {
+        margin: 10px 0 0;
+        color: var(--text-dim);
+        font-size: var(--fs-sm);
+    }
+
+    .certificate {
+        margin-top: 24px;
+    }
+
+    .certificate canvas {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 22px;
+        border-radius: var(--radius-sm);
+        box-shadow: var(--soft-shadow);
+    }
+
+    .exam-result > .hero-actions {
+        margin-top: 28px;
+    }
+
+    @media (max-width: 640px) {
+        .card.exam {
+            padding: 22px 18px;
+        }
+        .exam-start {
+            flex-direction: column;
+            gap: 16px;
+        }
+        .exam-start button {
+            width: 100%;
+            justify-content: center;
+        }
+        .issue-row .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>

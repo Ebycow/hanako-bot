@@ -28,6 +28,7 @@ npm run build    # dist/ に出力
 | 使い方ガイドのページの見出し | `src/pages/docs.astro` |
 | トップページの各セクション | `src/components/home/*.astro`（並び順は `src/pages/index.astro`） |
 | 開発者向けページ（`developers.html`） | `src/pages/developers.astro` |
+| 認定資格のジョークページ（`certification.html`） | `src/pages/certification.astro`（資格と模擬試験の問題は `src/data/certification.ts`、試験の画面は `src/components/certification/MockExam.astro`、認定証の画像は `src/scripts/certificate.ts`） |
 | ヘッダー・フッター | `src/components/SiteHeader.astro`、`src/components/SiteFooter.astro` |
 | ページのタイトル・説明文（検索結果やSNSでの表示） | 各ページの `title` / `description`（SNS用に変えたいときは `ogTitle` / `ogDescription`）。共通のメタタグは `src/layouts/BaseLayout.astro` |
 | SNSで共有したときの画像（OGP画像） | `public/assets/og-2.jpg`（1200×630。作り方は `tools/og-image/README.md`。差し替えるときはSNSのキャッシュに残らないよう、ファイル名を変えて `BaseLayout.astro` も直す） |
@@ -37,4 +38,4 @@ npm run build    # dist/ に出力
 | スタイル（色などの変数、ボタン・カードなど共通の部品） | `src/styles/`（読み込み順は `global.css`） |
 | 画像 | `src/assets/`（`<Img src="ファイル名" width={表示幅} />` で表示すると、ビルド時に縮小と width/height が付く。ファビコンだけ `public/assets/`） |
 
-Bot 本体（[Ebycow/hanako](https://github.com/Ebycow/hanako)）でコマンドや上限値を変えたときは、`src/data/` の2ファイルも合わせて更新してください。セットアップ手順（Node.js のバージョン、設定項目など）を変えたときは、`src/data/ai-setup-prompt.txt` も更新してください。
+Bot 本体（[Ebycow/hanako](https://github.com/Ebycow/hanako)）でコマンドや上限値を変えたときは、`src/data/` の2ファイルも合わせて更新してください。返事の文言を変えたときは、模擬試験の問題（`src/data/certification.ts`）も確認してください。セットアップ手順（Node.js のバージョン、設定項目など）を変えたときは、`src/data/ai-setup-prompt.txt` も更新してください。

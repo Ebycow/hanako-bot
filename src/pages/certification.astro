@@ -1,0 +1,497 @@
+---
+import Img from '../components/Img.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MockExam from '../components/certification/MockExam.astro';
+import { domainWeights, examCode, examQuestionCount, passScore, specialties, tiers } from '../data/certification';
+---
+
+{/* ベンダー資格のサイトのパロディ。真顔で書くが、実在の資格と間違われないよう、ジョークであることは見える場所に必ず書く */}
+<BaseLayout
+    page="certification"
+    title="Hanako認定資格（ジョーク） | Hanako 読み上げBot"
+    description="読み上げBot「Hanako」の知識を、はなこが勝手に認定するジョークの資格です。模擬試験に合格すると、その場で認定証を発行します。実在の資格ではありません。"
+    ogTitle="Hanako認定資格プログラム"
+    ogDescription="あなたの「はなこ力」を、公式に証明します。受験料¥0、合格すれば認定証を発行。※ジョークです"
+>
+    <div class="cert-hero container">
+        <Img src="hanako-terms.webp" alt="巻いた認定証を抱きしめて、うれしそうに笑うはなこ" width={150} loading="eager" />
+        <br /><span class="eyebrow">Hanako Certification</span>
+        <h1>あなたの「はなこ力」を、<br /><span class="hl">公式に証明します。</span></h1>
+        <p>
+            Hanako認定資格は、読み上げBot「はなこ」の知識と運用スキルを、はなこが自分で認定する国際的（自称）な資格です。世界のDiscordサーバーで評価されるかどうかは、<code>/ask</code>に聞いてください。
+        </p>
+        <div class="hero-actions center">
+            <a class="btn btn-primary" href="#mock-exam">模擬試験を受ける</a>
+            <a class="btn btn-ghost" href="#exam-guide">試験概要を見る</a>
+        </div>
+        <p class="joke-note">※ ジョークのページです。実在の資格ではなく、履歴書にも書けません。</p>
+    </div>
+
+    <section class="section" id="why">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow">Why Certify</span>
+                <h2>Hanako認定資格が、<span class="hl">選ばれる理由。</span></h2>
+            </div>
+            <div class="cards">
+                <article class="card reveal">
+                    <div class="icon-box">📈</div>
+                    <h3>確かな実績</h3>
+                    <p>認定取得者の100%が、この資格を保有しています。</p>
+                </article>
+                <article class="card reveal">
+                    <div class="icon-box">🌏</div>
+                    <h3>世界で唯一</h3>
+                    <p>Hanakoの資格としては世界で唯一です。競合する資格は確認されていません。</p>
+                </article>
+                <article class="card reveal">
+                    <div class="icon-box">💼</div>
+                    <h3>組織の競争力</h3>
+                    <p>チームに1人いると、<code>/seibai</code>が少し速くなる場合があります。個人の感想です。</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="path">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow">Certification Path</span>
+                <h2>3段階の、<span class="hl">認定パス。</span></h2>
+                <p>試験は{examCode}の1つだけです。取った点数で、どの資格になるかが決まります。</p>
+            </div>
+            <div class="tiers">
+                {
+                    tiers.map((tier) => (
+                        <article class="card tier reveal">
+                            <Img src={tier.image} alt="" width={80} />
+                            <span class="tag hot">{tier.code}</span>
+                            {/* 改行が空白にならないよう1行で書く */}
+                            <h3>{tier.nameParts[0]}<wbr />{tier.nameParts[1]}</h3>
+                            <small class="tier-english">{tier.english}</small>
+                            <p class="tier-score">
+                                <b>{tier.minScore}</b>点以上
+                            </p>
+                            <p class="tier-audience">{tier.audience}</p>
+                            <ul>
+                                {tier.skills.map((skill) => <li>{skill}</li>)}
+                            </ul>
+                        </article>
+                    ))
+                }
+            </div>
+
+            <h3 class="subhead reveal">スペシャリティ認定<small>準備中（予定はありません）</small></h3>
+            <ul class="specialties reveal">
+                {
+                    specialties.map((s) => (
+                        <li>
+                            <b>{s.name}</b>
+                            <span>{s.note}</span>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </section>
+
+    <section class="section" id="exam-guide">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow">Exam Guide</span>
+                <h2>試験の、<span class="hl">概要。</span></h2>
+            </div>
+            <div class="guide-grid">
+                <div class="table-wrap reveal">
+                    <table>
+                        <tbody>
+                            <tr><th>試験コード</th><td>{examCode}</td></tr>
+                            <tr><th>問題数</th><td>{examQuestionCount}問（4択）</td></tr>
+                            <tr><th>試験時間</th><td>無制限（通話を抜けるまでにどうぞ）</td></tr>
+                            <tr><th>合格ライン</th><td>{passScore}点（100〜1000点。なぜ{passScore}点なのかは、委員会にもわかりません）</td></tr>
+                            <tr><th>受験料</th><td>¥0 / ずっと</td></tr>
+                            <tr><th>試験会場</th><td>このページ</td></tr>
+                            <tr><th>持ち込み</th><td>可。<a href="docs.html">使い方ガイド</a>を開いたままで構いません</td></tr>
+                            <tr><th>再受験</th><td>すぐにできます</td></tr>
+                            <tr><th>有効期間</th><td>次に<code>/bye</code>されるまで。<code>/plz</code>されると自動で更新されます</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card domains reveal">
+                    <h3>出題範囲</h3>
+                    <ul>
+                        {
+                            domainWeights.map((d, i) => (
+                                <li>
+                                    <a href={d.href}>
+                                        第{i + 1}分野 {d.label}
+                                    </a>
+                                    <b>{d.weight}%</b>
+                                    <span class="domain-bar" style={`width: ${d.weight}%`} aria-hidden="true" />
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <MockExam />
+
+    <section class="section" id="voices">
+        <div class="container">
+            <div class="section-head reveal">
+                <span class="eyebrow">Success Stories</span>
+                <h2>認定取得者の、<span class="hl">声。</span></h2>
+            </div>
+            <div class="cards">
+                <figure class="card voice reveal">
+                    <blockquote>「認定を取ってから、<code>/plz</code>を打つ指に迷いがなくなりました。前から迷っていませんでした。」</blockquote>
+                    <figcaption>
+                        <Img src="hanako-cheer.webp" alt="" width={44} />
+                        <span><b>うれしいはなこ</b><small>はじめましてアソシエイト</small></span>
+                    </figcaption>
+                </figure>
+                <figure class="card voice reveal">
+                    <blockquote>「面接で『イか略。』の表記を聞かれて、即答できました。そんな面接はありませんでした。」</blockquote>
+                    <figcaption>
+                        <Img src="hanako-surprised.webp" alt="" width={44} />
+                        <span><b>びっくりはなこ</b><small>なかよしプロフェッショナル</small></span>
+                    </figcaption>
+                </figure>
+                <figure class="card voice reveal">
+                    <blockquote>「問題を作ったのも、採点したのも、合格したのも、わたしです。」</blockquote>
+                    <figcaption>
+                        <Img src="hanako-thinking.webp" alt="" width={44} />
+                        <span><b>考え中のはなこ</b><small>認定委員会 委員長</small></span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="faq">
+        <div class="container faq">
+            <div class="section-head reveal">
+                <span class="eyebrow">FAQ</span>
+                <h2>よくある<span class="hl">質問。</span></h2>
+            </div>
+            <details>
+                <summary>転職に有利ですか？</summary>
+                <p>有利にはなりません。履歴書の資格欄には書かないでください。</p>
+            </details>
+            <details>
+                <summary>公式トレーニングはありますか？</summary>
+                <p>あります。<a href="docs.html">使い方ガイド</a>です。受講料は¥0で、読み終えたら修了です。修了証はありません。</p>
+            </details>
+            <details>
+                <summary>不合格でした。再受験まで何日待てばいいですか？</summary>
+                <p>0日です。何度でも受けられます。</p>
+            </details>
+            <details>
+                <summary>認定番号で、本人確認はできますか？</summary>
+                <p>できません。番号はブラウザが適当に作っていて、台帳もありません。</p>
+            </details>
+            <details>
+                <summary>入力した名前や試験の結果は、どこかに送られますか？</summary>
+                <p>送られません。認定証はあなたのブラウザの中で作っています。名前も結果も保存しないので、ページを閉じると消えます。</p>
+            </details>
+            <details>
+                <summary>これは本物の資格ですか？</summary>
+                <p>いいえ。ジョークです。</p>
+            </details>
+        </div>
+    </section>
+
+    <div class="container closing">
+        <div class="callout warn reveal">
+            <span class="callout-title">このページはジョークです</span>
+            Hanako認定資格は実在の資格ではなく、実在の資格・試験・団体とは関係ありません。認定証に法的な効力や、知識・技能を証明する力はありません。問題に出てくるHanakoの動きは本物です。
+        </div>
+        <div class="hero-actions center">
+            <a class="btn btn-primary" href="docs.html">使い方ガイドで学習する</a>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    .cert-hero {
+        padding: 80px 20px 0;
+        text-align: center;
+    }
+
+    .cert-hero img {
+        width: 150px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        background: var(--surface);
+        border: 3px solid var(--pink-soft);
+        box-shadow: var(--pop);
+    }
+
+    .cert-hero h1 {
+        font-size: var(--fs-h1);
+        line-height: 1.35;
+        margin: 10px 0 14px;
+    }
+
+    .cert-hero > p {
+        max-width: 720px;
+        margin: 0 auto 26px;
+        color: var(--text-muted);
+        font-size: var(--fs-lg);
+    }
+
+    .cert-hero .joke-note {
+        margin: 26px auto 0;
+        color: var(--text-dim);
+        font-size: var(--fs-sm);
+    }
+
+    .tiers {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .tier {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .tier img {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        width: 80px;
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        border: 2px solid var(--pink-soft);
+    }
+
+    /* 3つとも見出しの高さをそろえ、右上の絵に重ならない幅で折り返す */
+    .tier h3 {
+        min-height: 3.2em;
+        margin-bottom: 4px;
+        padding-right: 84px;
+        line-height: 1.6;
+    }
+
+    .tier-english {
+        color: var(--text-dim);
+        font-size: var(--fs-sm);
+    }
+
+    .card .tier-score {
+        margin: 12px 0 0;
+        color: var(--text);
+    }
+
+    .tier-score b {
+        color: var(--pink-ink);
+        font-size: var(--fs-h4);
+        font-weight: 900;
+    }
+
+    .card .tier-audience {
+        color: var(--text-muted);
+        font-size: var(--fs-md);
+    }
+
+    .tier ul {
+        margin: 0;
+        padding-left: 1.2em;
+        color: var(--text-muted);
+        font-size: var(--fs-md);
+    }
+
+    .subhead {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 4px 12px;
+        margin: 40px 0 12px;
+        font-size: var(--fs-xl);
+    }
+
+    .subhead small {
+        color: var(--text-dim);
+        font-size: var(--fs-sm);
+        font-weight: 700;
+    }
+
+    .specialties {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    .specialties li {
+        display: grid;
+        padding: 12px 16px;
+        border-radius: var(--radius-md);
+        border: 2px dashed var(--border-strong);
+        line-height: 1.6;
+    }
+
+    .specialties b {
+        font-size: var(--fs-base);
+    }
+
+    .specialties span {
+        color: var(--text-muted);
+        font-size: var(--fs-sm);
+    }
+
+    .guide-grid {
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        gap: 18px;
+        align-items: start;
+    }
+
+    .guide-grid .table-wrap {
+        margin: 0;
+    }
+
+    .domains ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .domains li {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 2px 10px;
+        padding: 8px 0;
+        font-size: var(--fs-md);
+    }
+
+    .domains a {
+        color: var(--text);
+    }
+
+    .domains a:hover {
+        color: var(--pink-ink);
+    }
+
+    .domains b {
+        color: var(--pink-ink);
+    }
+
+    /* 割合がそのまま読めるよう、棒の幅は全体を 100% としたときの割合のままにする */
+    .domain-bar {
+        grid-column: 1 / -1;
+        display: block;
+        height: 8px;
+        border-radius: var(--radius-pill);
+        background: var(--pink-bloom);
+    }
+
+    .voice {
+        margin: 0;
+    }
+
+    .voice blockquote {
+        margin: 0 0 14px;
+        font-size: var(--fs-base);
+    }
+
+    .voice figcaption {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .voice img {
+        width: 44px;
+        height: 44px;
+        object-fit: cover;
+        object-position: top;
+        border-radius: 50%;
+        border: 2px solid var(--pink-soft);
+    }
+
+    .voice figcaption span {
+        display: grid;
+        line-height: 1.5;
+    }
+
+    .voice figcaption b {
+        font-size: var(--fs-md);
+    }
+
+    .voice figcaption small {
+        color: var(--text-dim);
+        font-size: var(--fs-xs);
+    }
+
+    .faq {
+        max-width: 800px;
+    }
+
+    details {
+        margin: 10px 0;
+        border-radius: var(--radius-md);
+        background: var(--surface);
+        border: 2px solid var(--border);
+    }
+
+    details[open] {
+        border-color: var(--border-strong);
+        background: var(--pink-pale);
+    }
+
+    summary {
+        padding: 14px 20px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    details p {
+        margin: 0;
+        padding: 0 20px 16px;
+        color: var(--text-muted);
+        font-size: var(--fs-base);
+    }
+
+    .closing {
+        max-width: 800px;
+        padding-top: 70px;
+    }
+
+    /* 3列だと「プロフェッショナル」が1行に入らなくなる幅 */
+    @media (max-width: 1100px) {
+        .tiers {
+            grid-template-columns: 1fr;
+        }
+        .tier h3 {
+            min-height: 0;
+        }
+    }
+
+    @media (max-width: 960px) {
+        .guide-grid {
+            grid-template-columns: 1fr;
+        }
+        .specialties {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 640px) {
+        .specialties {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>

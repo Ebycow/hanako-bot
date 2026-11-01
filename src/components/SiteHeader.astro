@@ -1,6 +1,6 @@
 ---
 import Img from './Img.astro';
-export type Page = 'home' | 'docs' | 'developers' | 'terms' | 'privacy';
+export type Page = 'home' | 'docs' | 'developers' | 'certification' | 'terms' | 'privacy';
 
 interface Props {
     page: Page;
@@ -35,6 +35,13 @@ const links: Link[] = {
         { href: 'developers.html', label: '開発者', current: true },
         { href: '#self-host', label: 'ホスト手順' },
         { href: '#ask-ai', label: 'AIに相談' },
+    ],
+    certification: [
+        { href: './', label: 'ホーム' },
+        { href: 'docs.html', label: 'ドキュメント' },
+        { href: 'certification.html', label: '認定資格', current: true },
+        { href: '#exam-guide', label: '試験概要' },
+        { href: '#mock-exam', label: '模擬試験' },
     ],
     terms: [
         { href: './', label: 'ホーム' },
